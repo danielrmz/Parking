@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{A9964A1E-DE43-498C-8845-808D54208627}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{F9BD6BE8-5135-4200-A705-5E5B84C3EE4E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{AEA8B4F0-F2E3-4B50-AB30-4359478AADFE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{A5B951FA-0CA1-49ED-A6DC-E8B2BA3A8E55}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parking.Models", "API\Parking.Models\Parking.Models.csproj", "{160EAC2B-7C52-405A-80A0-2B020CC51549}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parking.API", "API\Parking.API\Parking.API.csproj", "{14EAEE55-53E6-4B9B-A32C-4621EC802CEF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parking.Auth", "API\Parking.Auth\Parking.Auth.csproj", "{82620532-2FE2-4A45-A548-42A0F5671461}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{160EAC2B-7C52-405A-80A0-2B020CC51549}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{160EAC2B-7C52-405A-80A0-2B020CC51549}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{160EAC2B-7C52-405A-80A0-2B020CC51549}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{160EAC2B-7C52-405A-80A0-2B020CC51549}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14EAEE55-53E6-4B9B-A32C-4621EC802CEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14EAEE55-53E6-4B9B-A32C-4621EC802CEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14EAEE55-53E6-4B9B-A32C-4621EC802CEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14EAEE55-53E6-4B9B-A32C-4621EC802CEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82620532-2FE2-4A45-A548-42A0F5671461}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82620532-2FE2-4A45-A548-42A0F5671461}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82620532-2FE2-4A45-A548-42A0F5671461}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82620532-2FE2-4A45-A548-42A0F5671461}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A5B951FA-0CA1-49ED-A6DC-E8B2BA3A8E55} = {A9964A1E-DE43-498C-8845-808D54208627}
+		{160EAC2B-7C52-405A-80A0-2B020CC51549} = {A9964A1E-DE43-498C-8845-808D54208627}
+		{14EAEE55-53E6-4B9B-A32C-4621EC802CEF} = {A5B951FA-0CA1-49ED-A6DC-E8B2BA3A8E55}
+		{82620532-2FE2-4A45-A548-42A0F5671461} = {A5B951FA-0CA1-49ED-A6DC-E8B2BA3A8E55}
+	EndGlobalSection
+EndGlobal
