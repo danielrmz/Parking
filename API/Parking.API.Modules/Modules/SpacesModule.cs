@@ -7,16 +7,18 @@ using Nancy;
 using Nancy.ViewEngines.Razor;
 using Nancy.Serializers.Json;
 
-namespace Parking.API.Modules
+namespace Sieena.Parking.API.Modules
 {
     public class SpacesModule : AbstractBaseModule
     {
         public SpacesModule() : base("Spaces")
         {
-            Get["/"] = parameters =>
-            {
-                return Response.AsJson(new { Time = DateTime.Now });
-            };
+        }
+
+        [Api("/GetAll", ApiMethod.GET)]
+        public Response GetAll(dynamic parameters)
+        {
+            return Envelope(new string[]{ "Test1","Test2" });
         }
     }
 }

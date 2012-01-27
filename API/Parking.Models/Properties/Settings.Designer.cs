@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Sieena.Parking.API.Properties {
+namespace Sieena.Parking.API.Models.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

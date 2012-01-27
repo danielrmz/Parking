@@ -5,7 +5,7 @@ using System.Web;
 
 using Nancy;
 
-namespace Parking.API.Modules
+namespace Sieena.Parking.API.Modules
 {
     public class BaseModule : NancyModule
     {

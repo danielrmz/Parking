@@ -9,7 +9,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Sieena.Parking.API
+namespace Sieena.Parking.API.Models
 {
 	using System.Data.Linq;
 	using System.Data.Linq.Mapping;
@@ -69,7 +69,7 @@ namespace Sieena.Parking.API
     #endregion
 		
 		public DataStoreDataContext() : 
-				base(global::Sieena.Parking.API.Properties.Settings.Default.DataSourceConnectionString, mappingSource)
+				base(global::Sieena.Parking.API.Models.Properties.Settings.Default.DataSourceConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
