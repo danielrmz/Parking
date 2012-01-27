@@ -5,7 +5,7 @@ using System.Web;
 
 using Nancy;
 
-namespace Parking.UI.Api
+namespace Parking.API.Modules
 {
     public class BaseModule : NancyModule
     {
@@ -13,7 +13,7 @@ namespace Parking.UI.Api
         {
             Get["/"] = parameters =>
             {
-                return "API Endpoint";
+                return "Parking's API Endpoint, v.0.0.1";
             };
         }
     }
