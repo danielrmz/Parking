@@ -78,10 +78,29 @@ namespace Sieena.Parking.API.Modules
 
         protected Response Envelope(dynamic data)
         {
+            string type = string.Empty;
+            try
+            {
+                Type t = data.GetType();
+                type = t.Name;
+
+                if (t.IsGenericType)
+                {
+                
+                    type = t.GetGenericArguments()[0].Name;
+                }
+                
+            }
+            catch (Exception e)
+            {
+                data = e;
+            }
+
             return Response.AsJson(new {
                 Time = ConvertToUnixTime(DateTime.Now),
                 Response = data,
-                IsError = false
+                Type = type,
+                Error = false, 
             });
         }
 
