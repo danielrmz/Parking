@@ -12,6 +12,9 @@ using System.Text.RegularExpressions;
 
 namespace Sieena.Parking.API.Modules
 {
+    /// <summary>
+    /// Autoregisters the API Methods based on the attributes
+    /// </summary>
     public abstract class AbstractBaseModule : NancyModule
     {
         public AbstractBaseModule(string modulePath)
@@ -40,6 +43,9 @@ namespace Sieena.Parking.API.Modules
             this.RegisterAPIMethods();
         }
 
+        /// <summary>
+        /// Registers the API Methods
+        /// </summary>
         private void RegisterAPIMethods()
         {
             Type t = this.GetType();
@@ -76,6 +82,12 @@ namespace Sieena.Parking.API.Modules
                                         
         }
 
+
+        /// <summary>
+        /// Wraps the data that will be returned into a standard message with additional fixed data.
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
         protected Response Envelope(dynamic data)
         {
             string type = string.Empty;
@@ -104,6 +116,11 @@ namespace Sieena.Parking.API.Modules
             });
         }
 
+        /// <summary>
+        /// Converts a datetime to unixtime.
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
         protected double ConvertToUnixTime(DateTime date)
         {
             DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0);

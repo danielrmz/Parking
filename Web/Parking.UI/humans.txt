@@ -1,0 +1,28 @@
+/* the humans responsible & colophon */
+/* humanstxt.org */
+
+
+/* TEAM */
+  Team Leader: Daniel Ramirez
+  Site: http://git.io/daniel
+  Twitter: @danielrmz
+  Location: Monterrey, MX
+
+  Developer: Omar Lara
+  Site: http://omarlara.com
+  Twitter: @omarlara
+  Location: Monterrey, MX
+
+  Developer: Eric
+  Site: 
+  Twitter: 
+  Location: Monterrey, MX
+
+/* THANKS */
+  Names (& URL): Sieena Software http://www.sieena.com
+
+/* SITE */
+  Standards: HTML5, CSS3
+  Components: Modernizr, jQuery
+  Software: ASP.NET 4.0, Nancy, Backbone.js
+

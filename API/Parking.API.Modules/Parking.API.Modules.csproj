@@ -61,7 +61,7 @@
   <ItemGroup>
     <Compile Include="Modules\AbstractBaseModule.cs" />
     <Compile Include="Modules\AccessTypesModule.cs" />
-    <Compile Include="Modules\ApiAttribute.cs" />
+    <Compile Include="Classes\ApiAttribute.cs" />
     <Compile Include="Modules\BaseModule.cs" />
     <Compile Include="Modules\CheckinsModule.cs" />
     <Compile Include="Modules\NotificationsModule.cs" />
