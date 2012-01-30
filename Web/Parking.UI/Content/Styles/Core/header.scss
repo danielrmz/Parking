@@ -12,13 +12,15 @@ header {
 
 .topbar {
 	z-index: 3; 
-	background-image: url("/Content/Images/txr-bg-header.png");
+	color: white;
+	background-color: #005A9D;
+	background-image: url("/Content/Images/txr-bg-header-blue.png");
 	background-repeat: repeat-x; 
-	height: 41px;
+	height: 40px;
 	
-	box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.80);
-	-moz-box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.80);
-	-webkit-box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.80);
+	box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.80);
+	-moz-box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.80);
+	-webkit-box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.80);
 	
 	.column { 
 		
@@ -48,7 +50,7 @@ header {
 		margin-left: 10px;
 		
 		span.sieena {
-			color: #0066CC !important;
+			color: white !important;
 			font-size: 20px;
 		}
 		 
@@ -59,7 +61,7 @@ header {
 			display: block;
 			height: 21px;
 			margin: 0 !important; 
-			color: #666666 !important;
+			color: white !important;
 			text-shadow: none !important;
 		} 
 	}

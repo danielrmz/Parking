@@ -44,14 +44,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataStore.cs">
-      <DependentUpon>DataStore.dbml</DependentUpon>
-    </Compile>
     <Compile Include="DataStore.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DataStore.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Models\AccessType.cs" />
+    <Compile Include="Models\Application.cs" />
+    <Compile Include="Models\Checkin.cs" />
+    <Compile Include="Models\Endpoint.cs" />
+    <Compile Include="Models\Place.cs" />
+    <Compile Include="Models\Role.cs" />
+    <Compile Include="Models\Space.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>

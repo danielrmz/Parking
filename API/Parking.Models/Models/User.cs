@@ -3,60 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.DirectoryServices.AccountManagement;
-using System.DirectoryServices.Protocols;
-using System.Net;
 using System.Security.Cryptography;
 
 namespace Sieena.Parking.API.Models
 {
-    public partial class Place
-    {
-        public static List<Place> GetAll()
-        {
-            using (var context = new DataStoreDataContext())
-            {
-                return context.Places.ToList();
-            }
-        }
-
-        public static Place Get(int id)
-        {
-            using (var context = new DataStoreDataContext())
-            {
-                return context.Places.Where(p => p.PlaceId.Equals(id)).FirstOrDefault();
-            }
-        }
-
-        public static Place Save(Place p) {
-            using (var context = new DataStoreDataContext())
-            {
-                if (p.PlaceId != 0)
-                {
-                }
-                else
-                {
-                    context.Places.InsertOnSubmit(p);
-                }
-
-                context.SubmitChanges();
-
-                return p;
-            }
-        }
-
-        public static bool Delete(int id)
-        {
-            using (var context = new DataStoreDataContext())
-            {
-                context.Places.DeleteOnSubmit(context.Places.Where(p => p.PlaceId.Equals(id)).First());
-                context.SubmitChanges();
-            }
-            return true;
-        }
-    }
-
     public partial class User
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="u"></param>
+        /// <returns></returns>
         public static User SaveUser(User u)
         {
             using (DataStoreDataContext ctx = new DataStoreDataContext())
@@ -85,11 +42,12 @@ namespace Sieena.Parking.API.Models
         {
             user = user.Trim();
 
-            if(string.IsNullOrEmpty(user) || string.IsNullOrEmpty(password)) {
+            if (string.IsNullOrEmpty(user) || string.IsNullOrEmpty(password))
+            {
                 // Throw custom buisness exception. 
                 throw new Exception("User or password not specified");
             }
-            
+
             User u = GetByEmail(user);
             if (u == null)
             {
@@ -101,7 +59,8 @@ namespace Sieena.Parking.API.Models
             {
                 using (PrincipalContext context = new PrincipalContext(ContextType.Domain, "SIEENA"))
                 {
-                    if(context.ValidateCredentials(username, password)) {
+                    if (context.ValidateCredentials(username, password))
+                    {
                         return true;
                     }
                 }
@@ -125,4 +84,5 @@ namespace Sieena.Parking.API.Models
             return sb.ToString();
         }
     }
+
 }

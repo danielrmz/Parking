@@ -17,6 +17,10 @@ namespace Sieena.Parking.API.Modules
     /// </summary>
     public abstract class AbstractBaseModule : NancyModule
     {
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="modulePath"></param>
         public AbstractBaseModule(string modulePath)
             : base(modulePath)
         {
@@ -28,7 +32,10 @@ namespace Sieena.Parking.API.Modules
                                         .Where(mi => {
                                             return mi.GetCustomAttributes(typeof(ApiAttribute), true).Any();
                                         })
-                                        .Select(mi => mi.Name)
+                                        .Select(mi => {
+                                            var attr = mi.GetCustomAttributes(typeof(ApiAttribute), true).First() as ApiAttribute;
+                                            return string.Format("{0}\t{1}\t- {2}", attr.GetMethod(), attr.GetRoute(), mi.Name);
+                                        })
                                         .ToList();
 
                 // Get available public methods to display.
@@ -61,7 +68,7 @@ namespace Sieena.Parking.API.Modules
                 Func<dynamic, Response> method = (parameters) => {
                     try
                     {
-                        return mi.Invoke(this, new object[] { parameters }) as Response;
+                        return Envelope(mi.Invoke(this, new object[] { parameters }));
                     }
                     catch (Exception e) {
                         return Envelope(e);

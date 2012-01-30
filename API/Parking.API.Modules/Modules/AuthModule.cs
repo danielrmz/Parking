@@ -18,10 +18,10 @@ namespace Sieena.Parking.API.Modules
           
         }
 
-         [Api("/Validate", ApiMethod.GET)]
+        [Api("/ValidateUser", ApiMethod.GET)]
         public bool ValidateUser(dynamic parameters)
         {
-            return Envelope(User.Validate(parameters["user"], parameters["password"]));
+            return User.Validate(parameters["user"], parameters["password"]);
         }
     }
 }

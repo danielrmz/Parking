@@ -66,6 +66,12 @@ namespace Sieena.Parking.API.Models
     partial void InsertUserRole(UserRole instance);
     partial void UpdateUserRole(UserRole instance);
     partial void DeleteUserRole(UserRole instance);
+    partial void InsertPlaceMap(PlaceMap instance);
+    partial void UpdatePlaceMap(PlaceMap instance);
+    partial void DeletePlaceMap(PlaceMap instance);
+    partial void InsertRole(Role instance);
+    partial void UpdateRole(Role instance);
+    partial void DeleteRole(Role instance);
     #endregion
 		
 		public DataStoreDataContext() : 
@@ -191,6 +197,22 @@ namespace Sieena.Parking.API.Models
 			get
 			{
 				return this.GetTable<UserRole>();
+			}
+		}
+		
+		public System.Data.Linq.Table<PlaceMap> PlaceMaps
+		{
+			get
+			{
+				return this.GetTable<PlaceMap>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Role> Roles
+		{
+			get
+			{
+				return this.GetTable<Role>();
 			}
 		}
 	}
@@ -1850,6 +1872,274 @@ namespace Sieena.Parking.API.Models
 					this._RoleId = value;
 					this.SendPropertyChanged("RoleId");
 					this.OnRoleIdChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.PlaceMaps")]
+	public partial class PlaceMap : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _PlaceMapId;
+		
+		private int _PlaceId;
+		
+		private string _PlaceMapUrl;
+		
+		private int _PlaceMapVersion;
+		
+		private System.DateTime _CreatedAt;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnPlaceMapIdChanging(int value);
+    partial void OnPlaceMapIdChanged();
+    partial void OnPlaceIdChanging(int value);
+    partial void OnPlaceIdChanged();
+    partial void OnPlaceMapUrlChanging(string value);
+    partial void OnPlaceMapUrlChanged();
+    partial void OnPlaceMapVersionChanging(int value);
+    partial void OnPlaceMapVersionChanged();
+    partial void OnCreatedAtChanging(System.DateTime value);
+    partial void OnCreatedAtChanged();
+    #endregion
+		
+		public PlaceMap()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PlaceMapId", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int PlaceMapId
+		{
+			get
+			{
+				return this._PlaceMapId;
+			}
+			set
+			{
+				if ((this._PlaceMapId != value))
+				{
+					this.OnPlaceMapIdChanging(value);
+					this.SendPropertyChanging();
+					this._PlaceMapId = value;
+					this.SendPropertyChanged("PlaceMapId");
+					this.OnPlaceMapIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PlaceId", DbType="Int NOT NULL")]
+		public int PlaceId
+		{
+			get
+			{
+				return this._PlaceId;
+			}
+			set
+			{
+				if ((this._PlaceId != value))
+				{
+					this.OnPlaceIdChanging(value);
+					this.SendPropertyChanging();
+					this._PlaceId = value;
+					this.SendPropertyChanged("PlaceId");
+					this.OnPlaceIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PlaceMapUrl", DbType="NVarChar(512) NOT NULL", CanBeNull=false)]
+		public string PlaceMapUrl
+		{
+			get
+			{
+				return this._PlaceMapUrl;
+			}
+			set
+			{
+				if ((this._PlaceMapUrl != value))
+				{
+					this.OnPlaceMapUrlChanging(value);
+					this.SendPropertyChanging();
+					this._PlaceMapUrl = value;
+					this.SendPropertyChanged("PlaceMapUrl");
+					this.OnPlaceMapUrlChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PlaceMapVersion", DbType="Int NOT NULL")]
+		public int PlaceMapVersion
+		{
+			get
+			{
+				return this._PlaceMapVersion;
+			}
+			set
+			{
+				if ((this._PlaceMapVersion != value))
+				{
+					this.OnPlaceMapVersionChanging(value);
+					this.SendPropertyChanging();
+					this._PlaceMapVersion = value;
+					this.SendPropertyChanged("PlaceMapVersion");
+					this.OnPlaceMapVersionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedAt", DbType="DateTime NOT NULL")]
+		public System.DateTime CreatedAt
+		{
+			get
+			{
+				return this._CreatedAt;
+			}
+			set
+			{
+				if ((this._CreatedAt != value))
+				{
+					this.OnCreatedAtChanging(value);
+					this.SendPropertyChanging();
+					this._CreatedAt = value;
+					this.SendPropertyChanged("CreatedAt");
+					this.OnCreatedAtChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Roles")]
+	public partial class Role : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _RoleId;
+		
+		private string _RoleName;
+		
+		private int _RoleLevel;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnRoleIdChanging(int value);
+    partial void OnRoleIdChanged();
+    partial void OnRoleNameChanging(string value);
+    partial void OnRoleNameChanged();
+    partial void OnRoleLevelChanging(int value);
+    partial void OnRoleLevelChanged();
+    #endregion
+		
+		public Role()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoleId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int RoleId
+		{
+			get
+			{
+				return this._RoleId;
+			}
+			set
+			{
+				if ((this._RoleId != value))
+				{
+					this.OnRoleIdChanging(value);
+					this.SendPropertyChanging();
+					this._RoleId = value;
+					this.SendPropertyChanged("RoleId");
+					this.OnRoleIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoleName", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string RoleName
+		{
+			get
+			{
+				return this._RoleName;
+			}
+			set
+			{
+				if ((this._RoleName != value))
+				{
+					this.OnRoleNameChanging(value);
+					this.SendPropertyChanging();
+					this._RoleName = value;
+					this.SendPropertyChanged("RoleName");
+					this.OnRoleNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoleLevel", DbType="Int NOT NULL")]
+		public int RoleLevel
+		{
+			get
+			{
+				return this._RoleLevel;
+			}
+			set
+			{
+				if ((this._RoleLevel != value))
+				{
+					this.OnRoleLevelChanging(value);
+					this.SendPropertyChanging();
+					this._RoleLevel = value;
+					this.SendPropertyChanged("RoleLevel");
+					this.OnRoleLevelChanged();
 				}
 			}
 		}
