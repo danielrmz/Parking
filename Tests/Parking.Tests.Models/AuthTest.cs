@@ -13,7 +13,7 @@ namespace Parking.Tests.Models
         [TestMethod]
         public void ValidateUser()
         {
-            Assert.IsTrue(User.Validate("daniel.ramirez@sieena.com", "xrZ40uye"));
+            /*Assert.IsTrue(User.Validate("daniel.ramirez@sieena.com", ""));*/
         }
     }
 }
