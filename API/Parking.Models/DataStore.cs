@@ -106,7 +106,7 @@ namespace Sieena.Parking.API.Models
                     }
                 }
             }
-            catch (LdapException ex)
+            catch (Exception ex)
             {
                 // Could be several reasons, but go to next auth type.
             }
