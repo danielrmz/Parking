@@ -116,10 +116,15 @@
   <ItemGroup>
     <Content Include="App_Data\combres.xml" />
     <Content Include="App_Data\combres_full_with_annotation.xml" />
-    <Content Include="Content\Images\canvas_bg.png" />
-    <Content Include="Content\Images\header_bg.png" />
-    <Content Include="Content\Styles\bootstrap-1.4.0.css" />
-    <Content Include="Content\Styles\master.css">
+    <Content Include="Content\Images\txr-bg-canvas.png" />
+    <Content Include="Content\Images\txr-bg-header.png" />
+    <Content Include="Content\Styles\Core\bootstrap-1.4.0.css" />
+    <Content Include="Content\Styles\Core\header.css">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>header.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\Styles\Core\master.css">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>master.scss</DependentUpon>
@@ -195,7 +200,11 @@
     <Content Include="Views\Shared\_Header.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Content\Styles\master.scss">
+    <None Include="Content\Styles\Core\header.scss">
+      <Generator>ScssGenerator</Generator>
+      <LastGenOutput>header.css</LastGenOutput>
+    </None>
+    <None Include="Content\Styles\Core\master.scss">
       <Generator>ScssGenerator</Generator>
       <LastGenOutput>master.css</LastGenOutput>
     </None>
