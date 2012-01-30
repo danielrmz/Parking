@@ -57,25 +57,35 @@ namespace Sieena.Parking.API.Modules
              .ToList()
              .ForEach( mi => {
                 ApiAttribute tag = mi.GetCustomAttributes(typeof(ApiAttribute), true).First() as ApiAttribute;
+                
+                Func<dynamic, Response> method = (parameters) => {
+                    try
+                    {
+                        return mi.Invoke(this, new object[] { parameters }) as Response;
+                    }
+                    catch (Exception e) {
+                        return Envelope(e);
+                    }
+                };
 
                 string route = tag.GetRoute();
                 switch (tag.GetMethod())
                 {
                     case ApiMethod.GET:
-                        Get[route] = parameters => mi.Invoke(this, new object[] { parameters }) as Response;
+                        Get[route] = method;
                         break;
                     case ApiMethod.POST:
-                        Post[route] = parameters => mi.Invoke(this, new object[] { parameters }) as Response;
+                        Post[route] = method;
                         break;
                     case ApiMethod.PUT:
-                        Put[route] = parameters => mi.Invoke(this, new object[] { parameters }) as Response;
+                        Put[route] = method;
                         break;
                     case ApiMethod.DELETE:
-                        Delete[route] = parameters => mi.Invoke(this, new object[] { parameters }) as Response;
+                        Delete[route] = method;
                         break;
-                    case ApiMethod.GETPOST: 
-                        Get[route] = parameters => mi.Invoke(this, new object[] { parameters }) as Response;
-                        Post[route] = parameters => mi.Invoke(this, new object[] { parameters }) as Response;
+                    case ApiMethod.GETPOST:
+                        Get[route] = method;
+                        Post[route] = method;
                         break;
                 }
              });
@@ -108,11 +118,19 @@ namespace Sieena.Parking.API.Modules
                 data = e;
             }
 
+            bool isError = false;
+            if (data is Exception)
+            {
+                isError = true;
+                type = data.InnerException != null ? data.InnerException.GetType().Name : type;
+                data = data.InnerException != null ? data.InnerException.Message : data.Message;
+            }
+
             return Response.AsJson(new {
                 Time = ConvertToUnixTime(DateTime.Now),
                 Response = data,
                 Type = type,
-                Error = false, 
+                Error = isError
             });
         }
 

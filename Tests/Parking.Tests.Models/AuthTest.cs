@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Sieena.Parking.API.Models;
 using System.Transactions;
 
-namespace Parking.Tests.Models
+namespace Sieena.Parking.Tests.Models
 {
     [TestClass]
     public class AuthTest
