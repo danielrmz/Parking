@@ -108,6 +108,7 @@
     <Compile Include="Api\ApiBootstrapper.cs" />
     <Compile Include="App_Start\Combres.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\StaticController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -159,7 +160,6 @@
     <Content Include="crossdomain.xml" />
     <Content Include="Global.asax" />
     <Content Include="humans.txt" />
-    <Content Include="index.html" />
     <Content Include="robots.txt" />
     <Content Include="Content\Scripts\Core\jquery-1.7.1.js" />
     <Content Include="Content\Scripts\Core\modernizr-2.0.6.js" />
@@ -208,6 +208,10 @@
       <Generator>ScssGenerator</Generator>
       <LastGenOutput>master.css</LastGenOutput>
     </None>
+    <Content Include="Views\Static\About.cshtml" />
+    <Content Include="Views\Static\Help.cshtml" />
+    <Content Include="Views\Static\Privacy.cshtml" />
+    <Content Include="Views\Static\Terms.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

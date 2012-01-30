@@ -57,6 +57,21 @@ namespace Sieena.Parking.API.Models
 
     public partial class User
     {
+        public static User SaveUser(User u)
+        {
+            using (DataStoreDataContext ctx = new DataStoreDataContext())
+            {
+                if (u.UserId == 0)
+                {
+                    u.Password = GetSHA1(u.Password);
+                    ctx.Users.InsertOnSubmit(u);
+                }
+                ctx.SubmitChanges();
+
+                return u;
+            }
+        }
+
         public static User GetByEmail(string email)
         {
             email = email.ToLower().Trim();
@@ -84,7 +99,7 @@ namespace Sieena.Parking.API.Models
             string username = user.Split('@').First();
             try
             {
-                using (PrincipalContext context = new PrincipalContext(ContextType.ApplicationDirectory, "sieenasoftware.com:389", "DC=sieenasoftware,DC=com"))
+                using (PrincipalContext context = new PrincipalContext(ContextType.Domain, "SIEENA"))
                 {
                     if(context.ValidateCredentials(username, password)) {
                         return true;

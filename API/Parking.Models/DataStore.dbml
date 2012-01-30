@@ -11,9 +11,11 @@
       <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Password" Type="System.String" DbType="NVarChar(1024) NOT NULL" CanBeNull="false" />
       <Column Name="Email" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="LastAccess" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="LastAccess" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="true" />
       <Column Name="IsActive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="CreatedAt" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedAt" AutoSync="Never" Type="System.DateTime" DbType="DateTime NOT NULL" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="LastName" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
   <Table Name="dbo.Applications" Member="Applications">

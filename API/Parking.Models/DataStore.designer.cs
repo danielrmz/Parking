@@ -293,11 +293,15 @@ namespace Sieena.Parking.API.Models
 		
 		private string _Email;
 		
-		private System.DateTime _LastAccess;
+		private System.Nullable<System.DateTime> _LastAccess;
 		
 		private bool _IsActive;
 		
 		private System.DateTime _CreatedAt;
+		
+		private string _FirstName;
+		
+		private string _LastName;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -309,12 +313,16 @@ namespace Sieena.Parking.API.Models
     partial void OnPasswordChanged();
     partial void OnEmailChanging(string value);
     partial void OnEmailChanged();
-    partial void OnLastAccessChanging(System.DateTime value);
+    partial void OnLastAccessChanging(System.Nullable<System.DateTime> value);
     partial void OnLastAccessChanged();
     partial void OnIsActiveChanging(bool value);
     partial void OnIsActiveChanged();
     partial void OnCreatedAtChanging(System.DateTime value);
     partial void OnCreatedAtChanged();
+    partial void OnFirstNameChanging(string value);
+    partial void OnFirstNameChanged();
+    partial void OnLastNameChanging(string value);
+    partial void OnLastNameChanged();
     #endregion
 		
 		public User()
@@ -383,7 +391,7 @@ namespace Sieena.Parking.API.Models
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastAccess", DbType="DateTime NOT NULL")]
-		public System.DateTime LastAccess
+		public System.Nullable<System.DateTime> LastAccess
 		{
 			get
 			{
@@ -422,7 +430,7 @@ namespace Sieena.Parking.API.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedAt", DbType="DateTime NOT NULL")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedAt", DbType="DateTime NOT NULL", IsDbGenerated=true)]
 		public System.DateTime CreatedAt
 		{
 			get
@@ -438,6 +446,46 @@ namespace Sieena.Parking.API.Models
 					this._CreatedAt = value;
 					this.SendPropertyChanged("CreatedAt");
 					this.OnCreatedAtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FirstName", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string FirstName
+		{
+			get
+			{
+				return this._FirstName;
+			}
+			set
+			{
+				if ((this._FirstName != value))
+				{
+					this.OnFirstNameChanging(value);
+					this.SendPropertyChanging();
+					this._FirstName = value;
+					this.SendPropertyChanged("FirstName");
+					this.OnFirstNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastName", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string LastName
+		{
+			get
+			{
+				return this._LastName;
+			}
+			set
+			{
+				if ((this._LastName != value))
+				{
+					this.OnLastNameChanging(value);
+					this.SendPropertyChanging();
+					this._LastName = value;
+					this.SendPropertyChanged("LastName");
+					this.OnLastNameChanged();
 				}
 			}
 		}

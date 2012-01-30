@@ -23,6 +23,12 @@ namespace Parking.UI
 
             routes.IgnoreRoute("Api/{*id}");
 
+            routes.MapRoute("about", "about", new { controller = "Static", action="about" });
+            routes.MapRoute("help", "help", new { controller = "Static", action = "help" });
+            routes.MapRoute("privacy", "privacy", new { controller = "Static", action = "privacy" });
+            routes.MapRoute("terms", "terms", new { controller = "Static", action = "terms" });
+            routes.MapRoute("login", "login", new { controller = "Static", action = "login" });
+
             routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters

@@ -2,9 +2,34 @@
  <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0">
     <!-- http://www.google.com/support/webmasters/bin/answer.py?answer=34648 -->
-    <url>
-        <!--<loc>http://mobile.example.com/index.html</loc>-->
+   <!--<url>
+        <loc>http://mobile.example.com/index.html</loc>
 		
         <mobile:mobile/>
     </url>
+    -->
+   <url>
+     <loc>http://parking-1.apphb.com/about</loc>
+     <lastmod></lastmod>
+     <changefreq>yearly</changefreq>
+     <priority>0.5</priority>
+   </url>
+   <url>
+     <loc>http://parking-1.apphb.com/help</loc>
+     <lastmod></lastmod>
+     <changefreq>yearly</changefreq>
+     <priority>0.5</priority>
+   </url>
+   <url>
+     <loc>http://parking-1.apphb.com/privacy</loc>
+     <lastmod></lastmod>
+     <changefreq>yearly</changefreq>
+     <priority>0.5</priority>
+   </url>
+   <url>
+     <loc>http://parking-1.apphb.com/terms</loc>
+     <lastmod></lastmod>
+     <changefreq>yearly</changefreq>
+     <priority>0.5</priority>
+   </url>
 </urlset>

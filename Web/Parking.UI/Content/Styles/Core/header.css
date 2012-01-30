@@ -128,28 +128,27 @@ header {
             border-left: 4px solid transparent;
             border-right: 4px solid transparent;
             border-top: 4px solid black;
+            opacity: 0.5;
             filter: alpha(opacity=50);
             -khtml-opacity: 0.5;
-            -moz-opacity: 0.5;
-            opacity: 0.5; }
+            -moz-opacity: 0.5; }
       header .topbar ul.menu .search input {
         border: 1px solid #cccccc;
         background: white;
         height: 15px;
         margin-top: 3px;
-        color: silver !important;
         font-style: italic;
         font-weight: normal; }
         header .topbar ul.menu .search input:focus {
           color: black !important;
           font-style: normal;
           padding: 4px 9px !important;
+          transition: border linear 0.2s,box-shadow linear 0.2s;
+          box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
           -webkit-transition: border linear 0.2s,box-shadow linear 0.2s;
           -moz-transition: border linear 0.2s,box-shadow linear 0.2s;
-          transition: border linear 0.2s,box-shadow linear 0.2s;
           -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
-          -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
-          box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); }
+          -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); }
       header .topbar ul.menu .edit-mode {
         padding: 12px;
         padding-right: 5px; }
