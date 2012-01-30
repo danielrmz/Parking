@@ -1,0 +1,51 @@
+/**
+ * master.scss
+ * Defines the main layout styles to be used throught the app.
+ *
+ * @author The JSONS
+ * @copyright 2012 
+ */
+
+/* @group Site colors */
+
+$layoutWidth: 960px;
+$backgroundColor: #DDDDDD;
+
+/* @endgroup */
+
+
+/* @group Layout */
+
+html, body {
+	background: $backgroundColor;
+}
+
+#main {
+	margin-top: 40px;
+}
+
+footer {
+	border-top: 0px;
+	margin: 10px auto;
+	text-align: center;
+	color: #777;
+
+	ul.list-inline {
+		margin: 0px auto;
+		list-style: none;
+
+		li {
+			display: inline-block;
+			margin-right: 5px;
+			margin-right: 5px;
+			font-size: 11px;
+		}
+	}
+}
+
+.layout-width {
+	width: $layoutWidth;
+	margin: 0px auto;
+}
+
+/* @endgroup */

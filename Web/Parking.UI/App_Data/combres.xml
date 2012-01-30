@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  This file contains basic settings needed for most web apps.
+  For full Combres settings (with explanation), refer to the sample definition file: combres_full_with_annotation.xml
+  Also, refer to Combres' documentation: http://combres.codeplex.com/documentation	
+-->
+<combres xmlns='urn:combres'>
+  <filters>
+    <filter type="Combres.Filters.FixUrlsInCssFilter, Combres" />
+  </filters>
+
+  <cssMinifiers>
+    <minifier name="yui" type="Combres.Minifiers.YuiCssMinifier, Combres">
+      <param name="CssCompressionType" type="string" value="StockYuiCompressor" />
+      <param name="RemoveComments" type="bool" value="true" />
+      <param name="ColumnWidth" type="int" value="-1" />
+    </minifier>
+  </cssMinifiers>
+
+  <jsMinifiers>
+    <minifier name="closure" type="Combres.Minifiers.ClosureJSMinifier, Combres">
+      <param name="ApiUrl" type="string" value="http://closure-compiler.appspot.com/compile" />
+      <param name="CompilationLevel" type="string" value="ADVANCED_OPTIMIZATIONS" />
+    </minifier>
+    <!-- To use this minifier, make sure:
+         - You have the JRE installed in target machine
+         - Copy compiler.jar (in Libraries folder) into the bin folder of your application 
+    
+    <minifier name="local-closure" type="Combres.Minifiers.LocalClosureJSMinifier, Combres">
+      <param name="JavaExePath" type="string" value="" />
+      <param name="CompilationLevel" type="string" value="BASIC_OPTIMIZATIONS" />
+    </minifier>
+    -->
+  </jsMinifiers>
+  
+  <resourceSets url="~/combres.axd"
+                defaultDuration="30"
+                defaultVersion="auto"
+                defaultDebugEnabled="false"
+                defaultIgnorePipelineWhenDebug="true"
+                localChangeMonitorInterval="30"
+                remoteChangeMonitorInterval="60"
+                defaultCssMinifierRef="yui"
+                defaultJSMinifierRef="closure"
+                >
+    <resourceSet name="coreCss" type="css">
+      <resource path="~/Content/Styles/Core/bootstrap-1.4.0.css" forwardCookie="false" />
+      <resource path="~/Content/Styles/Core/master.css" forwardCookie="false" />
+      <resource path="~/Content/Styles/Core/header.css" forwardCookie="false" />
+    </resourceSet>
+    <resourceSet name="coreJs" type="js">
+    </resourceSet>
+  </resourceSets>
+</combres>

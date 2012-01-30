@@ -64,6 +64,7 @@
     <Compile Include="Classes\ApiAttribute.cs" />
     <Compile Include="Modules\BaseModule.cs" />
     <Compile Include="Modules\CheckinsModule.cs" />
+    <Compile Include="Modules\AuthModule.cs" />
     <Compile Include="Modules\NotificationsModule.cs" />
     <Compile Include="Modules\PlacesModule.cs" />
     <Compile Include="Modules\SpacesModule.cs" />
