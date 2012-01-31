@@ -21,8 +21,6 @@ namespace Sieena.Parking.Tests.Models
                     Password = "test123",
                     Email = "daniel.ramirez@sieena.com",
                     IsActive = true,
-                    FirstName = "Daniel",
-                    LastName = "Ramirez",
                     CreatedAt = DateTime.Now
                 };
 
@@ -42,8 +40,6 @@ namespace Sieena.Parking.Tests.Models
                     Password = "test123",
                     Email = "daniel.ramirez@sieena.com",
                     IsActive = true,
-                    FirstName = "Daniel",
-                    LastName = "Ramirez",
                     CreatedAt = DateTime.Now
                 });
                 Assert.IsTrue(User.Validate("daniel.ramirez@sieena.com", "test123"));
