@@ -46,6 +46,56 @@ namespace Sieena.Parking.API.Models
             }
         }
 
+
+        /// <summary>
+        /// Gets a specific instance 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public static Notification Get(int id)
+        {
+            using (DataStoreDataContext ctx = new DataStoreDataContext())
+            {
+                return ctx.Notifications.Where(n => n.NotificationId.Equals(id)).FirstOrDefault();
+            }
+        }
+
+        /// <summary>
+        /// Saves or updates a notification
+        /// </summary>
+        /// <param name="n"></param>
+        /// <returns></returns>
+        public static Notification Save(Notification n)
+        {
+            using (DataStoreDataContext ctx = new DataStoreDataContext())
+            {
+                if (n.NotificationId == 0)
+                {
+                    ctx.Notifications.InsertOnSubmit(n);
+                }
+
+                ctx.SubmitChanges();
+            }
+
+            return n;
+        }
+
+        /// <summary>
+        /// Deletes a Notification
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public static Notification Delete(int id)
+        {
+            using (DataStoreDataContext ctx = new DataStoreDataContext())
+            {
+                Notification n = Get(id);
+                ctx.Notifications.DeleteOnSubmit(n);
+                ctx.SubmitChanges();
+                return n;
+            }
+        }
+
     }
 
 }

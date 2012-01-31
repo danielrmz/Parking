@@ -2290,6 +2290,8 @@ namespace Sieena.Parking.API.Models
 		
 		private System.DateTime _CreatedAt;
 		
+		private bool _Deleted;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -2306,6 +2308,8 @@ namespace Sieena.Parking.API.Models
     partial void OnOwnerIdChanged();
     partial void OnCreatedAtChanging(System.DateTime value);
     partial void OnCreatedAtChanged();
+    partial void OnDeletedChanging(bool value);
+    partial void OnDeletedChanged();
     #endregion
 		
 		public Space()
@@ -2429,6 +2433,26 @@ namespace Sieena.Parking.API.Models
 					this._CreatedAt = value;
 					this.SendPropertyChanged("CreatedAt");
 					this.OnCreatedAtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Deleted", DbType="Bit NOT NULL")]
+		public bool Deleted
+		{
+			get
+			{
+				return this._Deleted;
+			}
+			set
+			{
+				if ((this._Deleted != value))
+				{
+					this.OnDeletedChanging(value);
+					this.SendPropertyChanging();
+					this._Deleted = value;
+					this.SendPropertyChanged("Deleted");
+					this.OnDeletedChanged();
 				}
 			}
 		}

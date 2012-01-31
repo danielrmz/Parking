@@ -19,9 +19,9 @@ namespace Sieena.Parking.API.Modules
         }
 
         [Api("/GetAll", ApiMethod.GET)]
-        public Response GetAll(dynamic parameters)
+        public List<Place> GetAll(dynamic parameters)
         {
-            return Envelope(Place.GetAll());
+            return Place.GetAll();
         }
     }
 }
