@@ -29,6 +29,11 @@ namespace Sieena.Parking.API.Models
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
         public static User GetByEmail(string email)
         {
             email = email.ToLower().Trim();
@@ -38,6 +43,12 @@ namespace Sieena.Parking.API.Models
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="user"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public static bool Validate(string user, string password)
         {
             user = user.Trim();
@@ -65,7 +76,7 @@ namespace Sieena.Parking.API.Models
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 // Could be several reasons, but go to next auth type.
             }
@@ -73,6 +84,11 @@ namespace Sieena.Parking.API.Models
             return u.Password.Equals(GetSHA1(password));
         }
 
+        /// <summary>
+        /// Obtains the SHA1 sum of a string.
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
         private static string GetSHA1(string str)
         {
             SHA1 sha1 = SHA1Managed.Create();

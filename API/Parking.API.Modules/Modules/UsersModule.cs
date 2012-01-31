@@ -23,13 +23,13 @@ namespace Sieena.Parking.API.Modules
             return null;
         }
 
-        [Api("/", ApiMethod.PUT)]
+        [Api("/", ApiMethod.POST)]
         public User AddUser(dynamic parameters)
         {
             return null;
         }
 
-        [Api("/{id}", ApiMethod.POST)]
+        [Api("/{id}", ApiMethod.PUT)]
         public User UpdateUser(dynamic parameters)
         {
             return null;

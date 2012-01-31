@@ -5,8 +5,15 @@ using System.Text;
 
 namespace Sieena.Parking.API.Models
 {
+    /// <summary>
+    /// A whole container of spaces. i.e. Parking Lot
+    /// </summary>
     public partial class Place
     {
+        /// <summary>
+        /// Gets all the available parking lots in the system.
+        /// </summary>
+        /// <returns></returns>
         public static List<Place> GetAll()
         {
             using (var context = new DataStoreDataContext())
@@ -15,6 +22,11 @@ namespace Sieena.Parking.API.Models
             }
         }
 
+        /// <summary>
+        /// Gets a specific place
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public static Place Get(int id)
         {
             using (var context = new DataStoreDataContext())
@@ -23,6 +35,11 @@ namespace Sieena.Parking.API.Models
             }
         }
 
+        /// <summary>
+        /// Saves (insert or updates) a place
+        /// </summary>
+        /// <param name="p"></param>
+        /// <returns></returns>
         public static Place Save(Place p)
         {
             using (var context = new DataStoreDataContext())
@@ -41,6 +58,11 @@ namespace Sieena.Parking.API.Models
             }
         }
 
+        /// <summary>
+        /// Deletes a Place
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public static bool Delete(int id)
         {
             using (var context = new DataStoreDataContext())

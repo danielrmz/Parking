@@ -10,17 +10,17 @@ using Sieena.Parking.API.Models;
 
 namespace Sieena.Parking.API.Modules
 {
-    public class NotificationsModule : AbstractBaseModule
+    public class ApplicationsModule : AbstractBaseModule
     {
-        public NotificationsModule()
-            : base("Notifications")
+        public ApplicationsModule()
+            : base("Applications")
         {
         }
 
         [Api("/GetAll", ApiMethod.GET)]
-        public List<Notification> GetAll(int userId, int amount)
+        public List<Application> GetAll(dynamic parameters)
         {
-            return Notification.GetLastByUserId(userId, amount);
+            return Application.GetAll();
         }
     }
 }
