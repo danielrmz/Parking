@@ -12,8 +12,8 @@ Copyright (C) Microsoft Corporation. All rights reserved.
 
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
-  <UsingTask TaskName="SqlClrDeployTask" AssemblyFile="$(SolutionDir)Microsoft.Data.Schema.Tasks.Sql.dll" />
-  <UsingTask TaskName="SqlFindDeploymentScriptTask" AssemblyFile="$(SolutionDir)Microsoft.Data.Schema.Tasks.Sql.dll" />
+  <UsingTask TaskName="SqlClrDeployTask" AssemblyFile="$(SolutionDir)API\Parking.API.Database\Microsoft.Data.Schema.Tasks.Sql.dll" />
+  <UsingTask TaskName="SqlFindDeploymentScriptTask" AssemblyFile="$(SolutionDir)API\Parking.API.Database\Microsoft.Data.Schema.Tasks.Sql.dll" />
 
   <PropertyGroup>
     <AssemblyPath Condition="'$(AssemblyPath)' == ''">$(OutDir)$(TargetFileName)</AssemblyPath>
