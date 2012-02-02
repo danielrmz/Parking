@@ -20,7 +20,7 @@
   <jsMinifiers>
     <minifier name="closure" type="Combres.Minifiers.ClosureJSMinifier, Combres">
       <param name="ApiUrl" type="string" value="http://closure-compiler.appspot.com/compile" />
-      <param name="CompilationLevel" type="string" value="ADVANCED_OPTIMIZATIONS" />
+      <param name="CompilationLevel" type="string" value="BASIC_OPTIMIZATIONS" />
     </minifier>
     <!-- To use this minifier, make sure:
          - You have the JRE installed in target machine
