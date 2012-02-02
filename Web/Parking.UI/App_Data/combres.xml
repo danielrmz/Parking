@@ -44,11 +44,13 @@
                 defaultJSMinifierRef="closure"
                 >
     <resourceSet name="coreCss" type="css">
-      <resource path="~/Content/Styles/Core/bootstrap-1.4.0.css" forwardCookie="false" />
+      <resource path="~/Content/Styles/Core/bootstrap.min.css" forwardCookie="false" />
+      <resource path="~/Content/Styles/Core/bootstrap-responsive.min.css" forwardCookie="false" />
       <resource path="~/Content/Styles/Core/master.css" forwardCookie="false" />
       <resource path="~/Content/Styles/Core/header.css" forwardCookie="false" />
     </resourceSet>
     <resourceSet name="coreJs" type="js">
+      <resource path="~/Content/Scripts/Core/bootstrap.min.js" forwardCookie="false" />
     </resourceSet>
   </resourceSets>
 </combres>

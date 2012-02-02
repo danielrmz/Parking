@@ -119,7 +119,11 @@
     <Content Include="App_Data\combres_full_with_annotation.xml" />
     <Content Include="Content\Images\txr-bg-canvas.png" />
     <Content Include="Content\Images\txr-bg-header.png" />
-    <Content Include="Content\Styles\Core\bootstrap-1.4.0.css" />
+    <Content Include="Content\Scripts\Core\bootstrap.min.js" />
+    <Content Include="Content\Styles\Core\bootstrap-responsive.css" />
+    <Content Include="Content\Styles\Core\bootstrap-responsive.min.css" />
+    <Content Include="Content\Styles\Core\bootstrap.css" />
+    <Content Include="Content\Styles\Core\bootstrap.min.css" />
     <Content Include="Content\Styles\Core\header.css">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
