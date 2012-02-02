@@ -40,10 +40,8 @@
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <OutputPath>.\sql\debug\</OutputPath>
     <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
-    <TargetConnectionString>
-    </TargetConnectionString>
-    <TargetDatabase>
-    </TargetDatabase>
+    <TargetConnectionString>Data Source=b26576c2-587f-42e2-84fa-9fe50000baae.sqlserver.sequelizer.com;Persist Security Info=True;User ID=qqnfafsndywwohmm;Pooling=False</TargetConnectionString>
+    <TargetDatabase>dbb26576c2587f42e284fa9fe50000baae</TargetDatabase>
     <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
     <SuppressWarnings>
     </SuppressWarnings>

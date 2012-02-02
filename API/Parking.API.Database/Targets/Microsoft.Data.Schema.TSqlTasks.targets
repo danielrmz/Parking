@@ -59,7 +59,7 @@
       ReferencePath="@(ReferencePath)"
       CatalogPropertiesFile="$(CatalogPropertiesFile)"
       ServerPropertiesFile="$(ServerPropertiesFile)"
-
+ 
       OutputDBSchema="@(DbSchemaFile)"
       TreatWarningsAsErrors="$(TreatWarningsAsErrors)"
       SuppressWarnings="$(SuppressWarnings)"
