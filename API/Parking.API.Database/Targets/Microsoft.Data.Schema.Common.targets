@@ -13,11 +13,11 @@
   <PropertyGroup>
     <AddAdditionalExplicitAssemblyReferences>false</AddAdditionalExplicitAssemblyReferences>
   </PropertyGroup>
-  <UsingTask TaskName="DBBuildTask" AssemblyFile="$(SolutionDir)API\Parking.API.Database\Microsoft.Data.Schema.Tasks.Sql.dll" />
-  <UsingTask TaskName="DBSetupDeployTask" AssemblyFile="$(SolutionDir)API\Parking.API.Database\Microsoft.Data.Schema.Tasks.Sql.dll" />
-  <UsingTask TaskName="DBDeployTask" AssemblyFile="$(SolutionDir)API\Parking.API.Database\Microsoft.Data.Schema.Tasks.Sql.dll" />
-  <UsingTask TaskName="DataGeneratorTask" AssemblyFile="$(SolutionDir)API\Parking.API.Database\Microsoft.Data.Schema.Tasks.Sql.dll" />
-  <UsingTask TaskName="StaticCodeAnalysisTask" AssemblyFile="$(SolutionDir)API\Parking.API.Database\Microsoft.Data.Schema.Tasks.Sql.dll" />
+  <UsingTask TaskName="DBBuildTask" AssemblyFile="$(SolutionDir)API\Parking.API.Database\ReferencedAssemblies\Microsoft.Data.Schema.Tasks.Sql.dll" />
+  <UsingTask TaskName="DBSetupDeployTask" AssemblyFile="$(SolutionDir)API\Parking.API.Database\ReferencedAssemblies\Microsoft.Data.Schema.Tasks.Sql.dll" />
+  <UsingTask TaskName="DBDeployTask" AssemblyFile="$(SolutionDir)API\Parking.API.Database\ReferencedAssemblies\Microsoft.Data.Schema.Tasks.Sql.dll" />
+  <UsingTask TaskName="DataGeneratorTask" AssemblyFile="$(SolutionDir)API\Parking.API.Database\ReferencedAssemblies\Microsoft.Data.Schema.Tasks.Sql.dll" />
+  <UsingTask TaskName="StaticCodeAnalysisTask" AssemblyFile="$(SolutionDir)API\Parking.API.Database\ReferencedAssemblies\Microsoft.Data.Schema.Tasks.Sql.dll" />
 
 
   <!--This makes the project files a dependency of all targets so that things rebuild if they change-->
