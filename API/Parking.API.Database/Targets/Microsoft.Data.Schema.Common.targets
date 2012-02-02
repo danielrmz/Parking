@@ -13,11 +13,11 @@
   <PropertyGroup>
     <AddAdditionalExplicitAssemblyReferences>false</AddAdditionalExplicitAssemblyReferences>
   </PropertyGroup>
-  <UsingTask TaskName="DBBuildTask" AssemblyName="Microsoft.Data.Schema.Tasks, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"/>
-  <UsingTask TaskName="DBSetupDeployTask" AssemblyName="Microsoft.Data.Schema.Tasks, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"/>
-  <UsingTask TaskName="DBDeployTask" AssemblyName="Microsoft.Data.Schema.Tasks, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"/>
-  <UsingTask TaskName="DataGeneratorTask" AssemblyName="Microsoft.Data.Schema.Tasks, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"/>
-  <UsingTask TaskName="StaticCodeAnalysisTask" AssemblyName="Microsoft.Data.Schema.Tasks, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"/>
+  <UsingTask TaskName="DBBuildTask" AssemblyFile="..\Microsoft.Data.Schema.Tasks.Sql.dll" />
+  <UsingTask TaskName="DBSetupDeployTask" AssemblyFile="..\Microsoft.Data.Schema.Tasks.Sql.dll" />
+  <UsingTask TaskName="DBDeployTask" AssemblyFile="..\Microsoft.Data.Schema.Tasks.Sql.dll" />
+  <UsingTask TaskName="DataGeneratorTask" AssemblyFile="..\Microsoft.Data.Schema.Tasks.Sql.dll" />
+  <UsingTask TaskName="StaticCodeAnalysisTask" AssemblyFile="..\Microsoft.Data.Schema.Tasks.Sql.dll" />
 
 
   <!--This makes the project files a dependency of all targets so that things rebuild if they change-->
