@@ -13,11 +13,11 @@
   <PropertyGroup>
     <AddAdditionalExplicitAssemblyReferences>false</AddAdditionalExplicitAssemblyReferences>
   </PropertyGroup>
-  <UsingTask TaskName="DBBuildTask" AssemblyFile="..\Microsoft.Data.Schema.Tasks.Sql.dll" />
-  <UsingTask TaskName="DBSetupDeployTask" AssemblyFile="..\Microsoft.Data.Schema.Tasks.Sql.dll" />
-  <UsingTask TaskName="DBDeployTask" AssemblyFile="..\Microsoft.Data.Schema.Tasks.Sql.dll" />
-  <UsingTask TaskName="DataGeneratorTask" AssemblyFile="..\Microsoft.Data.Schema.Tasks.Sql.dll" />
-  <UsingTask TaskName="StaticCodeAnalysisTask" AssemblyFile="..\Microsoft.Data.Schema.Tasks.Sql.dll" />
+  <UsingTask TaskName="DBBuildTask" AssemblyFile="$(SolutionDir)Microsoft.Data.Schema.Tasks.Sql.dll" />
+  <UsingTask TaskName="DBSetupDeployTask" AssemblyFile="$(SolutionDir)Microsoft.Data.Schema.Tasks.Sql.dll" />
+  <UsingTask TaskName="DBDeployTask" AssemblyFile="$(SolutionDir)Microsoft.Data.Schema.Tasks.Sql.dll" />
+  <UsingTask TaskName="DataGeneratorTask" AssemblyFile="$(SolutionDir)Microsoft.Data.Schema.Tasks.Sql.dll" />
+  <UsingTask TaskName="StaticCodeAnalysisTask" AssemblyFile="$(SolutionDir)Microsoft.Data.Schema.Tasks.Sql.dll" />
 
 
   <!--This makes the project files a dependency of all targets so that things rebuild if they change-->

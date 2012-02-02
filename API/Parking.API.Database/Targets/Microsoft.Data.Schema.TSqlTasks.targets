@@ -10,10 +10,10 @@
   <!--Import common data targets-->
   <Import Project="Microsoft.Data.Schema.Common.targets" />
 
-  <UsingTask TaskName="SqlBuildTask" AssemblyFile="..\Microsoft.Data.Schema.Tasks.Sql.dll"/>
-  <UsingTask TaskName="SqlSetupDeployTask" AssemblyFile="..\Microsoft.Data.Schema.Tasks.Sql.dll"/>
-  <UsingTask TaskName="SqlDeployTask" AssemblyFile="..\Microsoft.Data.Schema.Tasks.Sql.dll" />
-  <UsingTask TaskName="SqlStaticCodeAnalysisTask" AssemblyFile="..\Microsoft.Data.Schema.Tasks.Sql.dll" />
+  <UsingTask TaskName="SqlBuildTask" AssemblyFile="$(SolutionDir)Microsoft.Data.Schema.Tasks.Sql.dll"/>
+  <UsingTask TaskName="SqlSetupDeployTask" AssemblyFile="$(SolutionDir)Microsoft.Data.Schema.Tasks.Sql.dll" />
+  <UsingTask TaskName="SqlDeployTask" AssemblyFile="$(SolutionDir)Microsoft.Data.Schema.Tasks.Sql.dll" />
+  <UsingTask TaskName="SqlStaticCodeAnalysisTask" AssemblyFile="$(SolutionDir)Microsoft.Data.Schema.Tasks.Sql.dll" />
   
   <!--This makes the project files a dependency of all targets so that things rebuild if they change-->
   <PropertyGroup>

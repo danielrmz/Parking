@@ -12,8 +12,8 @@ Copyright (C) Microsoft Corporation. All rights reserved.
 
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
-  <UsingTask TaskName="SqlClrDeployTask" AssemblyName="Microsoft.Data.Schema.Tasks.Sql, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"/>
-  <UsingTask TaskName="SqlFindDeploymentScriptTask" AssemblyName="Microsoft.Data.Schema.Tasks.Sql, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"/>
+  <UsingTask TaskName="SqlClrDeployTask" AssemblyFile="$(SolutionDir)Microsoft.Data.Schema.Tasks.Sql.dll" />
+  <UsingTask TaskName="SqlFindDeploymentScriptTask" AssemblyFile="$(SolutionDir)Microsoft.Data.Schema.Tasks.Sql.dll" />
 
   <PropertyGroup>
     <AssemblyPath Condition="'$(AssemblyPath)' == ''">$(OutDir)$(TargetFileName)</AssemblyPath>
