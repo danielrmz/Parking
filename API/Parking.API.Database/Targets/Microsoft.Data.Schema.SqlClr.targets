@@ -1,0 +1,163 @@
+<!--
+***********************************************************************************************
+Microsoft.Data.Schema.SqlClr.targets
+
+WARNING:  DO NOT MODIFY this file unless you are knowledgeable about MSBuild and have
+          created a backup copy.  Incorrect changes to this file will make it
+          impossible to load or build your projects from the command-line or the IDE.
+
+Copyright (C) Microsoft Corporation. All rights reserved.
+***********************************************************************************************
+-->
+
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <UsingTask TaskName="SqlClrDeployTask" AssemblyName="Microsoft.Data.Schema.Tasks.Sql, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"/>
+  <UsingTask TaskName="SqlFindDeploymentScriptTask" AssemblyName="Microsoft.Data.Schema.Tasks.Sql, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"/>
+
+  <PropertyGroup>
+    <AssemblyPath Condition="'$(AssemblyPath)' == ''">$(OutDir)$(TargetFileName)</AssemblyPath>
+    <PermissionLevel Condition="'$(PermissionLevel)' == ''">1</PermissionLevel>
+    <DeployCode Condition="'$(DeployCode)' == ''">false</DeployCode>
+    <DeployToDatabase Condition="'$(DeployToDatabase)' == ''">true</DeployToDatabase>
+    <DeployToScript Condition="'$(DeployToScript)' == ''">true</DeployToScript>
+    <DeployScriptPath Condition="'$(DeployScriptPath)' == ''">$(OutDir)$(TargetName).sql</DeployScriptPath>
+    <DropBlockingAssemblies Condition="'$(DropBlockingAssemblies)' == ''">true</DropBlockingAssemblies>
+  </PropertyGroup>
+
+  <Target Name="SetupSqlClrDeploy">
+    <CreateItem Condition="$(DeployCode) == 'true'" Include="@(Compile)">
+      <Output TaskParameter="Include" ItemName="DeployableSqlClrCode" />
+    </CreateItem>
+    <CreateItem Condition="$(DeployCode) == 'true' and '$(_DebugSymbolsProduced)' == 'true'"  Include="@(_DebugSymbolsOutputPath)">
+      <Output TaskParameter="Include" ItemName="DeployableSqlClrCode" />
+    </CreateItem>
+  </Target>
+
+  <!-- Deploy -->
+  <!-- 
+  Targets can be overridden by projects to execute custom tasks before and
+  after the SqlClr project's deployment
+  -->
+  <Target Name="BeforeDeploy"/>
+  <Target Name="AfterDeploy"/>
+
+  <!--
+  Executes a shell script prior to project deployment
+  -->
+  <Target
+    Name="PreDeployEvent"
+    Condition="'$(PreDeployEvent)'!='' And Exists($(TargetDir))">
+    <Exec WorkingDirectory="$(TargetDir)" Command="$(PreDeployEvent)" />
+  </Target>
+
+  <!--
+  Executes a shell script post project deployment
+  -->
+  <Target
+    Name="PostDeployEvent"
+    Condition="'$(PostDeployEvent)'!='' And Exists($(TargetDir))">
+    <Exec WorkingDirectory="$(TargetDir)" Command="$(PostDeployEvent)" />
+  </Target>
+  
+  <PropertyGroup>
+    <SqlClrDeployDependsOn>
+      BeforeDeploy;
+      PreDeployEvent;
+      SetupSqlClrDeploy;
+      SqlClrDeploy;
+      PostDeployEvent;
+      AfterDeploy
+    </SqlClrDeployDependsOn>
+  </PropertyGroup>
+  <Target Name="Deploy" DependsOnTargets="$(SqlClrDeployDependsOn)">
+
+    <OnError ExecuteTargets="PostDeployEvent" Condition="'$(RunPostDeployEvent)'=='Always'"/>
+  </Target>
+  
+  <Target Name="SqlClrDeploy">
+
+    <!-- Find the Pre-deployment script -->
+    <SqlFindDeploymentScriptTask
+      Condition="'$(PreDeployScript)' == ''"
+      ScriptNameToFind="PreDeployScript.sql"
+      ScriptsToSearch="@(Content)">
+      <Output TaskParameter="FoundScriptPath" PropertyName="PreDeployScript" />
+    </SqlFindDeploymentScriptTask>
+
+    <!-- Dind the post-deployment script -->
+    <SqlFindDeploymentScriptTask
+      Condition="'$(PostDeployScript)' == ''"
+      ScriptNameToFind="PostDeployScript.sql"
+      ScriptsToSearch="@(Content)">
+      <Output TaskParameter="FoundScriptPath" PropertyName="PostDeployScript" />
+    </SqlFindDeploymentScriptTask>
+
+    <SqlClrDeployTask
+      AssemblyPath="$(AssemblyPath)"
+      ConnectionString="$(ConnectionString)"
+      AssemblyOwner="$(AssemblyOwner)"
+      PermissionLevel="$(PermissionLevel)"
+      ProjectFilePath="$(MSBuildProjectFullPath)"
+      IncludeCode="$(DeployCode)"
+      Code="@(DeployableSqlClrCode)"
+      
+      DeployToDatabase="$(DeployToDatabase)"
+      DeployToScript="$(DeployToScript)"
+      DeployScriptPath="$(DeployScriptPath)"
+      DropBlockingAssemblies="$(DropBlockingAssemblies)"
+      
+      PreDeploymentScript="$(PreDeployScript)"
+      PostDeploymentScript="$(PostDeployScript)"
+      />
+  </Target>
+  
+    <PropertyGroup>
+        <ResolveAssemblyReferencesDependsOn>$(ResolveAssemblyReferencesDependsOn);ResolveSQLCLRReferences</ResolveAssemblyReferencesDependsOn>
+        <LoadTimeSensitiveTargets>
+            $(LoadTimeSensitiveTargets);
+            ResolveSQLCLRReferences;
+        </LoadTimeSensitiveTargets>
+    </PropertyGroup>
+
+    <!--  Target ResolveSQLCLRReferences
+        Resolves SQL CLR assembly references to full paths.
+            [IN]
+            @(Reference) - The list of references to resolve.
+            [OUT]
+            @(ReferencePath) - The list of paths that those references resolved to.
+        The SearchPaths property is set to find assemblies in the hintpath and obj\sqlclr.
+    -->
+    <Target
+        Name="ResolveSQLCLRReferences"
+        Condition="'@(Reference)'!=''"
+        DependsOnTargets="$(ResolveSQLCLRReferencesDependsOn)"
+        >
+
+        <CreateItem
+              Include="@(Reference)"
+              AdditionalMetadata="SubType="
+              Condition="'%(Reference.SubType)'=='SQLCLR'"
+              >
+
+            <Output TaskParameter="Include" ItemName="SqlReference"/>
+        </CreateItem>
+
+
+      <ResolveAssemblyReference
+            Assemblies="@(SqlReference)"
+            SearchPaths="$(ProjectDir)obj\sqlclr"
+              >
+
+            <Output TaskParameter="ResolvedFiles" ItemName="ReferencePath"/>
+        </ResolveAssemblyReference>
+    </Target>
+
+    <!--
+    Flavor is the project flavor. For example, Client, Smart Devices, SQL Server, etc.
+    -->
+    <PropertyGroup>
+        <ProjectFlavor>SQL Server</ProjectFlavor>
+    </PropertyGroup>
+
+</Project>
