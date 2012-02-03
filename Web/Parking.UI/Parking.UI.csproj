@@ -119,11 +119,14 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="App_Data\combres_full_with_annotation.xml" />
-    <Content Include="Content\Images\glyphicons-halflings-white.png" />
-    <Content Include="Content\Images\glyphicons-halflings.png" />
-    <Content Include="Content\Images\txr-bg-canvas.png" />
-    <Content Include="Content\Images\txr-bg-header-blue.png" />
-    <Content Include="Content\Images\txr-bg-header.png" />
+    <Content Include="Content\Images\Plugins\Bootstrap\glyphicons-halflings-white.png" />
+    <Content Include="Content\Images\Plugins\Bootstrap\glyphicons-halflings.png" />
+    <Content Include="Content\Images\Plugins\Gritter\gritter-long.png" />
+    <Content Include="Content\Images\Plugins\Gritter\gritter.png" />
+    <Content Include="Content\Images\Plugins\Gritter\ie-spacer.gif" />
+    <Content Include="Content\Images\App\txr-bg-canvas.png" />
+    <Content Include="Content\Images\App\txr-bg-header-blue.png" />
+    <Content Include="Content\Images\App\txr-bg-header.png" />
     <Content Include="Content\Scripts\Parking.js" />
     <Content Include="Content\Scripts\Plugins\bootstrap.min.js" />
     <Content Include="Content\Scripts\Plugins\jquery.gritter.js" />
@@ -140,11 +143,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>header.scss</DependentUpon>
     </Content>
-    <Content Include="Content\Styles\App\master.css">
+    <Content Include="Content\Styles\App\layout.css">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>master.scss</DependentUpon>
+      <DependentUpon>layout.scss</DependentUpon>
     </Content>
+    <Content Include="Content\Styles\Plugins\jquery.gritter.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -219,9 +223,9 @@
       <Generator>ScssGenerator</Generator>
       <LastGenOutput>header.css</LastGenOutput>
     </None>
-    <None Include="Content\Styles\App\master.scss">
+    <None Include="Content\Styles\App\layout.scss">
       <Generator>ScssGenerator</Generator>
-      <LastGenOutput>master.css</LastGenOutput>
+      <LastGenOutput>layout.css</LastGenOutput>
     </None>
     <Content Include="Views\Static\About.cshtml" />
     <Content Include="Views\Static\Help.cshtml" />
