@@ -60,7 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\Extensions.cs" />
-    <Compile Include="Modules\AbstractBaseModule.cs" />
+    <Compile Include="Classes\AbstractBaseModule.cs" />
     <Compile Include="Modules\AccessTypesModule.cs" />
     <Compile Include="Classes\ApiAttribute.cs" />
     <Compile Include="Modules\BaseModule.cs" />
