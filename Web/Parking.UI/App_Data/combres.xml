@@ -53,11 +53,17 @@
       <resource path="~/Content/Styles/App/master.css" forwardCookie="false" />
       <resource path="~/Content/Styles/App/header.css" forwardCookie="false" />
     </resourceSet>
+
+    <resourceSet name="PluginsJs" type="js">
+      <resource path="~/Content/Scripts/Plugins/bootstrap.min.js" forwardCookie="false" />
+      <resource path="~/Content/Scripts/Plugins/jquery.gritter.js" forwardCookie="false" />
+      <resource path="~/Content/Scripts/Plugins/namespace.js" forwardCookie="false" />
+    </resourceSet>
     
     <resourceSet name="CoreJs" type="js">
-      <resource path="~/Content/Scripts/Plugins/bootstrap.min.js" forwardCookie="false" />
-      <resource path="~/Content/Scripts/Plugins/namespace.js" forwardCookie="false" />
       <resource path="~/Content/Scripts/Parking.js" forwardCookie="false" />
+      <resource path="~/Content/Scripts/Shared/Configuration.js" forwardCookie="false" />
+      <resource path="~/Content/Scripts/Shared/Resources.js" forwardCookie="false" />
     </resourceSet>
     
   </resourceSets>
