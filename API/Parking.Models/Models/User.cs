@@ -1,4 +1,11 @@
-﻿using System;
+﻿/**
+ *
+ * @package     Parking.API.Models
+ * @author      The JSONs
+ * @copyright   2012 -
+ * @license     Propietary
+ */
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

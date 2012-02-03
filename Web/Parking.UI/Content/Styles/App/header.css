@@ -12,7 +12,7 @@ header {
     z-index: 3;
     color: white;
     background-color: #005A9D;
-    background-image: url("/Content/Images/txr-bg-header-blue.png");
+    background-image: url("/Content/Images/App/txr-bg-header-blue.png");
     background-repeat: repeat-x;
     height: 40px;
     box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.8);

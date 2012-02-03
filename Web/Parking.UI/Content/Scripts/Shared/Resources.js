@@ -1,4 +1,12 @@
-﻿namespace("Parking.Resources");
+﻿/**
+* Resources for the application. 
+*
+* @package     Parking.UI.Scripts
+* @author      The JSONs
+* @copyright   2012 -
+* @license     Propietary
+*/
+namespace("Parking.Resources");
 
 Parking.Resources.LoadingImage = '<img alt="Loading..." class="loading" src="/Content/Images/ajax-loader.gif" />';
 Parking.Resources.SmallLoadingImage = '<img alt="Loading..." class="loading" src="/Content/Images/ajax-loader-small.gif" />';

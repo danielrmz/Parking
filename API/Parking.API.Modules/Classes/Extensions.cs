@@ -1,10 +1,17 @@
-﻿using System;
+﻿/**
+ *
+ * @package     Parking.API.Modules
+ * @author      The JSONs
+ * @copyright   2012 -
+ * @license     Propietary
+ */
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Nancy;
 
-namespace Sieena.Parking.API.Modules
+namespace Sieena.Parking.API.Modules.Classes
 {
     internal static class Extensions
     {

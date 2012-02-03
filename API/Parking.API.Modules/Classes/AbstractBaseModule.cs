@@ -1,5 +1,11 @@
-﻿using System;
-
+﻿/**
+ *
+ * @package     Parking.API.Modules
+ * @author      The JSONs
+ * @copyright   2012 -
+ * @license     Propietary
+ */
+using System;
 using System.Web;
 using System.Linq;
 using System.Reflection;
@@ -10,7 +16,7 @@ using Nancy.ViewEngines.Razor;
 using Nancy.Serializers.Json;
 using System.Text.RegularExpressions;
 
-namespace Sieena.Parking.API.Modules
+namespace Sieena.Parking.API.Modules.Classes
 {
     /// <summary>
     /// Autoregisters the API Methods based on the attributes

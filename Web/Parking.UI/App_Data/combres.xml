@@ -44,13 +44,14 @@
                 defaultJSMinifierRef="closure"
                 >
 
-    <resourceSet name="BootstrapCss" type="css">
+    <resourceSet name="PluginsCss" type="css">
       <resource path="~/Content/Styles/Plugins/Bootstrap/bootstrap.min.css" forwardCookie="false" />
       <resource path="~/Content/Styles/Plugins/Bootstrap/bootstrap-responsive.min.css" forwardCookie="false" />
+      <resource path="~/Content/Styles/Plugins/jquery.gritter.css" forwardCookie="false" />
     </resourceSet>
-    
+
     <resourceSet name="CoreCss" type="css">
-      <resource path="~/Content/Styles/App/master.css" forwardCookie="false" />
+      <resource path="~/Content/Styles/App/layout.css" forwardCookie="false" />
       <resource path="~/Content/Styles/App/header.css" forwardCookie="false" />
     </resourceSet>
 
