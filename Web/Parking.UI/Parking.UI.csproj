@@ -124,8 +124,13 @@
     <Content Include="Content\Images\txr-bg-canvas.png" />
     <Content Include="Content\Images\txr-bg-header-blue.png" />
     <Content Include="Content\Images\txr-bg-header.png" />
+    <Content Include="Content\Scripts\Parking.js" />
     <Content Include="Content\Scripts\Plugins\bootstrap.min.js" />
     <Content Include="Content\Scripts\Plugins\jquery.gritter.js" />
+    <Content Include="Content\Scripts\Plugins\namespace.js" />
+    <Content Include="Content\Scripts\Shared\Common.js" />
+    <Content Include="Content\Scripts\Shared\Configuration.js" />
+    <Content Include="Content\Scripts\Shared\Resources.js" />
     <Content Include="Content\Styles\Plugins\Bootstrap\bootstrap-responsive.css" />
     <Content Include="Content\Styles\Plugins\Bootstrap\bootstrap-responsive.min.css" />
     <Content Include="Content\Styles\Plugins\Bootstrap\bootstrap.css" />
@@ -188,7 +193,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Scripts\App\" />
-    <Folder Include="Content\Scripts\Shared\" />
     <Folder Include="Content\Templates\" />
     <Folder Include="Models\" />
   </ItemGroup>
@@ -242,7 +246,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>53272</DevelopmentServerPort>
+          <DevelopmentServerPort>64794</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>
