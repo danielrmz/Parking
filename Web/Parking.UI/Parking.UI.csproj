@@ -119,6 +119,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="App_Data\combres_full_with_annotation.xml" />
+    <Content Include="Content\Images\App\img-01.png" />
     <Content Include="Content\Images\Plugins\Bootstrap\glyphicons-halflings-white.png" />
     <Content Include="Content\Images\Plugins\Bootstrap\glyphicons-halflings.png" />
     <Content Include="Content\Images\Plugins\Gritter\gritter-long.png" />
@@ -149,6 +150,10 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Content>
+    <Content Include="Content\Styles\images\bg-parking.png" />
+    <Content Include="Content\Styles\images\icn-edit.png" />
+    <Content Include="Content\Styles\images\icn-new-car.png" />
+    <Content Include="Content\Styles\images\icon-sheet.png" />
     <Content Include="Content\Styles\Plugins\Bootstrap\bootstrap-responsive.css" />
     <Content Include="Content\Styles\Plugins\Bootstrap\bootstrap-responsive.min.css" />
     <Content Include="Content\Styles\Plugins\Bootstrap\bootstrap.css" />

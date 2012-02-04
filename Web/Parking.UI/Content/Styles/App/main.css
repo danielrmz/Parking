@@ -5,6 +5,17 @@
  * @author The JSONS
  * @copyright 2012 
  */
+.row-fluid .span2 + .span2 {
+  margin-top: 30px; }
+
+.right-alignment {
+  text-align: right; }
+
+body > div h2 {
+  font-size: 14px;
+  line-height: 20px;
+  border-bottom: 1px dotted #cccccc;
+  padding-bottom: 10px; }
 body > div input:focus, body > div textarea:focus {
   border-color: rgba(82, 168, 236, 0.8);
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 3px rgba(82, 168, 236, 0.6);
@@ -36,3 +47,110 @@ body > div .form-login {
     padding-top: 7px;
     font-size: 11px;
     color: silver; }
+
+.pariking-map {
+  width: auto;
+  height: 732px;
+  background: url("../images/bg-parking.png") no-repeat center 0 transparent; }
+
+.new-car {
+  background: url("../images/icn-new-car.png") no-repeat center 0 transparent;
+  width: 49px;
+  height: 81px;
+  margin: 20px auto; }
+
+.user {
+  padding-left: 35px;
+  position: relative;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #cccccc; }
+  .user h3 {
+    font-size: 14px;
+    line-height: 27px;
+    margin: 0 0 5px;
+    line-height: 14px;
+    color: #333333; }
+  .user img {
+    position: absolute;
+    left: 0; }
+  .user p {
+    margin: 0 0;
+    font-size: 11px;
+    line-height: 12px;
+    color: #666; }
+    .user p span {
+      color: #999;
+      font-weight: bold;
+      font-size: 9px; }
+    .user p b {
+      font-size: 13px; }
+
+.user:last-child {
+  border-bottom: 0 none;
+  margin-bottom: 0px;
+  padding-bottom: 0px; }
+
+.my-profile h2 {
+  margin-bottom: 15px; }
+.my-profile h3 {
+  margin-bottom: 0px; }
+.my-profile .btn-edit {
+  background: url("../images/icn-edit.png") no-repeat center center transparent;
+  width: 40px;
+  height: 14px;
+  display: inline-block;
+  margin: 10px 0 0;
+  border: 1px solid #cccccc;
+  border-radius: 2px;
+  padding: 2px; }
+  .my-profile .btn-edit span {
+    display: none; }
+.my-profile p {
+  margin: 0 0;
+  padding: 0;
+  line-height: 11px; }
+.my-profile div.car-description {
+  margin: 5px 0 5px;
+  border: 1px solid #666;
+  background-color: #efefef;
+  padding: 3px 6px; }
+.my-profile .icon-tel {
+  border-top: 1px #ccc dotted;
+  padding-top: 10px; }
+.my-profile .icon-tel, .my-profile .icon-cel, .my-profile .icon-car {
+  height: auto;
+  background: url("../images/icon-sheet.png") no-repeat scroll left -18px transparent;
+  display: block;
+  font-size: 9px;
+  margin: 13px 0 0;
+  padding-left: 17px;
+  width: auto; }
+.my-profile .icon-cel {
+  background-position: left 0px;
+  margin: 5px 0 15px;
+  min-height: 14px;
+  line-height: 14px; }
+.my-profile .icon-car {
+  background-position: left -50px;
+  margin: 0; }
+.my-profile strong {
+  color: #333333;
+  font-weight: bold; }
+.my-profile img {
+  border: 1px solid #ddd; }
+
+.my-place .row {
+  margin: 0; }
+  .my-place .row img {
+    border: 1px solid #cccccc; }
+.my-place h4 {
+  background-color: #EFEFEF;
+  border-bottom: 1px solid #cccccc;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 11px;
+  margin: 0 0 10px;
+  padding: 5px; }
+.my-place .btn {
+  width: 100%; }
