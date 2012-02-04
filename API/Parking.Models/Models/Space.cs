@@ -2,7 +2,7 @@
  *
  * @package     Parking.API.Models
  * @author      The JSONs
- * @copyright   2012 -
+ * @copyright   2012 - 20XX
  * @license     Propietary
  */
 using System;
@@ -12,10 +12,12 @@ using System.Text;
 
 namespace Sieena.Parking.API.Models
 {
+    using Interfaces;
+
     /// <summary>
     /// Represents a parking space.
     /// </summary>
-    public partial class Space
+    public partial class Space : ISpace
     {
         /// <summary>
         /// Gets all the parking spaces registered in a place

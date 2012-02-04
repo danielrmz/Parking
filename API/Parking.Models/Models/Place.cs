@@ -2,7 +2,7 @@
  *
  * @package     Parking.API.Models
  * @author      The JSONs
- * @copyright   2012 -
+ * @copyright   2012 - 20XX
  * @license     Propietary
  */
 using System;
@@ -12,10 +12,12 @@ using System.Text;
 
 namespace Sieena.Parking.API.Models
 {
+    using Interfaces;
+
     /// <summary>
     /// A whole container of spaces. i.e. Parking Lot
     /// </summary>
-    public partial class Place
+    public partial class Place : IPlace
     {
         /// <summary>
         /// Gets all the available parking lots in the system.

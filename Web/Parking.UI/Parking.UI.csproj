@@ -127,9 +127,8 @@
     <Content Include="Content\Images\App\txr-bg-canvas.png" />
     <Content Include="Content\Images\App\txr-bg-header-blue.png" />
     <Content Include="Content\Images\App\txr-bg-header.png" />
-    <Content Include="Content\Scripts\App\Router.js" />
-    <Content Include="Content\Scripts\App\Views\Index.js" />
-    <Content Include="Content\Scripts\App\Views\Login.js" />
+    <Content Include="Content\Scripts\App\Backbone\Router.js" />
+    <Content Include="Content\Scripts\App\Backbone\Views\Login.js" />
     <Content Include="Content\Scripts\Parking.js" />
     <Content Include="Content\Scripts\Plugins\backbone-0.9.1.js" />
     <Content Include="Content\Scripts\Plugins\bootstrap.min.js" />
@@ -165,6 +164,15 @@
       <DependentUpon>layout.scss</DependentUpon>
     </Content>
     <Content Include="Content\Styles\Plugins\jquery.gritter.css" />
+    <Content Include="Content\Templates\About.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Templates\Terms.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Templates\Privacy.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -212,9 +220,8 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Classes\" />
-    <Folder Include="Content\Scripts\App\Collections\" />
-    <Folder Include="Content\Scripts\App\Models\" />
+    <Folder Include="Content\Scripts\App\Backbone\Collections\" />
+    <Folder Include="Content\Scripts\App\Backbone\Models\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

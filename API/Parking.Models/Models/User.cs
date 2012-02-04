@@ -2,7 +2,7 @@
  *
  * @package     Parking.API.Models
  * @author      The JSONs
- * @copyright   2012 -
+ * @copyright   2012 - 20XX
  * @license     Propietary
  */
 using System;
@@ -14,7 +14,9 @@ using System.Security.Cryptography;
 
 namespace Sieena.Parking.API.Models
 {
-    public partial class User
+    using Interfaces;
+
+    public partial class User : IUser
     {
         /// <summary>
         /// 
