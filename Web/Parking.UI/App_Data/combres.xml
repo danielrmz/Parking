@@ -71,8 +71,9 @@
       <resource path="~/Content/Scripts/Shared/Configuration.js" forwardCookie="false" />
       <resource path="~/Content/Scripts/Shared/Resources.js" forwardCookie="false" />
 
-      <resource path="~/Content/Scripts/App/Views/Login.js" forwardCookie="false" />
-      <resource path="~/Content/Scripts/App/Router.js" forwardCookie="false" />
+      <resource path="~/Content/Scripts/App/Backbone/Views/Login.js" forwardCookie="false" />
+      <resource path="~/Content/Scripts/App/Home/Index.js" forwardCookie="false" />
+      <resource path="~/Content/Scripts/App/Backbone/Router.js" forwardCookie="false" />
     </resourceSet>
     
   </resourceSets>

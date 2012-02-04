@@ -13,7 +13,10 @@ namespace("Parking.App");
     
     Parking.App.Router = Backbone.Router.extend({
       routes: {
-        'login': 'login'
+        'login': 'login',
+        'about': 'static',
+        'help':  'static',
+        'privacy': 'static'
       },
       login: function(){ 
         var route = this;
@@ -21,6 +24,9 @@ namespace("Parking.App");
         loginView.render(function(el) {
             $("#main").html(el);
         });
+      },
+      static: function() {
+        var route = this;
       }
     });
     
@@ -29,7 +35,6 @@ namespace("Parking.App");
     Backbone.history.start({ pushState: true });
 
     $(document).on("click", "a:not([data-bypass])", function(evt) {
-        // Get the anchor href and protcol
         var href = $(this).attr("href");
         var protocol = this.protocol + "//";
 
@@ -39,11 +44,7 @@ namespace("Parking.App");
             // refresh.
             evt.preventDefault();
 
-            // This uses the default router defined above, and not any routers
-            // that may be placed in modules.  To have this work globally (at the
-            // cost of losing all route events) you can change the following line
-            // to: Backbone.history.navigate(href, true);
-            Backbone.history.navigate(href, true);
+            Parking.App._router.navigate(href, true);
         }
     });
 
