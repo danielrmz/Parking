@@ -28,8 +28,8 @@
             @Html.Partial("_Header")
     </header>
     
-    <div id="main" role="main">
-        <div class="layout-width">
+    <div role="main" class="controller-@ViewContext.Controller.ValueProvider.GetValue("controller").RawValue action-@ViewContext.Controller.ValueProvider.GetValue("action").RawValue">
+        <div id="main" class="layout-width row-fluid">
             @RenderBody()
         </div>
     </div>
@@ -45,7 +45,7 @@
     <script>window.jQuery || document.write('<script src="/Content/Scripts/Plugins/jquery-1.7.1.min.js"><\/script>')</script>
     @Html.Raw(@WebExtensions.CombresLink("PluginsJs"))
     @Html.Raw(@WebExtensions.CombresLink("CoreJs"))
-
+    
     @RenderSection("Scripts", false)
 
     <!-- Analytics -->

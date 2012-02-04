@@ -5,29 +5,22 @@
  * @author The JSONS
  * @copyright 2012 
  */
-/* @group Site colors */
+/* @group Site fixed vars */
 /* @endgroup */
 /* @group Layout */
 html, body {
   background: #f0f1f2; }
 
-#main {
-  margin-top: 50px; }
+body > div {
+  margin-top: 20px;
+  font-family: 'Open Sans', sans-serif; }
 
 footer {
-  border-top: 0px;
-  padding-top: 5px;
-  margin: 0px auto;
-  text-align: center;
-  color: #777; }
-  footer ul.list-inline {
-    margin: 0px auto;
-    list-style: none; }
-    footer ul.list-inline li {
-      display: inline-block;
-      margin-right: 5px;
-      margin-right: 5px;
-      font-size: 11px; }
+  padding: 5px;
+  margin: 0 auto;
+  text-align: left;
+  font-size: 11px;
+  color: #777777; }
 
 .layout-width {
   width: 960px;

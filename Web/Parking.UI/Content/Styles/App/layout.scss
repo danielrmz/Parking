@@ -1,4 +1,4 @@
-/**
+﻿/**
  * master.scss
  * Defines the main layout styles to be used throught the app.
  *
@@ -6,10 +6,11 @@
  * @copyright 2012 
  */
 
-/* @group Site colors */
+/* @group Site fixed vars */
 
 $layoutWidth: 960px;
 $backgroundColor: #F0F1F2;
+$footerColor: #777777;
 
 /* @endgroup */
 
@@ -20,28 +21,21 @@ html, body {
 	background: $backgroundColor;
 }
 
-#main {
-	margin-top: 50px;
+header {
+}
+
+body > div {
+	margin-top: 20px;
+	font-family: 'Open Sans', sans-serif;
 }
 
 footer {
-	border-top: 0px;
-	padding-top: 5px;
-	margin: 0px auto;
-	text-align: center;
-	color: #777;
+	padding: 5px;
+	margin: 0 auto;
+	text-align: left;
+	font-size: 11px;
+	color: $footerColor;
 
-	ul.list-inline {
-		margin: 0px auto;
-		list-style: none;
-
-		li {
-			display: inline-block;
-			margin-right: 5px;
-			margin-right: 5px;
-			font-size: 11px;
-		}
-	}
 }
 
 .layout-width {

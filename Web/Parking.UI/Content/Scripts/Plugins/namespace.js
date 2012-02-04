@@ -13,3 +13,26 @@ function namespace(name, separator, container) {
     }
     return o;
 };
+
+/**
+ * Fetches a template from the server.
+ * @param {string} path
+ * @param {Function=} done - Callback
+ */
+function fetchTemplate(path, done) {
+    window.JST = window.JST || {};
+
+    // Should be an instant synchronous way of getting the template, if it
+    // exists in the JST object.
+    if (JST[path]) {
+      return done(JST[path]);
+    }
+
+    // Fetch it asynchronously if not available from JST
+    return $.get(path, function(contents) {
+      var tmpl = _.template(contents);
+      JST[path] = tmpl;
+
+      done(tmpl);
+    });
+}

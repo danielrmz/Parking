@@ -1,0 +1,23 @@
+/**
+ * footer.scss
+ * CSS Required for the footer part of the layout.
+ *
+ * @author The JSONS
+ * @copyright 2012 
+ */
+footer ul.list-inline {
+  margin: 0 auto;
+  list-style: none; }
+  footer ul.list-inline li {
+    display: inline-block;
+    margin-right: 5px; }
+    footer ul.list-inline li a {
+      color: #3A6EA5; }
+    footer ul.list-inline li.separator {
+      padding: 0;
+      color: gray;
+      position: relative;
+      top: -1px;
+      font-size: 7px; }
+      footer ul.list-inline li.separator::after {
+        content: "\25A0"; }

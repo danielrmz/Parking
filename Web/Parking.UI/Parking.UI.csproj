@@ -127,13 +127,28 @@
     <Content Include="Content\Images\App\txr-bg-canvas.png" />
     <Content Include="Content\Images\App\txr-bg-header-blue.png" />
     <Content Include="Content\Images\App\txr-bg-header.png" />
+    <Content Include="Content\Scripts\App\Router.js" />
+    <Content Include="Content\Scripts\App\Views\Login.js" />
     <Content Include="Content\Scripts\Parking.js" />
+    <Content Include="Content\Scripts\Plugins\backbone-0.9.1.js" />
     <Content Include="Content\Scripts\Plugins\bootstrap.min.js" />
     <Content Include="Content\Scripts\Plugins\jquery.gritter.js" />
+    <Content Include="Content\Scripts\Plugins\json2.js" />
     <Content Include="Content\Scripts\Plugins\namespace.js" />
+    <Content Include="Content\Scripts\Plugins\underscore-1.3.1.js" />
     <Content Include="Content\Scripts\Shared\Common.js" />
     <Content Include="Content\Scripts\Shared\Configuration.js" />
     <Content Include="Content\Scripts\Shared\Resources.js" />
+    <Content Include="Content\Styles\App\footer.css">
+      <DependentUpon>footer.scss</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Content>
+    <Content Include="Content\Styles\App\main.css">
+      <DependentUpon>main.scss</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Content>
     <Content Include="Content\Styles\Plugins\Bootstrap\bootstrap-responsive.css" />
     <Content Include="Content\Styles\Plugins\Bootstrap\bootstrap-responsive.min.css" />
     <Content Include="Content\Styles\Plugins\Bootstrap\bootstrap.css" />
@@ -196,8 +211,9 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Content\Scripts\App\" />
-    <Folder Include="Content\Templates\" />
+    <Folder Include="Classes\" />
+    <Folder Include="Content\Scripts\App\Collections\" />
+    <Folder Include="Content\Scripts\App\Models\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
@@ -219,6 +235,14 @@
     <Content Include="Views\Shared\_Header.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Content\Styles\App\footer.scss">
+      <Generator>ScssGenerator</Generator>
+      <LastGenOutput>footer.css</LastGenOutput>
+    </None>
+    <None Include="Content\Styles\App\main.scss">
+      <Generator>ScssGenerator</Generator>
+      <LastGenOutput>main.css</LastGenOutput>
+    </None>
     <None Include="Content\Styles\App\header.scss">
       <Generator>ScssGenerator</Generator>
       <LastGenOutput>header.css</LastGenOutput>
@@ -232,6 +256,10 @@
     <Content Include="Views\Static\Privacy.cshtml" />
     <Content Include="Views\Static\Terms.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Static\Login.cshtml" />
+    <Content Include="Content\Templates\Login.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
