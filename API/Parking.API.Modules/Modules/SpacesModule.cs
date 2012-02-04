@@ -2,7 +2,7 @@
  *
  * @package     Parking.API.Modules
  * @author      The JSONs
- * @copyright   2012 -
+ * @copyright   2012 - 20XX
  * @license     Propietary
  */
 using System;
@@ -21,14 +21,13 @@ namespace Sieena.Parking.API.Modules
 
     public class SpacesModule : AbstractBaseModule
     {
-        public SpacesModule() : base("Spaces")
+        public SpacesModule() : base("spaces")
         {
         }
 
         [Api("/GetAllByPlaceId/{placeid}", ApiMethod.GET)]
         public List<Space> GetAllByPlaceId(DynamicDictionary parameters)
         {
-            
             return Space.GetAllByPlaceId(parameters["placeid"]);
         }
 

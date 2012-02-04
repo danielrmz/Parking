@@ -2,7 +2,7 @@
  *
  * @package     Parking.API.Models
  * @author      The JSONs
- * @copyright   2012 -
+ * @copyright   2012 - 20XX
  * @license     Propietary
  */
 using System;
@@ -12,10 +12,12 @@ using System.Text;
 
 namespace Sieena.Parking.API.Models
 {
+    using Interfaces;
+
     /// <summary>
     /// Represents the checkin from a person to a specified place.
     /// </summary>
-    public partial class Checkin
+    public partial class Checkin : ICheckin
     {
         /// <summary>
         /// Gets all the checkins in the system.

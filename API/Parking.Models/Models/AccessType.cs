@@ -2,7 +2,7 @@
  *
  * @package     Parking.API.Models
  * @author      The JSONs
- * @copyright   2012 -
+ * @copyright   2012 - 20XX
  * @license     Propietary
  */
 using System;
@@ -12,10 +12,12 @@ using System.Text;
 
 namespace Sieena.Parking.API.Models
 {
+    using Interfaces;
+
     /// <summary>
     /// AccessTypes data methods.
     /// </summary>
-    public partial class AccessType
+    public partial class AccessType : IAccessType
     {
         /// <summary>
         /// Gets all the access types 

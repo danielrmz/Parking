@@ -2,7 +2,7 @@
  *
  * @package     Parking.API.Modules
  * @author      The JSONs
- * @copyright   2012 -
+ * @copyright   2012 - 20XX
  * @license     Propietary
  */
 using System;
@@ -22,7 +22,7 @@ namespace Sieena.Parking.API.Modules
     public class AccessTypesModule : AbstractBaseModule
     {
         public AccessTypesModule()
-            : base("AccessTypes")
+            : base("accesstypes")
         {
         }
 

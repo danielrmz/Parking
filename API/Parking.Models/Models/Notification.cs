@@ -2,7 +2,7 @@
  *
  * @package     Parking.API.Models
  * @author      The JSONs
- * @copyright   2012 -
+ * @copyright   2012 - 20XX
  * @license     Propietary
  */
 using System;
@@ -12,10 +12,12 @@ using System.Text;
 
 namespace Sieena.Parking.API.Models
 {
+    using Interfaces;
+
     /// <summary>
     /// Notification to a user
     /// </summary>
-    public partial class Notification
+    public partial class Notification : INotification
     {
         /// <summary>
         /// Gets all the notifications. 

@@ -32,11 +32,15 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.DirectoryServices" />
     <Reference Include="System.DirectoryServices.AccountManagement" />
     <Reference Include="System.DirectoryServices.Protocols" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -49,6 +53,22 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataStore.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\IUser.cs" />
+    <Compile Include="Interfaces\IUserRole.cs" />
+    <Compile Include="Interfaces\IUserInfo.cs" />
+    <Compile Include="Interfaces\IUserEndpoint.cs" />
+    <Compile Include="Interfaces\ISpace.cs" />
+    <Compile Include="Interfaces\ISpaceLocation.cs" />
+    <Compile Include="Interfaces\IRole.cs" />
+    <Compile Include="Interfaces\IPlace.cs" />
+    <Compile Include="Interfaces\IPlaceMap.cs" />
+    <Compile Include="Interfaces\IOAuthToken.cs" />
+    <Compile Include="Interfaces\IOAuthProvider.cs" />
+    <Compile Include="Interfaces\INotification.cs" />
+    <Compile Include="Interfaces\IEndpoint.cs" />
+    <Compile Include="Interfaces\ICheckin.cs" />
+    <Compile Include="Interfaces\IApplication.cs" />
+    <Compile Include="Interfaces\IAccessType.cs" />
     <Compile Include="Models\AccessType.cs" />
     <Compile Include="Models\Application.cs" />
     <Compile Include="Models\Checkin.cs" />

@@ -2,7 +2,7 @@
  *
  * @package     Parking.API.Models
  * @author      The JSONs
- * @copyright   2012 -
+ * @copyright   2012 - 20XX
  * @license     Propietary
  */
 using System;
@@ -12,10 +12,12 @@ using System.Text;
 
 namespace Sieena.Parking.API.Models
 {
+    using Interfaces;
+
     /// <summary>
     /// Applications that can access the Api
     /// </summary>
-    public partial class Application
+    public partial class Application : IApplication
     {
         /// <summary>
         /// Get all the registered applications.
