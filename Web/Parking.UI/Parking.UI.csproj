@@ -128,6 +128,7 @@
     <Content Include="Content\Images\App\txr-bg-header-blue.png" />
     <Content Include="Content\Images\App\txr-bg-header.png" />
     <Content Include="Content\Scripts\App\Router.js" />
+    <Content Include="Content\Scripts\App\Views\Index.js" />
     <Content Include="Content\Scripts\App\Views\Login.js" />
     <Content Include="Content\Scripts\Parking.js" />
     <Content Include="Content\Scripts\Plugins\backbone-0.9.1.js" />
