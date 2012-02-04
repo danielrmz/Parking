@@ -9,41 +9,43 @@
 
 namespace("Parking.App.Home");
 
-//(function ($, undefined) {
+(function ($, undefined) {
 
-//Parking.App.Home.Index = function() {
-//    var URL = "/Home";
+    Parking.App.Home.Index = function() {
 
-//    var _view = $("<div class='home-activities'>"), 
-//        _grid, _saveCallback;
-//    
-//    function load(options) {
-//        AICE.Common.LoadPanel(_view, URL, options, init);
-//    }
+    
+    //    var URL = "/Home";
 
-//    function save(callback) {
-//        _saveCallback = callback;
+    //    var _view = $("<div class='home-activities'>"), 
+    //        _grid, _saveCallback;
+    //    
+    //    function load(options) {
+    //        AICE.Common.LoadPanel(_view, URL, options, init);
+    //    }
 
-//        _saveCallback();
-//    }
+    //    function save(callback) {
+    //        _saveCallback = callback;
 
-//    function requiresSave() {
-//        return false;
-//    }
+    //        _saveCallback();
+    //    }
 
-
-//    function init() {
-//        //TODO
-//        AICE.Controls.Activities(_view, "Home");
-//    }
-
-//    return {
-//        View: _view,
-//        Load: load,
-//        Save: save,
-//        RequiresSave: requiresSave
-//    };
-//};
+    //    function requiresSave() {
+    //        return false;
+    //    }
 
 
-//}(jQuery));
+    //    function init() {
+    //        //TODO
+    //        AICE.Controls.Activities(_view, "Home");
+    //    }
+
+    //    return {
+    //        View: _view,
+    //        Load: load,
+    //        Save: save,
+    //        RequiresSave: requiresSave
+    //    };
+    };
+
+
+} (jQuery));
