@@ -7,7 +7,12 @@
  */
 
  footer {
- 
+	margin-top: 50px;
+    & > div {
+		border-top: 1px solid #ddd;
+		padding-top: 5px;
+	}
+
 	ul.list-inline {
 		margin: 0 auto;
 		list-style: none;

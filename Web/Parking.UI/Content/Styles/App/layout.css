@@ -34,4 +34,10 @@ footer {
   border-radius: 3px;
   min-height: 200px; }
 
+.left {
+  float: left; }
+
+.right {
+  float: right; }
+
 /* @endgroup */
