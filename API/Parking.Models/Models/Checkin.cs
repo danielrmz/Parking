@@ -54,6 +54,8 @@ namespace Sieena.Parking.API.Models
         {
             using (DataStoreDataContext ctx = new DataStoreDataContext())
             {
+                c.ValidateAndRaise();
+
                 if (c.CheckInId == 0)
                 {
                     ctx.Checkins.InsertOnSubmit(c);

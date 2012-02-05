@@ -53,10 +53,9 @@ namespace Sieena.Parking.API.Models
         {
             using (var context = new DataStoreDataContext())
             {
-                if (p.PlaceId != 0)
-                {
-                }
-                else
+                p.ValidateAndRaise();
+
+                if (p.PlaceId == 0)
                 {
                     context.Places.InsertOnSubmit(p);
                 }

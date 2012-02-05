@@ -27,11 +27,14 @@ namespace Sieena.Parking.API.Models
         {
             using (DataStoreDataContext ctx = new DataStoreDataContext())
             {
+                u.ValidateAndRaise();
+
                 if (u.UserId == 0)
                 {
                     u.Password = GetSHA1(u.Password);
                     ctx.Users.InsertOnSubmit(u);
                 }
+
                 ctx.SubmitChanges();
 
                 return u;
@@ -58,7 +61,7 @@ namespace Sieena.Parking.API.Models
         /// <param name="user"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        public static bool Validate(string user, string password)
+        public static bool VerifyCredentials(string user, string password)
         {
             user = user.Trim();
 

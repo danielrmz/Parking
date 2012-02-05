@@ -53,6 +53,8 @@ namespace Sieena.Parking.API.Models
         {
             using (DataStoreDataContext ctx = new DataStoreDataContext())
             {
+                s.ValidateAndRaise();
+
                 if (s.SpaceId == 0)
                 {
                     ctx.Spaces.InsertOnSubmit(s);
@@ -79,5 +81,6 @@ namespace Sieena.Parking.API.Models
                 return s;
             }
         }
+
     }
 }

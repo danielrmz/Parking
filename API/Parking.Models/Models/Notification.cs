@@ -78,6 +78,8 @@ namespace Sieena.Parking.API.Models
         {
             using (DataStoreDataContext ctx = new DataStoreDataContext())
             {
+                n.ValidateAndRaise();
+
                 if (n.NotificationId == 0)
                 {
                     ctx.Notifications.InsertOnSubmit(n);

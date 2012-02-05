@@ -12,6 +12,9 @@ using System.Text;
 
 namespace Sieena.Parking.API.Modules.Classes
 {
+    /// <summary>
+    /// Provides a wrapper to specify the route and HTTP method
+    /// </summary>
     [AttributeUsage(AttributeTargets.Method)]
     public class ApiAttribute : System.Attribute
     {
