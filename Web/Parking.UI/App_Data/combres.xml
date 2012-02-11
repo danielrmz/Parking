@@ -36,7 +36,7 @@
   <resourceSets url="~/app.axd"
                 defaultDuration="30"
                 defaultVersion="auto"
-                defaultDebugEnabled="true"
+                defaultDebugEnabled="false"
                 defaultIgnorePipelineWhenDebug="true"
                 localChangeMonitorInterval="30"
                 remoteChangeMonitorInterval="60"
@@ -46,7 +46,6 @@
 
     <resourceSet name="PluginsCss" type="css">
       <resource path="~/Content/Styles/Plugins/Bootstrap/bootstrap.min.css" forwardCookie="false" />
-      <resource path="~/Content/Styles/Plugins/Bootstrap/bootstrap-responsive.min.css" forwardCookie="false" />
       <resource path="~/Content/Styles/Plugins/jquery.gritter.css" forwardCookie="false" />
     </resourceSet>
 

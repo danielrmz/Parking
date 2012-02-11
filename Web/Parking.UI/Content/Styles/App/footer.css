@@ -8,21 +8,29 @@
 footer {
   margin-top: 50px; }
   footer > div {
-    border-top: 1px solid #ddd;
+    border-top: 1px solid #ccc;
     padding-top: 5px; }
+  footer .right {
+    width: 330px; }
+  footer .copy {
+    display: inline;
+    float: left;
+    margin-right: 10px; }
+    footer .copy .separator {
+      margin-left: 5px; }
   footer ul.list-inline {
-    margin: 0 auto;
+    margin: 0;
     list-style: none; }
     footer ul.list-inline li {
       display: inline-block;
       margin-right: 5px; }
       footer ul.list-inline li a {
         color: #3A6EA5; }
-      footer ul.list-inline li.separator {
-        padding: 0;
-        color: gray;
-        position: relative;
-        top: -1px;
-        font-size: 7px; }
-        footer ul.list-inline li.separator::after {
-          content: "\25A0"; }
+  footer .separator {
+    padding: 0;
+    color: gray;
+    position: relative;
+    top: -1px;
+    font-size: 7px; }
+    footer .separator::after {
+      content: "\25A0"; }

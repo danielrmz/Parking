@@ -19,16 +19,15 @@ namespace Sieena.Parking.API.Models
     /// </summary>
     public partial class Checkin : ICheckin
     {
+        private static DataStoreDataContext ctx = new DataStoreDataContext();
+
         /// <summary>
         /// Gets all the checkins in the system.
         /// </summary>
         /// <returns></returns>
         public static List<Checkin> GetAll()
         {
-            using (DataStoreDataContext ctx = new DataStoreDataContext())
-            {
-                return ctx.Checkins.OrderByDescending(c => c.CheckInId).ToList();
-            }
+            return ctx.Checkins.OrderByDescending(c => c.CheckInId).ToList();
         }
 
 
@@ -39,10 +38,7 @@ namespace Sieena.Parking.API.Models
         /// <returns></returns>
         public static Checkin Get(int id)
         {
-            using (DataStoreDataContext ctx = new DataStoreDataContext())
-            {
-                return ctx.Checkins.Where(c => c.CheckInId.Equals(id)).FirstOrDefault();
-            }
+            return ctx.Checkins.Where(c => c.CheckInId.Equals(id)).FirstOrDefault();
         }
 
         /// <summary>
@@ -52,15 +48,14 @@ namespace Sieena.Parking.API.Models
         /// <returns></returns>
         public static Checkin Save(Checkin c)
         {
-            using (DataStoreDataContext ctx = new DataStoreDataContext())
-            {
-                if (c.CheckInId == 0)
-                {
-                    ctx.Checkins.InsertOnSubmit(c);
-                }
+            c.ValidateAndRaise();
 
-                ctx.SubmitChanges();
+            if (c.CheckInId == 0)
+            {
+                ctx.Checkins.InsertOnSubmit(c);
             }
+
+            ctx.SubmitChanges();
 
             return c;
         }
@@ -72,13 +67,10 @@ namespace Sieena.Parking.API.Models
         /// <returns></returns>
         public static Checkin Delete(int id)
         {
-            using (DataStoreDataContext ctx = new DataStoreDataContext())
-            {
-                Checkin c = Get(id);
-                ctx.Checkins.DeleteOnSubmit(c);
-                ctx.SubmitChanges();
-                return c;
-            }
+            Checkin c = Get(id);
+            ctx.Checkins.DeleteOnSubmit(c);
+            ctx.SubmitChanges();
+            return c;
         }
     }
 }

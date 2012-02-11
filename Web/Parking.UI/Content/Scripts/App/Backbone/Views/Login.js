@@ -12,7 +12,7 @@ namespace("Parking.App.Views");
 (function ($, undefined) {
 
     Parking.App.Views.Login = Backbone.View.extend({
-        template: "/Content/Templates/Login.html",
+        template: Parking.Configuration.ClientTemplatesUrl + "Login.html",
 
         render: function (done) {
             var view = this;
@@ -23,7 +23,23 @@ namespace("Parking.App.Views");
 
                 done(view.el);
             });
+        },
+
+        events: {
+           "click .js-submit": "submit"
+        },
+
+        "submit": function(e) {
+            var form = $(this.el).find("form");
+            var params = form.serialize();
+
+            $.post(form.attr("action"), params, function(){ 
+                console.log(arguments);
+            });
+
+            return false;
         }
+
     });
 
 

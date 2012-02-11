@@ -19,6 +19,8 @@ namespace Sieena.Parking.API.Models
     /// </summary>
     public partial class Notification : INotification
     {
+        private static DataStoreDataContext ctx = new DataStoreDataContext();
+
         /// <summary>
         /// Gets all the notifications. 
         /// It is marked as internal a person should not have
@@ -27,10 +29,7 @@ namespace Sieena.Parking.API.Models
         /// <returns></returns>
         internal static List<Notification> GetAll()
         {
-            using (var context = new DataStoreDataContext())
-            {
-                return context.Notifications.ToList();
-            }
+            return ctx.Notifications.ToList();
         }
 
         /// <summary>
@@ -41,18 +40,15 @@ namespace Sieena.Parking.API.Models
         /// <returns></returns>
         public static List<Notification> GetLastByUserId(int userId, int lastAmount)
         {
-            using (var context = new DataStoreDataContext())
-            {
-                IEnumerable<Notification> nots = context.Notifications
+            IEnumerable<Notification> nots = ctx.Notifications
                               .Where(n => n.UserId.Equals(userId))
                               .OrderByDescending(n => n.CreatedAt);
 
-                if(lastAmount > 0) {
-                    nots = nots.Take(lastAmount);
-                }
-
-                return nots.ToList();
+            if(lastAmount > 0) {
+                nots = nots.Take(lastAmount);
             }
+
+            return nots.ToList();
         }
 
 
@@ -63,10 +59,7 @@ namespace Sieena.Parking.API.Models
         /// <returns></returns>
         public static Notification Get(int id)
         {
-            using (DataStoreDataContext ctx = new DataStoreDataContext())
-            {
-                return ctx.Notifications.Where(n => n.NotificationId.Equals(id)).FirstOrDefault();
-            }
+            return ctx.Notifications.Where(n => n.NotificationId.Equals(id)).FirstOrDefault(); 
         }
 
         /// <summary>
@@ -76,15 +69,15 @@ namespace Sieena.Parking.API.Models
         /// <returns></returns>
         public static Notification Save(Notification n)
         {
-            using (DataStoreDataContext ctx = new DataStoreDataContext())
-            {
-                if (n.NotificationId == 0)
-                {
-                    ctx.Notifications.InsertOnSubmit(n);
-                }
+           
+            n.ValidateAndRaise();
 
-                ctx.SubmitChanges();
+            if (n.NotificationId == 0)
+            {
+                ctx.Notifications.InsertOnSubmit(n);
             }
+
+            ctx.SubmitChanges();
 
             return n;
         }
@@ -96,13 +89,10 @@ namespace Sieena.Parking.API.Models
         /// <returns></returns>
         public static Notification Delete(int id)
         {
-            using (DataStoreDataContext ctx = new DataStoreDataContext())
-            {
-                Notification n = Get(id);
-                ctx.Notifications.DeleteOnSubmit(n);
-                ctx.SubmitChanges();
-                return n;
-            }
+            Notification n = Get(id);
+            ctx.Notifications.DeleteOnSubmit(n);
+            ctx.SubmitChanges();
+            return n;
         }
 
     }

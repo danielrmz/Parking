@@ -15,6 +15,7 @@ using Nancy;
 using Nancy.ViewEngines.Razor;
 using Nancy.Serializers.Json;
 using System.Text.RegularExpressions;
+using Sieena.Parking.API.Models.Exceptions;
 
 namespace Sieena.Parking.API.Modules.Classes
 {
@@ -75,6 +76,15 @@ namespace Sieena.Parking.API.Modules.Classes
                     try
                     {
                         return Envelope(mi.Invoke(this, new object[] { parameters }));
+                    } catch(ModelValidationException me) {
+                        Response r = Response.AsJson(new
+                        {
+                            Time = ConvertToUnixTime(DateTime.Now),
+                            Response = me.Errors.ToArray(),
+                            Type = "ValidationResult",
+                            Error = true
+                        });
+                        return r;
                     }
                     catch (Exception e) {
                         return Envelope(e);

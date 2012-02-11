@@ -9,30 +9,46 @@
  footer {
 	margin-top: 50px;
     & > div {
-		border-top: 1px solid #ddd;
+		border-top: 1px solid #ccc;
 		padding-top: 5px;
 	}
 
-	ul.list-inline {
-		margin: 0 auto;
-		list-style: none;
+	.right {
+		width: 330px;
+	}
 
+	.copy {
+		display: inline;
+		float: left;
+		margin-right: 10px;
+			
+		.separator {
+			margin-left: 5px;
+		}
+	}
+
+	ul.list-inline {
+		margin: 0;
+		list-style: none;
+		
 		li {
 			display: inline-block;
 			margin-right: 5px;
 			a {
 				color: #3A6EA5;
 			}
-			&.separator {
-				padding: 0;
-				color: gray;
-				position: relative;
-				top: -1px;
-				font-size: 7px;
-				&::after {
-					content: "\25A0"
-				}
-			}
+			
+		}
+	}
+
+	.separator {
+		padding: 0;
+		color: gray;
+		position: relative;
+		top: -1px;
+		font-size: 7px;
+		&::after {
+			content: "\25A0"
 		}
 	}
 

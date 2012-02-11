@@ -12,9 +12,9 @@ header {
 
 .topbar {
 	z-index: 3; 
-	color: white;
-	background: #005A9D url("/Content/Images/App/txr-bg-header-blue.png") repeat-x;
-	height: 40px;
+	color: #444;
+	background: #efefef url("../Images/txr-bg-header.png") repeat-x top;
+	height: 53px;
 	
 	box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.80);
 	-moz-box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.80);
@@ -40,27 +40,15 @@ header {
 		}
 	}
 	
-	.logo {
+	.logo-sieena {
 		float: left;
 		font-family: 'Open Sans', sans-serif;
-		font-weight: 300;
-		margin-top: 3px;
-		
-		span.sieena {
-			color: white !important;
-			font-size: 20px;
-		}
-		 
-		a {
-			float: none !important;
-			display: inline !important;
-			padding: 0 !important;
-			display: block;
-			height: 21px;
-			margin: 0 !important; 
-			color: white !important;
-			text-shadow: none !important;
-		} 
+		display: inline !important;
+		margin-top: 7px;
+		padding: 0 !important;
+		height: 35px;
+		width: 110px;
+		background: url('../Images/logo-myplace.png'); 
 	}
 	
 	ul.menu {

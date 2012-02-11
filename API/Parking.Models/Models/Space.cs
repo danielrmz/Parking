@@ -19,16 +19,15 @@ namespace Sieena.Parking.API.Models
     /// </summary>
     public partial class Space : ISpace
     {
+        private static DataStoreDataContext ctx = new DataStoreDataContext();
+
         /// <summary>
         /// Gets all the parking spaces registered in a place
         /// </summary>
         /// <returns></returns>
         public static List<Space> GetAllByPlaceId(int id)
         {
-            using (DataStoreDataContext ctx = new DataStoreDataContext())
-            {
-                return ctx.Spaces.Where( s => s.PlaceId.Equals(id) && s.Deleted == false ).ToList();
-            }
+            return ctx.Spaces.Where( s => s.PlaceId.Equals(id) && s.Deleted == false ).ToList(); 
         }
 
         /// <summary>
@@ -38,10 +37,7 @@ namespace Sieena.Parking.API.Models
         /// <returns></returns>
         public static Space Get(int id)
         {
-            using (DataStoreDataContext ctx = new DataStoreDataContext())
-            {
-                return ctx.Spaces.Where(s => s.SpaceId.Equals(id)).FirstOrDefault();
-            }
+            return ctx.Spaces.Where(s => s.SpaceId.Equals(id)).FirstOrDefault(); 
         }
 
         /// <summary>
@@ -51,15 +47,15 @@ namespace Sieena.Parking.API.Models
         /// <returns></returns>
         public static Space Save(Space s)
         {
-            using (DataStoreDataContext ctx = new DataStoreDataContext())
-            {
-                if (s.SpaceId == 0)
-                {
-                    ctx.Spaces.InsertOnSubmit(s);
-                }
+            
+            s.ValidateAndRaise();
 
-                ctx.SubmitChanges();
+            if (s.SpaceId == 0)
+            {
+                ctx.Spaces.InsertOnSubmit(s);
             }
+
+            ctx.SubmitChanges();
 
             return s;
         }
@@ -71,13 +67,11 @@ namespace Sieena.Parking.API.Models
         /// <returns></returns>
         public static Space Delete(int id)
         {
-            using (DataStoreDataContext ctx = new DataStoreDataContext())
-            {
-                Space s = Get(id);
-                ctx.Spaces.DeleteOnSubmit(s);
-                ctx.SubmitChanges();
-                return s;
-            }
+            Space s = Get(id);
+            ctx.Spaces.DeleteOnSubmit(s);
+            ctx.SubmitChanges();
+            return s;
         }
+
     }
 }

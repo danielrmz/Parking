@@ -15,9 +15,12 @@ using System.Security.Cryptography;
 namespace Sieena.Parking.API.Models
 {
     using Interfaces;
+    using Parking.API.Models.Exceptions;
 
     public partial class User : IUser
     {
+        private static DataStoreDataContext ctx = new DataStoreDataContext();
+
         /// <summary>
         /// 
         /// </summary>
@@ -25,17 +28,69 @@ namespace Sieena.Parking.API.Models
         /// <returns></returns>
         public static User SaveUser(User u)
         {
-            using (DataStoreDataContext ctx = new DataStoreDataContext())
-            {
-                if (u.UserId == 0)
-                {
-                    u.Password = GetSHA1(u.Password);
-                    ctx.Users.InsertOnSubmit(u);
-                }
-                ctx.SubmitChanges();
+            u.Email = u.Email.ToLower();
+            u.ValidateAndRaise();
 
-                return u;
+            if (u.UserId == 0)
+            {
+                u.Password = GetSHA1(u.Password);
+                ctx.Users.InsertOnSubmit(u);
             }
+            else
+            {
+                ctx.Users.Attach(u, true);
+            }
+
+            ctx.SubmitChanges();
+
+            return u;
+        }
+
+        public static void AddRoles(User u, List<Role> r)
+        {
+            foreach (Role ri in r)
+            {
+                Models.UserRole ur = new Models.UserRole()
+                {
+                    UserId = u.UserId,
+                    RoleId = ri.RoleId
+                };
+                if (ctx.UserRoles.Where(uro => uro.UserId.Equals(u.UserId) && uro.RoleId.Equals(ri.RoleId)).Any())
+                {
+                }
+                else
+                {
+                    ctx.UserRoles.InsertOnSubmit(ur);
+                }
+            }
+            ctx.SubmitChanges();
+        }
+
+        public static void DeleteRoles(User u, List<Role> r)
+        {
+            ctx.UserRoles.Where(ur => ur.UserId.Equals(u.UserId) 
+                                        && r.Where( ri => ri.RoleId.Equals(ur.RoleId)).Any()
+                                    ).ToList().ForEach(ur => ctx.UserRoles.DeleteOnSubmit(ur));
+            ctx.SubmitChanges();
+        }
+
+        /// <summary>
+        /// Marks a user as deleted.
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        public static bool DeleteUser(string email)
+        {
+            User u = GetByEmail(email);
+            if (u != null)
+            {
+                u.IsActive = false;
+            }
+
+            ctx.Users.Attach(u, true);
+            ctx.SubmitChanges();
+            
+            return true;
         }
 
         /// <summary>
@@ -46,10 +101,37 @@ namespace Sieena.Parking.API.Models
         public static User GetByEmail(string email)
         {
             email = email.ToLower().Trim();
-            using (DataStoreDataContext ctx = new DataStoreDataContext())
-            {
-                return ctx.Users.Where(u => u.Email.Equals(email)).FirstOrDefault();
-            }
+            return ctx.Users.Where(u => u.Email.Equals(email)).FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Gets a user by its id
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        public static User GetById(int id)
+        { 
+            return ctx.Users.Where(u => u.UserId.Equals(id)).FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Returns all the users available in the system.
+        /// </summary>
+        /// <returns></returns>
+        public static List<User> GetAll()
+        {
+            return ctx.Users.ToList();
+        }
+
+        /// <summary>
+        /// Finds a set of users based on an email 
+        /// </summary>
+        /// <param name="emailToMatch"></param>
+        /// <returns></returns>
+        public static List<User> FindByEmail(string emailToMatch)
+        {
+            emailToMatch = emailToMatch.ToLower().Trim();
+            return ctx.Users.Where(u => u.Email.Contains(emailToMatch)).ToList();
         }
 
         /// <summary>
@@ -58,20 +140,20 @@ namespace Sieena.Parking.API.Models
         /// <param name="user"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        public static bool Validate(string user, string password)
+        public static bool VerifyCredentials(string user, string password)
         {
             user = user.Trim();
 
             if (string.IsNullOrEmpty(user) || string.IsNullOrEmpty(password))
             {
                 // Throw custom buisness exception. 
-                throw new Exception("User or password not specified");
+                throw new APIException("User or password not specified");
             }
 
             User u = GetByEmail(user);
             if (u == null)
             {
-                throw new Exception("User does not exists");
+                throw new APIException("User does not exists");
             }
 
             string username = user.Split('@').First();

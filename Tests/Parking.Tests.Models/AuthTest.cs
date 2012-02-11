@@ -3,8 +3,9 @@ using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Sieena.Parking.API.Models;
 using System.Transactions;
+
+using Sieena.Parking.API.Models;
 
 namespace Sieena.Parking.Tests.Models
 {
@@ -42,7 +43,7 @@ namespace Sieena.Parking.Tests.Models
                     IsActive = true,
                     CreatedAt = DateTime.Now
                 });
-                Assert.IsTrue(User.Validate("daniel.ramirez@sieena.com", "test123"));
+                Assert.IsTrue(User.VerifyCredentials("daniel.ramirez@sieena.com", "test123"));
                 scope.Dispose();
             }
         }
