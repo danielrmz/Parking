@@ -19,16 +19,15 @@ namespace Sieena.Parking.API.Models
     /// </summary>
     public partial class Place : IPlace
     {
+        private static DataStoreDataContext ctx = new DataStoreDataContext();
+
         /// <summary>
         /// Gets all the available parking lots in the system.
         /// </summary>
         /// <returns></returns>
         public static List<Place> GetAll()
         {
-            using (var context = new DataStoreDataContext())
-            {
-                return context.Places.ToList();
-            }
+            return ctx.Places.ToList();
         }
 
         /// <summary>
@@ -38,10 +37,7 @@ namespace Sieena.Parking.API.Models
         /// <returns></returns>
         public static Place Get(int id)
         {
-            using (var context = new DataStoreDataContext())
-            {
-                return context.Places.Where(p => p.PlaceId.Equals(id)).FirstOrDefault();
-            }
+            return ctx.Places.Where(p => p.PlaceId.Equals(id)).FirstOrDefault(); 
         }
 
         /// <summary>
@@ -51,19 +47,16 @@ namespace Sieena.Parking.API.Models
         /// <returns></returns>
         public static Place Save(Place p)
         {
-            using (var context = new DataStoreDataContext())
+            p.ValidateAndRaise();
+
+            if (p.PlaceId == 0)
             {
-                p.ValidateAndRaise();
-
-                if (p.PlaceId == 0)
-                {
-                    context.Places.InsertOnSubmit(p);
-                }
-
-                context.SubmitChanges();
-
-                return p;
+                ctx.Places.InsertOnSubmit(p);
             }
+
+            ctx.SubmitChanges();
+
+            return p;
         }
 
         /// <summary>
@@ -73,11 +66,9 @@ namespace Sieena.Parking.API.Models
         /// <returns></returns>
         public static bool Delete(int id)
         {
-            using (var context = new DataStoreDataContext())
-            {
-                context.Places.DeleteOnSubmit(context.Places.Where(p => p.PlaceId.Equals(id)).First());
-                context.SubmitChanges();
-            }
+            ctx.Places.DeleteOnSubmit(ctx.Places.Where(p => p.PlaceId.Equals(id)).First());
+            ctx.SubmitChanges();
+
             return true;
         }
     }

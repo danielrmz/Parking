@@ -8,22 +8,13 @@
 */
 namespace("Parking.Configuration");
 
-(function($, undefined) {
+(function($, config, undefined) {
 
-    //Default configuration for loading partials views
-    jQuery.ajaxSetup({
-        type: "GET",
-        dataType: "html",
-        error: function (req, status, error) {
-            if (Parking.Common && Parking.Common.AjaxErrorHandler) {
-                Parking.Common.AjaxErrorHandler(req, status, error);
-            }
-        }
-    });
+    config.ClientTemplatesUrl = "/Content/Scripts/App/Backbone/Templates/";
 
-    Parking.Configuration.DateFormat = "MM/dd/yyyy";
+    config.DateFormat = "MM/dd/yyyy";
 
-    Parking.Configuration.Mask = {
+    config.Mask = {
         SSN: "999-99-9999",
         Phone: "999-999-9999",
         PhoneExt: "999-999-9999? x9999",
@@ -32,4 +23,4 @@ namespace("Parking.Configuration");
         USZip: "99999-?9999"
     };
 
-})($);
+})(jQuery, Parking.Configuration);

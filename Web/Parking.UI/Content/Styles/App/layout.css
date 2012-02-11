@@ -9,7 +9,7 @@
 /* @endgroup */
 /* @group Layout */
 html, body {
-  background: #f0f1f2; }
+  background: #e0e0e0; }
 
 body > div {
   margin-top: 20px;
@@ -39,5 +39,11 @@ footer {
 
 .right {
   float: right; }
+
+.right-alignment {
+  text-align: right; }
+
+label, input, button, select, textarea {
+  font-family: 'Open Sans', sans-serif; }
 
 /* @endgroup */

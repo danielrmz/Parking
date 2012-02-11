@@ -9,7 +9,7 @@
 /* @group Site fixed vars */
 
 $layoutWidth: 960px;
-$backgroundColor: #F0F1F2;
+$backgroundColor: #E0E0E0;
 $footerColor: #777777;
 
 /* @endgroup */
@@ -35,7 +35,6 @@ footer {
 	text-align: left;
 	font-size: 11px;
 	color: $footerColor;
-
 }
 
 .layout-width {
@@ -60,4 +59,11 @@ footer {
 	float: right;
 }
 
+.right-alignment{ 
+	text-align: right 
+}
+
+label, input, button, select, textarea {
+	font-family: 'Open Sans', sans-serif;
+}
 /* @endgroup */

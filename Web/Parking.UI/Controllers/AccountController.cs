@@ -5,22 +5,17 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
+using Parking.UI.Models;
 
 namespace MvcApplication1.Controllers
 {
     public class AccountController : Controller
     {
 
-        //
-        // GET: /Account/LogOn
-
         public ActionResult LogOn()
         {
-            return View();
+            return View("Login");
         }
-
-        //
-        // POST: /Account/LogOn
 
         [HttpPost]
         public ActionResult LogOn(LogOnModel model, string returnUrl)
@@ -30,29 +25,28 @@ namespace MvcApplication1.Controllers
                 if (Membership.ValidateUser(model.UserName, model.Password))
                 {
                     FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
-                    FormsAuthentication.
                     if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
                         && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
                     {
-                        return Redirect(returnUrl);
+                        return Content(returnUrl);
                     }
                     else
                     {
-                        return RedirectToAction("Index", "Home");
+                        return Content("Home/Index");
                     }
                 }
                 else
                 {
-                    ModelState.AddModelError("", "The user name or password provided is incorrect.");
+                    return Content("The user name or password provided is incorrect.");
+                    //ModelState.AddModelError("", "The user name or password provided is incorrect.");
                 }
             }
 
             // If we got this far, something failed, redisplay form
-            return View(model);
+            //return View("Login", model);
+            return Content("The user name or password provided is incorrect.");
         }
 
-        //
-        // GET: /Account/LogOff
 
         public ActionResult LogOff()
         {
@@ -61,52 +55,18 @@ namespace MvcApplication1.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        //
-        // GET: /Account/Register
 
         public ActionResult Register()
         {
             return View();
         }
 
-        //
-        // POST: /Account/Register
-
-        [HttpPost]
-        public ActionResult Register(RegisterModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                // Attempt to register the user
-                MembershipCreateStatus createStatus;
-                Membership.CreateUser(model.UserName, model.Password, model.Email, null, null, true, null, out createStatus);
-
-                if (createStatus == MembershipCreateStatus.Success)
-                {
-                    FormsAuthentication.SetAuthCookie(model.UserName, false /* createPersistentCookie */);
-                    return RedirectToAction("Index", "Home");
-                }
-                else
-                {
-                    ModelState.AddModelError("", ErrorCodeToString(createStatus));
-                }
-            }
-
-            // If we got this far, something failed, redisplay form
-            return View(model);
-        }
-
-        //
-        // GET: /Account/ChangePassword
 
         [Authorize]
         public ActionResult ChangePassword()
         {
             return View();
         }
-
-        //
-        // POST: /Account/ChangePassword
 
         [Authorize]
         [HttpPost]
@@ -142,8 +102,6 @@ namespace MvcApplication1.Controllers
             return View(model);
         }
 
-        //
-        // GET: /Account/ChangePasswordSuccess
 
         public ActionResult ChangePasswordSuccess()
         {

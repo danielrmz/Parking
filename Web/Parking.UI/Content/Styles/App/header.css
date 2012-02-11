@@ -10,9 +10,9 @@ header {
   /* @endgroup */ }
   header .topbar {
     z-index: 3;
-    color: white;
-    background: #005a9d url("/Content/Images/App/txr-bg-header-blue.png") repeat-x;
-    height: 40px;
+    color: #444;
+    background: #efefef url("../Images/txr-bg-header.png") repeat-x top;
+    height: 53px;
     box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.8);
     -moz-box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.8);
     -webkit-box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.8); }
@@ -28,23 +28,15 @@ header {
       header .topbar .column.notifications.error {
         color: red;
         font-weight: 500; }
-    header .topbar .logo {
+    header .topbar .logo-sieena {
       float: left;
       font-family: 'Open Sans', sans-serif;
-      font-weight: 300;
-      margin-top: 3px; }
-      header .topbar .logo span.sieena {
-        color: white !important;
-        font-size: 20px; }
-      header .topbar .logo a {
-        float: none !important;
-        display: inline !important;
-        padding: 0 !important;
-        display: block;
-        height: 21px;
-        margin: 0 !important;
-        color: white !important;
-        text-shadow: none !important; }
+      display: inline !important;
+      margin-top: 7px;
+      padding: 0 !important;
+      height: 35px;
+      width: 110px;
+      background: url("../Images/logo-myplace.png"); }
     header .topbar ul.menu {
       float: right; }
       header .topbar ul.menu .checkout {

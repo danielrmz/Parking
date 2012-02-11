@@ -25,7 +25,7 @@ namespace("Parking.App");
             $("#main").html(el);
         });
       },
-      static: function() {
+      "static": function() {
         var route = this;
       }
     });

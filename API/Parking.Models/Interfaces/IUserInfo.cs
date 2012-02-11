@@ -28,8 +28,6 @@ namespace Sieena.Parking.API.Models.Interfaces
         string LastName { get; set; }
 
         [Required]
-        [Integer]
-        [Range(0,1)]
         [Display(Name = "Gender")]
         bool Gender { get; set; }
 

@@ -33,51 +33,51 @@ namespace Sieena.Parking.API.Models
     partial void InsertAccessType(AccessType instance);
     partial void UpdateAccessType(AccessType instance);
     partial void DeleteAccessType(AccessType instance);
+    partial void InsertUser(User instance);
+    partial void UpdateUser(User instance);
+    partial void DeleteUser(User instance);
+    partial void InsertApplication(Application instance);
+    partial void UpdateApplication(Application instance);
+    partial void DeleteApplication(Application instance);
     partial void InsertCheckin(Checkin instance);
     partial void UpdateCheckin(Checkin instance);
     partial void DeleteCheckin(Checkin instance);
     partial void InsertEndpoint(Endpoint instance);
     partial void UpdateEndpoint(Endpoint instance);
     partial void DeleteEndpoint(Endpoint instance);
+    partial void InsertNotification(Notification instance);
+    partial void UpdateNotification(Notification instance);
+    partial void DeleteNotification(Notification instance);
     partial void InsertOAuthProvider(OAuthProvider instance);
     partial void UpdateOAuthProvider(OAuthProvider instance);
     partial void DeleteOAuthProvider(OAuthProvider instance);
     partial void InsertOAuthToken(OAuthToken instance);
     partial void UpdateOAuthToken(OAuthToken instance);
     partial void DeleteOAuthToken(OAuthToken instance);
-    partial void InsertPlace(Place instance);
-    partial void UpdatePlace(Place instance);
-    partial void DeletePlace(Place instance);
-    partial void InsertSpaceLocation(SpaceLocation instance);
-    partial void UpdateSpaceLocation(SpaceLocation instance);
-    partial void DeleteSpaceLocation(SpaceLocation instance);
-    partial void InsertUserEndpoint(UserEndpoint instance);
-    partial void UpdateUserEndpoint(UserEndpoint instance);
-    partial void DeleteUserEndpoint(UserEndpoint instance);
-    partial void InsertUserRole(UserRole instance);
-    partial void UpdateUserRole(UserRole instance);
-    partial void DeleteUserRole(UserRole instance);
     partial void InsertPlaceMap(PlaceMap instance);
     partial void UpdatePlaceMap(PlaceMap instance);
     partial void DeletePlaceMap(PlaceMap instance);
+    partial void InsertPlace(Place instance);
+    partial void UpdatePlace(Place instance);
+    partial void DeletePlace(Place instance);
     partial void InsertRole(Role instance);
     partial void UpdateRole(Role instance);
     partial void DeleteRole(Role instance);
-    partial void InsertApplication(Application instance);
-    partial void UpdateApplication(Application instance);
-    partial void DeleteApplication(Application instance);
+    partial void InsertSpaceLocation(SpaceLocation instance);
+    partial void UpdateSpaceLocation(SpaceLocation instance);
+    partial void DeleteSpaceLocation(SpaceLocation instance);
     partial void InsertSpace(Space instance);
     partial void UpdateSpace(Space instance);
     partial void DeleteSpace(Space instance);
-    partial void InsertUser(User instance);
-    partial void UpdateUser(User instance);
-    partial void DeleteUser(User instance);
+    partial void InsertUserEndpoint(UserEndpoint instance);
+    partial void UpdateUserEndpoint(UserEndpoint instance);
+    partial void DeleteUserEndpoint(UserEndpoint instance);
     partial void InsertUserInfo(UserInfo instance);
     partial void UpdateUserInfo(UserInfo instance);
     partial void DeleteUserInfo(UserInfo instance);
-    partial void InsertNotification(Notification instance);
-    partial void UpdateNotification(Notification instance);
-    partial void DeleteNotification(Notification instance);
+    partial void InsertUserRole(UserRole instance);
+    partial void UpdateUserRole(UserRole instance);
+    partial void DeleteUserRole(UserRole instance);
     #endregion
 		
 		public DataStoreDataContext() : 
@@ -118,6 +118,22 @@ namespace Sieena.Parking.API.Models
 			}
 		}
 		
+		public System.Data.Linq.Table<User> Users
+		{
+			get
+			{
+				return this.GetTable<User>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Application> Applications
+		{
+			get
+			{
+				return this.GetTable<Application>();
+			}
+		}
+		
 		public System.Data.Linq.Table<Checkin> Checkins
 		{
 			get
@@ -131,6 +147,14 @@ namespace Sieena.Parking.API.Models
 			get
 			{
 				return this.GetTable<Endpoint>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Notification> Notifications
+		{
+			get
+			{
+				return this.GetTable<Notification>();
 			}
 		}
 		
@@ -150,43 +174,19 @@ namespace Sieena.Parking.API.Models
 			}
 		}
 		
-		public System.Data.Linq.Table<Place> Places
-		{
-			get
-			{
-				return this.GetTable<Place>();
-			}
-		}
-		
-		public System.Data.Linq.Table<SpaceLocation> SpaceLocations
-		{
-			get
-			{
-				return this.GetTable<SpaceLocation>();
-			}
-		}
-		
-		public System.Data.Linq.Table<UserEndpoint> UserEndpoints
-		{
-			get
-			{
-				return this.GetTable<UserEndpoint>();
-			}
-		}
-		
-		public System.Data.Linq.Table<UserRole> UserRoles
-		{
-			get
-			{
-				return this.GetTable<UserRole>();
-			}
-		}
-		
 		public System.Data.Linq.Table<PlaceMap> PlaceMaps
 		{
 			get
 			{
 				return this.GetTable<PlaceMap>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Place> Places
+		{
+			get
+			{
+				return this.GetTable<Place>();
 			}
 		}
 		
@@ -198,11 +198,11 @@ namespace Sieena.Parking.API.Models
 			}
 		}
 		
-		public System.Data.Linq.Table<Application> Applications
+		public System.Data.Linq.Table<SpaceLocation> SpaceLocations
 		{
 			get
 			{
-				return this.GetTable<Application>();
+				return this.GetTable<SpaceLocation>();
 			}
 		}
 		
@@ -214,11 +214,11 @@ namespace Sieena.Parking.API.Models
 			}
 		}
 		
-		public System.Data.Linq.Table<User> Users
+		public System.Data.Linq.Table<UserEndpoint> UserEndpoints
 		{
 			get
 			{
-				return this.GetTable<User>();
+				return this.GetTable<UserEndpoint>();
 			}
 		}
 		
@@ -230,11 +230,11 @@ namespace Sieena.Parking.API.Models
 			}
 		}
 		
-		public System.Data.Linq.Table<Notification> Notifications
+		public System.Data.Linq.Table<UserRole> UserRoles
 		{
 			get
 			{
-				return this.GetTable<Notification>();
+				return this.GetTable<UserRole>();
 			}
 		}
 	}
@@ -300,6 +300,298 @@ namespace Sieena.Parking.API.Models
 					this._AccessTypeName = value;
 					this.SendPropertyChanged("AccessTypeName");
 					this.OnAccessTypeNameChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Users")]
+	public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _UserId;
+		
+		private string _Password;
+		
+		private string _Email;
+		
+		private System.Nullable<System.DateTime> _LastAccess;
+		
+		private bool _IsActive;
+		
+		private System.DateTime _CreatedAt;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnUserIdChanging(int value);
+    partial void OnUserIdChanged();
+    partial void OnPasswordChanging(string value);
+    partial void OnPasswordChanged();
+    partial void OnEmailChanging(string value);
+    partial void OnEmailChanged();
+    partial void OnLastAccessChanging(System.Nullable<System.DateTime> value);
+    partial void OnLastAccessChanged();
+    partial void OnIsActiveChanging(bool value);
+    partial void OnIsActiveChanged();
+    partial void OnCreatedAtChanging(System.DateTime value);
+    partial void OnCreatedAtChanged();
+    #endregion
+		
+		public User()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int UserId
+		{
+			get
+			{
+				return this._UserId;
+			}
+			set
+			{
+				if ((this._UserId != value))
+				{
+					this.OnUserIdChanging(value);
+					this.SendPropertyChanging();
+					this._UserId = value;
+					this.SendPropertyChanged("UserId");
+					this.OnUserIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="NVarChar(1024) NOT NULL", CanBeNull=false)]
+		public string Password
+		{
+			get
+			{
+				return this._Password;
+			}
+			set
+			{
+				if ((this._Password != value))
+				{
+					this.OnPasswordChanging(value);
+					this.SendPropertyChanging();
+					this._Password = value;
+					this.SendPropertyChanged("Password");
+					this.OnPasswordChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string Email
+		{
+			get
+			{
+				return this._Email;
+			}
+			set
+			{
+				if ((this._Email != value))
+				{
+					this.OnEmailChanging(value);
+					this.SendPropertyChanging();
+					this._Email = value;
+					this.SendPropertyChanged("Email");
+					this.OnEmailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastAccess", DbType="DateTime")]
+		public System.Nullable<System.DateTime> LastAccess
+		{
+			get
+			{
+				return this._LastAccess;
+			}
+			set
+			{
+				if ((this._LastAccess != value))
+				{
+					this.OnLastAccessChanging(value);
+					this.SendPropertyChanging();
+					this._LastAccess = value;
+					this.SendPropertyChanged("LastAccess");
+					this.OnLastAccessChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsActive", DbType="Bit NOT NULL")]
+		public bool IsActive
+		{
+			get
+			{
+				return this._IsActive;
+			}
+			set
+			{
+				if ((this._IsActive != value))
+				{
+					this.OnIsActiveChanging(value);
+					this.SendPropertyChanging();
+					this._IsActive = value;
+					this.SendPropertyChanged("IsActive");
+					this.OnIsActiveChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedAt", DbType="DateTime NOT NULL")]
+		public System.DateTime CreatedAt
+		{
+			get
+			{
+				return this._CreatedAt;
+			}
+			set
+			{
+				if ((this._CreatedAt != value))
+				{
+					this.OnCreatedAtChanging(value);
+					this.SendPropertyChanging();
+					this._CreatedAt = value;
+					this.SendPropertyChanged("CreatedAt");
+					this.OnCreatedAtChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Applications")]
+	public partial class Application : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ApplicationId;
+		
+		private string _ApplicationName;
+		
+		private System.Nullable<System.DateTime> _CreatedAt;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnApplicationIdChanging(int value);
+    partial void OnApplicationIdChanged();
+    partial void OnApplicationNameChanging(string value);
+    partial void OnApplicationNameChanged();
+    partial void OnCreatedAtChanging(System.Nullable<System.DateTime> value);
+    partial void OnCreatedAtChanged();
+    #endregion
+		
+		public Application()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ApplicationId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ApplicationId
+		{
+			get
+			{
+				return this._ApplicationId;
+			}
+			set
+			{
+				if ((this._ApplicationId != value))
+				{
+					this.OnApplicationIdChanging(value);
+					this.SendPropertyChanging();
+					this._ApplicationId = value;
+					this.SendPropertyChanged("ApplicationId");
+					this.OnApplicationIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ApplicationName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string ApplicationName
+		{
+			get
+			{
+				return this._ApplicationName;
+			}
+			set
+			{
+				if ((this._ApplicationName != value))
+				{
+					this.OnApplicationNameChanging(value);
+					this.SendPropertyChanging();
+					this._ApplicationName = value;
+					this.SendPropertyChanged("ApplicationName");
+					this.OnApplicationNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedAt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> CreatedAt
+		{
+			get
+			{
+				return this._CreatedAt;
+			}
+			set
+			{
+				if ((this._CreatedAt != value))
+				{
+					this.OnCreatedAtChanging(value);
+					this.SendPropertyChanging();
+					this._CreatedAt = value;
+					this.SendPropertyChanged("CreatedAt");
+					this.OnCreatedAtChanged();
 				}
 			}
 		}
@@ -641,6 +933,212 @@ namespace Sieena.Parking.API.Models
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Notifications")]
+	public partial class Notification : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _NotificationId;
+		
+		private int _UserId;
+		
+		private string _Message;
+		
+		private System.DateTime _CreatedAt;
+		
+		private int _CreatedBy;
+		
+		private System.Nullable<int> _CheckInId;
+		
+		private System.Nullable<System.DateTime> _ReadAt;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnNotificationIdChanging(int value);
+    partial void OnNotificationIdChanged();
+    partial void OnUserIdChanging(int value);
+    partial void OnUserIdChanged();
+    partial void OnMessageChanging(string value);
+    partial void OnMessageChanged();
+    partial void OnCreatedAtChanging(System.DateTime value);
+    partial void OnCreatedAtChanged();
+    partial void OnCreatedByChanging(int value);
+    partial void OnCreatedByChanged();
+    partial void OnCheckInIdChanging(System.Nullable<int> value);
+    partial void OnCheckInIdChanged();
+    partial void OnReadAtChanging(System.Nullable<System.DateTime> value);
+    partial void OnReadAtChanged();
+    #endregion
+		
+		public Notification()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NotificationId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int NotificationId
+		{
+			get
+			{
+				return this._NotificationId;
+			}
+			set
+			{
+				if ((this._NotificationId != value))
+				{
+					this.OnNotificationIdChanging(value);
+					this.SendPropertyChanging();
+					this._NotificationId = value;
+					this.SendPropertyChanged("NotificationId");
+					this.OnNotificationIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", DbType="Int NOT NULL")]
+		public int UserId
+		{
+			get
+			{
+				return this._UserId;
+			}
+			set
+			{
+				if ((this._UserId != value))
+				{
+					this.OnUserIdChanging(value);
+					this.SendPropertyChanging();
+					this._UserId = value;
+					this.SendPropertyChanged("UserId");
+					this.OnUserIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Message", DbType="NVarChar(2000)")]
+		public string Message
+		{
+			get
+			{
+				return this._Message;
+			}
+			set
+			{
+				if ((this._Message != value))
+				{
+					this.OnMessageChanging(value);
+					this.SendPropertyChanging();
+					this._Message = value;
+					this.SendPropertyChanged("Message");
+					this.OnMessageChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedAt", DbType="DateTime NOT NULL")]
+		public System.DateTime CreatedAt
+		{
+			get
+			{
+				return this._CreatedAt;
+			}
+			set
+			{
+				if ((this._CreatedAt != value))
+				{
+					this.OnCreatedAtChanging(value);
+					this.SendPropertyChanging();
+					this._CreatedAt = value;
+					this.SendPropertyChanged("CreatedAt");
+					this.OnCreatedAtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedBy", DbType="Int NOT NULL")]
+		public int CreatedBy
+		{
+			get
+			{
+				return this._CreatedBy;
+			}
+			set
+			{
+				if ((this._CreatedBy != value))
+				{
+					this.OnCreatedByChanging(value);
+					this.SendPropertyChanging();
+					this._CreatedBy = value;
+					this.SendPropertyChanged("CreatedBy");
+					this.OnCreatedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CheckInId", DbType="Int")]
+		public System.Nullable<int> CheckInId
+		{
+			get
+			{
+				return this._CheckInId;
+			}
+			set
+			{
+				if ((this._CheckInId != value))
+				{
+					this.OnCheckInIdChanging(value);
+					this.SendPropertyChanging();
+					this._CheckInId = value;
+					this.SendPropertyChanged("CheckInId");
+					this.OnCheckInIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReadAt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ReadAt
+		{
+			get
+			{
+				return this._ReadAt;
+			}
+			set
+			{
+				if ((this._ReadAt != value))
+				{
+					this.OnReadAtChanging(value);
+					this.SendPropertyChanging();
+					this._ReadAt = value;
+					this.SendPropertyChanged("ReadAt");
+					this.OnReadAtChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.OAuthProviders")]
 	public partial class OAuthProvider : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -885,6 +1383,164 @@ namespace Sieena.Parking.API.Models
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.PlaceMaps")]
+	public partial class PlaceMap : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _PlaceMapId;
+		
+		private int _PlaceId;
+		
+		private string _PlaceMapUrl;
+		
+		private int _PlaceMapVersion;
+		
+		private System.DateTime _CreatedAt;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnPlaceMapIdChanging(int value);
+    partial void OnPlaceMapIdChanged();
+    partial void OnPlaceIdChanging(int value);
+    partial void OnPlaceIdChanged();
+    partial void OnPlaceMapUrlChanging(string value);
+    partial void OnPlaceMapUrlChanged();
+    partial void OnPlaceMapVersionChanging(int value);
+    partial void OnPlaceMapVersionChanged();
+    partial void OnCreatedAtChanging(System.DateTime value);
+    partial void OnCreatedAtChanged();
+    #endregion
+		
+		public PlaceMap()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PlaceMapId", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int PlaceMapId
+		{
+			get
+			{
+				return this._PlaceMapId;
+			}
+			set
+			{
+				if ((this._PlaceMapId != value))
+				{
+					this.OnPlaceMapIdChanging(value);
+					this.SendPropertyChanging();
+					this._PlaceMapId = value;
+					this.SendPropertyChanged("PlaceMapId");
+					this.OnPlaceMapIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PlaceId", DbType="Int NOT NULL")]
+		public int PlaceId
+		{
+			get
+			{
+				return this._PlaceId;
+			}
+			set
+			{
+				if ((this._PlaceId != value))
+				{
+					this.OnPlaceIdChanging(value);
+					this.SendPropertyChanging();
+					this._PlaceId = value;
+					this.SendPropertyChanged("PlaceId");
+					this.OnPlaceIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PlaceMapUrl", DbType="NVarChar(512) NOT NULL", CanBeNull=false)]
+		public string PlaceMapUrl
+		{
+			get
+			{
+				return this._PlaceMapUrl;
+			}
+			set
+			{
+				if ((this._PlaceMapUrl != value))
+				{
+					this.OnPlaceMapUrlChanging(value);
+					this.SendPropertyChanging();
+					this._PlaceMapUrl = value;
+					this.SendPropertyChanged("PlaceMapUrl");
+					this.OnPlaceMapUrlChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PlaceMapVersion", DbType="Int NOT NULL")]
+		public int PlaceMapVersion
+		{
+			get
+			{
+				return this._PlaceMapVersion;
+			}
+			set
+			{
+				if ((this._PlaceMapVersion != value))
+				{
+					this.OnPlaceMapVersionChanging(value);
+					this.SendPropertyChanging();
+					this._PlaceMapVersion = value;
+					this.SendPropertyChanged("PlaceMapVersion");
+					this.OnPlaceMapVersionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedAt", DbType="DateTime NOT NULL")]
+		public System.DateTime CreatedAt
+		{
+			get
+			{
+				return this._CreatedAt;
+			}
+			set
+			{
+				if ((this._CreatedAt != value))
+				{
+					this.OnCreatedAtChanging(value);
+					this.SendPropertyChanging();
+					this._CreatedAt = value;
+					this.SendPropertyChanged("CreatedAt");
+					this.OnCreatedAtChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Places")]
 	public partial class Place : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -970,6 +1626,116 @@ namespace Sieena.Parking.API.Models
 					this._CreatedAt = value;
 					this.SendPropertyChanged("CreatedAt");
 					this.OnCreatedAtChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Roles")]
+	public partial class Role : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _RoleId;
+		
+		private string _RoleName;
+		
+		private int _RoleLevel;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnRoleIdChanging(int value);
+    partial void OnRoleIdChanged();
+    partial void OnRoleNameChanging(string value);
+    partial void OnRoleNameChanged();
+    partial void OnRoleLevelChanging(int value);
+    partial void OnRoleLevelChanged();
+    #endregion
+		
+		public Role()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoleId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int RoleId
+		{
+			get
+			{
+				return this._RoleId;
+			}
+			set
+			{
+				if ((this._RoleId != value))
+				{
+					this.OnRoleIdChanging(value);
+					this.SendPropertyChanging();
+					this._RoleId = value;
+					this.SendPropertyChanged("RoleId");
+					this.OnRoleIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoleName", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string RoleName
+		{
+			get
+			{
+				return this._RoleName;
+			}
+			set
+			{
+				if ((this._RoleName != value))
+				{
+					this.OnRoleNameChanging(value);
+					this.SendPropertyChanging();
+					this._RoleName = value;
+					this.SendPropertyChanged("RoleName");
+					this.OnRoleNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoleLevel", DbType="Int NOT NULL")]
+		public int RoleLevel
+		{
+			get
+			{
+				return this._RoleLevel;
+			}
+			set
+			{
+				if ((this._RoleLevel != value))
+				{
+					this.OnRoleLevelChanging(value);
+					this.SendPropertyChanging();
+					this._RoleLevel = value;
+					this.SendPropertyChanged("RoleLevel");
+					this.OnRoleLevelChanged();
 				}
 			}
 		}
@@ -1201,676 +1967,6 @@ namespace Sieena.Parking.API.Models
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.UserEndpoints")]
-	public partial class UserEndpoint : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _UserId;
-		
-		private int _EndpointTypeId;
-		
-		private bool _IsEnabled;
-		
-		private string _Value;
-		
-		private System.Nullable<int> _Priority;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnUserIdChanging(int value);
-    partial void OnUserIdChanged();
-    partial void OnEndpointTypeIdChanging(int value);
-    partial void OnEndpointTypeIdChanged();
-    partial void OnIsEnabledChanging(bool value);
-    partial void OnIsEnabledChanged();
-    partial void OnValueChanging(string value);
-    partial void OnValueChanged();
-    partial void OnPriorityChanging(System.Nullable<int> value);
-    partial void OnPriorityChanged();
-    #endregion
-		
-		public UserEndpoint()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int UserId
-		{
-			get
-			{
-				return this._UserId;
-			}
-			set
-			{
-				if ((this._UserId != value))
-				{
-					this.OnUserIdChanging(value);
-					this.SendPropertyChanging();
-					this._UserId = value;
-					this.SendPropertyChanged("UserId");
-					this.OnUserIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EndpointTypeId", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int EndpointTypeId
-		{
-			get
-			{
-				return this._EndpointTypeId;
-			}
-			set
-			{
-				if ((this._EndpointTypeId != value))
-				{
-					this.OnEndpointTypeIdChanging(value);
-					this.SendPropertyChanging();
-					this._EndpointTypeId = value;
-					this.SendPropertyChanged("EndpointTypeId");
-					this.OnEndpointTypeIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsEnabled", DbType="Bit NOT NULL")]
-		public bool IsEnabled
-		{
-			get
-			{
-				return this._IsEnabled;
-			}
-			set
-			{
-				if ((this._IsEnabled != value))
-				{
-					this.OnIsEnabledChanging(value);
-					this.SendPropertyChanging();
-					this._IsEnabled = value;
-					this.SendPropertyChanged("IsEnabled");
-					this.OnIsEnabledChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Value", DbType="NVarChar(255)")]
-		public string Value
-		{
-			get
-			{
-				return this._Value;
-			}
-			set
-			{
-				if ((this._Value != value))
-				{
-					this.OnValueChanging(value);
-					this.SendPropertyChanging();
-					this._Value = value;
-					this.SendPropertyChanged("Value");
-					this.OnValueChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Priority", DbType="Int")]
-		public System.Nullable<int> Priority
-		{
-			get
-			{
-				return this._Priority;
-			}
-			set
-			{
-				if ((this._Priority != value))
-				{
-					this.OnPriorityChanging(value);
-					this.SendPropertyChanging();
-					this._Priority = value;
-					this.SendPropertyChanged("Priority");
-					this.OnPriorityChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.UserRoles")]
-	public partial class UserRole : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _UserId;
-		
-		private int _RoleId;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnUserIdChanging(int value);
-    partial void OnUserIdChanged();
-    partial void OnRoleIdChanging(int value);
-    partial void OnRoleIdChanged();
-    #endregion
-		
-		public UserRole()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int UserId
-		{
-			get
-			{
-				return this._UserId;
-			}
-			set
-			{
-				if ((this._UserId != value))
-				{
-					this.OnUserIdChanging(value);
-					this.SendPropertyChanging();
-					this._UserId = value;
-					this.SendPropertyChanged("UserId");
-					this.OnUserIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoleId", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int RoleId
-		{
-			get
-			{
-				return this._RoleId;
-			}
-			set
-			{
-				if ((this._RoleId != value))
-				{
-					this.OnRoleIdChanging(value);
-					this.SendPropertyChanging();
-					this._RoleId = value;
-					this.SendPropertyChanged("RoleId");
-					this.OnRoleIdChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.PlaceMaps")]
-	public partial class PlaceMap : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _PlaceMapId;
-		
-		private int _PlaceId;
-		
-		private string _PlaceMapUrl;
-		
-		private int _PlaceMapVersion;
-		
-		private System.DateTime _CreatedAt;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnPlaceMapIdChanging(int value);
-    partial void OnPlaceMapIdChanged();
-    partial void OnPlaceIdChanging(int value);
-    partial void OnPlaceIdChanged();
-    partial void OnPlaceMapUrlChanging(string value);
-    partial void OnPlaceMapUrlChanged();
-    partial void OnPlaceMapVersionChanging(int value);
-    partial void OnPlaceMapVersionChanged();
-    partial void OnCreatedAtChanging(System.DateTime value);
-    partial void OnCreatedAtChanged();
-    #endregion
-		
-		public PlaceMap()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PlaceMapId", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int PlaceMapId
-		{
-			get
-			{
-				return this._PlaceMapId;
-			}
-			set
-			{
-				if ((this._PlaceMapId != value))
-				{
-					this.OnPlaceMapIdChanging(value);
-					this.SendPropertyChanging();
-					this._PlaceMapId = value;
-					this.SendPropertyChanged("PlaceMapId");
-					this.OnPlaceMapIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PlaceId", DbType="Int NOT NULL")]
-		public int PlaceId
-		{
-			get
-			{
-				return this._PlaceId;
-			}
-			set
-			{
-				if ((this._PlaceId != value))
-				{
-					this.OnPlaceIdChanging(value);
-					this.SendPropertyChanging();
-					this._PlaceId = value;
-					this.SendPropertyChanged("PlaceId");
-					this.OnPlaceIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PlaceMapUrl", DbType="NVarChar(512) NOT NULL", CanBeNull=false)]
-		public string PlaceMapUrl
-		{
-			get
-			{
-				return this._PlaceMapUrl;
-			}
-			set
-			{
-				if ((this._PlaceMapUrl != value))
-				{
-					this.OnPlaceMapUrlChanging(value);
-					this.SendPropertyChanging();
-					this._PlaceMapUrl = value;
-					this.SendPropertyChanged("PlaceMapUrl");
-					this.OnPlaceMapUrlChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PlaceMapVersion", DbType="Int NOT NULL")]
-		public int PlaceMapVersion
-		{
-			get
-			{
-				return this._PlaceMapVersion;
-			}
-			set
-			{
-				if ((this._PlaceMapVersion != value))
-				{
-					this.OnPlaceMapVersionChanging(value);
-					this.SendPropertyChanging();
-					this._PlaceMapVersion = value;
-					this.SendPropertyChanged("PlaceMapVersion");
-					this.OnPlaceMapVersionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedAt", DbType="DateTime NOT NULL")]
-		public System.DateTime CreatedAt
-		{
-			get
-			{
-				return this._CreatedAt;
-			}
-			set
-			{
-				if ((this._CreatedAt != value))
-				{
-					this.OnCreatedAtChanging(value);
-					this.SendPropertyChanging();
-					this._CreatedAt = value;
-					this.SendPropertyChanged("CreatedAt");
-					this.OnCreatedAtChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Roles")]
-	public partial class Role : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _RoleId;
-		
-		private string _RoleName;
-		
-		private int _RoleLevel;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnRoleIdChanging(int value);
-    partial void OnRoleIdChanged();
-    partial void OnRoleNameChanging(string value);
-    partial void OnRoleNameChanged();
-    partial void OnRoleLevelChanging(int value);
-    partial void OnRoleLevelChanged();
-    #endregion
-		
-		public Role()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoleId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int RoleId
-		{
-			get
-			{
-				return this._RoleId;
-			}
-			set
-			{
-				if ((this._RoleId != value))
-				{
-					this.OnRoleIdChanging(value);
-					this.SendPropertyChanging();
-					this._RoleId = value;
-					this.SendPropertyChanged("RoleId");
-					this.OnRoleIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoleName", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string RoleName
-		{
-			get
-			{
-				return this._RoleName;
-			}
-			set
-			{
-				if ((this._RoleName != value))
-				{
-					this.OnRoleNameChanging(value);
-					this.SendPropertyChanging();
-					this._RoleName = value;
-					this.SendPropertyChanged("RoleName");
-					this.OnRoleNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoleLevel", DbType="Int NOT NULL")]
-		public int RoleLevel
-		{
-			get
-			{
-				return this._RoleLevel;
-			}
-			set
-			{
-				if ((this._RoleLevel != value))
-				{
-					this.OnRoleLevelChanging(value);
-					this.SendPropertyChanging();
-					this._RoleLevel = value;
-					this.SendPropertyChanged("RoleLevel");
-					this.OnRoleLevelChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Applications")]
-	public partial class Application : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _ApplicationId;
-		
-		private string _ApplicationName;
-		
-		private string _ApplicationConsumerKey;
-		
-		private string _ApplicationConsumerToken;
-		
-		private System.Nullable<System.DateTime> _CreatedAt;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnApplicationIdChanging(int value);
-    partial void OnApplicationIdChanged();
-    partial void OnApplicationNameChanging(string value);
-    partial void OnApplicationNameChanged();
-    partial void OnApplicationConsumerKeyChanging(string value);
-    partial void OnApplicationConsumerKeyChanged();
-    partial void OnApplicationConsumerTokenChanging(string value);
-    partial void OnApplicationConsumerTokenChanged();
-    partial void OnCreatedAtChanging(System.Nullable<System.DateTime> value);
-    partial void OnCreatedAtChanged();
-    #endregion
-		
-		public Application()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ApplicationId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ApplicationId
-		{
-			get
-			{
-				return this._ApplicationId;
-			}
-			set
-			{
-				if ((this._ApplicationId != value))
-				{
-					this.OnApplicationIdChanging(value);
-					this.SendPropertyChanging();
-					this._ApplicationId = value;
-					this.SendPropertyChanged("ApplicationId");
-					this.OnApplicationIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ApplicationName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string ApplicationName
-		{
-			get
-			{
-				return this._ApplicationName;
-			}
-			set
-			{
-				if ((this._ApplicationName != value))
-				{
-					this.OnApplicationNameChanging(value);
-					this.SendPropertyChanging();
-					this._ApplicationName = value;
-					this.SendPropertyChanged("ApplicationName");
-					this.OnApplicationNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ApplicationConsumerKey", DbType="NVarChar(512)")]
-		public string ApplicationConsumerKey
-		{
-			get
-			{
-				return this._ApplicationConsumerKey;
-			}
-			set
-			{
-				if ((this._ApplicationConsumerKey != value))
-				{
-					this.OnApplicationConsumerKeyChanging(value);
-					this.SendPropertyChanging();
-					this._ApplicationConsumerKey = value;
-					this.SendPropertyChanged("ApplicationConsumerKey");
-					this.OnApplicationConsumerKeyChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ApplicationConsumerToken", DbType="NVarChar(512)")]
-		public string ApplicationConsumerToken
-		{
-			get
-			{
-				return this._ApplicationConsumerToken;
-			}
-			set
-			{
-				if ((this._ApplicationConsumerToken != value))
-				{
-					this.OnApplicationConsumerTokenChanging(value);
-					this.SendPropertyChanging();
-					this._ApplicationConsumerToken = value;
-					this.SendPropertyChanged("ApplicationConsumerToken");
-					this.OnApplicationConsumerTokenChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedAt", DbType="DateTime")]
-		public System.Nullable<System.DateTime> CreatedAt
-		{
-			get
-			{
-				return this._CreatedAt;
-			}
-			set
-			{
-				if ((this._CreatedAt != value))
-				{
-					this.OnCreatedAtChanging(value);
-					this.SendPropertyChanging();
-					this._CreatedAt = value;
-					this.SendPropertyChanged("CreatedAt");
-					this.OnCreatedAtChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Spaces")]
 	public partial class Space : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -2077,23 +2173,21 @@ namespace Sieena.Parking.API.Models
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Users")]
-	public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.UserEndpoints")]
+	public partial class UserEndpoint : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
 		private int _UserId;
 		
-		private string _Password;
+		private int _EndpointTypeId;
 		
-		private string _Email;
+		private bool _IsEnabled;
 		
-		private System.Nullable<System.DateTime> _LastAccess;
+		private string _Value;
 		
-		private bool _IsActive;
-		
-		private System.DateTime _CreatedAt;
+		private System.Nullable<int> _Priority;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -2101,24 +2195,22 @@ namespace Sieena.Parking.API.Models
     partial void OnCreated();
     partial void OnUserIdChanging(int value);
     partial void OnUserIdChanged();
-    partial void OnPasswordChanging(string value);
-    partial void OnPasswordChanged();
-    partial void OnEmailChanging(string value);
-    partial void OnEmailChanged();
-    partial void OnLastAccessChanging(System.Nullable<System.DateTime> value);
-    partial void OnLastAccessChanged();
-    partial void OnIsActiveChanging(bool value);
-    partial void OnIsActiveChanged();
-    partial void OnCreatedAtChanging(System.DateTime value);
-    partial void OnCreatedAtChanged();
+    partial void OnEndpointTypeIdChanging(int value);
+    partial void OnEndpointTypeIdChanged();
+    partial void OnIsEnabledChanging(bool value);
+    partial void OnIsEnabledChanged();
+    partial void OnValueChanging(string value);
+    partial void OnValueChanged();
+    partial void OnPriorityChanging(System.Nullable<int> value);
+    partial void OnPriorityChanged();
     #endregion
 		
-		public User()
+		public UserEndpoint()
 		{
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", DbType="Int NOT NULL", IsPrimaryKey=true)]
 		public int UserId
 		{
 			get
@@ -2138,102 +2230,82 @@ namespace Sieena.Parking.API.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="NVarChar(1024) NOT NULL", CanBeNull=false)]
-		public string Password
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EndpointTypeId", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int EndpointTypeId
 		{
 			get
 			{
-				return this._Password;
+				return this._EndpointTypeId;
 			}
 			set
 			{
-				if ((this._Password != value))
+				if ((this._EndpointTypeId != value))
 				{
-					this.OnPasswordChanging(value);
+					this.OnEndpointTypeIdChanging(value);
 					this.SendPropertyChanging();
-					this._Password = value;
-					this.SendPropertyChanged("Password");
-					this.OnPasswordChanged();
+					this._EndpointTypeId = value;
+					this.SendPropertyChanged("EndpointTypeId");
+					this.OnEndpointTypeIdChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string Email
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsEnabled", DbType="Bit NOT NULL")]
+		public bool IsEnabled
 		{
 			get
 			{
-				return this._Email;
+				return this._IsEnabled;
 			}
 			set
 			{
-				if ((this._Email != value))
+				if ((this._IsEnabled != value))
 				{
-					this.OnEmailChanging(value);
+					this.OnIsEnabledChanging(value);
 					this.SendPropertyChanging();
-					this._Email = value;
-					this.SendPropertyChanged("Email");
-					this.OnEmailChanged();
+					this._IsEnabled = value;
+					this.SendPropertyChanged("IsEnabled");
+					this.OnIsEnabledChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastAccess", DbType="DateTime")]
-		public System.Nullable<System.DateTime> LastAccess
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Value", DbType="NVarChar(255)")]
+		public string Value
 		{
 			get
 			{
-				return this._LastAccess;
+				return this._Value;
 			}
 			set
 			{
-				if ((this._LastAccess != value))
+				if ((this._Value != value))
 				{
-					this.OnLastAccessChanging(value);
+					this.OnValueChanging(value);
 					this.SendPropertyChanging();
-					this._LastAccess = value;
-					this.SendPropertyChanged("LastAccess");
-					this.OnLastAccessChanged();
+					this._Value = value;
+					this.SendPropertyChanged("Value");
+					this.OnValueChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsActive", DbType="Bit NOT NULL")]
-		public bool IsActive
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Priority", DbType="Int")]
+		public System.Nullable<int> Priority
 		{
 			get
 			{
-				return this._IsActive;
+				return this._Priority;
 			}
 			set
 			{
-				if ((this._IsActive != value))
+				if ((this._Priority != value))
 				{
-					this.OnIsActiveChanging(value);
+					this.OnPriorityChanging(value);
 					this.SendPropertyChanging();
-					this._IsActive = value;
-					this.SendPropertyChanged("IsActive");
-					this.OnIsActiveChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedAt", DbType="DateTime NOT NULL")]
-		public System.DateTime CreatedAt
-		{
-			get
-			{
-				return this._CreatedAt;
-			}
-			set
-			{
-				if ((this._CreatedAt != value))
-				{
-					this.OnCreatedAtChanging(value);
-					this.SendPropertyChanging();
-					this._CreatedAt = value;
-					this.SendPropertyChanged("CreatedAt");
-					this.OnCreatedAtChanged();
+					this._Priority = value;
+					this.SendPropertyChanged("Priority");
+					this.OnPriorityChanged();
 				}
 			}
 		}
@@ -2271,7 +2343,7 @@ namespace Sieena.Parking.API.Models
 		
 		private string _LastName;
 		
-		private bool _Gender;
+		private string _Gender;
 		
 		private string _PhoneHome;
 		
@@ -2293,7 +2365,7 @@ namespace Sieena.Parking.API.Models
     partial void OnFirstNameChanged();
     partial void OnLastNameChanging(string value);
     partial void OnLastNameChanged();
-    partial void OnGenderChanging(bool value);
+    partial void OnGenderChanging(string value);
     partial void OnGenderChanged();
     partial void OnPhoneHomeChanging(string value);
     partial void OnPhoneHomeChanged();
@@ -2372,8 +2444,8 @@ namespace Sieena.Parking.API.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Gender", DbType="Bit NOT NULL")]
-		public bool Gender
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Gender", DbType="NVarChar(1) NOT NULL", CanBeNull=false)]
+		public string Gender
 		{
 			get
 			{
@@ -2513,72 +2585,32 @@ namespace Sieena.Parking.API.Models
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Notifications")]
-	public partial class Notification : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.UserRoles")]
+	public partial class UserRole : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _NotificationId;
-		
 		private int _UserId;
 		
-		private string _Message;
-		
-		private System.DateTime _CreatedAt;
-		
-		private int _CreatedBy;
-		
-		private System.Nullable<int> _CheckInId;
-		
-		private System.Nullable<System.DateTime> _ReadAt;
+		private int _RoleId;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnNotificationIdChanging(int value);
-    partial void OnNotificationIdChanged();
     partial void OnUserIdChanging(int value);
     partial void OnUserIdChanged();
-    partial void OnMessageChanging(string value);
-    partial void OnMessageChanged();
-    partial void OnCreatedAtChanging(System.DateTime value);
-    partial void OnCreatedAtChanged();
-    partial void OnCreatedByChanging(int value);
-    partial void OnCreatedByChanged();
-    partial void OnCheckInIdChanging(System.Nullable<int> value);
-    partial void OnCheckInIdChanged();
-    partial void OnReadAtChanging(System.Nullable<System.DateTime> value);
-    partial void OnReadAtChanged();
+    partial void OnRoleIdChanging(int value);
+    partial void OnRoleIdChanged();
     #endregion
 		
-		public Notification()
+		public UserRole()
 		{
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NotificationId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int NotificationId
-		{
-			get
-			{
-				return this._NotificationId;
-			}
-			set
-			{
-				if ((this._NotificationId != value))
-				{
-					this.OnNotificationIdChanging(value);
-					this.SendPropertyChanging();
-					this._NotificationId = value;
-					this.SendPropertyChanged("NotificationId");
-					this.OnNotificationIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", DbType="Int NOT NULL")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", DbType="Int NOT NULL", IsPrimaryKey=true)]
 		public int UserId
 		{
 			get
@@ -2598,102 +2630,22 @@ namespace Sieena.Parking.API.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Message", DbType="NVarChar(2000)")]
-		public string Message
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoleId", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int RoleId
 		{
 			get
 			{
-				return this._Message;
+				return this._RoleId;
 			}
 			set
 			{
-				if ((this._Message != value))
+				if ((this._RoleId != value))
 				{
-					this.OnMessageChanging(value);
+					this.OnRoleIdChanging(value);
 					this.SendPropertyChanging();
-					this._Message = value;
-					this.SendPropertyChanged("Message");
-					this.OnMessageChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedAt", DbType="DateTime NOT NULL")]
-		public System.DateTime CreatedAt
-		{
-			get
-			{
-				return this._CreatedAt;
-			}
-			set
-			{
-				if ((this._CreatedAt != value))
-				{
-					this.OnCreatedAtChanging(value);
-					this.SendPropertyChanging();
-					this._CreatedAt = value;
-					this.SendPropertyChanged("CreatedAt");
-					this.OnCreatedAtChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedBy", DbType="Int NOT NULL")]
-		public int CreatedBy
-		{
-			get
-			{
-				return this._CreatedBy;
-			}
-			set
-			{
-				if ((this._CreatedBy != value))
-				{
-					this.OnCreatedByChanging(value);
-					this.SendPropertyChanging();
-					this._CreatedBy = value;
-					this.SendPropertyChanged("CreatedBy");
-					this.OnCreatedByChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CheckInId", DbType="Int")]
-		public System.Nullable<int> CheckInId
-		{
-			get
-			{
-				return this._CheckInId;
-			}
-			set
-			{
-				if ((this._CheckInId != value))
-				{
-					this.OnCheckInIdChanging(value);
-					this.SendPropertyChanging();
-					this._CheckInId = value;
-					this.SendPropertyChanged("CheckInId");
-					this.OnCheckInIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReadAt", DbType="DateTime")]
-		public System.Nullable<System.DateTime> ReadAt
-		{
-			get
-			{
-				return this._ReadAt;
-			}
-			set
-			{
-				if ((this._ReadAt != value))
-				{
-					this.OnReadAtChanging(value);
-					this.SendPropertyChanging();
-					this._ReadAt = value;
-					this.SendPropertyChanged("ReadAt");
-					this.OnReadAtChanged();
+					this._RoleId = value;
+					this.SendPropertyChanged("RoleId");
+					this.OnRoleIdChanged();
 				}
 			}
 		}

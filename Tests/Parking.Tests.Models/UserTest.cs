@@ -10,41 +10,57 @@ using Sieena.Parking.API.Models;
 namespace Sieena.Parking.Tests.Models
 {
     [TestClass]
-    public class AuthTest
+    public class UserTest
     {
         [TestMethod]
-        public void ValidateUserByActiveDirectory()
+        public void CreateUser()
         {
             using (TransactionScope scope = new TransactionScope())
             {
+                string email = "daniel.ramirez@sieena.com";
                 User u = new User()
                 {
                     Password = "test123",
-                    Email = "daniel.ramirez@sieena.com",
+                    Email = email,
                     IsActive = true,
                     CreatedAt = DateTime.Now
                 };
 
                 User.SaveUser(u);
-                //Assert.IsTrue(User.Validate("daniel.ramirez@sieena.com", "pass123"));
-                scope.Dispose();
+
+                Assert.IsNotNull(User.GetByEmail(email));
             }
         }
 
         [TestMethod]
-        public void ValidateUserByDefaultPassword()
+        public void UpdateUser()
         {
             using (TransactionScope scope = new TransactionScope())
             {
-                User.SaveUser(new User()
+            }
+        }
+
+        [TestMethod]
+        public void DeleteUser()
+        {
+            using (TransactionScope scope = new TransactionScope())
+            {
+                string email = "daniel.ramirez@sieena.com";
+                User u = new User()
                 {
                     Password = "test123",
-                    Email = "daniel.ramirez@sieena.com",
+                    Email = email,
                     IsActive = true,
                     CreatedAt = DateTime.Now
-                });
-                Assert.IsTrue(User.VerifyCredentials("daniel.ramirez@sieena.com", "test123"));
-                scope.Dispose();
+                };
+
+                User.SaveUser(u);
+                User.DeleteUser(email);
+
+                User unew = User.GetByEmail(email);
+
+                Assert.IsNotNull(unew);
+                Assert.IsFalse(unew.IsActive);
             }
         }
     }
