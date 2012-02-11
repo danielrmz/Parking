@@ -45,9 +45,43 @@ body > div .form-login {
     color: silver; }
 
 .pariking-map {
+  background: url("/Content/Styles/Images/bg-parking.png") no-repeat scroll center 0 transparent;
+  height: 1302px;
   width: auto;
-  height: 732px;
-  background: url("../Images/bg-parking.png") no-repeat center 0 transparent; }
+  position: relative; }
+  .pariking-map .car {
+    position: absolute;
+    left: 10px;
+    bottom: 51px;
+    width: 122px;
+    height: 64px;
+    background: url("/Content/Styles/Images/icn-car.png") no-repeat scroll 0 0 transparent; }
+  .pariking-map .a2 {
+    bottom: 130px; }
+  .pariking-map .a3 {
+    bottom: 205px; }
+  .pariking-map .a4 {
+    bottom: 286px; }
+  .pariking-map .a5 {
+    bottom: 367px; }
+  .pariking-map .a6 {
+    bottom: 240px;
+    -moz-transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    bottom: 348px;
+    left: 236px; }
+  .pariking-map .a7 {
+    bottom: 240px;
+    bottom: 232px;
+    left: 368px; }
+  .pariking-map .a8 {
+    bottom: 240px;
+    bottom: 145px;
+    left: 368px; }
+  .pariking-map .a9 {
+    bottom: 240px; }
 
 .new-car {
   background: url("../Images/icn-new-car.png") no-repeat center 0 transparent;
@@ -150,3 +184,8 @@ body > div .form-login {
   padding: 5px; }
 .my-place .btn {
   width: 100%; }
+
+.row-fluid .span6.container-parking {
+  width: 503px;
+  padding: 0;
+  border: 1px solid #fff; }
