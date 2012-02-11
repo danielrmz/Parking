@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using System.Text;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 
-namespace Parking.UI.Models
+namespace Sieena.Parking.API.Models.Views
 {
-
     public class ChangePasswordModel
     {
         [Required]
@@ -27,18 +26,4 @@ namespace Parking.UI.Models
         public string ConfirmPassword { get; set; }
     }
 
-    public class LogOnModel
-    {
-        [Required]
-        [Display(Name = "User name")]
-        public string UserName { get; set; }
-
-        [Required]
-        [DataType(DataType.Password)]
-        [Display(Name = "Password")]
-        public string Password { get; set; }
-
-        [Display(Name = "Remember me?")]
-        public bool RememberMe { get; set; }
-    }
 }

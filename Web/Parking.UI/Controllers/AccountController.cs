@@ -5,9 +5,10 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
-using Parking.UI.Models;
+using Sieena.Parking.API.Models.Views;
+using API = Sieena.Parking.API.Models;
 
-namespace MvcApplication1.Controllers
+namespace Sieena.Parking.UI.Controllers
 {
     public class AccountController : Controller
     {
@@ -21,7 +22,7 @@ namespace MvcApplication1.Controllers
         public ActionResult LogOn(LogOnModel model, string returnUrl)
         {
             if (ModelState.IsValid)
-            {
+            { 
                 if (Membership.ValidateUser(model.UserName, model.Password))
                 {
                     FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);

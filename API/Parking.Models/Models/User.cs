@@ -16,6 +16,7 @@ namespace Sieena.Parking.API.Models
 {
     using Interfaces;
     using Parking.API.Models.Exceptions;
+    using System.DirectoryServices;
 
     public partial class User : IUser
     {
@@ -135,6 +136,61 @@ namespace Sieena.Parking.API.Models
         }
 
         /// <summary>
+        /// Verifies the credentials via active directory.
+        /// </summary>
+        /// <param name="user"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        public static bool VerifyCredentialsByAD(string user, string password)
+        {
+            user = user.Trim();
+
+            if (string.IsNullOrEmpty(user) || string.IsNullOrEmpty(password))
+            {
+                // Throw custom buisness exception. 
+                throw new APIException("User or password not specified");
+            }
+
+            string username = user.Split('@').First();
+            try
+            {
+                using (PrincipalContext context = new PrincipalContext(ContextType.Domain, "SIEENA"))
+                {
+                    if (context.ValidateCredentials(username, password))
+                    {
+                        DirectorySearcher dSearch = new DirectorySearcher(new DirectoryEntry("ldap://sieena"));
+                        dSearch.Filter = string.Format("(&(objectClass=user)(l={0}))", username);
+                        SearchResult sr = dSearch.FindOne();
+                        string givenName = GetADProperty(sr, "givenName");
+
+                        return true;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                // Could be several reasons, but go to next auth type.
+                int i = 0;
+            }
+
+            return false;
+
+        }
+
+        private static string GetADProperty(SearchResult result, string propertyName)
+        {
+            if (result.Path.Contains(propertyName))
+            {
+                return result.Properties[propertyName][0].ToString();
+            }
+            else
+            {
+                return string.Empty;
+            }
+        }
+         
+
+        /// <summary>
         /// 
         /// </summary>
         /// <param name="user"></param>
@@ -150,29 +206,31 @@ namespace Sieena.Parking.API.Models
                 throw new APIException("User or password not specified");
             }
 
+
             User u = GetByEmail(user);
+
             if (u == null)
             {
-                throw new APIException("User does not exists");
-            }
-
-            string username = user.Split('@').First();
-            try
-            {
-                using (PrincipalContext context = new PrincipalContext(ContextType.Domain, "SIEENA"))
+                if (VerifyCredentialsByAD(user, password))
                 {
-                    if (context.ValidateCredentials(username, password))
+                    u = API.Models.User.SaveUser(new API.Models.User()
                     {
-                        return true;
-                    }
+                        Email = string.Format("{0}@sieena.com", user),
+                        CreatedAt = DateTime.Now,
+                        IsActive = true,
+                        Password = password
+                    });
                 }
             }
-            catch (Exception)
+            else if (u != null)
             {
-                // Could be several reasons, but go to next auth type.
+                if (!u.Password.Equals(GetSHA1(password)))
+                {
+                    u = null;
+                }
             }
 
-            return u.Password.Equals(GetSHA1(password));
+            return u != null;
         }
 
         /// <summary>
