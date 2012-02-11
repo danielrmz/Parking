@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Security;
 
-namespace Parking.UI.Classes
+namespace Sieena.Parking.UI.Classes
 {
     using Resources = Sieena.Parking.Common.Resources;
     using Models = Sieena.Parking.API.Models;
