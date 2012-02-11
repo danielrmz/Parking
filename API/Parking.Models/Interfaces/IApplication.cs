@@ -21,14 +21,6 @@ namespace Sieena.Parking.API.Models.Interfaces
         [Display(Name = "Name")]
         string ApplicationName { get; set; }
 
-        [DataType(DataType.Text)]
-        [Display(Name = "Consumer Key")]
-        string ApplicationConsumerKey { get; set; }
-
-        [DataType(DataType.Text)]
-        [Display(Name = "Consumer Token")]
-        string ApplicationConsumerToken { get; set; }
-
         [DataType(DataType.DateTime)]
         [Display(Name = "Created At")]
         DateTime? CreatedAt { get; set; }

@@ -125,7 +125,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="App_Data\combres_full_with_annotation.xml" />
-    <Content Include="Content\Styles\Images\img-01.png" />
+    <Content Include="Content\Images\img-01.png" />
     <Content Include="Content\Styles\Images\Bootstrap\glyphicons-halflings-white.png" />
     <Content Include="Content\Styles\Images\Bootstrap\glyphicons-halflings.png" />
     <Content Include="Content\Styles\Images\Gritter\gritter-long.png" />
