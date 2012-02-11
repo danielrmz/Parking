@@ -48,7 +48,10 @@ body > div .form-login {
   background: url("/Content/Styles/Images/bg-parking.png") no-repeat scroll center 0 transparent;
   height: 1302px;
   width: auto;
-  position: relative; }
+  position: relative;
+  /*Section A*/
+  /*Section B*/
+  /*Section C*/ }
   .pariking-map .car {
     position: absolute;
     left: 10px;
@@ -81,7 +84,88 @@ body > div .form-login {
     bottom: 145px;
     left: 368px; }
   .pariking-map .a9 {
-    bottom: 240px; }
+    bottom: 60px;
+    left: 368px; }
+  .pariking-map .b1 {
+    bottom: 473px; }
+  .pariking-map .b2 {
+    bottom: 539px; }
+  .pariking-map .b3 {
+    bottom: 604px; }
+  .pariking-map .b4 {
+    bottom: 668px; }
+  .pariking-map .b5 {
+    bottom: 734px; }
+  .pariking-map .b6 {
+    bottom: 801px; }
+  .pariking-map .b7 {
+    bottom: 801px;
+    left: 368px; }
+  .pariking-map .b8 {
+    bottom: 734px;
+    left: 368px; }
+  .pariking-map .b9 {
+    bottom: 669px;
+    left: 368px; }
+  .pariking-map .b10 {
+    bottom: 604px;
+    left: 368px; }
+  .pariking-map .b11 {
+    bottom: 539px;
+    left: 368px; }
+  .pariking-map .c1 {
+    bottom: 913px; }
+  .pariking-map .c2 {
+    bottom: 995px; }
+  .pariking-map .c3 {
+    bottom: 1072px; }
+  .pariking-map .c4 {
+    bottom: 1151px; }
+  .pariking-map .c5 {
+    bottom: 1230px; }
+  .pariking-map .c6 {
+    bottom: 1203px;
+    left: 147px;
+    -moz-transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg); }
+  .pariking-map .c7 {
+    bottom: 1203px;
+    left: 235px;
+    -moz-transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg); }
+  .pariking-map .c8 {
+    bottom: 1076px;
+    left: 147px;
+    -moz-transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg); }
+  .pariking-map .c9 {
+    bottom: 1076px;
+    left: 235px;
+    -moz-transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg); }
+  .pariking-map .c10 {
+    bottom: 1230px;
+    left: 368px; }
+  .pariking-map .c11 {
+    bottom: 1150px;
+    left: 368px; }
+  .pariking-map .c12 {
+    bottom: 1073px;
+    left: 368px; }
+  .pariking-map .c13 {
+    bottom: 994px;
+    left: 368px; }
+  .pariking-map .c14 {
+    bottom: 913px;
+    left: 368px; }
 
 .new-car {
   background: url("../Images/icn-new-car.png") no-repeat center 0 transparent;

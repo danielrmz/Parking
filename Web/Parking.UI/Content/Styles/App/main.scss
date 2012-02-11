@@ -70,6 +70,7 @@
     width: auto;
 	position:relative;
 	.car{position:absolute; left:10px; bottom:51px; width:122px; height:64px; background: url("/Content/Styles/Images/icn-car.png") no-repeat scroll 0 0 transparent; }
+	/*Section A*/
 	.a1{}
 	.a2{bottom:130px;}
 	.a3{bottom:205px;}
@@ -78,7 +79,34 @@
 	.a6{bottom:240px;-moz-transform:rotate(-90deg);-webkit-transform:rotate(-90deg);-o-transform:rotate(-90deg);-ms-transform:rotate(-90deg);    bottom: 348px;left: 236px;}
 	.a7{bottom:240px;bottom: 232px;left: 368px;}
 	.a8{bottom:240px;bottom: 145px;left: 368px;}
-	.a9{bottom:240px;}
+	.a9{bottom: 60px;left: 368px;}
+	/*Section B*/
+	.b1{bottom:473px;}
+	.b2{bottom:539px;}
+	.b3{bottom:604px;}
+	.b4{bottom:668px;}
+	.b5{bottom:734px;}
+	.b6{bottom:801px;}
+	.b7{bottom: 801px;left: 368px;}
+	.b8{bottom: 734px;left: 368px;}
+	.b9{bottom: 669px;left: 368px;}
+	.b10{bottom: 604px;left: 368px;}
+	.b11{bottom: 539px;left: 368px;}
+	/*Section C*/
+	.c1{bottom:913px;}
+	.c2{bottom:995px;}
+	.c3{bottom:1072px;}
+	.c4{bottom:1151px;}
+	.c5{bottom:1230px;}
+	.c6{bottom:1203px;left:147px;-moz-transform:rotate(-90deg);-webkit-transform:rotate(-90deg);-o-transform:rotate(-90deg);-ms-transform:rotate(-90deg);  }
+	.c7{bottom: 1203px;left: 235px;-moz-transform:rotate(-90deg);-webkit-transform:rotate(-90deg);-o-transform:rotate(-90deg);-ms-transform:rotate(-90deg);  }
+	.c8{bottom: 1076px;left: 147px;-moz-transform:rotate(-90deg);-webkit-transform:rotate(-90deg);-o-transform:rotate(-90deg);-ms-transform:rotate(-90deg);  }
+	.c9{bottom: 1076px;left: 235px;-moz-transform:rotate(-90deg);-webkit-transform:rotate(-90deg);-o-transform:rotate(-90deg);-ms-transform:rotate(-90deg);  }
+	.c10{bottom: 1230px;left: 368px;}
+	.c11{bottom:1150px;left: 368px;}
+	.c12{bottom: 1073px;left: 368px;}
+	.c13{bottom: 994px;left: 368px;}
+	.c14{bottom: 913px;left: 368px;}
 }
  .new-car
 	{
