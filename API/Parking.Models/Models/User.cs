@@ -98,7 +98,7 @@ namespace Sieena.Parking.API.Models
                 u.IsActive = false;
             }
 
-            ctx.Users.Attach(u);
+            ctx.Users.Attach(u, true);
             ctx.SubmitChanges();
             
             return true;
