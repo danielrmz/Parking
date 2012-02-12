@@ -147,6 +147,9 @@
   <data name="Login_AfterSubmit" xml:space="preserve">
     <value>Logging in...</value>
   </data>
+  <data name="Login_ErrorValidation" xml:space="preserve">
+    <value>The user name or password provided is incorrect.</value>
+  </data>
   <data name="Login_Password" xml:space="preserve">
     <value>Password</value>
   </data>

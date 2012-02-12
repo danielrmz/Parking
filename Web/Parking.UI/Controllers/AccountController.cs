@@ -72,12 +72,12 @@ namespace Sieena.Parking.UI.Controllers
                 }
                 else
                 {
-                    return Envelope(new { Message="The user name or password provided is incorrect." }, true);  
+                    return Envelope(new { Message = Sieena.Parking.Common.Resources.UI.Login_ErrorValidation }, true);  
                 }
             }
 
             // If we got this far, something failed, redisplay form 
-            return Envelope(new { Message = "The user name or password provided is incorrect." }, true);  
+            return Envelope(new { Message = Sieena.Parking.Common.Resources.UI.Login_ErrorValidation }, true);  
         }
 
         /// <summary>

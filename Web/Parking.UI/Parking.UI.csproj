@@ -71,8 +71,9 @@
     <Reference Include="Nancy.Serialization.ServiceStack">
       <HintPath>..\..\packages\Nancy.Serialization.ServiceStack.0.9.0\lib\net40\Nancy.Serialization.ServiceStack.dll</HintPath>
     </Reference>
-    <Reference Include="ServiceStack.Text">
-      <HintPath>..\..\packages\ServiceStack.Text.2.26\lib\net35\ServiceStack.Text.dll</HintPath>
+    <Reference Include="ServiceStack.Text, Version=3.4.8.9213, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\ServiceStack.Text.3.4.8\lib\ServiceStack.Text.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
@@ -107,6 +108,8 @@
   <ItemGroup>
     <Compile Include="Api\ApiBootstrapper.cs" />
     <Compile Include="Classes\Combres.cs" />
+    <Compile Include="Classes\CombresTemplateFilter.cs" />
+    <Compile Include="Classes\CombresResourceFilter.cs" />
     <Compile Include="Classes\ParkingMembershipProvider.cs" />
     <Compile Include="Classes\ParkingRoleProvider.cs" />
     <Compile Include="Controllers\AccountController.cs">

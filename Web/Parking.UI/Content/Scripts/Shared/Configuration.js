@@ -24,16 +24,5 @@ namespace("Parking.Configuration");
         USZip: "99999-?9999"
     };
 
-    var getLocale = function(e, cb) {
-        cb = cb || function() { };
-        $.get(config.i18nResourceEndpoint, function(data) { 
-            config["i18n"] = config["i18n"] || {};
-            config["i18n"][config["locale"]] = data;
-            cb();
-        });
-    };
-
-    $(window).bind('i18n.load', getLocale);
-    $(getLocale);
 
 })(jQuery, Parking.Configuration);

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Globalization;
 
 namespace Sieena.Parking.Common.Resources
 {
@@ -12,8 +13,9 @@ namespace Sieena.Parking.Common.Resources
             Dictionary<string, string> cultureStrings = new Dictionary<string, string>();
 
             UI ui = new UI();
+            CultureInfo bkup = UI.Culture;
 
-            UI.Culture = new System.Globalization.CultureInfo(culture);
+            UI.Culture = new CultureInfo(culture);
             
             ui.GetType().GetProperties().ToList().ForEach(pi => {
                 if (pi.PropertyType == typeof(String))
@@ -21,6 +23,8 @@ namespace Sieena.Parking.Common.Resources
                     cultureStrings.Add(pi.Name, pi.GetValue(null, new object[] { }).ToString());
                 }
             });
+
+            UI.Culture = bkup;
 
             return cultureStrings;
         }

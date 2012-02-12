@@ -8,19 +8,17 @@
 footer {
   margin-top: 50px; }
   footer > div {
-    border-top: 1px solid #ccc;
+    border-top: 1px solid #BBB;
     padding-top: 5px; }
-  footer .right {
-    width: 340px; }
   footer .copy {
-    display: inline;
-    float: left;
+    display: inline-block;
     margin-right: 10px; }
     footer .copy .separator {
       margin-left: 5px; }
   footer ul.list-inline {
     margin: 0;
-    list-style: none; }
+    list-style: none;
+    display: inline-block; }
     footer ul.list-inline li {
       display: inline-block;
       margin-right: 5px; }

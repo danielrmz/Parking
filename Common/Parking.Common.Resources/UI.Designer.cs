@@ -151,6 +151,15 @@ namespace Sieena.Parking.Common.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The user name or password provided is incorrect..
+        /// </summary>
+        public static string Login_ErrorValidation {
+            get {
+                return ResourceManager.GetString("Login_ErrorValidation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password.
         /// </summary>
         public static string Login_Password {

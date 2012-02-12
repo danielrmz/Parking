@@ -28,6 +28,12 @@ function fetchTemplate(path, done) {
       return done(JST[path]);
     }
 
+    if (Parking && Parking.Templates && Parking.Templates[path]) {
+        JST[path] = Handlebars.compile(Parking.Templates[path]);
+        done(JST[path]);
+        return;
+    }
+
     // Fetch it asynchronously if not available from JST
     return $.get(path, function (contents) {
         var tmpl = Handlebars.compile(contents);  //_.template(contents);

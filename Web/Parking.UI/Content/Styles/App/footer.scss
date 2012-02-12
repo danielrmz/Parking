@@ -8,18 +8,17 @@
 
  footer {
 	margin-top: 50px;
+
     & > div {
-		border-top: 1px solid #ccc;
+		border-top: 1px solid #BBB;
 		padding-top: 5px;
 	}
 
 	.right {
-		width: 340px;
 	}
 
 	.copy {
-		display: inline;
-		float: left;
+		display: inline-block;
 		margin-right: 10px;
 			
 		.separator {
@@ -30,7 +29,8 @@
 	ul.list-inline {
 		margin: 0;
 		list-style: none;
-		
+		display: inline-block;
+
 		li {
 			display: inline-block;
 			margin-right: 5px;

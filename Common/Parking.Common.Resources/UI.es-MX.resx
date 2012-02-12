@@ -147,6 +147,9 @@
   <data name="Login_AfterSubmit" xml:space="preserve">
     <value>Validando...</value>
   </data>
+  <data name="Login_ErrorValidation" xml:space="preserve">
+    <value>El usuario y/o contrasena son invalidos.</value>
+  </data>
   <data name="Login_Password" xml:space="preserve">
     <value>Contrasena</value>
   </data>

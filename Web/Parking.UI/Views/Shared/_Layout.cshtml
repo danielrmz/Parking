@@ -44,11 +44,13 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="/Content/Scripts/Plugins/jquery-1.7.1.min.js"><\/script>')</script>
     @Html.Raw(@WebExtensions.CombresLink("PluginsJs"))
+    @Html.Raw(@WebExtensions.CombresLink("CoreResources"))
+    @Html.Raw(@WebExtensions.CombresLink("CoreTemplates"))
     @Html.Raw(@WebExtensions.CombresLink("CoreJs"))
     
     @RenderSection("Scripts", false)
 
-    @Html.Raw("<script>Parking.Configuration['locale'] = '" + UICulture+"'</script>")
+    @Html.Raw("<script>Parking.Configuration['locale'] = '" + UICulture + "'</script>")
 
     <!-- Analytics -->
     <script>

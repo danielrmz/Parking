@@ -25,21 +25,7 @@ namespace("Parking.Common");
             } 
             
             var locale = Parking.Configuration["locale"] || "en-US";
-
-            if(Parking.Configuration["i18n"] == null) {
-                $(window).trigger('i18n.load', function() { 
-                    var localeResources =  Parking.Configuration["i18n"][locale] || {};
-                    
-                    $(view.el).html(tmpl({ "i18n": localeResources, "model": model}));
-
-                    callback = callback || function() { };
-                    callback(tmpl, model);
-                });
-
-                return null;
-            }
-
-            var localeResources =  Parking.Configuration["i18n"][locale] || {};
+            var localeResources =  Parking.Resources["i18n"][locale] || {};
 
             $(view.el).html(tmpl({ "i18n": localeResources, "model": model}));
 
