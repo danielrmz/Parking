@@ -17,10 +17,8 @@ namespace Sieena.Parking.API.Models
     /// <summary>
     /// A whole container of spaces. i.e. Parking Lot
     /// </summary>
-    public partial class Place : IPlace
+    public partial class Place : ParkingModel,  IPlace
     {
-        private static DataStoreDataContext ctx = new DataStoreDataContext();
-
         /// <summary>
         /// Gets all the available parking lots in the system.
         /// </summary>

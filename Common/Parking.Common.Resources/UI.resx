@@ -117,10 +117,58 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Footer_About" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="Footer_Help" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="Footer_Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="Footer_Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="Footer_Privacy" xml:space="preserve">
+    <value>Privacy</value>
+  </data>
+  <data name="Footer_Sieena" xml:space="preserve">
+    <value>Sieena</value>
+  </data>
+  <data name="Footer_Terms" xml:space="preserve">
+    <value>Terms</value>
+  </data>
+  <data name="Header_Logout" xml:space="preserve">
+    <value>Sign Out</value>
+  </data>
+  <data name="Header_WelcomeText" xml:space="preserve">
+    <value>Welcome </value>
+  </data>
+  <data name="Login_AfterSubmit" xml:space="preserve">
+    <value>Logging in...</value>
+  </data>
+  <data name="Login_Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="Login_RememberMe" xml:space="preserve">
+    <value>Remember Me</value>
+  </data>
+  <data name="Login_Submit" xml:space="preserve">
+    <value>Log In</value>
+  </data>
+  <data name="Login_Title" xml:space="preserve">
+    <value>Sign-in</value>
+  </data>
+  <data name="Login_Username" xml:space="preserve">
+    <value>Username</value>
+  </data>
   <data name="Membership_AppId" xml:space="preserve">
     <value>Parking</value>
   </data>
   <data name="Membership_NotImplemented" xml:space="preserve">
     <value>Feature not implemented</value>
+  </data>
+  <data name="TEST" xml:space="preserve">
+    <value>TEST</value>
   </data>
 </root>

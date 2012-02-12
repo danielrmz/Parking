@@ -1,32 +1,36 @@
-﻿<div class="topbar">
+﻿@using i18n = Sieena.Parking.Common.Resources.UI;
 
-    <div class='layout-width'>
+<div class="topbar">
+
+    <div class="layout-width">
+
 	    <div class="column">
-		    <a class="logo-sieena"></a>
+		    <a class="logo-sieena" href="/"></a>
 	    </div>
 	
-	
-	    <div class="column notifications error">
-	    </div>
-        <div class="column user-info">
-            <div class="span user-name"> 
-                <p>
-                    Hola <span>Omar Lara</span>
-                </p>
-                <p>
-                    Te estacionaste en el lugar <span>B3</span> |  <a href="#" class="btn-sign-out">Sign Out</a>
-                </p>
-                
-            </div>
-            <div class="span day"> 
-                <span>1</span>
-                <span>st</span>
-                <div>
-                    feb 2012
+	    
+        <div class="column user-info" >
+            <div class="user">
+                <div class="block-light user-name" style="display:none;"> 
+                    <p>
+                        @Html.Raw(string.Format(i18n.Header_WelcomeText, "{{user.displayname}}")) 
+                        <br /><a href="#" class="btn-sign-out">Sign Out</a>
+                    </p> 
                 </div>
+
+                <a href="/login" class="block-light login">
+                    <span></span>
+                </a>
             </div>
-            <div class="span time"> 
-                <span>8:23 AM</span>
+
+            <div class="block-dark day"> 
+                <span class="js-day"></span>
+                <span class="js-dayup"></span>
+                <div class="js-monthyear"></div>
+            </div>
+            
+            <div class="block-silver time"> 
+                <span class="js-time"></span>
             </div>
         </div>
 	

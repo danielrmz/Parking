@@ -17,16 +17,7 @@ namespace Sieena.Parking.Tests.Models
         {
             using (TransactionScope scope = new TransactionScope())
             {
-                User u = new User()
-                {
-                    Password = "test123",
-                    Email = "daniel.ramirez@sieena.com",
-                    IsActive = true,
-                    CreatedAt = DateTime.Now
-                };
-
-                User.SaveUser(u);
-                //Assert.IsTrue(User.Validate("daniel.ramirez@sieena.com", "pass123"));
+                Assert.IsTrue(User.VerifyCredentials("daniel.ramirez@sieena.com", "xrZ40uye"));
                 scope.Dispose();
             }
         }

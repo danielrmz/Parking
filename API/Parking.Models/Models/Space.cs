@@ -17,10 +17,9 @@ namespace Sieena.Parking.API.Models
     /// <summary>
     /// Represents a parking space.
     /// </summary>
-    public partial class Space : ISpace
+    public partial class Space : ParkingModel, ISpace
     {
-        private static DataStoreDataContext ctx = new DataStoreDataContext();
-
+        
         /// <summary>
         /// Gets all the parking spaces registered in a place
         /// </summary>

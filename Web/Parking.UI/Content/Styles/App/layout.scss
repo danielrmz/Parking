@@ -9,7 +9,7 @@
 /* @group Site fixed vars */
 
 $layoutWidth: 960px;
-$backgroundColor: #E0E0E0;
+$backgroundColor: #D3D6D8;
 $footerColor: #777777;
 
 /* @endgroup */
@@ -49,6 +49,12 @@ footer {
 	box-shadow: rgba(0, 0, 0, 0.1) 0 0 2px 0px; 
 	border-radius: 3px;
 	min-height: 200px;
+}
+
+.container-whole.span12 {
+	margin-left: 0px;
+	padding-right: 5px;
+	width: 940px;
 }
 
 .left {

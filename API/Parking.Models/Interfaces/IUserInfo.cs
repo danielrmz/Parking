@@ -27,25 +27,21 @@ namespace Sieena.Parking.API.Models.Interfaces
         [Display(Name = "Last Name")]
         string LastName { get; set; }
 
-        [Required]
         [Display(Name = "Gender")]
-        bool Gender { get; set; }
+        string Gender { get; set; }
 
         [DataType(DataType.Text)]
         [Display(Name = "Home Phone")]
         string PhoneHome { get; set; }
 
-        [Required]
         [DataType(DataType.Text)]
         [Display(Name = "Office Phone")]
-        string PhoneOffice { get; set; }
+        string PhoneOffce { get; set; }
 
-        [Required]
         [DataType(DataType.Text)]
         [Display(Name = "Office Extension")]
         string PhoneOfficeExtension { get; set; }
 
-        [Required]
         [DataType(DataType.Text)]
         [Display(Name = "Cellphone")]
         string PhoneCel { get; set; }

@@ -48,6 +48,8 @@
     
     @RenderSection("Scripts", false)
 
+    @Html.Raw("<script>Parking.Configuration['locale'] = '" + UICulture+"'</script>")
+
     <!-- Analytics -->
     <script>
         var _gaq = [['_setAccount', 'UA-28738418-1'], ['_trackPageview']];

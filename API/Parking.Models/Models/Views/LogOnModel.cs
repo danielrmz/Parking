@@ -11,6 +11,10 @@ namespace Sieena.Parking.API.Models.Views
         [Required]
         [Display(Name = "User name")]
         public string UserName { get; set; }
+        
+        [Required]
+        [Display(Name = "Domain")]
+        public string Domain { get; set; }
 
         [Required]
         [DataType(DataType.Password)]

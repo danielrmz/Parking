@@ -27,16 +27,15 @@
 	.form-login {
 		margin-top: 40px;
 		background: white; 
-		border: 1px solid #eee; 
-		padding: 10px 10px 0px; 
-		box-shadow: #ccc 0 0 5px 0px; 
+		padding: 10px 20px 5px; 
+		box-shadow: #999 0 0 5px 0px; 
 		border-radius: 3px;
 
 		.fields {
 			label {
 				padding-top: 5px;
 				text-align: left;
-				color: #999;
+				color: #626262;
 			}
 
 			input[type=password] {
@@ -62,103 +61,106 @@
 			color: silver;
 		}
 	}
- }
 
-.pariking-map {
-    background: url("/Content/Styles/Images/bg-parking.png") no-repeat scroll center 0 transparent;
-    height: 1302px;
-    width: auto;
-	position:relative;
-	.car{position:absolute; left:10px; bottom:51px; width:122px; height:64px; background: url("/Content/Styles/Images/icn-car.png") no-repeat scroll 0 0 transparent; }
-	/*Section A*/
-	.a1{}
-	.a2{bottom:130px;}
-	.a3{bottom:205px;}
-	.a4{bottom:286px;}
-	.a5{bottom:367px;}
-	.a6{bottom:240px;-moz-transform:rotate(-90deg);-webkit-transform:rotate(-90deg);-o-transform:rotate(-90deg);-ms-transform:rotate(-90deg);    bottom: 348px;left: 236px;}
-	.a7{bottom:240px;bottom: 232px;left: 368px;}
-	.a8{bottom:240px;bottom: 145px;left: 368px;}
-	.a9{bottom: 60px;left: 368px;}
-	/*Section B*/
-	.b1{bottom:473px;}
-	.b2{bottom:539px;}
-	.b3{bottom:604px;}
-	.b4{bottom:668px;}
-	.b5{bottom:734px;}
-	.b6{bottom:801px;}
-	.b7{bottom: 801px;left: 368px;}
-	.b8{bottom: 734px;left: 368px;}
-	.b9{bottom: 669px;left: 368px;}
-	.b10{bottom: 604px;left: 368px;}
-	.b11{bottom: 539px;left: 368px;}
-	/*Section C*/
-	.c1{bottom:913px;}
-	.c2{bottom:995px;}
-	.c3{bottom:1072px;}
-	.c4{bottom:1151px;}
-	.c5{bottom:1230px;}
-	.c6{bottom:1203px;left:147px;-moz-transform:rotate(-90deg);-webkit-transform:rotate(-90deg);-o-transform:rotate(-90deg);-ms-transform:rotate(-90deg);  }
-	.c7{bottom: 1203px;left: 235px;-moz-transform:rotate(-90deg);-webkit-transform:rotate(-90deg);-o-transform:rotate(-90deg);-ms-transform:rotate(-90deg);  }
-	.c8{bottom: 1076px;left: 147px;-moz-transform:rotate(-90deg);-webkit-transform:rotate(-90deg);-o-transform:rotate(-90deg);-ms-transform:rotate(-90deg);  }
-	.c9{bottom: 1076px;left: 235px;-moz-transform:rotate(-90deg);-webkit-transform:rotate(-90deg);-o-transform:rotate(-90deg);-ms-transform:rotate(-90deg);  }
-	.c10{bottom: 1230px;left: 368px;}
-	.c11{bottom:1150px;left: 368px;}
-	.c12{bottom: 1073px;left: 368px;}
-	.c13{bottom: 994px;left: 368px;}
-	.c14{bottom: 913px;left: 368px;}
-}
- .new-car
-	{
-		background:url("../Images/icn-new-car.png") no-repeat  center 0  transparent;
-		width:49px; 
-		height:81px;
-		margin:20px auto ;
+	.pariking-map {
+		background: url("/Content/Styles/Images/bg-parking.png") no-repeat scroll center 0 transparent;
+		height: 1302px;
+		width: auto;
+		position:relative;
+		.car{position:absolute; left:10px; bottom:51px; width:122px; height:64px; background: url("/Content/Styles/Images/icn-car.png") no-repeat scroll 0 0 transparent; }
+		/*Section A*/
+		.a1{}
+		.a2{bottom:130px;}
+		.a3{bottom:205px;}
+		.a4{bottom:286px;}
+		.a5{bottom:367px;}
+		.a6{bottom:240px;-moz-transform:rotate(-90deg);-webkit-transform:rotate(-90deg);-o-transform:rotate(-90deg);-ms-transform:rotate(-90deg);    bottom: 348px;left: 236px;}
+		.a7{bottom:240px;bottom: 232px;left: 368px;}
+		.a8{bottom:240px;bottom: 145px;left: 368px;}
+		.a9{bottom: 60px;left: 368px;}
+		/*Section B*/
+		.b1{bottom:473px;}
+		.b2{bottom:539px;}
+		.b3{bottom:604px;}
+		.b4{bottom:668px;}
+		.b5{bottom:734px;}
+		.b6{bottom:801px;}
+		.b7{bottom: 801px;left: 368px;}
+		.b8{bottom: 734px;left: 368px;}
+		.b9{bottom: 669px;left: 368px;}
+		.b10{bottom: 604px;left: 368px;}
+		.b11{bottom: 539px;left: 368px;}
+		/*Section C*/
+		.c1{bottom:913px;}
+		.c2{bottom:995px;}
+		.c3{bottom:1072px;}
+		.c4{bottom:1151px;}
+		.c5{bottom:1230px;}
+		.c6{bottom:1203px;left:147px;-moz-transform:rotate(-90deg);-webkit-transform:rotate(-90deg);-o-transform:rotate(-90deg);-ms-transform:rotate(-90deg);  }
+		.c7{bottom: 1203px;left: 235px;-moz-transform:rotate(-90deg);-webkit-transform:rotate(-90deg);-o-transform:rotate(-90deg);-ms-transform:rotate(-90deg);  }
+		.c8{bottom: 1076px;left: 147px;-moz-transform:rotate(-90deg);-webkit-transform:rotate(-90deg);-o-transform:rotate(-90deg);-ms-transform:rotate(-90deg);  }
+		.c9{bottom: 1076px;left: 235px;-moz-transform:rotate(-90deg);-webkit-transform:rotate(-90deg);-o-transform:rotate(-90deg);-ms-transform:rotate(-90deg);  }
+		.c10{bottom: 1230px;left: 368px;}
+		.c11{bottom:1150px;left: 368px;}
+		.c12{bottom: 1073px;left: 368px;}
+		.c13{bottom: 994px;left: 368px;}
+		.c14{bottom: 913px;left: 368px;}
 	}
-
-.time-line{
-	
-}
-.user{ 
-		padding-left:35px;position:relative; margin-bottom:10px; padding-bottom:10px; border-bottom:1px solid $ColorLightGray;
-		h3 {font-size: 14px;line-height: 27px; margin:0 0 5px; line-height:14px;color:#333333;}
-		img{position:absolute; left:0}
-		p{
-			margin: 0 0;  font-size:11px; line-height:12px; color:#666;
-			span{color:#999; font-weight:bold; font-size:9px;}
-			b{font-size:13px;}
+	 
+	.new-car
+		{
+			background:url("../Images/icn-new-car.png") no-repeat  center 0  transparent;
+			width:49px; 
+			height:81px;
+			margin:20px auto ;
 		}
+
+	.time-line {
+	
 	}
-.user:last-child{border-bottom: 0 none;margin-bottom:0px; padding-bottom:0px;}
 
-.my-profile
-{
-	h2{ margin-bottom:15px;}
-	h3{ margin-bottom:0px;}
-	.btn-edit{ 
-		background:url("../Images/icn-edit.png") no-repeat  center center  transparent; width:40px; height:14px; display:inline-block;margin:10px 0 0; border:1px solid $ColorLightGray; border-radius:2px; padding:2px;
-		span{display:none}
+	.user { 
+			padding-left:35px;position:relative; margin-bottom:10px; padding-bottom:10px; border-bottom:1px solid $ColorLightGray;
+			h3 {font-size: 14px;line-height: 27px; margin:0 0 5px; line-height:14px;color:#333333;}
+			img{position:absolute; left:0}
+			p {
+				margin: 0 0;  font-size:11px; line-height:12px; color:#666;
+				span{color:#999; font-weight:bold; font-size:9px;}
+				b{font-size:13px;}
+			}
 	}
-	p{margin:0 0; padding:0; line-height:11px;}
-	div.car-description{margin:5px 0 5px; border:1px solid #666; background-color:#efefef; padding:3px 6px;}
-	.icon-tel{border-top:1px #ccc dotted; padding-top:10px;}
-	.icon-tel,.icon-cel,.icon-car {height:auto;background: url("../Images/icon-sheet.png") no-repeat scroll left -18px transparent;display: block;font-size: 9px;margin: 13px 0 0 ;padding-left:17px;width: auto;}
-	.icon-cel{background-position:left 0px ;margin: 5px 0 15px; min-height:14px; line-height:14px;}
-	.icon-car{background-position:left -50px ;margin:0;}
-	strong {color: #333333;font-weight: bold;}
-	img{border:1px solid #ddd}
+	
+	.user:last-child{border-bottom: 0 none;margin-bottom:0px; padding-bottom:0px;}
 
-}
+	.my-profile {
+		h2{ margin-bottom:15px;}
+		h3{ margin-bottom:0px;}
+		.btn-edit{ 
+			background:url("../Images/icn-edit.png") no-repeat  center center  transparent; width:40px; height:14px; display:inline-block;margin:10px 0 0; border:1px solid $ColorLightGray; border-radius:2px; padding:2px;
+			span{display:none}
+		}
+		p{margin:0 0; padding:0; line-height:11px;}
+		div.car-description{margin:5px 0 5px; border:1px solid #666; background-color:#efefef; padding:3px 6px;}
+		.icon-tel{border-top:1px #ccc dotted; padding-top:10px;}
+		.icon-tel,.icon-cel,.icon-car {height:auto;background: url("../Images/icon-sheet.png") no-repeat scroll left -18px transparent;display: block;font-size: 9px;margin: 13px 0 0 ;padding-left:17px;width: auto;}
+		.icon-cel{background-position:left 0px ;margin: 5px 0 15px; min-height:14px; line-height:14px;}
+		.icon-car{background-position:left -50px ;margin:0;}
+		strong {color: #333333;font-weight: bold;}
+		img{border:1px solid #ddd}
 
-.my-place{
-	.row {
-	margin:0;
-		img{border:1px solid $ColorLightGray}
 	}
-	h4 {background-color: #EFEFEF;border-bottom: 1px solid $ColorLightGray;font-size: 12px;font-weight: bold;line-height: 11px;margin: 0 0 10px;padding: 5px;}
-	.btn{width:100% }
-}
 
- .row-fluid .span6.container-parking {
-    width: 503px;padding:0; border:1px solid #fff
-}
+	.my-place{
+		.row {
+		margin:0;
+			img{border:1px solid $ColorLightGray}
+		}
+		h4 {background-color: #EFEFEF;border-bottom: 1px solid $ColorLightGray;font-size: 12px;font-weight: bold;line-height: 11px;margin: 0 0 10px;padding: 5px;}
+		.btn{width:100% }
+	}
+
+	 .row-fluid .span6.container-parking {
+		width: 503px;padding:0; border:1px solid #fff
+	}
+
+ }

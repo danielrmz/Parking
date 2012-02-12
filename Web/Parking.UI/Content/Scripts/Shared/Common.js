@@ -8,8 +8,48 @@
 */
 namespace("Parking.Common");
 
-(function($, undefined) {
+(function($, common, undefined) {
+    
+    /**
+     * Renders a template in a backbone view context using Handlebars/Mustache and by fetching
+     * a remote template.
+     */
+    common.RenderViewTemplate = function(callback) {
+        var template = this.template;
+        var view = this;
 
+        fetchTemplate(template, function (tmpl) {
+            var model = {};
+            if(view.model != null) {
+                model = view.model.toJSON();
+            } 
+            
+            var locale = Parking.Configuration["locale"] || "en-US";
+
+            if(Parking.Configuration["i18n"] == null) {
+                $(window).trigger('i18n.load', function() { 
+                    var localeResources =  Parking.Configuration["i18n"][locale] || {};
+                    
+                    $(view.el).html(tmpl({ "i18n": localeResources, "model": model}));
+
+                    callback = callback || function() { };
+                    callback(tmpl, model);
+                });
+
+                return null;
+            }
+
+            var localeResources =  Parking.Configuration["i18n"][locale] || {};
+
+            $(view.el).html(tmpl({ "i18n": localeResources, "model": model}));
+
+            callback = callback || function() { };
+            callback(tmpl, model);
+        });
+
+    };
+
+    /*
     Parking.Common.AjaxErrorHandler = function (req, status, error) {
         if (req.status == 403) {
             alert('You are not authorized to perform this action.');
@@ -34,7 +74,8 @@ namespace("Parking.Common");
         }
         return valid;
     };
-
+    */
+    /*
     Parking.Common.HandleSuccessfulForm = function (responseText, statusText, xhr, form) {
         var result = JSON.parse(responseText);
         Parking.Common.HandleJsonResult(form, result);
@@ -97,4 +138,5 @@ namespace("Parking.Common");
         form.find(".validation-summary-errors, .validation-summary-valid").addClass("validation-summary-valid").removeClass("validation-summary-errors").find("ul").empty();
     };
 
-})(jQuery);
+    */
+})(jQuery, Parking.Common);

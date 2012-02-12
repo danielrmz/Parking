@@ -17,10 +17,8 @@ namespace Sieena.Parking.API.Models
     /// <summary>
     /// Notification to a user
     /// </summary>
-    public partial class Notification : INotification
+    public partial class Notification : ParkingModel,  INotification
     {
-        private static DataStoreDataContext ctx = new DataStoreDataContext();
-
         /// <summary>
         /// Gets all the notifications. 
         /// It is marked as internal a person should not have

@@ -17,10 +17,8 @@ namespace Sieena.Parking.API.Models
     /// <summary>
     /// Represents the checkin from a person to a specified place.
     /// </summary>
-    public partial class Checkin : ICheckin
+    public partial class Checkin : ParkingModel, ICheckin
     {
-        private static DataStoreDataContext ctx = new DataStoreDataContext();
-
         /// <summary>
         /// Gets all the checkins in the system.
         /// </summary>
@@ -70,6 +68,7 @@ namespace Sieena.Parking.API.Models
             Checkin c = Get(id);
             ctx.Checkins.DeleteOnSubmit(c);
             ctx.SubmitChanges();
+            
             return c;
         }
     }

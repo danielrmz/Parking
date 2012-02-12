@@ -12,29 +12,47 @@ namespace("Parking.App.Views");
 (function ($, undefined) {
 
     Parking.App.Views.Login = Backbone.View.extend({
-        template: Parking.Configuration.ClientTemplatesUrl + "Login.html",
+        template: Parking.Configuration.ClientTemplatesUrl + "Account/Login.html",
+        model: Parking.App._user,
 
         render: function (done) {
             var view = this;
 
-            // Fetch the template, render it to the View element and call done.
-            fetchTemplate(this.template, function (tmpl) {
-                view.el.innerHTML = tmpl();
-
-                done(view.el);
-            });
+            if(Parking.App._user != null && Parking.App._user.get("IsAuthenticated")) {
+                // Redirect to main page.
+                Parking.App._router.navigate("home");
+                return;
+            }
+            
+            Parking.Common.RenderViewTemplate.apply(this, arguments);
         },
 
-        events: {
+        events: { 
            "click .js-submit": "submit"
         },
-
+        
         "submit": function(e) {
             var form = $(this.el).find("form");
             var params = form.serialize();
+            var self = this;
+            var submit = form.find("input[type=submit]");
 
-            $.post(form.attr("action"), params, function(){ 
-                console.log(arguments);
+            submit.val(submit.data("afterclick")).attr("disabled", true);
+
+            $.post(form.attr("action"), params, function(data){ 
+                if(data.Error == false) {
+                    Parking.App._user.set(data["Response"]);
+                    Parking.App._views.HeaderUserInfo.render();
+
+                    // Redirect to the core app view
+                     Parking.App._router.navigate("home", true);
+
+                } else {
+                    submit.val(submit.data("click")).attr("disabled");
+                    // Display error.
+                    form.find(".alert-error .message").html(data["Response"]["Message"]);
+                    form.find(".alert-error").show();
+                }
             });
 
             return false;

@@ -72,12 +72,15 @@ namespace Sieena.Parking.API.Models
     partial void InsertUserEndpoint(UserEndpoint instance);
     partial void UpdateUserEndpoint(UserEndpoint instance);
     partial void DeleteUserEndpoint(UserEndpoint instance);
-    partial void InsertUserInfo(UserInfo instance);
-    partial void UpdateUserInfo(UserInfo instance);
-    partial void DeleteUserInfo(UserInfo instance);
     partial void InsertUserRole(UserRole instance);
     partial void UpdateUserRole(UserRole instance);
     partial void DeleteUserRole(UserRole instance);
+    partial void InsertUserInfo(UserInfo instance);
+    partial void UpdateUserInfo(UserInfo instance);
+    partial void DeleteUserInfo(UserInfo instance);
+    partial void InsertSession(Session instance);
+    partial void UpdateSession(Session instance);
+    partial void DeleteSession(Session instance);
     #endregion
 		
 		public DataStoreDataContext() : 
@@ -222,6 +225,14 @@ namespace Sieena.Parking.API.Models
 			}
 		}
 		
+		public System.Data.Linq.Table<UserRole> UserRoles
+		{
+			get
+			{
+				return this.GetTable<UserRole>();
+			}
+		}
+		
 		public System.Data.Linq.Table<UserInfo> UserInfos
 		{
 			get
@@ -230,11 +241,11 @@ namespace Sieena.Parking.API.Models
 			}
 		}
 		
-		public System.Data.Linq.Table<UserRole> UserRoles
+		public System.Data.Linq.Table<Session> Sessions
 		{
 			get
 			{
-				return this.GetTable<UserRole>();
+				return this.GetTable<Session>();
 			}
 		}
 	}
@@ -2331,6 +2342,92 @@ namespace Sieena.Parking.API.Models
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.UserRoles")]
+	public partial class UserRole : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _UserId;
+		
+		private int _RoleId;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnUserIdChanging(int value);
+    partial void OnUserIdChanged();
+    partial void OnRoleIdChanging(int value);
+    partial void OnRoleIdChanged();
+    #endregion
+		
+		public UserRole()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int UserId
+		{
+			get
+			{
+				return this._UserId;
+			}
+			set
+			{
+				if ((this._UserId != value))
+				{
+					this.OnUserIdChanging(value);
+					this.SendPropertyChanging();
+					this._UserId = value;
+					this.SendPropertyChanged("UserId");
+					this.OnUserIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoleId", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int RoleId
+		{
+			get
+			{
+				return this._RoleId;
+			}
+			set
+			{
+				if ((this._RoleId != value))
+				{
+					this.OnRoleIdChanging(value);
+					this.SendPropertyChanging();
+					this._RoleId = value;
+					this.SendPropertyChanged("RoleId");
+					this.OnRoleIdChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.UserInfos")]
 	public partial class UserInfo : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -2444,7 +2541,7 @@ namespace Sieena.Parking.API.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Gender", DbType="NVarChar(1) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Gender", DbType="NVarChar(1)")]
 		public string Gender
 		{
 			get
@@ -2585,33 +2682,69 @@ namespace Sieena.Parking.API.Models
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.UserRoles")]
-	public partial class UserRole : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Sessions")]
+	public partial class Session : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _UserId;
+		private System.Guid _SessionId;
 		
-		private int _RoleId;
+		private System.Nullable<int> _UserId;
+		
+		private System.Nullable<System.DateTime> _CreatedAt;
+		
+		private System.Nullable<System.DateTime> _ExpiresAt;
+		
+		private string _Data;
+		
+		private System.Nullable<System.DateTime> _LastAccess;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnUserIdChanging(int value);
+    partial void OnSessionIdChanging(System.Guid value);
+    partial void OnSessionIdChanged();
+    partial void OnUserIdChanging(System.Nullable<int> value);
     partial void OnUserIdChanged();
-    partial void OnRoleIdChanging(int value);
-    partial void OnRoleIdChanged();
+    partial void OnCreatedAtChanging(System.Nullable<System.DateTime> value);
+    partial void OnCreatedAtChanged();
+    partial void OnExpiresAtChanging(System.Nullable<System.DateTime> value);
+    partial void OnExpiresAtChanged();
+    partial void OnDataChanging(string value);
+    partial void OnDataChanged();
+    partial void OnLastAccessChanging(System.Nullable<System.DateTime> value);
+    partial void OnLastAccessChanged();
     #endregion
 		
-		public UserRole()
+		public Session()
 		{
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int UserId
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SessionId", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid SessionId
+		{
+			get
+			{
+				return this._SessionId;
+			}
+			set
+			{
+				if ((this._SessionId != value))
+				{
+					this.OnSessionIdChanging(value);
+					this.SendPropertyChanging();
+					this._SessionId = value;
+					this.SendPropertyChanged("SessionId");
+					this.OnSessionIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", DbType="Int")]
+		public System.Nullable<int> UserId
 		{
 			get
 			{
@@ -2630,22 +2763,82 @@ namespace Sieena.Parking.API.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoleId", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int RoleId
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedAt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> CreatedAt
 		{
 			get
 			{
-				return this._RoleId;
+				return this._CreatedAt;
 			}
 			set
 			{
-				if ((this._RoleId != value))
+				if ((this._CreatedAt != value))
 				{
-					this.OnRoleIdChanging(value);
+					this.OnCreatedAtChanging(value);
 					this.SendPropertyChanging();
-					this._RoleId = value;
-					this.SendPropertyChanged("RoleId");
-					this.OnRoleIdChanged();
+					this._CreatedAt = value;
+					this.SendPropertyChanged("CreatedAt");
+					this.OnCreatedAtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ExpiresAt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ExpiresAt
+		{
+			get
+			{
+				return this._ExpiresAt;
+			}
+			set
+			{
+				if ((this._ExpiresAt != value))
+				{
+					this.OnExpiresAtChanging(value);
+					this.SendPropertyChanging();
+					this._ExpiresAt = value;
+					this.SendPropertyChanged("ExpiresAt");
+					this.OnExpiresAtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Data", DbType="NVarChar(MAX)")]
+		public string Data
+		{
+			get
+			{
+				return this._Data;
+			}
+			set
+			{
+				if ((this._Data != value))
+				{
+					this.OnDataChanging(value);
+					this.SendPropertyChanging();
+					this._Data = value;
+					this.SendPropertyChanged("Data");
+					this.OnDataChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastAccess", DbType="DateTime")]
+		public System.Nullable<System.DateTime> LastAccess
+		{
+			get
+			{
+				return this._LastAccess;
+			}
+			set
+			{
+				if ((this._LastAccess != value))
+				{
+					this.OnLastAccessChanging(value);
+					this.SendPropertyChanging();
+					this._LastAccess = value;
+					this.SendPropertyChanged("LastAccess");
+					this.OnLastAccessChanged();
 				}
 			}
 		}

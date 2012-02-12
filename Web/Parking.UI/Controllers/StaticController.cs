@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.IO;
+using Sieena.Parking.Common.Resources;
+using System.Threading;
 
 namespace Parking.UI.Controllers
 {
@@ -28,7 +30,13 @@ namespace Parking.UI.Controllers
 
         public ActionResult Terms() {
             return View();
-        } 
-
+        }
+         
+        public ActionResult i18n(string cultureName)
+        {
+            cultureName = string.IsNullOrEmpty(cultureName) ? Thread.CurrentThread.CurrentCulture.Name : cultureName;
+            
+            return new JsonResult() { Data = Utilities.GetResources(cultureName), JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+        }
     }
 }

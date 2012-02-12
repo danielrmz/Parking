@@ -29,10 +29,10 @@ function fetchTemplate(path, done) {
     }
 
     // Fetch it asynchronously if not available from JST
-    return $.get(path, function(contents) {
-      var tmpl = _.template(contents);
-      JST[path] = tmpl;
+    return $.get(path, function (contents) {
+        var tmpl = Handlebars.compile(contents);  //_.template(contents);
+        JST[path] = tmpl;
 
-      done(tmpl);
+        done(tmpl);
     });
 }

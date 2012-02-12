@@ -9,7 +9,7 @@
 /* @endgroup */
 /* @group Layout */
 html, body {
-  background: #e0e0e0; }
+  background: #d3d6d8; }
 
 body > div {
   margin-top: 20px;
@@ -33,6 +33,11 @@ footer {
   box-shadow: rgba(0, 0, 0, 0.1) 0 0 2px 0px;
   border-radius: 3px;
   min-height: 200px; }
+
+.container-whole.span12 {
+  margin-left: 0px;
+  padding-right: 5px;
+  width: 940px; }
 
 .left {
   float: left; }

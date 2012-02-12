@@ -17,10 +17,9 @@ namespace Sieena.Parking.API.Models
     /// <summary>
     /// AccessTypes data methods.
     /// </summary>
-    public partial class AccessType : IAccessType
+    public partial class AccessType : ParkingModel, IAccessType
     {
-        private static DataStoreDataContext ctx = new DataStoreDataContext();
-
+        
         /// <summary>
         /// Gets all the access types 
         /// </summary>

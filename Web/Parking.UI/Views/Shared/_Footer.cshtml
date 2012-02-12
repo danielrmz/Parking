@@ -1,23 +1,26 @@
-﻿<div class="right">
+﻿@using i18n = Sieena.Parking.Common.Resources.UI;
+
+<div class="right">
+    
     <div class="copy" style="">
-        &copy; 2012 <span class="separator"></span>
+        &copy; 2012
+        <span class="separator"></span>
     </div>
+
     <ul class="list-inline">
-        <li><a href="/">Home</a></li>
-        <li><a href="/about">About</a></li>
-        <!-- 
-        <li><a href="#">Apps</li> 
-        <li><a href="#">Blog</a></li>
-        <li><a href="#">Developers</a></li>
-        -->
-        <li><a href="/help">Help</a></li>
-        <li><a href="/privacy">Privacy</a></li>
-        <li><a href="/terms">Terms</a></li>
-        <li><a href="http://www.sieena.com/">Sieena</a></li>
+        <li><a href="/">@i18n.Footer_Home</a></li>
+        <li><a href="/about">@i18n.Footer_About</a></li>
+        <li><a href="/help">@i18n.Footer_Help</a></li>
+        <li><a href="/privacy">@i18n.Footer_Privacy</a></li>
+        <li><a href="/terms">@i18n.Footer_Terms</a></li>
+        <li><a href="http://www.sieena.com/">@i18n.Footer_Sieena</a></li>
         <li class="separator"></li>
-        <li><a href="/login">Login</a></li>
+        <li><a href="/login">@i18n.Footer_Login</a></li>
     </ul>
 </div>
+
 <div class="left">
-    <img src="/Content/Images/icn-sieena-footer.png" alt="Driving Software Solutions Forward" />
+    <a href="http://www.sieena.com/">
+        <img src="/Content/Images/icn-sieena-footer.png" alt="Driving Software Solutions Forward" />
+    </a>
 </div>

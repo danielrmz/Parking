@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
 using Sieena.Parking.API.Models.Views;
-using API = Sieena.Parking.API.Models;
+using APISession = Sieena.Parking.API.Models.Session;
 
 namespace Sieena.Parking.UI.Controllers
 {
@@ -18,37 +18,6 @@ namespace Sieena.Parking.UI.Controllers
             return View("Login");
         }
 
-        [HttpPost]
-        public ActionResult LogOn(LogOnModel model, string returnUrl)
-        {
-            if (ModelState.IsValid)
-            { 
-                if (Membership.ValidateUser(model.UserName, model.Password))
-                {
-                    FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
-                    if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
-                        && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
-                    {
-                        return Content(returnUrl);
-                    }
-                    else
-                    {
-                        return Content("Home/Index");
-                    }
-                }
-                else
-                {
-                    return Content("The user name or password provided is incorrect.");
-                    //ModelState.AddModelError("", "The user name or password provided is incorrect.");
-                }
-            }
-
-            // If we got this far, something failed, redisplay form
-            //return View("Login", model);
-            return Content("The user name or password provided is incorrect.");
-        }
-
-
         public ActionResult LogOff()
         {
             FormsAuthentication.SignOut();
@@ -56,97 +25,92 @@ namespace Sieena.Parking.UI.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-
-        public ActionResult Register()
-        {
-            return View();
-        }
-
-
-        [Authorize]
-        public ActionResult ChangePassword()
-        {
-            return View();
-        }
-
-        [Authorize]
         [HttpPost]
-        public ActionResult ChangePassword(ChangePasswordModel model)
+        public ActionResult LogOn(LogOnModel model, string returnUrl)
         {
             if (ModelState.IsValid)
             {
+                string userName = model.UserName.IndexOf('@') < 0 ? model.UserName + model.Domain : model.UserName;
 
-                // ChangePassword will throw an exception rather
-                // than return false in certain failure scenarios.
-                bool changePasswordSucceeded;
-                try
+                if (Membership.ValidateUser(userName, model.Password))
                 {
-                    MembershipUser currentUser = Membership.GetUser(User.Identity.Name, true /* userIsOnline */);
-                    changePasswordSucceeded = currentUser.ChangePassword(model.OldPassword, model.NewPassword);
-                }
-                catch (Exception)
-                {
-                    changePasswordSucceeded = false;
-                }
+                    FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
+                    int userId = API.Models.User.GetByEmail(model.UserName + "@sieena.com").UserId;
+                    API.Models.UserInfo ui = API.Models.UserInfo.GetByUserId(userId);
 
-                if (changePasswordSucceeded)
-                {
-                    return RedirectToAction("ChangePasswordSuccess");
+                    APISession.Expire(userId);
+                    APISession s = APISession.Set(new APISession() { 
+                        UserId = userId ,
+                        CreatedAt = DateTime.Now,
+                        ExpiresAt = DateTime.Now.Add(FormsAuthentication.Timeout),
+                        LastAccess= DateTime.Now,
+                        Data = string.Format("FormsCookieName={0},FormsCookieValue={1}", model.UserName, FormsAuthentication.GetAuthCookie(model.UserName, model.RememberMe).Value)
+                    });
+
+                    string returnU = string.Empty; 
+                    if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
+                        && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
+                    {
+                        returnU = returnUrl;
+                    }
+                    else
+                    {
+                        returnU = "Home/Index";
+                    }
+
+                    return Envelope(new UserInformation { 
+                                SessionId = s.SessionId, 
+                                Email = userName, 
+                                UserName = model.UserName, 
+                                IsAuthenticated = true, 
+                                ProfilePictureUrl = "", 
+                                FirstName = ui.FirstName, 
+                                LastName = ui.LastName
+                    }, false);
+
+                    
                 }
                 else
                 {
-                    ModelState.AddModelError("", "The current password is incorrect or the new password is invalid.");
+                    return Envelope(new { Message="The user name or password provided is incorrect." }, true);  
                 }
             }
 
-            // If we got this far, something failed, redisplay form
-            return View(model);
+            // If we got this far, something failed, redisplay form 
+            return Envelope(new { Message = "The user name or password provided is incorrect." }, true);  
         }
 
-
-        public ActionResult ChangePasswordSuccess()
+        /// <summary>
+        /// Wraps the JsonResult with the appropiate data.
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="isError"></param>
+        /// <returns></returns>
+        protected JsonResult Envelope(dynamic data, bool isError)
         {
-            return View();
-        }
-
-        #region Status Codes
-        private static string ErrorCodeToString(MembershipCreateStatus createStatus)
-        {
-            // See http://go.microsoft.com/fwlink/?LinkID=177550 for
-            // a full list of status codes.
-            switch (createStatus)
+            string t = data.GetType().Name;
+            return new JsonResult()
             {
-                case MembershipCreateStatus.DuplicateUserName:
-                    return "User name already exists. Please enter a different user name.";
-
-                case MembershipCreateStatus.DuplicateEmail:
-                    return "A user name for that e-mail address already exists. Please enter a different e-mail address.";
-
-                case MembershipCreateStatus.InvalidPassword:
-                    return "The password provided is invalid. Please enter a valid password value.";
-
-                case MembershipCreateStatus.InvalidEmail:
-                    return "The e-mail address provided is invalid. Please check the value and try again.";
-
-                case MembershipCreateStatus.InvalidAnswer:
-                    return "The password retrieval answer provided is invalid. Please check the value and try again.";
-
-                case MembershipCreateStatus.InvalidQuestion:
-                    return "The password retrieval question provided is invalid. Please check the value and try again.";
-
-                case MembershipCreateStatus.InvalidUserName:
-                    return "The user name provided is invalid. Please check the value and try again.";
-
-                case MembershipCreateStatus.ProviderError:
-                    return "The authentication provider returned an error. Please verify your entry and try again. If the problem persists, please contact your system administrator.";
-
-                case MembershipCreateStatus.UserRejected:
-                    return "The user creation request has been canceled. Please verify your entry and try again. If the problem persists, please contact your system administrator.";
-
-                default:
-                    return "An unknown error occurred. Please verify your entry and try again. If the problem persists, please contact your system administrator.";
-            }
+                Data = new
+                    {
+                        Time = ConvertToUnixTime(DateTime.Now),
+                        Response = data,
+                        Type = t,
+                        Error = isError
+                    }
+            };
         }
-        #endregion
+
+        /// <summary>
+        /// Converts a datetime to unixtime.
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
+        protected double ConvertToUnixTime(DateTime date)
+        {
+            DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0);
+            TimeSpan diff = date - origin;
+            return Math.Floor(diff.TotalSeconds);
+        }
     }
 }

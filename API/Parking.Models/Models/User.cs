@@ -18,10 +18,8 @@ namespace Sieena.Parking.API.Models
     using Parking.API.Models.Exceptions;
     using System.DirectoryServices;
 
-    public partial class User : IUser
+    public partial class User : ParkingModel, IUser
     {
-        private static DataStoreDataContext ctx = new DataStoreDataContext();
-
         /// <summary>
         /// 
         /// </summary>
@@ -47,6 +45,13 @@ namespace Sieena.Parking.API.Models
             return u;
         }
 
+        
+
+        /// <summary>
+        /// Adds roles to the user.
+        /// </summary>
+        /// <param name="u"></param>
+        /// <param name="r"></param>
         public static void AddRoles(User u, List<Role> r)
         {
             foreach (Role ri in r)
@@ -67,6 +72,11 @@ namespace Sieena.Parking.API.Models
             ctx.SubmitChanges();
         }
 
+        /// <summary>
+        /// Deletes the role.
+        /// </summary>
+        /// <param name="u"></param>
+        /// <param name="r"></param>
         public static void DeleteRoles(User u, List<Role> r)
         {
             ctx.UserRoles.Where(ur => ur.UserId.Equals(u.UserId) 
@@ -88,7 +98,7 @@ namespace Sieena.Parking.API.Models
                 u.IsActive = false;
             }
 
-            ctx.Users.Attach(u, true);
+            ctx.Users.Attach(u);
             ctx.SubmitChanges();
             
             return true;
@@ -157,12 +167,7 @@ namespace Sieena.Parking.API.Models
                 using (PrincipalContext context = new PrincipalContext(ContextType.Domain, "SIEENA"))
                 {
                     if (context.ValidateCredentials(username, password))
-                    {
-                        DirectorySearcher dSearch = new DirectorySearcher(new DirectoryEntry("ldap://sieena"));
-                        dSearch.Filter = string.Format("(&(objectClass=user)(l={0}))", username);
-                        SearchResult sr = dSearch.FindOne();
-                        string givenName = GetADProperty(sr, "givenName");
-
+                    { 
                         return true;
                     }
                 }
@@ -177,18 +182,40 @@ namespace Sieena.Parking.API.Models
 
         }
 
-        private static string GetADProperty(SearchResult result, string propertyName)
+        /// <summary>
+        /// Creates a user from AD
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        private static User CreateUserFromAD(string username, string password)
         {
-            if (result.Path.Contains(propertyName))
+            username = username.Split('@').First();
+            
+            using (PrincipalContext context = new PrincipalContext(ContextType.Domain, "SIEENA", "daniel.ramirez", "xrZ40uye"))
             {
-                return result.Properties[propertyName][0].ToString();
+                UserPrincipal up = UserPrincipal.FindByIdentity(context, IdentityType.SamAccountName, username);
+                User u = new User()
+                {
+                    Email = up.EmailAddress,
+                    CreatedAt = DateTime.Now,
+                    IsActive = true,
+                    Password = password
+                };
+
+                u = User.SaveUser(u);
+
+                UserInfo.Save(new UserInfo()
+                {
+                    UserId = u.UserId,
+                    FirstName = up.Name,
+                    LastName = up.Surname
+                });
+
+                return u;
             }
-            else
-            {
-                return string.Empty;
-            }
+
         }
-         
 
         /// <summary>
         /// 
@@ -213,13 +240,7 @@ namespace Sieena.Parking.API.Models
             {
                 if (VerifyCredentialsByAD(user, password))
                 {
-                    u = API.Models.User.SaveUser(new API.Models.User()
-                    {
-                        Email = string.Format("{0}@sieena.com", user),
-                        CreatedAt = DateTime.Now,
-                        IsActive = true,
-                        Password = password
-                    });
+                    u = CreateUserFromAD(user, password);
                 }
             }
             else if (u != null)

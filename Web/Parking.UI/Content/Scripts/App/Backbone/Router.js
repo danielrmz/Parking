@@ -10,28 +10,48 @@
 namespace("Parking.App");
 
 (function ($, undefined) {
-    
+    var replaceMain = function(el) { console.log(el); $("#main").html(el); };
+
     Parking.App.Router = Backbone.Router.extend({
       routes: {
-        'login': 'login',
-        'about': 'static',
-        'help':  'static',
+        ''       : 'main',
+        'home'   : 'main',
+        'login'  : 'login',
+
+        'about'  : 'static',
+        'help'   : 'static',
+        'terms'  : 'static',
         'privacy': 'static'
       },
-      login: function(){ 
-        var route = this;
-        var loginView = new Parking.App.Views.Login();
-        loginView.render(function(el) {
-            $("#main").html(el);
-        });
+
+      "main": function() { 
+        var loginView = new Parking.App.Views.Main({el: $("#main")});
+        loginView.render();
       },
+
+      "login": function() { 
+        var loginView = new Parking.App.Views.Login({el: $("#main")});
+        loginView.render();
+      },
+
       "static": function() {
-        var route = this;
+        var path  = window.location.pathname.substring(1);
+        var view  = new Parking.App.Views.Static({el: $("#main")}); 
+        view.template = Parking.Configuration.ClientTemplatesUrl + "Static/" + path + ".html";
+        view.render();
       }
     });
     
+    // Required 
     Parking.App._router = new Parking.App.Router();
+    Parking.App._user   = new Parking.App.Models.UserInformation();
+    Parking.App._views  = {};
 
+    // Default views in the app
+    Parking.App._views.HeaderUserInfo = new Parking.App.Views.HeaderUserInfo({model: Parking.App._user, el: $('.user-info .user') });
+    Parking.App._views.HeaderUserInfo.render();
+
+    // Start pushState
     Backbone.history.start({ pushState: true });
 
     $(document).on("click", "a:not([data-bypass])", function(evt) {

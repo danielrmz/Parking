@@ -125,15 +125,33 @@
     </Content>
     <Content Include="App_Data\combres_full_with_annotation.xml" />
     <Content Include="Content\Images\img-01.png" />
+    <Content Include="Content\Scripts\App\Backbone\Templates\Parking\Home.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Scripts\App\Backbone\Templates\Shared\HeaderUserInfo.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Scripts\App\Backbone\Templates\Static\Help.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Scripts\App\Backbone\Views\Main.js" />
+    <Content Include="Content\Scripts\App\Backbone\Views\HeaderUserInfo.js" />
+    <Content Include="Content\Scripts\App\Backbone\Views\Static.js" />
+    <Content Include="Content\Scripts\Plugins\handlebars-1.0.0.js" />
+    <Content Include="Content\Scripts\Shared\Header.js" />
     <Content Include="Content\Styles\Images\Bootstrap\glyphicons-halflings-white.png" />
     <Content Include="Content\Styles\Images\Bootstrap\glyphicons-halflings.png" />
     <Content Include="Content\Styles\Images\Gritter\gritter-long.png" />
     <Content Include="Content\Styles\Images\Gritter\gritter.png" />
     <Content Include="Content\Styles\Images\Gritter\ie-spacer.gif" />
+    <Content Include="Content\Styles\Images\icn-car.png" />
+    <Content Include="Content\Styles\Images\icn-header-sheet.png" />
+    <Content Include="Content\Styles\Images\logo-myplace.png" />
+    <Content Include="Content\Styles\Images\txr-bg-canvas-gray.png" />
     <Content Include="Content\Styles\Images\txr-bg-canvas.png" />
     <Content Include="Content\Styles\Images\txr-bg-header-blue.png" />
     <Content Include="Content\Styles\Images\txr-bg-header.png" />
-    <Content Include="Content\Scripts\App\Backbone\Models\LoginFormModel.js" />
+    <Content Include="Content\Scripts\App\Backbone\Models\UserInformationModel.js" />
     <Content Include="Content\Scripts\App\Backbone\Router.js" />
     <Content Include="Content\Scripts\App\Backbone\Views\Login.js" />
     <Content Include="Content\Scripts\App\Home\Index.js" />
@@ -177,13 +195,13 @@
       <DependentUpon>layout.scss</DependentUpon>
     </Content>
     <Content Include="Content\Styles\Plugins\jquery.gritter.css" />
-    <Content Include="Content\Scripts\App\Backbone\Templates\About.html">
+    <Content Include="Content\Scripts\App\Backbone\Templates\Static\About.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Scripts\App\Backbone\Templates\Terms.html">
+    <Content Include="Content\Scripts\App\Backbone\Templates\Static\Terms.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Scripts\App\Backbone\Templates\Privacy.html">
+    <Content Include="Content\Scripts\App\Backbone\Templates\Static\Privacy.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -284,7 +302,7 @@
     <Content Include="Views\Static\Terms.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Content\Scripts\App\Backbone\Templates\Login.html">
+    <Content Include="Content\Scripts\App\Backbone\Templates\Account\Login.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
@@ -310,7 +328,7 @@
           <IISUrl>
           </IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
-          <UseCustomServer>False</UseCustomServer>
+          <UseCustomServer>True</UseCustomServer>
           <CustomServerUrl>http://parking.local</CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>

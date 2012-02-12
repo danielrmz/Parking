@@ -17,7 +17,7 @@ namespace Sieena.Parking.API.Models
     /// <summary>
     /// Applications that can access the Api
     /// </summary>
-    public partial class Application : IApplication
+    public partial class Application : ParkingModel, IApplication
     {
         /// <summary>
         /// Get all the registered applications.
@@ -25,10 +25,7 @@ namespace Sieena.Parking.API.Models
         /// <returns></returns>
         public static List<Application> GetAll()
         {
-            using (DataStoreDataContext ctx = new DataStoreDataContext())
-            {
-                return ctx.Applications.ToList();
-            }
+            return ctx.Applications.ToList();
         }
     }
 }
