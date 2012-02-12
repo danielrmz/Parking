@@ -174,8 +174,7 @@ namespace Sieena.Parking.API.Models
             }
             catch (Exception e)
             {
-                // Could be several reasons, but go to next auth type.
-                int i = 0;
+                // Could be several reasons, but go to next auth type 
             }
 
             return false;

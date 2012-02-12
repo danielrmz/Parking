@@ -30,11 +30,11 @@ namespace Sieena.Parking.Tests.Models
                 User.SaveUser(new User()
                 {
                     Password = "test123",
-                    Email = "daniel.ramirez@sieena.com",
+                    Email = "daniel@sieena.com",
                     IsActive = true,
                     CreatedAt = DateTime.Now
                 });
-                Assert.IsTrue(User.VerifyCredentials("daniel.ramirez@sieena.com", "test123"));
+                Assert.IsTrue(User.VerifyCredentials("daniel@sieena.com", "test123"));
                 scope.Dispose();
             }
         }
