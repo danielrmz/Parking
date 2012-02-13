@@ -117,6 +117,21 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="API_ErrorInvalidToken" xml:space="preserve">
+    <value>Invalid session token</value>
+  </data>
+  <data name="API_ErrorMethodDefinition" xml:space="preserve">
+    <value>Badly resource defined</value>
+  </data>
+  <data name="API_ErrorNoRolesAssigned" xml:space="preserve">
+    <value>User does not have any role assigned</value>
+  </data>
+  <data name="API_ErrorSessionPrivilegesRequired" xml:space="preserve">
+    <value>User does not have enough privileges to access this resource.</value>
+  </data>
+  <data name="API_ErrorSessionRequired" xml:space="preserve">
+    <value>You require an active session to access that resource.</value>
+  </data>
   <data name="Footer_About" xml:space="preserve">
     <value>About</value>
   </data>

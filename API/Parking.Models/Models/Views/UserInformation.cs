@@ -12,7 +12,7 @@ namespace Sieena.Parking.API.Models.Views
         public string UserName { get; set; }
 
         [Display(Name = "Session Id")]
-        public Guid SessionId { get; set; }
+        public string SessionId { get; set; }
 
         [Display(Name = "Email")]
         public string Email { get; set; }
@@ -28,6 +28,11 @@ namespace Sieena.Parking.API.Models.Views
 
         [Display(Name = "Is Authenticated")]
         public bool IsAuthenticated { get; set; }
-        
+
+        [Display(Name = "Role")]
+        public string Role { get; set; }
+
+        [Display(Name = "RoleId")]
+        public int RoleId { get; set; }
     }
 }

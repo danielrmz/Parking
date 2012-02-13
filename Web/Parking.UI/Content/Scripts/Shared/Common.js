@@ -13,21 +13,25 @@ namespace("Parking.Common");
     /**
      * Renders a template in a backbone view context using Handlebars/Mustache and by fetching
      * a remote template.
+     *
+     * @param {Function=} callback - Callback to be done when the template is fetched/compiled.
      */
     common.RenderViewTemplate = function(callback) {
         var template = this.template;
-        var view = this;
+        var view     = this;
 
         fetchTemplate(template, function (tmpl) {
             var model = {};
+
             if(view.model != null) {
                 model = view.model.toJSON();
             } 
             
-            var locale = Parking.Configuration["locale"] || "en-US";
-            var localeResources =  Parking.Resources["i18n"][locale] || {};
+            var locale          = Parking.Configuration["locale"] || "en-US";
+            var localeResources = Parking.Resources["i18n"][locale] || {};
+            var currentUser     = Parking.App._user.toJSON();
 
-            $(view.el).html(tmpl({ "i18n": localeResources, "model": model}));
+            $(view.el).html(tmpl({ "i18n": localeResources, "model": model, "currentUser": currentUser }));
 
             callback = callback || function() { };
             callback(tmpl, model);

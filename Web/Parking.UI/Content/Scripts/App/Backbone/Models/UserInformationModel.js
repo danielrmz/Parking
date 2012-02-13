@@ -19,6 +19,8 @@ namespace("Parking.App.Models");
         LastName: "",
         ProfilePictureUrl: "",
         IsAuthenticated: false,
+        Role: "",
+        RoleId: 0,
 
         FullName: function() { 
             return this.FirstName + " " + this.LastName;

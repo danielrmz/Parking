@@ -15,10 +15,19 @@ using Nancy;
 using Nancy.ViewEngines.Razor;
 using Nancy.Serializers.Json;
 using System.Text.RegularExpressions;
-using Sieena.Parking.API.Models.Exceptions;
+
+
 
 namespace Sieena.Parking.API.Modules.Classes
 {
+    using Sieena.Parking.API.Models;
+    using Sieena.Parking.API.Models.Exceptions;
+    
+    using APISession = Sieena.Parking.API.Models.Session;
+    using Resources  = Sieena.Parking.Common.Resources.UI;
+    using Sieena.Parking.Common.Utils;
+    using System.Configuration;
+
     /// <summary>
     /// Autoregisters the API Methods based on the attributes
     /// </summary>
@@ -40,8 +49,9 @@ namespace Sieena.Parking.API.Modules.Classes
                                             return mi.GetCustomAttributes(typeof(ApiAttribute), true).Any();
                                         })
                                         .Select(mi => {
-                                            var attr = mi.GetCustomAttributes(typeof(ApiAttribute), true).First() as ApiAttribute;
-                                            return string.Format("{0}\t{1}\t- {2}", attr.GetMethod(), attr.GetRoute(), mi.Name);
+                                            ApiAttribute attr = mi.GetCustomAttributes(typeof(ApiAttribute), true).First() as ApiAttribute;
+                                            
+                                            return string.Format("{0}\t{1}\t- {2} {3}", attr.GetMethod(), attr.GetRoute(), mi.Name, attr.IsSecure() ? "(SECURE)" : "");
                                         })
                                         .ToList();
 
@@ -75,6 +85,61 @@ namespace Sieena.Parking.API.Modules.Classes
                 Func<dynamic, Response> method = (parameters) => {
                     try
                     {
+                        // Authentication
+                        if (tag.IsSecure())
+                        {
+                            var header_token= Context.Request.Headers["x-parking-token"].FirstOrDefault() ?? string.Empty;
+                            var header_sign = Context.Request.Headers["x-parking-signature"].FirstOrDefault() ?? string.Empty;
+
+                            // Validate signature and token.
+                            string signature = header_sign == string.Empty ? parameters["pk_signature"] : header_sign;
+                            string token     = header_token == string.Empty ? parameters["pk_token"] : header_token;
+                            string tokenRaw  = string.Empty;
+
+                            try {
+                                tokenRaw = Crypto.DecryptStringAES(token, ConfigurationManager.AppSettings["Crypto.Secret"]);
+                            } catch(Exception e) {
+                                throw new APIException(Resources.API_ErrorInvalidToken);
+                            }
+
+                            Guid tokenGuid  = new Guid(tokenRaw);
+
+                            #region Validate session token.
+
+                            APISession sess = APISession.Get(tokenGuid);
+                            if (sess == null)
+                            {
+                                throw new AccessException(Resources.API_ErrorSessionRequired);
+                            }
+
+                            User user = User.GetById(sess.UserId.Value);
+
+                            if (tag.GetRoleLevel() > 0)
+                            {
+                                Role role = Role.GetRolesForUser(user.Email).OrderByDescending( r => r.RoleLevel ).FirstOrDefault();
+                                if (role == null)
+                                {
+                                    throw new APIException(Resources.API_ErrorNoRolesAssigned);
+                                }
+
+                                if (role.RoleLevel < tag.GetRoleLevel())
+                                {
+                                    throw new AccessException(Resources.API_ErrorSessionPrivilegesRequired);
+                                }
+                            }
+
+                            if (mi.GetParameters().Length != 2)
+                            {
+                                throw new APIException(Resources.API_ErrorMethodDefinition);
+                            }
+
+                            #endregion
+
+                            return Envelope(mi.Invoke(this, new object[] { user, parameters }));
+
+                            //Authorization: "AWS" + " " + AWSAccessKeyID + ":" +   Base64(HMAC-SHA1(UTF-8(Date), UTF-8(AWSSecretAccessKey)))
+                        }
+
                         return Envelope(mi.Invoke(this, new object[] { parameters }));
                     } catch(ModelValidationException me) {
                         Response r = Response.AsJson(new
@@ -123,6 +188,7 @@ namespace Sieena.Parking.API.Modules.Classes
         /// <returns></returns>
         protected Response Envelope(dynamic data)
         {
+            #region Get the type of the Entity
             string type = string.Empty;
             try
             {
@@ -148,6 +214,15 @@ namespace Sieena.Parking.API.Modules.Classes
                 type = data.InnerException != null ? data.InnerException.GetType().Name : type;
                 data = data.InnerException != null ? data.InnerException.Message : data.Message;
             }
+            #endregion
+
+            #region Calculate Signature
+            // Based on Amazon S3 Auth suggestion
+            // http://docs.amazonwebservices.com/AmazonCloudFront/latest/DeveloperGuide/RESTAuthentication.html?r=3922
+
+
+
+            #endregion
 
             return Response.AsJson(new {
                 Time = ConvertToUnixTime(DateTime.Now),

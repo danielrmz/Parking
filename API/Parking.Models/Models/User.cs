@@ -210,6 +210,8 @@ namespace Sieena.Parking.API.Models
                     LastName = up.Surname
                 });
 
+                User.AddRoles(u, new List<Role>() { Role.GetAll().OrderByDescending(r => r.RoleLevel).First() });
+
                 return u;
             }
 

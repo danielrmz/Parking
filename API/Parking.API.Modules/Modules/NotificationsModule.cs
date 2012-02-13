@@ -27,9 +27,9 @@ namespace Sieena.Parking.API.Modules
         }
 
         [Api("/GetAll", ApiMethod.GET)]
-        public List<Notification> GetAll(int userId, int amount)
+        public List<Notification> GetAll(DynamicDictionary parameters)
         {
-            return Notification.GetLastByUserId(userId, amount);
+            return Notification.GetLastByUserId(parameters["userId"], parameters["amount"]);
         }
     }
 }

@@ -61,6 +61,51 @@ namespace Sieena.Parking.Common.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid session token.
+        /// </summary>
+        public static string API_ErrorInvalidToken {
+            get {
+                return ResourceManager.GetString("API_ErrorInvalidToken", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Badly resource defined.
+        /// </summary>
+        public static string API_ErrorMethodDefinition {
+            get {
+                return ResourceManager.GetString("API_ErrorMethodDefinition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User does not have any role assigned.
+        /// </summary>
+        public static string API_ErrorNoRolesAssigned {
+            get {
+                return ResourceManager.GetString("API_ErrorNoRolesAssigned", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User does not have enough privileges to access this resource..
+        /// </summary>
+        public static string API_ErrorSessionPrivilegesRequired {
+            get {
+                return ResourceManager.GetString("API_ErrorSessionPrivilegesRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You require an active session to access that resource..
+        /// </summary>
+        public static string API_ErrorSessionRequired {
+            get {
+                return ResourceManager.GetString("API_ErrorSessionRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to About.
         /// </summary>
         public static string Footer_About {

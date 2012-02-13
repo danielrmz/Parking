@@ -47,6 +47,7 @@
       <HintPath>..\..\packages\ServiceStack.Text.2.26\lib\net35\ServiceStack.Text.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
@@ -59,6 +60,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Constants.cs" />
     <Compile Include="Classes\Extensions.cs" />
     <Compile Include="Classes\AbstractBaseModule.cs" />
     <Compile Include="Modules\AccessTypesModule.cs" />
@@ -75,12 +77,21 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\Parking.Common.Resources\Parking.Common.Resources.csproj">
+      <Project>{E53B19E7-BCF9-4F29-96D0-84CBF1424D99}</Project>
+      <Name>Parking.Common.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\Parking.Common.Utils\Parking.Common.Utils.csproj">
+      <Project>{C1D175EC-4991-4D72-B073-5B0072224155}</Project>
+      <Name>Parking.Common.Utils</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Parking.Models\Parking.API.Models.csproj">
       <Project>{160EAC2B-7C52-405A-80A0-2B020CC51549}</Project>
-      <Name>Parking.Models</Name>
+      <Name>Parking.API.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

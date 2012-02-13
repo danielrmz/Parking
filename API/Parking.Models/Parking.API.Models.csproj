@@ -57,6 +57,7 @@
       <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="Exceptions\APIException.cs" />
+    <Compile Include="Exceptions\AccessException.cs" />
     <Compile Include="Exceptions\ModelValidationException.cs" />
     <Compile Include="Interfaces\IParkingModel.cs" />
     <Compile Include="Interfaces\IUser.cs" />
@@ -122,7 +123,12 @@
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\Parking.Common.Resources\Parking.Common.Resources.csproj">
+      <Project>{E53B19E7-BCF9-4F29-96D0-84CBF1424D99}</Project>
+      <Name>Parking.Common.Resources</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -27,25 +27,25 @@ namespace Sieena.Parking.API.Modules
         }
 
         [Api("/{id}", ApiMethod.GET)]
-        public User GetUser(dynamic parameters)
+        public User GetUser(DynamicDictionary parameters)
         {
             return null;
         }
 
         [Api("/", ApiMethod.POST)]
-        public User AddUser(dynamic parameters)
+        public User AddUser(DynamicDictionary parameters)
         {
             return null;
         }
 
-        [Api("/{id}", ApiMethod.PUT)]
-        public User UpdateUser(dynamic parameters)
+        [Api("/{id}", ApiMethod.PUT, true)]
+        public User UpdateUser(DynamicDictionary parameters)
         {
             return null;
         }
 
-        [Api("/{id}", ApiMethod.DELETE)]
-        public User DeleteUser(dynamic parameters)
+        [Api("/{id}", ApiMethod.DELETE, true, AccessLevel.Admin)]
+        public User DeleteUser(DynamicDictionary parameters)
         {
             return null;
         }

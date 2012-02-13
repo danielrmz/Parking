@@ -28,7 +28,7 @@ namespace Sieena.Parking.API.Modules
         }
 
         [Api("/ValidateUser", ApiMethod.GET)]
-        public bool ValidateUser(dynamic parameters)
+        public bool ValidateUser(DynamicDictionary parameters)
         {
             return User.VerifyCredentials(parameters["user"], parameters["password"]);
         }

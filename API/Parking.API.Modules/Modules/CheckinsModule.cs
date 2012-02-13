@@ -27,8 +27,8 @@ namespace Sieena.Parking.API.Modules
           
         }
 
-        [Api("/GetAll", ApiMethod.GET)]
-        public List<Checkin> GetAll(dynamic parameters)
+        [Api("/GetAll", ApiMethod.GET, true, AccessLevel.Admin)]
+        public List<Checkin> GetAll(DynamicDictionary parameters)
         {
             return Checkin.GetAll();
         }

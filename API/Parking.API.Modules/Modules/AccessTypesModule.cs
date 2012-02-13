@@ -27,7 +27,7 @@ namespace Sieena.Parking.API.Modules
         }
 
         [Api("/GetAll", ApiMethod.GET)]
-        public List<AccessType> GetAll(dynamic parameters)
+        public List<AccessType> GetAll(DynamicDictionary parameters)
         {
             return AccessType.GetAll();
         }

@@ -38,11 +38,11 @@ namespace("Parking.App.Views");
             var submit = form.find("input[type=submit]");
 
             submit.val(submit.data("afterclick")).attr("disabled", true);
-            form.find(".alert-error").hide();
-
+            
             $.post(form.attr("action"), params, function(data){ 
                 
                 if(data.Error == false) {
+                    form.find(".alert-error").hide();
                     Parking.App._user.set(data["Response"]);
                     Parking.App._views.HeaderUserInfo.render();
 
@@ -52,7 +52,7 @@ namespace("Parking.App.Views");
                 } else {
                     submit.val(submit.data("click")).attr("disabled", false);
                     // Display error.
-                    form.find(".alert-error .message").html(data["Response"]["Message"]);
+                    form.find(".alert-error .message").html(data["Response"]);
                     form.find(".alert-error").show();
                 }
             });

@@ -7,6 +7,8 @@ using System.Web.Routing;
 using System.Web.Security;
 using Sieena.Parking.API.Models.Views;
 using APISession = Sieena.Parking.API.Models.Session;
+using Crypto = Sieena.Parking.Common.Utils.Crypto;
+using System.Configuration;
 
 namespace Sieena.Parking.UI.Controllers
 {
@@ -15,7 +17,7 @@ namespace Sieena.Parking.UI.Controllers
 
         public ActionResult LogOn()
         {
-            return View("Login");
+            return View("Blank");
         }
 
         public ActionResult LogOff()
@@ -58,26 +60,30 @@ namespace Sieena.Parking.UI.Controllers
                         returnU = "Home/Index";
                     }
 
+                    API.Models.Role role = API.Models.Role.GetRolesForUser(userName).First();
+
                     return Envelope(new UserInformation { 
-                                SessionId = s.SessionId, 
+                                SessionId = Crypto.EncryptStringAES(s.SessionId.ToString(), ConfigurationManager.AppSettings["Crypto.Secret"]),
                                 Email = userName, 
                                 UserName = model.UserName, 
                                 IsAuthenticated = true, 
                                 ProfilePictureUrl = "", 
                                 FirstName = ui.FirstName, 
-                                LastName = ui.LastName
+                                LastName = ui.LastName,
+                                Role = role.RoleName,
+                                RoleId = role.RoleId
                     }, false);
 
                     
                 }
                 else
                 {
-                    return Envelope(new { Message = Sieena.Parking.Common.Resources.UI.Login_ErrorValidation }, true);  
+                    return Envelope(new { Sieena.Parking.Common.Resources.UI.Login_ErrorValidation }, true);  
                 }
             }
 
             // If we got this far, something failed, redisplay form 
-            return Envelope(new { Message = Sieena.Parking.Common.Resources.UI.Login_ErrorValidation }, true);  
+            return Envelope(new { Sieena.Parking.Common.Resources.UI.Login_ErrorValidation }, true);  
         }
 
         /// <summary>
