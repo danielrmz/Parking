@@ -1,0 +1,77 @@
+﻿/**
+ * master.scss
+ * Defines the main layout styles to be used throught the app.
+ *
+ * @author The JSONS
+ * @copyright 2012 
+ */
+
+/* @group Site fixed vars */
+
+$layoutWidth: 960px;
+$backgroundColor: #D3D6D8;
+$footerColor: #777777;
+
+/* @endgroup */
+
+
+/* @group Layout */
+
+html, body {
+	background: $backgroundColor;
+}
+
+header {
+}
+
+body > div {
+	margin-top: 20px;
+	font-family: 'Open Sans', sans-serif;
+}
+
+footer {
+	padding: 5px;
+	margin: 0 auto;
+	text-align: left;
+	font-size: 11px;
+	color: $footerColor;
+}
+
+.layout-width {
+	width: $layoutWidth;
+	margin: 0px auto;
+}
+
+.container-whole {
+	background: white; 
+	border: 1px solid #D9D9D9; 
+	padding:10px; 
+	box-shadow: rgba(0, 0, 0, 0.1) 0 0 2px 0px; 
+	border-radius: 3px;
+	min-height: 200px;
+}
+
+.container-whole.span12 {
+	margin-left: 0px;
+	padding-right: 5px;
+	width: 940px;
+}
+
+.left {
+	float: left;
+}
+
+.right {
+	float: right;
+}
+
+.right-alignment{ 
+	text-align: right 
+}
+
+label, input, button, select, textarea {
+	font-family: 'Open Sans', sans-serif;
+}
+/* @endgroup */
+
+

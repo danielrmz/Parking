@@ -1,7 +1,45 @@
-﻿namespace("Parking.Common");
+﻿/**
+* Common scripts for the application. 
+*
+* @package     Parking.UI.Scripts
+* @author      The JSONs
+* @copyright   2012 -
+* @license     Propietary
+*/
+namespace("Parking.Common");
 
-(function($, undefined) {
+(function($, common, undefined) {
+    
+    /**
+     * Renders a template in a backbone view context using Handlebars/Mustache and by fetching
+     * a remote template.
+     *
+     * @param {Function=} callback - Callback to be done when the template is fetched/compiled.
+     */
+    common.RenderViewTemplate = function(callback) {
+        var template = this.template;
+        var view     = this;
 
+        fetchTemplate(template, function (tmpl) {
+            var model = {};
+
+            if(view.model != null) {
+                model = view.model.toJSON();
+            } 
+            
+            var locale          = Parking.Configuration["locale"] || "en-US";
+            var localeResources = Parking.Resources["i18n"][locale] || {};
+            var currentUser     = Parking.App._user.toJSON();
+
+            $(view.el).html(tmpl({ "i18n": localeResources, "model": model, "currentUser": currentUser }));
+
+            callback = callback || function() { };
+            callback(tmpl, model);
+        });
+
+    };
+
+    /*
     Parking.Common.AjaxErrorHandler = function (req, status, error) {
         if (req.status == 403) {
             alert('You are not authorized to perform this action.');
@@ -26,7 +64,8 @@
         }
         return valid;
     };
-
+    */
+    /*
     Parking.Common.HandleSuccessfulForm = function (responseText, statusText, xhr, form) {
         var result = JSON.parse(responseText);
         Parking.Common.HandleJsonResult(form, result);
@@ -89,4 +128,5 @@
         form.find(".validation-summary-errors, .validation-summary-valid").addClass("validation-summary-valid").removeClass("validation-summary-errors").find("ul").empty();
     };
 
-})(jQuery);
+    */
+})(jQuery, Parking.Common);

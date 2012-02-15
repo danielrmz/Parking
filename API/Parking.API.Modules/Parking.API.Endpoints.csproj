@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A83D4BD4-75EF-4CAE-8363-E3B3CB0EDA67}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Sieena.Parking.API.Modules</RootNamespace>
+    <AssemblyName>Sieena.Parking.API.Modules</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Nancy">
+      <HintPath>..\..\packages\Nancy.0.9.0\lib\net40\Nancy.dll</HintPath>
+    </Reference>
+    <Reference Include="Nancy.Authentication.Basic">
+      <HintPath>..\..\packages\Nancy.Authentication.Basic.0.9.0\lib\net40\Nancy.Authentication.Basic.dll</HintPath>
+    </Reference>
+    <Reference Include="Nancy.Serialization.ServiceStack">
+      <HintPath>..\..\packages\Nancy.Serialization.ServiceStack.0.9.0\lib\net40\Nancy.Serialization.ServiceStack.dll</HintPath>
+    </Reference>
+    <Reference Include="Nancy.ViewEngines.Razor">
+      <HintPath>..\..\packages\Nancy.Viewengines.Razor.0.9.0\lib\net40\Nancy.ViewEngines.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Text">
+      <HintPath>..\..\packages\ServiceStack.Text.2.26\lib\net35\ServiceStack.Text.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\packages\Nancy.Viewengines.Razor.0.9.0\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Classes\Constants.cs" />
+    <Compile Include="Classes\Extensions.cs" />
+    <Compile Include="Classes\AbstractBaseModule.cs" />
+    <Compile Include="Modules\AccessTypesModule.cs" />
+    <Compile Include="Classes\ApiAttribute.cs" />
+    <Compile Include="Modules\BaseModule.cs" />
+    <Compile Include="Modules\CheckinsModule.cs" />
+    <Compile Include="Modules\AuthModule.cs" />
+    <Compile Include="Modules\ApplicationsModule.cs" />
+    <Compile Include="Modules\EndpointsModule.cs" />
+    <Compile Include="Modules\NotificationsModule.cs" />
+    <Compile Include="Modules\PlacesModule.cs" />
+    <Compile Include="Modules\SpacesModule.cs" />
+    <Compile Include="Modules\UsersModule.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\Parking.Common.Resources\Parking.Common.Resources.csproj">
+      <Project>{E53B19E7-BCF9-4F29-96D0-84CBF1424D99}</Project>
+      <Name>Parking.Common.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\Parking.Common.Utils\Parking.Common.Utils.csproj">
+      <Project>{C1D175EC-4991-4D72-B073-5B0072224155}</Project>
+      <Name>Parking.Common.Utils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Parking.Models\Parking.API.Models.csproj">
+      <Project>{160EAC2B-7C52-405A-80A0-2B020CC51549}</Project>
+      <Name>Parking.API.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

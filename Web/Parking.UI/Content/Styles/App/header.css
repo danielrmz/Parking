@@ -8,13 +8,97 @@
 header {
   /* @group TOPBAR */
   /* @endgroup */ }
+  header .block-light {
+    background-color: transparent;
+    color: #636B7B;
+    font-family: "Open Sans";
+    font-weight: 200;
+    height: 37px;
+    padding: 8px 15px;
+    float: left;
+    min-width: 52px; }
+  header .block-silver {
+    background-color: #C3C3C9;
+    color: #636B7B;
+    font-family: "Open Sans";
+    font-weight: 200;
+    height: 37px;
+    padding: 8px 15px;
+    float: left;
+    min-width: 52px; }
+  header .block-dark {
+    background-color: #636B7B;
+    color: #D6D6D6;
+    font-family: "Open Sans";
+    font-weight: 200;
+    height: 37px;
+    padding: 8px 15px;
+    float: left;
+    min-width: 52px; }
+  header .user-info {
+    /* @group Blocks */
+    /* @endgroup */ }
+    header .user-info p {
+      margin: 0; }
+    header .user-info .user {
+      float: left; }
+    header .user-info .user-name {
+      margin: 5px 0 0; }
+      header .user-info .user-name p {
+        color: #999999;
+        font-family: "Open Sans";
+        font-size: 12px;
+        line-height: 14px;
+        text-align: right;
+        vertical-align: middle;
+        height: 30px; }
+        header .user-info .user-name p span {
+          color: #D0411B;
+          font-size: 13px;
+          font-weight: bold; }
+        header .user-info .user-name p.bottom {
+          color: #999999; }
+      header .user-info .user-name a.btn-sign-out {
+        font-size: 11px; }
+    header .user-info .day {
+      text-align: center;
+      text-transform: lowercase; }
+      header .user-info .day > span:first-child {
+        font-size: 28px; }
+      header .user-info .day > span:first-child + span {
+        line-height: 1px;
+        position: relative;
+        top: -13px;
+        margin-left: -5px;
+        display: inline-block; }
+    header .user-info .time {
+      font-size: 28px;
+      line-height: 33px;
+      text-align: center;
+      margin: 0; }
+      header .user-info .time .tick {
+        width: 10px;
+        display: inline-block; }
+    header .user-info .login {
+      text-align: center;
+      min-width: 25px; }
+      header .user-info .login span {
+        background: url("../Images/icn-header-sheet.png") -21px;
+        width: 20px;
+        height: 22px;
+        display: block;
+        margin-top: 7px; }
+      header .user-info .login:active {
+        background: #C3C3C9; }
+        header .user-info .login:active span {
+          background: url("../Images/icn-header-sheet.png") 0px no-repeat; }
+      header .user-info .login:hover span {
+        background: url("../Images/icn-header-sheet.png") 0px no-repeat; }
   header .topbar {
     z-index: 3;
-    color: white;
-    background-color: #005A9D;
-    background-image: url("/Content/Images/txr-bg-header-blue.png");
-    background-repeat: repeat-x;
-    height: 40px;
+    color: #444;
+    background: #efefef url("../Images/txr-bg-header.png") repeat-x top;
+    height: 53px;
     box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.8);
     -moz-box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.8);
     -webkit-box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.8); }
@@ -23,133 +107,19 @@ header {
     header .topbar .column:last-child {
       float: right; }
     header .topbar .column.notifications {
-      float: left;
       font-family: 'Open Sans', sans-serif;
+      float: left;
       padding: 12px;
       margin-left: 100px; }
       header .topbar .column.notifications.error {
         color: red;
         font-weight: 500; }
-    header .topbar .logo {
+    header .topbar .logo-sieena {
       float: left;
       font-family: 'Open Sans', sans-serif;
-      font-weight: 300;
-      margin-top: 3px; }
-      header .topbar .logo span.sieena {
-        color: white !important;
-        font-size: 20px; }
-      header .topbar .logo a {
-        float: none !important;
-        display: inline !important;
-        padding: 0 !important;
-        display: block;
-        height: 21px;
-        margin: 0 !important;
-        color: white !important;
-        text-shadow: none !important; }
-    header .topbar ul.menu {
-      float: right; }
-      header .topbar ul.menu .checkout {
-        padding: 8px; }
-        header .topbar ul.menu .checkout input[type=button] {
-          line-height: 15px; }
-          header .topbar ul.menu .checkout input[type=button].out {
-            -webkit-border-radius: 4px;
-            -webkit-border-top-right-radius: 0px;
-            -webkit-border-bottom-right-radius: 0px;
-            -moz-border-radius: 4px;
-            -moz-border-radius-topright: 0px;
-            -moz-border-radius-bottomright: 0px;
-            border-radius: 4px;
-            border-top-right-radius: 0px;
-            border-bottom-right-radius: 0px;
-            float: left;
-            position: relative;
-            left: 1px;
-            height: 24px; }
-        header .topbar ul.menu .checkout input[type=image].switch {
-          -webkit-border-radius: 0px;
-          -webkit-border-top-right-radius: 4px;
-          -webkit-border-bottom-right-radius: 4px;
-          -moz-border-radius: 0px;
-          -moz-border-radius-topright: 4px;
-          -moz-border-radius-bottomright: 4px;
-          border-radius: 0px;
-          border-top-right-radius: 4px;
-          border-bottom-right-radius: 4px;
-          float: right;
-          height: 14px;
-          width: 8px;
-          padding-left: 4px;
-          padding-right: 4px; }
-      header .topbar ul.menu .alert {
-        padding: 10px; }
-        header .topbar ul.menu .alert .twipsy.left {
-          float: left;
-          position: relative;
-          left: -5px;
-          top: -5px; }
-      header .topbar ul.menu .user {
-        color: black;
-        display: block;
-        padding: 8px;
-        min-width: auto; }
-        header .topbar ul.menu .user .avatar {
-          height: 25px;
-          float: left;
-          border: 1px solid silver;
-          background: white;
-          padding: 2px;
-          position: relative;
-          top: -3px;
-          margin-right: 10px; }
-        header .topbar ul.menu .user a.menu {
-          color: black;
-          text-shadow: 0 0px 0 transparent !important;
-          padding: 3px 5px;
-          float: right;
-          border-right: 1px solid transparent;
-          border-bottom: 1px solid transparent; }
-          header .topbar ul.menu .user a.menu:hover {
-            background: rgba(230, 230, 230, 0.8);
-            -webkit-border-radius: 4px;
-            -moz-border-radius: 4px;
-            border-radius: 4px;
-            border-right: 1px solid silver;
-            border-bottom: 1px solid silver; }
-          header .topbar ul.menu .user a.menu::after {
-            width: 0px;
-            height: 0px;
-            display: inline-block;
-            content: "&darr;";
-            text-indent: -99999px;
-            vertical-align: top;
-            margin-top: 8px;
-            margin-left: 4px;
-            border-left: 4px solid transparent;
-            border-right: 4px solid transparent;
-            border-top: 4px solid black;
-            opacity: 0.5;
-            filter: alpha(opacity=50);
-            -khtml-opacity: 0.5;
-            -moz-opacity: 0.5; }
-      header .topbar ul.menu .search input {
-        border: 1px solid #cccccc;
-        background: white;
-        height: 15px;
-        margin-top: 3px;
-        font-style: italic;
-        font-weight: normal; }
-        header .topbar ul.menu .search input:focus {
-          color: black !important;
-          font-style: normal;
-          padding: 4px 9px !important;
-          transition: border linear 0.2s,box-shadow linear 0.2s;
-          box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
-          -webkit-transition: border linear 0.2s,box-shadow linear 0.2s;
-          -moz-transition: border linear 0.2s,box-shadow linear 0.2s;
-          -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
-          -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); }
-      header .topbar ul.menu .edit-mode {
-        padding: 12px;
-        padding-right: 5px; }
+      display: inline !important;
+      margin-top: 12px;
+      padding: 0 !important;
+      height: 35px;
+      width: 120px;
+      background: url("../Images/logo-myplace.png"); }

@@ -1,0 +1,267 @@
+/**
+ * main.scss
+ * CSS Required for the main part of the layout.
+ *
+ * @author The JSONS
+ * @copyright 2012 
+ */
+.row-fluid .span2 + .span2 {
+  margin-top: 30px; }
+
+body > div h2 {
+  font-size: 14px;
+  line-height: 20px;
+  border-bottom: 1px dotted #cccccc;
+  padding-bottom: 10px; }
+body > div input:focus, body > div textarea:focus {
+  border-color: rgba(82, 168, 236, 0.8);
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 3px rgba(82, 168, 236, 0.6);
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 3px rgba(82, 168, 236, 0.6);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 3px rgba(82, 168, 236, 0.6); }
+body > div .form-login {
+  margin-top: 40px;
+  background: white;
+  padding: 10px 20px 5px;
+  box-shadow: #999 0 0 5px 0px;
+  border-radius: 3px; }
+  body > div .form-login .fields label {
+    padding-top: 5px;
+    text-align: left;
+    color: #626262; }
+  body > div .form-login .fields input[type=password] {
+    width: 89%; }
+  body > div .form-login h4 {
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    color: #333;
+    border-bottom: 1px solid #efefef; }
+  body > div .form-login .btn {
+    float: right; }
+  body > div .form-login .remember label {
+    display: inline-block;
+    padding-top: 7px;
+    font-size: 11px;
+    color: silver; }
+body > div .pariking-map {
+  background: url("/Content/Styles/Images/bg-parking.png") no-repeat scroll center 0 transparent;
+  height: 1302px;
+  width: auto;
+  position: relative;
+  /*Section A*/
+  /*Section B*/
+  /*Section C*/ }
+  body > div .pariking-map .car {
+    position: absolute;
+    left: 10px;
+    bottom: 51px;
+    width: 122px;
+    height: 64px;
+    background: url("/Content/Styles/Images/icn-car.png") no-repeat scroll 0 0 transparent; }
+  body > div .pariking-map .a2 {
+    bottom: 130px; }
+  body > div .pariking-map .a3 {
+    bottom: 205px; }
+  body > div .pariking-map .a4 {
+    bottom: 286px; }
+  body > div .pariking-map .a5 {
+    bottom: 367px; }
+  body > div .pariking-map .a6 {
+    bottom: 240px;
+    -moz-transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    bottom: 348px;
+    left: 236px; }
+  body > div .pariking-map .a7 {
+    bottom: 240px;
+    bottom: 232px;
+    left: 368px; }
+  body > div .pariking-map .a8 {
+    bottom: 240px;
+    bottom: 145px;
+    left: 368px; }
+  body > div .pariking-map .a9 {
+    bottom: 60px;
+    left: 368px; }
+  body > div .pariking-map .b1 {
+    bottom: 473px; }
+  body > div .pariking-map .b2 {
+    bottom: 539px; }
+  body > div .pariking-map .b3 {
+    bottom: 604px; }
+  body > div .pariking-map .b4 {
+    bottom: 668px; }
+  body > div .pariking-map .b5 {
+    bottom: 734px; }
+  body > div .pariking-map .b6 {
+    bottom: 801px; }
+  body > div .pariking-map .b7 {
+    bottom: 801px;
+    left: 368px; }
+  body > div .pariking-map .b8 {
+    bottom: 734px;
+    left: 368px; }
+  body > div .pariking-map .b9 {
+    bottom: 669px;
+    left: 368px; }
+  body > div .pariking-map .b10 {
+    bottom: 604px;
+    left: 368px; }
+  body > div .pariking-map .b11 {
+    bottom: 539px;
+    left: 368px; }
+  body > div .pariking-map .c1 {
+    bottom: 913px; }
+  body > div .pariking-map .c2 {
+    bottom: 995px; }
+  body > div .pariking-map .c3 {
+    bottom: 1072px; }
+  body > div .pariking-map .c4 {
+    bottom: 1151px; }
+  body > div .pariking-map .c5 {
+    bottom: 1230px; }
+  body > div .pariking-map .c6 {
+    bottom: 1203px;
+    left: 147px;
+    -moz-transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg); }
+  body > div .pariking-map .c7 {
+    bottom: 1203px;
+    left: 235px;
+    -moz-transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg); }
+  body > div .pariking-map .c8 {
+    bottom: 1076px;
+    left: 147px;
+    -moz-transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg); }
+  body > div .pariking-map .c9 {
+    bottom: 1076px;
+    left: 235px;
+    -moz-transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg); }
+  body > div .pariking-map .c10 {
+    bottom: 1230px;
+    left: 368px; }
+  body > div .pariking-map .c11 {
+    bottom: 1150px;
+    left: 368px; }
+  body > div .pariking-map .c12 {
+    bottom: 1073px;
+    left: 368px; }
+  body > div .pariking-map .c13 {
+    bottom: 994px;
+    left: 368px; }
+  body > div .pariking-map .c14 {
+    bottom: 913px;
+    left: 368px; }
+body > div .new-car {
+  background: url("../Images/icn-new-car.png") no-repeat center 0 transparent;
+  width: 49px;
+  height: 81px;
+  margin: 20px auto; }
+body > div .user {
+  padding-left: 35px;
+  position: relative;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #cccccc; }
+  body > div .user h3 {
+    font-size: 14px;
+    line-height: 27px;
+    margin: 0 0 5px;
+    line-height: 14px;
+    color: #333333; }
+  body > div .user img {
+    position: absolute;
+    left: 0; }
+  body > div .user p {
+    margin: 0 0;
+    font-size: 11px;
+    line-height: 12px;
+    color: #666; }
+    body > div .user p span {
+      color: #999;
+      font-weight: bold;
+      font-size: 9px; }
+    body > div .user p b {
+      font-size: 13px; }
+body > div .user:last-child {
+  border-bottom: 0 none;
+  margin-bottom: 0px;
+  padding-bottom: 0px; }
+body > div .my-profile h2 {
+  margin-bottom: 15px; }
+body > div .my-profile h3 {
+  margin-bottom: 0px; }
+body > div .my-profile .btn-edit {
+  background: url("../Images/icn-edit.png") no-repeat center center transparent;
+  width: 40px;
+  height: 14px;
+  display: inline-block;
+  margin: 10px 0 0;
+  border: 1px solid #cccccc;
+  border-radius: 2px;
+  padding: 2px; }
+  body > div .my-profile .btn-edit span {
+    display: none; }
+body > div .my-profile p {
+  margin: 0 0;
+  padding: 0;
+  line-height: 11px; }
+body > div .my-profile div.car-description {
+  margin: 5px 0 5px;
+  border: 1px solid #666;
+  background-color: #efefef;
+  padding: 3px 6px; }
+body > div .my-profile .icon-tel {
+  border-top: 1px #ccc dotted;
+  padding-top: 10px; }
+body > div .my-profile .icon-tel, body > div .my-profile .icon-cel, body > div .my-profile .icon-car {
+  height: auto;
+  background: url("../Images/icon-sheet.png") no-repeat scroll left -18px transparent;
+  display: block;
+  font-size: 9px;
+  margin: 13px 0 0;
+  padding-left: 17px;
+  width: auto; }
+body > div .my-profile .icon-cel {
+  background-position: left 0px;
+  margin: 5px 0 15px;
+  min-height: 14px;
+  line-height: 14px; }
+body > div .my-profile .icon-car {
+  background-position: left -50px;
+  margin: 0; }
+body > div .my-profile strong {
+  color: #333333;
+  font-weight: bold; }
+body > div .my-profile img {
+  border: 1px solid #ddd; }
+body > div .my-place .row {
+  margin: 0; }
+  body > div .my-place .row img {
+    border: 1px solid #cccccc; }
+body > div .my-place h4 {
+  background-color: #EFEFEF;
+  border-bottom: 1px solid #cccccc;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 11px;
+  margin: 0 0 10px;
+  padding: 5px; }
+body > div .my-place .btn {
+  width: 100%; }
+body > div .row-fluid .span6.container-parking {
+  width: 503px;
+  padding: 0;
+  border: 1px solid #fff; }

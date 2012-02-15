@@ -1,31 +1,38 @@
-﻿<div class="topbar">
+﻿@using i18n = Sieena.Parking.Common.Resources.UI;
 
-    <div class='layout-width'>
+<div class="topbar">
+
+    <div class="layout-width">
+
 	    <div class="column">
-		    <h3 class="logo"><a href="/">myplace</a></h3>
+		    <a class="logo-sieena" href="/"></a>
 	    </div>
 	
-	    <div class="column">
-		    <ul class="menu">
-			    <!-- <li class="alert" style="display:none;">
-				    <div class="twipsy left"><div class="twipsy-arrow"></div> <div class="twipsy-inner">carros obstruyendote</div></div>
-			        <%=image_tag "alert_ico.png" %>
-			    </li>
-			    <li class="checkout">
-				    <input type="button" class="btn small primary out" value="Hasta Luego!" />
-				    <input type="image" class="btn small primary switch" src="/images/switch_ico.png" />
-			    </li>
-			    <li class="user">
-				    <img src="http://gravatar.com/avatar/7a076e0256bf05a5063f2260813e3e7c.jpg?s=30" class="avatar" /> 
-				    <a href="#" class="menu">Daniel Ramirez</a>
-			    </li>
-			    <li class="search"><form><input type="text" placeholder="buscar…" class="large" /></form></li>
-                -->
-		    </ul>
-	    </div>
-	
-	    <div class="column notifications error">
-	    </div>
+	    
+        <div class="column user-info" >
+            <div class="user">
+                <div class="block-light user-name" style="display:none;"> 
+                    <p>
+                        @Html.Raw(string.Format(i18n.Header_WelcomeText, "{{user.displayname}}")) 
+                        <br /><a href="#" class="btn-sign-out">Sign Out</a>
+                    </p> 
+                </div>
+
+                <a href="/login" class="block-light login">
+                    <span></span>
+                </a>
+            </div>
+
+            <div class="block-dark day"> 
+                <span class="js-day"></span>
+                <span class="js-dayup"></span>
+                <div class="js-monthyear"></div>
+            </div>
+            
+            <div class="block-silver time"> 
+                <span class="js-time"></span>
+            </div>
+        </div>
 	
     </div>
 

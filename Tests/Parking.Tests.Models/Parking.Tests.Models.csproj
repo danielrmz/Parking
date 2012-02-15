@@ -38,6 +38,7 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Transactions" />
   </ItemGroup>
   <ItemGroup>
@@ -48,11 +49,12 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AuthTest.cs" />
+    <Compile Include="UserTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\API\Parking.Models\Parking.Models.csproj">
+    <ProjectReference Include="..\..\API\Parking.Models\Parking.API.Models.csproj">
       <Project>{160EAC2B-7C52-405A-80A0-2B020CC51549}</Project>
-      <Name>Parking.Models</Name>
+      <Name>Parking.API.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

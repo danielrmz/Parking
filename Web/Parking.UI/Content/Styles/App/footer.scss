@@ -1,0 +1,55 @@
+﻿/**
+ * footer.scss
+ * CSS Required for the footer part of the layout.
+ *
+ * @author The JSONS
+ * @copyright 2012 
+ */
+
+ footer {
+	margin-top: 50px;
+
+    & > div {
+		border-top: 1px solid #BBB;
+		padding-top: 5px;
+	}
+
+	.right {
+	}
+
+	.copy {
+		display: inline-block;
+		margin-right: 10px;
+			
+		.separator {
+			margin-left: 5px;
+		}
+	}
+
+	ul.list-inline {
+		margin: 0;
+		list-style: none;
+		display: inline-block;
+
+		li {
+			display: inline-block;
+			margin-right: 5px;
+			a {
+				color: #3A6EA5;
+			}
+			
+		}
+	}
+
+	.separator {
+		padding: 0;
+		color: gray;
+		position: relative;
+		top: -1px;
+		font-size: 7px;
+		&::after {
+			content: "\25A0"
+		}
+	}
+
+ }
