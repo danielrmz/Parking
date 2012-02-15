@@ -1,25 +1,32 @@
-﻿using System;
+﻿/**
+ *
+ * @package     Parking.API.Models
+ * @author      The JSONs
+ * @copyright   2012 - 20XX
+ * @license     Propietary
+ */
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
 namespace Sieena.Parking.API.Models
 {
+    using Interfaces;
+
     /// <summary>
     /// AccessTypes data methods.
     /// </summary>
-    public partial class AccessType
+    public partial class AccessType : ParkingModel, IAccessType
     {
+        
         /// <summary>
         /// Gets all the access types 
         /// </summary>
         /// <returns></returns>
         public static List<AccessType> GetAll()
         {
-            using (DataStoreDataContext ctx = new DataStoreDataContext())
-            {
-                return ctx.AccessTypes.ToList();
-            }
+            return ctx.AccessTypes.ToList();
         }
     }
 }

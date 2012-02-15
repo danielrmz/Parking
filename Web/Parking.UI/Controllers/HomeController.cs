@@ -8,13 +8,9 @@ namespace Parking.UI.Controllers
 {
     public class HomeController : Controller
     {
-        //
-        // GET: /Home/
-
-        public ActionResult Index()
+        public ActionResult Blank()
         {
             return View();
         }
-
     }
 }

@@ -10,7 +10,7 @@
     <ProjectTypeGuids>{E53F8FEA-EAE0-44A6-8774-FFD645390401};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Parking.UI</RootNamespace>
+    <RootNamespace>Sieena.Parking.UI</RootNamespace>
     <AssemblyName>Parking.UI</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
@@ -71,8 +71,9 @@
     <Reference Include="Nancy.Serialization.ServiceStack">
       <HintPath>..\..\packages\Nancy.Serialization.ServiceStack.0.9.0\lib\net40\Nancy.Serialization.ServiceStack.dll</HintPath>
     </Reference>
-    <Reference Include="ServiceStack.Text">
-      <HintPath>..\..\packages\ServiceStack.Text.2.26\lib\net35\ServiceStack.Text.dll</HintPath>
+    <Reference Include="ServiceStack.Text, Version=3.4.8.9213, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\ServiceStack.Text.3.4.8\lib\ServiceStack.Text.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
@@ -106,9 +107,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\ApiBootstrapper.cs" />
-    <Compile Include="App_Start\Combres.cs" />
+    <Compile Include="Classes\Combres.cs" />
+    <Compile Include="Classes\CombresTemplateFilter.cs" />
+    <Compile Include="Classes\CombresResourceFilter.cs" />
+    <Compile Include="Classes\ParkingMembershipProvider.cs" />
+    <Compile Include="Classes\ParkingRoleProvider.cs" />
+    <Compile Include="Controllers\AccountController.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\StaticController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -118,19 +125,62 @@
     <Content Include="App_Data\combres.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="App_Data\combres_full_with_annotation.xml" />
-    <Content Include="Content\Images\glyphicons-halflings-white.png" />
-    <Content Include="Content\Images\glyphicons-halflings.png" />
-    <Content Include="Content\Images\txr-bg-canvas.png" />
-    <Content Include="Content\Images\txr-bg-header-blue.png" />
-    <Content Include="Content\Images\txr-bg-header.png" />
+    <Content Include="Content\Images\img-01.png" />
+    <Content Include="Content\Scripts\App\Backbone\Templates\Parking\Home.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Scripts\App\Backbone\Templates\Shared\HeaderUserInfo.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Scripts\App\Backbone\Templates\Static\Help.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Scripts\App\Backbone\Views\Main.js" />
+    <Content Include="Content\Scripts\App\Backbone\Views\HeaderUserInfo.js" />
+    <Content Include="Content\Scripts\App\Backbone\Views\Static.js" />
+    <Content Include="Content\Scripts\Plugins\handlebars-1.0.0.js" />
+    <Content Include="Content\Scripts\Shared\Header.js" />
+    <Content Include="Content\Styles\Images\Bootstrap\glyphicons-halflings-white.png" />
+    <Content Include="Content\Styles\Images\Bootstrap\glyphicons-halflings.png" />
+    <Content Include="Content\Styles\Images\Gritter\gritter-long.png" />
+    <Content Include="Content\Styles\Images\Gritter\gritter.png" />
+    <Content Include="Content\Styles\Images\Gritter\ie-spacer.gif" />
+    <Content Include="Content\Styles\Images\icn-car.png" />
+    <Content Include="Content\Styles\Images\icn-header-sheet.png" />
+    <Content Include="Content\Styles\Images\logo-myplace.png" />
+    <Content Include="Content\Styles\Images\txr-bg-canvas-gray.png" />
+    <Content Include="Content\Styles\Images\txr-bg-canvas.png" />
+    <Content Include="Content\Styles\Images\txr-bg-header-blue.png" />
+    <Content Include="Content\Styles\Images\txr-bg-header.png" />
+    <Content Include="Content\Scripts\App\Backbone\Models\UserInformationModel.js" />
+    <Content Include="Content\Scripts\App\Backbone\Router.js" />
+    <Content Include="Content\Scripts\App\Backbone\Views\Login.js" />
+    <Content Include="Content\Scripts\App\Home\Index.js" />
     <Content Include="Content\Scripts\Parking.js" />
+    <Content Include="Content\Scripts\Plugins\backbone-0.9.1.js" />
     <Content Include="Content\Scripts\Plugins\bootstrap.min.js" />
     <Content Include="Content\Scripts\Plugins\jquery.gritter.js" />
+    <Content Include="Content\Scripts\Plugins\json2.js" />
     <Content Include="Content\Scripts\Plugins\namespace.js" />
+    <Content Include="Content\Scripts\Plugins\underscore-1.3.1.js" />
     <Content Include="Content\Scripts\Shared\Common.js" />
     <Content Include="Content\Scripts\Shared\Configuration.js" />
     <Content Include="Content\Scripts\Shared\Resources.js" />
+    <Content Include="Content\Styles\App\footer.css">
+      <DependentUpon>footer.scss</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Content>
+    <Content Include="Content\Styles\App\main.css">
+      <DependentUpon>main.scss</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Content>
+    <Content Include="Content\Styles\Images\bg-parking.png" />
+    <Content Include="Content\Styles\Images\icn-edit.png" />
+    <Content Include="Content\Styles\Images\icn-new-car.png" />
+    <Content Include="Content\Images\icn-sieena-footer.png" />
+    <Content Include="Content\Styles\Images\icon-sheet.png" />
     <Content Include="Content\Styles\Plugins\Bootstrap\bootstrap-responsive.css" />
     <Content Include="Content\Styles\Plugins\Bootstrap\bootstrap-responsive.min.css" />
     <Content Include="Content\Styles\Plugins\Bootstrap\bootstrap.css" />
@@ -140,10 +190,20 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>header.scss</DependentUpon>
     </Content>
-    <Content Include="Content\Styles\App\master.css">
+    <Content Include="Content\Styles\App\layout.css">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>master.scss</DependentUpon>
+      <DependentUpon>layout.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\Styles\Plugins\jquery.gritter.css" />
+    <Content Include="Content\Scripts\App\Backbone\Templates\Static\About.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Scripts\App\Backbone\Templates\Static\Terms.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Scripts\App\Backbone\Templates\Static\Privacy.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -192,42 +252,57 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Content\Scripts\App\" />
-    <Folder Include="Content\Templates\" />
-    <Folder Include="Models\" />
+    <Folder Include="Content\Scripts\App\Backbone\Collections\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Home\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Api\Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\API\Parking.API.Modules\Parking.API.Modules.csproj">
+    <ProjectReference Include="..\..\API\Parking.API.Modules\Parking.API.Endpoints.csproj">
       <Project>{A83D4BD4-75EF-4CAE-8363-E3B3CB0EDA67}</Project>
-      <Name>Parking.API.Modules</Name>
+      <Name>Parking.API.Endpoints</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\API\Parking.Models\Parking.API.Models.csproj">
+      <Project>{160EAC2B-7C52-405A-80A0-2B020CC51549}</Project>
+      <Name>Parking.API.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\Parking.Common.Resources\Parking.Common.Resources.csproj">
+      <Project>{E53B19E7-BCF9-4F29-96D0-84CBF1424D99}</Project>
+      <Name>Parking.Common.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\Parking.Common.Utils\Parking.Common.Utils.csproj">
+      <Project>{C1D175EC-4991-4D72-B073-5B0072224155}</Project>
+      <Name>Parking.Common.Utils</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_Header.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Content\Styles\App\footer.scss">
+      <Generator>ScssGenerator</Generator>
+      <LastGenOutput>footer.css</LastGenOutput>
+    </None>
+    <None Include="Content\Styles\App\main.scss">
+      <Generator>ScssGenerator</Generator>
+      <LastGenOutput>main.css</LastGenOutput>
+    </None>
     <None Include="Content\Styles\App\header.scss">
       <Generator>ScssGenerator</Generator>
       <LastGenOutput>header.css</LastGenOutput>
     </None>
-    <None Include="Content\Styles\App\master.scss">
+    <None Include="Content\Styles\App\layout.scss">
       <Generator>ScssGenerator</Generator>
-      <LastGenOutput>master.css</LastGenOutput>
+      <LastGenOutput>layout.css</LastGenOutput>
     </None>
-    <Content Include="Views\Static\About.cshtml" />
-    <Content Include="Views\Static\Help.cshtml" />
-    <Content Include="Views\Static\Privacy.cshtml" />
-    <Content Include="Views\Static\Terms.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Content\Scripts\App\Backbone\Templates\Account\Login.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Shared\Blank.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
@@ -252,8 +327,7 @@
           </IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
+          <CustomServerUrl>http://parking.local</CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>

@@ -1,4 +1,11 @@
-﻿using System;
+﻿/**
+ *
+ * @package     Parking.API.Modules
+ * @author      The JSONs
+ * @copyright   2012 - 20XX
+ * @license     Propietary
+ */
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,16 +17,17 @@ using Sieena.Parking.API.Models;
 
 namespace Sieena.Parking.API.Modules
 {
+    using Classes;
+
     public class SpacesModule : AbstractBaseModule
     {
-        public SpacesModule() : base("Spaces")
+        public SpacesModule() : base("spaces")
         {
         }
 
         [Api("/GetAllByPlaceId/{placeid}", ApiMethod.GET)]
         public List<Space> GetAllByPlaceId(DynamicDictionary parameters)
         {
-            
             return Space.GetAllByPlaceId(parameters["placeid"]);
         }
 

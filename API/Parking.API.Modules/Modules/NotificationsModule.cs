@@ -1,4 +1,11 @@
-﻿using System;
+﻿/**
+ *
+ * @package     Parking.API.Modules
+ * @author      The JSONs
+ * @copyright   2012 - 20XX
+ * @license     Propietary
+ */
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,17 +17,19 @@ using Sieena.Parking.API.Models;
 
 namespace Sieena.Parking.API.Modules
 {
+    using Classes;
+
     public class NotificationsModule : AbstractBaseModule
     {
         public NotificationsModule()
-            : base("Notifications")
+            : base("notifications")
         {
         }
 
         [Api("/GetAll", ApiMethod.GET)]
-        public List<Notification> GetAll(int userId, int amount)
+        public List<Notification> GetAll(DynamicDictionary parameters)
         {
-            return Notification.GetLastByUserId(userId, amount);
+            return Notification.GetLastByUserId(parameters["userId"], parameters["amount"]);
         }
     }
 }

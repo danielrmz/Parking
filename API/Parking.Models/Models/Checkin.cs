@@ -1,14 +1,23 @@
-﻿using System;
+﻿/**
+ *
+ * @package     Parking.API.Models
+ * @author      The JSONs
+ * @copyright   2012 - 20XX
+ * @license     Propietary
+ */
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
 namespace Sieena.Parking.API.Models
 {
+    using Interfaces;
+
     /// <summary>
     /// Represents the checkin from a person to a specified place.
     /// </summary>
-    public partial class Checkin
+    public partial class Checkin : ParkingModel, ICheckin
     {
         /// <summary>
         /// Gets all the checkins in the system.
@@ -16,10 +25,7 @@ namespace Sieena.Parking.API.Models
         /// <returns></returns>
         public static List<Checkin> GetAll()
         {
-            using (DataStoreDataContext ctx = new DataStoreDataContext())
-            {
-                return ctx.Checkins.OrderByDescending(c => c.CheckInId).ToList();
-            }
+            return ctx.Checkins.OrderByDescending(c => c.CheckInId).ToList();
         }
 
 
@@ -30,10 +36,7 @@ namespace Sieena.Parking.API.Models
         /// <returns></returns>
         public static Checkin Get(int id)
         {
-            using (DataStoreDataContext ctx = new DataStoreDataContext())
-            {
-                return ctx.Checkins.Where(c => c.CheckInId.Equals(id)).FirstOrDefault();
-            }
+            return ctx.Checkins.Where(c => c.CheckInId.Equals(id)).FirstOrDefault();
         }
 
         /// <summary>
@@ -43,15 +46,14 @@ namespace Sieena.Parking.API.Models
         /// <returns></returns>
         public static Checkin Save(Checkin c)
         {
-            using (DataStoreDataContext ctx = new DataStoreDataContext())
-            {
-                if (c.CheckInId == 0)
-                {
-                    ctx.Checkins.InsertOnSubmit(c);
-                }
+            c.ValidateAndRaise();
 
-                ctx.SubmitChanges();
+            if (c.CheckInId == 0)
+            {
+                ctx.Checkins.InsertOnSubmit(c);
             }
+
+            ctx.SubmitChanges();
 
             return c;
         }
@@ -63,13 +65,11 @@ namespace Sieena.Parking.API.Models
         /// <returns></returns>
         public static Checkin Delete(int id)
         {
-            using (DataStoreDataContext ctx = new DataStoreDataContext())
-            {
-                Checkin c = Get(id);
-                ctx.Checkins.DeleteOnSubmit(c);
-                ctx.SubmitChanges();
-                return c;
-            }
+            Checkin c = Get(id);
+            ctx.Checkins.DeleteOnSubmit(c);
+            ctx.SubmitChanges();
+            
+            return c;
         }
     }
 }

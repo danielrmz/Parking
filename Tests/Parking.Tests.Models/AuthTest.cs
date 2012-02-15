@@ -3,8 +3,9 @@ using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Sieena.Parking.API.Models;
 using System.Transactions;
+
+using Sieena.Parking.API.Models;
 
 namespace Sieena.Parking.Tests.Models
 {
@@ -16,16 +17,7 @@ namespace Sieena.Parking.Tests.Models
         {
             using (TransactionScope scope = new TransactionScope())
             {
-                User u = new User()
-                {
-                    Password = "test123",
-                    Email = "daniel.ramirez@sieena.com",
-                    IsActive = true,
-                    CreatedAt = DateTime.Now
-                };
-
-                User.SaveUser(u);
-                //Assert.IsTrue(User.Validate("daniel.ramirez@sieena.com", "pass123"));
+                Assert.IsTrue(User.VerifyCredentials("daniel.ramirez@sieena.com", "xrZ40uye"));
                 scope.Dispose();
             }
         }
@@ -38,11 +30,11 @@ namespace Sieena.Parking.Tests.Models
                 User.SaveUser(new User()
                 {
                     Password = "test123",
-                    Email = "daniel.ramirez@sieena.com",
+                    Email = "daniel@sieena.com",
                     IsActive = true,
                     CreatedAt = DateTime.Now
                 });
-                Assert.IsTrue(User.Validate("daniel.ramirez@sieena.com", "test123"));
+                Assert.IsTrue(User.VerifyCredentials("daniel@sieena.com", "test123"));
                 scope.Dispose();
             }
         }
