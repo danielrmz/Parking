@@ -32,10 +32,44 @@ namespace("Parking.Common");
             var currentUser     = Parking.App._user.toJSON();
 
             $(view.el).html(tmpl({ "i18n": localeResources, "model": model, "currentUser": currentUser }));
-
+            
             callback = callback || function() { };
-            callback(tmpl, model);
+            if(typeof(callback) == 'function') {
+                callback(tmpl, model);
+            }
         });
+
+    };
+
+    common.DisplayGlobalError = function(message) {
+        $(".js-globalError .message").html(message)
+        $(".js-globalError").modal()
+    };
+
+    common.SetupAjaxToken = function(token) { 
+
+        $.ajaxPrefilter(function(options, originalOptions, xhr) {
+            xhr.setRequestHeader('x-parking-token', token);
+        });
+
+        $.ajaxSetup({
+            "complete": function(data) { 
+                if(data.status == 200) {
+                    var message = JSON.parse(data["responseText"]); 
+                    if(message["Error"] == true && message["Type"] == "APIException") {
+                        common.DisplayGlobalError(message["Response"]);
+                    }           
+                } 
+            }, 
+            "statusCode": {
+                404: function() { 
+                    common.DisplayGlobalError("Page not found");
+                },
+                500: function() {
+                    common.DisplayGlobalError("Unknown error ocurred, please try again");
+                }
+            }
+        }); 
 
     };
 

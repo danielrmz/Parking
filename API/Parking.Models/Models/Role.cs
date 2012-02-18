@@ -29,6 +29,12 @@ namespace Sieena.Parking.API.Models
             return ctx.Roles.ToList(); 
         }
 
+        public static List<Role> GetRolesForUser(int userId)
+        {
+            List<int> userRoles = ctx.UserRoles.Where(ur => ur.UserId.Equals(userId)).Select(ur => ur.RoleId).ToList();
+            return ctx.Roles.Where(r => userRoles.Contains(r.RoleId)).ToList();
+        }
+
         public static List<Role> GetRolesForUser(string email)
         {
             User u = User.GetByEmail(email);

@@ -13,20 +13,15 @@ namespace("Parking.App.Views");
 
     views.HeaderUserInfo = Backbone.View.extend({
 
-        template: Parking.Configuration.ClientTemplatesUrl + "Shared/HeaderUserInfo.html",
+        template: Parking.Configuration.ClientTemplatesUrl + "Shared/HeaderNotificationBar.html",
         
         render: Parking.Common.RenderViewTemplate,
 
-        initialize: function() {
-            Parking.App._user.on("change", this.render, this);
-        },
-
         events: {
-           "click .js-logout": "logout",
+           "click .js-logout": "logout"
         },
 
         "logout": function(e) {
-            Parking.App._user.destroy();
             return false;
         }
 

@@ -24,6 +24,29 @@ namespace Sieena.Parking.API.Models
         }
 
         /// <summary>
+        /// Sets a new session object
+        /// </summary>
+        /// <param name="s"></param>
+        public static Session Set(int userId, TimeSpan timeOut, bool rememberMe)
+        {
+            Session s = new Session() { 
+                        UserId = userId,
+                        CreatedAt = DateTime.Now,
+                        ExpiresAt = rememberMe ? DateTime.MinValue : DateTime.Now.Add(timeOut),
+                        LastAccess= DateTime.Now,
+                        Data = string.Empty
+            };
+
+            s.ValidateAndRaise();
+
+            s.SessionId = Guid.NewGuid();
+            ctx.Sessions.InsertOnSubmit(s);
+            ctx.SubmitChanges();
+
+            return s;
+        }
+
+        /// <summary>
         /// Expires a session
         /// </summary>
         /// <param name="sessionId"></param>
@@ -56,7 +79,7 @@ namespace Sieena.Parking.API.Models
         /// </summary>
         public static void CleanAll()
         {
-            ctx.Sessions.Where(s => s.ExpiresAt < DateTime.Now).ToList().ForEach(s => ctx.Sessions.DeleteOnSubmit(s));
+            ctx.Sessions.Where(s => s.ExpiresAt < DateTime.Now && s.ExpiresAt != DateTime.MinValue).ToList().ForEach(s => ctx.Sessions.DeleteOnSubmit(s));
             ctx.SubmitChanges();
         }
 
@@ -69,7 +92,28 @@ namespace Sieena.Parking.API.Models
         public static Session Get(Guid sessionId)
         {
             Session sess = ctx.Sessions.Where(s => s.SessionId.Equals(sessionId)).FirstOrDefault();
-            if (sess.ExpiresAt < DateTime.Now)
+            if (sess.ExpiresAt < DateTime.Now && sess.ExpiresAt != DateTime.MinValue)
+            {
+                ctx.Sessions.DeleteOnSubmit(sess);
+                ctx.SubmitChanges();
+                return null;
+            }
+            sess.LastAccess = DateTime.Now;
+            ctx.SubmitChanges();
+
+            return sess;
+        }
+
+        /// <summary>
+        /// Gets the specified session. 
+        /// If it has expired it returns none.
+        /// </summary>
+        /// <param name="sessionId"></param>
+        /// <returns></returns>
+        public static Session Get(int userId)
+        {
+            Session sess = ctx.Sessions.Where(s => s.UserId.Equals(userId)).FirstOrDefault();
+            if (sess.ExpiresAt < DateTime.Now && sess.ExpiresAt != DateTime.MinValue)
             {
                 ctx.Sessions.DeleteOnSubmit(sess);
                 ctx.SubmitChanges();

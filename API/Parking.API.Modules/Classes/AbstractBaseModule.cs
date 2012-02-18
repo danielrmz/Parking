@@ -40,24 +40,27 @@ namespace Sieena.Parking.API.Modules.Classes
         public AbstractBaseModule(string modulePath)
             : base(modulePath)
         {
-            Get["/"] = parameters =>
+            Type t = this.GetType();
+
+            List<string> methods = t.GetMethods()
+                                    .Where(mi =>
+                                    {
+                                        return mi.GetCustomAttributes(typeof(ApiAttribute), true).Any();
+                                    })
+                                    .Select(mi =>
+                                    {
+                                        ApiAttribute attr = mi.GetCustomAttributes(typeof(ApiAttribute), true).First() as ApiAttribute;
+
+                                        return string.Format("{0}\t{1}\t- {2} {3}", attr.GetMethod(), attr.GetRoute(), mi.Name, attr.IsSecure() ? "(SECURE)" : "");
+                                    })
+                                    .ToList();
+
+             
+            Get["/help"] = parameters =>
             {
-                Type t = this.GetType();
-
-                List<string> methods = t.GetMethods()
-                                        .Where(mi => {
-                                            return mi.GetCustomAttributes(typeof(ApiAttribute), true).Any();
-                                        })
-                                        .Select(mi => {
-                                            ApiAttribute attr = mi.GetCustomAttributes(typeof(ApiAttribute), true).First() as ApiAttribute;
-                                            
-                                            return string.Format("{0}\t{1}\t- {2} {3}", attr.GetMethod(), attr.GetRoute(), mi.Name, attr.IsSecure() ? "(SECURE)" : "");
-                                        })
-                                        .ToList();
-
                 // Get available public methods to display.
                 return Envelope(methods);
-            };
+            }; 
 
             Get["/ping"] = parameters =>
             {
@@ -92,8 +95,8 @@ namespace Sieena.Parking.API.Modules.Classes
                             var header_sign = Context.Request.Headers["x-parking-signature"].FirstOrDefault() ?? string.Empty;
 
                             // Validate signature and token.
-                            string signature = header_sign == string.Empty ? parameters["pk_signature"] : header_sign;
-                            string token     = header_token == string.Empty ? parameters["pk_token"] : header_token;
+                            string signature = header_sign == string.Empty ? this.Request.Query["parking-signature"] : header_sign;
+                            string token = header_token == string.Empty ? this.Request.Query["parking-token"] : header_token;
                             string tokenRaw  = string.Empty;
 
                             try {
@@ -128,14 +131,14 @@ namespace Sieena.Parking.API.Modules.Classes
                                 }
                             }
 
-                            if (mi.GetParameters().Length != 2)
+                            if (mi.GetParameters().Length != 3)
                             {
                                 throw new APIException(Resources.API_ErrorMethodDefinition);
                             }
 
                             #endregion
 
-                            return Envelope(mi.Invoke(this, new object[] { user, parameters }));
+                            return Envelope(mi.Invoke(this, new object[] { user, sess, parameters }));
 
                             //Authorization: "AWS" + " " + AWSAccessKeyID + ":" +   Base64(HMAC-SHA1(UTF-8(Date), UTF-8(AWSSecretAccessKey)))
                         }
@@ -190,21 +193,25 @@ namespace Sieena.Parking.API.Modules.Classes
         {
             #region Get the type of the Entity
             string type = string.Empty;
-            try
+            if (data != null)
             {
-                Type t = data.GetType();
-                type = t.Name;
-
-                if (t.IsGenericType)
+                try
                 {
-                
-                    type = t.GetGenericArguments()[0].Name;
+                    Type t = data.GetType();
+                    type = t.Name;
+
+                    if (t.IsGenericType)
+                    {
+
+                        type = t.GetGenericArguments()[0].Name;
+                    }
+
                 }
-                
-            }
-            catch (Exception e)
-            {
-                data = e;
+                catch (Exception e)
+                {
+                    data = e;
+                    type = e.GetType().Name;
+                }
             }
 
             bool isError = false;
@@ -226,7 +233,7 @@ namespace Sieena.Parking.API.Modules.Classes
 
             return Response.AsJson(new {
                 Time = ConvertToUnixTime(DateTime.Now),
-                Response = data,
+                Response = data == null ? string.Empty : data,
                 Type = type,
                 Error = isError
             });

@@ -73,6 +73,7 @@
     <resourceSet name="PluginsJs" type="js">
       <resource path="~/Content/Scripts/Plugins/bootstrap.min.js"  />
       <resource path="~/Content/Scripts/Plugins/jquery.gritter.js"  />
+      <resource path="~/Content/Scripts/Plugins/jquery.cookie.js"  />
       <resource path="~/Content/Scripts/Plugins/namespace.js" />
       <resource path="~/Content/Scripts/Plugins/json2.js" />
       <resource path="~/Content/Scripts/Plugins/underscore-1.3.1.js" />

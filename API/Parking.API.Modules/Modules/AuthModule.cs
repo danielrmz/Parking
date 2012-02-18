@@ -18,11 +18,14 @@ using Sieena.Parking.API.Models;
 namespace Sieena.Parking.API.Modules
 {
     using Classes;
+    using Sieena.Parking.API.Models.Views;
+    using APISession = Sieena.Parking.API.Models.Session;
+    using System.Configuration;
 
     public class AuthModule : AbstractBaseModule
     {
         public AuthModule()
-            : base("auth")
+            : base("session")
         {
           
         }
@@ -31,6 +34,18 @@ namespace Sieena.Parking.API.Modules
         public bool ValidateUser(DynamicDictionary parameters)
         {
             return User.VerifyCredentials(parameters["user"], parameters["password"]);
+        }
+
+        [Api("/", ApiMethod.GET, true)]
+        public UserInformation Current(User u, APISession session, DynamicDictionary parameters)
+        {
+            return User.GetUserInformation(u);    
+        }
+
+        [Api("/", ApiMethod.DELETE, true)]
+        public void DestroySession(User u, APISession session, DynamicDictionary parameters)
+        {
+            APISession.Expire(session.SessionId);
         }
 
     }

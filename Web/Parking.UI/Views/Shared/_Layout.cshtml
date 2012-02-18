@@ -28,9 +28,16 @@
             @Html.Partial("_Header")
     </header>
     
-    <div role="main" class="controller-@ViewContext.Controller.ValueProvider.GetValue("controller").RawValue action-@ViewContext.Controller.ValueProvider.GetValue("action").RawValue">
+    <div role="main" id="body" class="controller-@ViewContext.Controller.ValueProvider.GetValue("controller").RawValue action-@ViewContext.Controller.ValueProvider.GetValue("action").RawValue">
         <div id="main" class="layout-width row-fluid">
             @RenderBody()
+        </div>
+        <div class="js-globalError modal" style="display:none">
+            
+            <div class="modal-body alert-error">
+                <a class="close" data-dismiss="modal">×</a> 
+                Oops! <span class="message"></span>
+            </div> 
         </div>
     </div>
     

@@ -24,7 +24,7 @@ html, body {
 header {
 }
 
-body > div {
+body #body {
 	margin-top: 20px;
 	font-family: 'Open Sans', sans-serif;
 }
@@ -72,6 +72,15 @@ footer {
 label, input, button, select, textarea {
 	font-family: 'Open Sans', sans-serif;
 }
+
 /* @endgroup */
 
 
+
+/* @group Bootstrap customizations */
+
+.modal-backdrop, modal-backdrop.fade.in {
+	opacity: 0.5;
+}
+
+/* @endgroup */

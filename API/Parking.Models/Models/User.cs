@@ -11,15 +11,40 @@ using System.Linq;
 using System.Text;
 using System.DirectoryServices.AccountManagement;
 using System.Security.Cryptography;
+using System.Configuration;
+using System.DirectoryServices;
 
 namespace Sieena.Parking.API.Models
 {
+    using Views;
     using Interfaces;
-    using Parking.API.Models.Exceptions;
-    using System.DirectoryServices;
+    using Exceptions;
+    using Sieena.Parking.Common.Utils;
 
     public partial class User : ParkingModel, IUser
     {
+        public static UserInformation GetUserInformation(User u)
+        {
+            UserInfo ui = UserInfo.GetByUserId(u.UserId);
+            Role role = Role.GetRolesForUser(u.UserId).First();
+            Session ses = Session.Get(u.UserId);
+
+            var user = new UserInformation();
+
+            user.Email = u.Email;
+            user.UserName = u.Email.Split('@').First();
+            user.IsAuthenticated = true;
+            user.ProfilePictureUrl = "";
+            user.FirstName = ui.FirstName;
+            user.LastName = ui.LastName;
+            user.Role = role.RoleName;
+            user.RoleId = role.RoleId;
+
+            user.SessionId = Crypto.EncryptStringAES(ses.SessionId.ToString(), ConfigurationManager.AppSettings["Crypto.Secret"]);
+
+            return user;
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -44,8 +69,6 @@ namespace Sieena.Parking.API.Models
 
             return u;
         }
-
-        
 
         /// <summary>
         /// Adds roles to the user.

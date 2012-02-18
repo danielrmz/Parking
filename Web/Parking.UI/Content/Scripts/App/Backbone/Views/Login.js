@@ -43,9 +43,8 @@ namespace("Parking.App.Views");
                 
                 if(data.Error == false) {
                     form.find(".alert-error").hide();
-                    Parking.App._user.set(data["Response"]);
-                    Parking.App._views.HeaderUserInfo.render();
-
+                    Parking.App._user.save(data["Response"]);
+                    
                     // Redirect to the core app view
                      Parking.App._router.navigate("home", true);
 

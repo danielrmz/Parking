@@ -121,7 +121,7 @@
     <value>Invalid session token</value>
   </data>
   <data name="API_ErrorMethodDefinition" xml:space="preserve">
-    <value>Badly resource defined</value>
+    <value>Resource Badly Defined</value>
   </data>
   <data name="API_ErrorNoRolesAssigned" xml:space="preserve">
     <value>User does not have any role assigned</value>

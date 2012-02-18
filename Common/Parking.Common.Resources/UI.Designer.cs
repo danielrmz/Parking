@@ -70,7 +70,7 @@ namespace Sieena.Parking.Common.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Badly resource defined.
+        ///   Looks up a localized string similar to Resource Badly Defined.
         /// </summary>
         public static string API_ErrorMethodDefinition {
             get {

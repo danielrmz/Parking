@@ -6,8 +6,10 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
 using Sieena.Parking.API.Models.Views;
+using APIUser = Sieena.Parking.API.Models.User;
 using APISession = Sieena.Parking.API.Models.Session;
 using Crypto = Sieena.Parking.Common.Utils.Crypto;
+using i18n = Sieena.Parking.Common.Resources.UI;
 using System.Configuration;
 
 namespace Sieena.Parking.UI.Controllers
@@ -37,53 +39,19 @@ namespace Sieena.Parking.UI.Controllers
                 if (Membership.ValidateUser(userName, model.Password))
                 {
                     FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
-                    int userId = API.Models.User.GetByEmail(model.UserName + "@sieena.com").UserId;
-                    API.Models.UserInfo ui = API.Models.UserInfo.GetByUserId(userId);
+                    APIUser user = APIUser.GetByEmail(model.UserName + "@sieena.com");
+                    APISession.Set(user.UserId, FormsAuthentication.Timeout, model.RememberMe);
 
-                    APISession.Expire(userId);
-                    APISession s = APISession.Set(new APISession() { 
-                        UserId = userId ,
-                        CreatedAt = DateTime.Now,
-                        ExpiresAt = DateTime.Now.Add(FormsAuthentication.Timeout),
-                        LastAccess= DateTime.Now,
-                        Data = string.Format("FormsCookieName={0},FormsCookieValue={1}", model.UserName, FormsAuthentication.GetAuthCookie(model.UserName, model.RememberMe).Value)
-                    });
-
-                    string returnU = string.Empty; 
-                    if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
-                        && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
-                    {
-                        returnU = returnUrl;
-                    }
-                    else
-                    {
-                        returnU = "Home/Index";
-                    }
-
-                    API.Models.Role role = API.Models.Role.GetRolesForUser(userName).First();
-
-                    return Envelope(new UserInformation { 
-                                SessionId = Crypto.EncryptStringAES(s.SessionId.ToString(), ConfigurationManager.AppSettings["Crypto.Secret"]),
-                                Email = userName, 
-                                UserName = model.UserName, 
-                                IsAuthenticated = true, 
-                                ProfilePictureUrl = "", 
-                                FirstName = ui.FirstName, 
-                                LastName = ui.LastName,
-                                Role = role.RoleName,
-                                RoleId = role.RoleId
-                    }, false);
-
-                    
+                    return Envelope(APIUser.GetUserInformation(user), false); 
                 }
                 else
                 {
-                    return Envelope(new { Sieena.Parking.Common.Resources.UI.Login_ErrorValidation }, true);  
+                    return Envelope(i18n.Login_ErrorValidation, true);  
                 }
             }
 
             // If we got this far, something failed, redisplay form 
-            return Envelope(new { Sieena.Parking.Common.Resources.UI.Login_ErrorValidation }, true);  
+            return Envelope(i18n.Login_ErrorValidation, true);  
         }
 
         /// <summary>
