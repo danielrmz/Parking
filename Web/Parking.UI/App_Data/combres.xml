@@ -100,6 +100,7 @@
         <resource path="~/Content/Scripts/App/Backbone/Models/UserModel.js"  />
         <resource path="~/Content/Scripts/App/Backbone/Models/SpaceModel.js"  />
         <resource path="~/Content/Scripts/App/Backbone/Models/AccessTypeModel.js"  />
+        <resource path="~/Content/Scripts/App/Backbone/Models/CheckinModel.js"  />
 
         <!-- Collections -->
         <resource path="~/Content/Scripts/App/Backbone/Collections/SpaceCollection.js"  />
