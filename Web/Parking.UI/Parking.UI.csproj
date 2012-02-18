@@ -126,6 +126,10 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Content\Images\img-01.png" />
+    <Content Include="Content\Scripts\App\Backbone\Collections\SpaceCollection.js" />
+    <Content Include="Content\Scripts\App\Backbone\Models\AccessTypeModel.js" />
+    <Content Include="Content\Scripts\App\Backbone\Models\SpaceModel.js" />
+    <Content Include="Content\Scripts\App\Backbone\Models\UserModel.js" />
     <Content Include="Content\Scripts\App\Backbone\Templates\Parking\Home.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -251,9 +255,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Content\Scripts\App\Backbone\Collections\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
