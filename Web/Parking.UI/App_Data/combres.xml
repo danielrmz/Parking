@@ -97,9 +97,13 @@
         
         <!-- Models -->
         <resource path="~/Content/Scripts/App/Backbone/Models/UserInformationModel.js"  />
+        <resource path="~/Content/Scripts/App/Backbone/Models/UserModel.js"  />
+        <resource path="~/Content/Scripts/App/Backbone/Models/SpaceModel.js"  />
+        <resource path="~/Content/Scripts/App/Backbone/Models/AccessTypeModel.js"  />
 
         <!-- Collections -->
-
+        <resource path="~/Content/Scripts/App/Backbone/Collections/SpaceCollection.js"  />
+      
         <!-- Main Router -->
         <resource path="~/Content/Scripts/App/Backbone/Router.js" />
     </resourceSet>
