@@ -126,8 +126,10 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Content\Images\img-01.png" />
+    <Content Include="Content\Scripts\App\Backbone\Collections\CheckinCollection.js" />
     <Content Include="Content\Scripts\App\Backbone\Collections\SpaceCollection.js" />
     <Content Include="Content\Scripts\App\Backbone\Models\AccessTypeModel.js" />
+    <Content Include="Content\Scripts\App\Backbone\Models\CheckinModel.js" />
     <Content Include="Content\Scripts\App\Backbone\Models\SpaceModel.js" />
     <Content Include="Content\Scripts\App\Backbone\Models\UserModel.js" />
     <Content Include="Content\Scripts\App\Backbone\Templates\Parking\Home.html">
