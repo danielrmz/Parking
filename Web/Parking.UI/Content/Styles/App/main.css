@@ -43,184 +43,123 @@ body > div .form-login {
     padding-top: 7px;
     font-size: 11px;
     color: silver; }
-body > div .pariking-map {
-  background: url("/Content/Styles/Images/bg-horizontal.png") no-repeat scroll center -2px transparent;
-  height: 379px;
-  width: auto;
-  position: relative;
-  /*Section A*/
-  /*Section B*/
-  /*Section C*/ }
-  body > div .pariking-map .car {
-    position: absolute;
-    left: 3px;
-    top: 12px;
-    width: 53px;
-    height: 97px;
-    background: url("/Content/Styles/Images/icn-car-min.png") no-repeat scroll 0 0 transparent; }
-  body > div .pariking-map .car:hover {
-    cursor: pointer;
-    opacity: 0.8; }
-  body > div .pariking-map .a1 {
-    -moz-transform: rotate(-180deg);
-    -webkit-transform: rotate(-180deg);
-    -o-transform: rotate(-180deg);
-    -ms-transform: rotate(-180deg); }
-  body > div .pariking-map .a2 {
-    left: 64px;
-    -moz-transform: rotate(-180deg);
-    -webkit-transform: rotate(-180deg);
-    -o-transform: rotate(-180deg);
-    -ms-transform: rotate(-180deg); }
-  body > div .pariking-map .a3 {
-    left: 126px;
-    -moz-transform: rotate(-180deg);
-    -webkit-transform: rotate(-180deg);
-    -o-transform: rotate(-180deg);
-    -ms-transform: rotate(-180deg); }
-  body > div .pariking-map .a4 {
-    left: 186px;
-    -moz-transform: rotate(-180deg);
-    -webkit-transform: rotate(-180deg);
-    -o-transform: rotate(-180deg);
-    -ms-transform: rotate(-180deg); }
-  body > div .pariking-map .a5 {
-    left: 248px;
-    -moz-transform: rotate(-180deg);
-    -webkit-transform: rotate(-180deg);
-    -o-transform: rotate(-180deg);
-    -ms-transform: rotate(-180deg); }
-  body > div .pariking-map .a6 {
-    left: 32px;
-    top: 99px;
-    -moz-transform: rotate(-90deg);
-    -webkit-transform: rotate(-90deg);
-    -o-transform: rotate(-90deg);
-    -ms-transform: rotate(-90deg); }
-  body > div .pariking-map .a7 {
-    left: 136px;
-    top: 99px;
-    -moz-transform: rotate(-90deg);
-    -webkit-transform: rotate(-90deg);
-    -o-transform: rotate(-90deg);
-    -ms-transform: rotate(-90deg); }
-  body > div .pariking-map .a8 {
-    left: 32px;
-    top: 178px;
-    -moz-transform: rotate(-90deg);
-    -webkit-transform: rotate(-90deg);
-    -o-transform: rotate(-90deg);
-    -ms-transform: rotate(-90deg); }
-  body > div .pariking-map .a9 {
-    left: 136px;
-    top: 178px;
-    -moz-transform: rotate(-90deg);
-    -webkit-transform: rotate(-90deg);
-    -o-transform: rotate(-90deg);
-    -ms-transform: rotate(-90deg); }
-  body > div .pariking-map .a10 {
-    left: 3px;
-    top: 268px; }
-  body > div .pariking-map .a11 {
-    left: 64px;
-    top: 268px; }
-  body > div .pariking-map .a12 {
-    left: 126px;
-    top: 268px; }
-  body > div .pariking-map .a13 {
-    left: 186px;
-    top: 268px; }
-  body > div .pariking-map .a14 {
-    left: 248px;
-    top: 268px; }
-  body > div .pariking-map .b1 {
-    left: 317px;
-    -moz-transform: rotate(-180deg);
-    -webkit-transform: rotate(-180deg);
-    -o-transform: rotate(-180deg);
-    -ms-transform: rotate(-180deg); }
-  body > div .pariking-map .b2 {
-    left: 384px;
-    -moz-transform: rotate(-180deg);
-    -webkit-transform: rotate(-180deg);
-    -o-transform: rotate(-180deg);
-    -ms-transform: rotate(-180deg); }
-  body > div .pariking-map .b3 {
-    left: 453px;
-    -moz-transform: rotate(-180deg);
-    -webkit-transform: rotate(-180deg);
-    -o-transform: rotate(-180deg);
-    -ms-transform: rotate(-180deg); }
-  body > div .pariking-map .b4 {
-    left: 524px;
-    -moz-transform: rotate(-180deg);
-    -webkit-transform: rotate(-180deg);
-    -o-transform: rotate(-180deg);
-    -ms-transform: rotate(-180deg); }
-  body > div .pariking-map .b5 {
-    left: 596px;
-    -moz-transform: rotate(-180deg);
-    -webkit-transform: rotate(-180deg);
-    -o-transform: rotate(-180deg);
-    -ms-transform: rotate(-180deg); }
-  body > div .pariking-map .b6 {
-    left: 308px;
-    top: 268px; }
-  body > div .pariking-map .b7 {
-    left: 365px;
-    top: 268px; }
-  body > div .pariking-map .b8 {
-    left: 424px;
-    top: 268px; }
-  body > div .pariking-map .b9 {
-    left: 483px;
-    top: 268px; }
-  body > div .pariking-map .b10 {
-    left: 541px;
-    top: 268px; }
-  body > div .pariking-map .b11 {
-    left: 601px;
-    top: 268px; }
-  body > div .pariking-map .c1 {
-    left: 776px;
-    -moz-transform: rotate(-180deg);
-    -webkit-transform: rotate(-180deg);
-    -o-transform: rotate(-180deg);
-    -ms-transform: rotate(-180deg); }
-  body > div .pariking-map .c2 {
-    left: 841px;
-    -moz-transform: rotate(-180deg);
-    -webkit-transform: rotate(-180deg);
-    -o-transform: rotate(-180deg);
-    -ms-transform: rotate(-180deg); }
-  body > div .pariking-map .c3 {
-    left: 903px;
-    -moz-transform: rotate(-180deg);
-    -webkit-transform: rotate(-180deg);
-    -o-transform: rotate(-180deg);
-    -ms-transform: rotate(-180deg); }
-  body > div .pariking-map .c4 {
-    left: 688px;
-    top: 100px;
-    -moz-transform: rotate(-90deg);
-    -webkit-transform: rotate(-90deg);
-    -o-transform: rotate(-90deg);
-    -ms-transform: rotate(-90deg); }
-  body > div .pariking-map .c5 {
-    left: 659px;
-    top: 268px; }
-  body > div .pariking-map .c6 {
-    left: 719px;
-    top: 268px; }
-  body > div .pariking-map .c7 {
-    left: 782px;
-    top: 268px; }
-  body > div .pariking-map .c8 {
-    left: 841px;
-    top: 268px; }
-  body > div .pariking-map .c9 {
-    left: 903px;
-    top: 268px; }
+body > div .container-parking {
+  padding-right: 10px !important; }
+  body > div .container-parking .pariking-map {
+    background: url("/Content/Styles/Images/bg-horizontal.png") no-repeat scroll -2px -2px transparent;
+    height: 379px;
+    width: auto;
+    position: relative; }
+    body > div .container-parking .pariking-map .car {
+      position: absolute;
+      left: -5px;
+      top: 12px;
+      width: 53px;
+      height: 97px;
+      background: url("/Content/Styles/Images/icn-car-min.png") no-repeat scroll 0 0 transparent;
+      /*Section A*/
+      /*Section B*/
+      /*Section C*/ }
+      body > div .container-parking .pariking-map .car:hover {
+        cursor: pointer;
+        opacity: 0.8; }
+      body > div .container-parking .pariking-map .car.vertical-down {
+        -moz-transform: rotate(-180deg);
+        -webkit-transform: rotate(-180deg);
+        -o-transform: rotate(-180deg);
+        -ms-transform: rotate(-180deg); }
+      body > div .container-parking .pariking-map .car.horizontal {
+        -moz-transform: rotate(-90deg);
+        -webkit-transform: rotate(-90deg);
+        -o-transform: rotate(-90deg);
+        -ms-transform: rotate(-90deg); }
+      body > div .container-parking .pariking-map .car.a2 {
+        left: 55px; }
+      body > div .container-parking .pariking-map .car.a3 {
+        left: 115px; }
+      body > div .container-parking .pariking-map .car.a4 {
+        left: 175px; }
+      body > div .container-parking .pariking-map .car.a5 {
+        left: 235px; }
+      body > div .container-parking .pariking-map .car.a6 {
+        left: 32px;
+        top: 106px; }
+      body > div .container-parking .pariking-map .car.a7 {
+        left: 147px;
+        top: 106px; }
+      body > div .container-parking .pariking-map .car.a8 {
+        left: 32px;
+        top: 175px; }
+      body > div .container-parking .pariking-map .car.a9 {
+        left: 147px;
+        top: 175px; }
+      body > div .container-parking .pariking-map .car.a10 {
+        left: -5px;
+        top: 268px; }
+      body > div .container-parking .pariking-map .car.a11 {
+        left: 55px;
+        top: 268px; }
+      body > div .container-parking .pariking-map .car.a12 {
+        left: 115px;
+        top: 268px; }
+      body > div .container-parking .pariking-map .car.a13 {
+        left: 175px;
+        top: 268px; }
+      body > div .container-parking .pariking-map .car.a14 {
+        left: 235px;
+        top: 268px; }
+      body > div .container-parking .pariking-map .car.b1 {
+        left: 295px; }
+      body > div .container-parking .pariking-map .car.b2 {
+        left: 355px; }
+      body > div .container-parking .pariking-map .car.b3 {
+        left: 415px; }
+      body > div .container-parking .pariking-map .car.b4 {
+        left: 475px; }
+      body > div .container-parking .pariking-map .car.b5 {
+        left: 535px; }
+      body > div .container-parking .pariking-map .car.b6 {
+        left: 295px;
+        top: 268px; }
+      body > div .container-parking .pariking-map .car.b7 {
+        left: 355px;
+        top: 268px; }
+      body > div .container-parking .pariking-map .car.b8 {
+        left: 415px;
+        top: 268px; }
+      body > div .container-parking .pariking-map .car.b9 {
+        left: 475px;
+        top: 268px; }
+      body > div .container-parking .pariking-map .car.b10 {
+        left: 535px;
+        top: 268px; }
+      body > div .container-parking .pariking-map .car.b11 {
+        left: 595px;
+        top: 268px; }
+      body > div .container-parking .pariking-map .car.c1 {
+        left: 776px; }
+      body > div .container-parking .pariking-map .car.c2 {
+        left: 836px; }
+      body > div .container-parking .pariking-map .car.c3 {
+        left: 896px; }
+      body > div .container-parking .pariking-map .car.c4 {
+        left: 688px;
+        top: 100px; }
+      body > div .container-parking .pariking-map .car.c5 {
+        left: 656px;
+        top: 268px; }
+      body > div .container-parking .pariking-map .car.c6 {
+        left: 716px;
+        top: 268px; }
+      body > div .container-parking .pariking-map .car.c7 {
+        left: 776px;
+        top: 268px; }
+      body > div .container-parking .pariking-map .car.c8 {
+        left: 836px;
+        top: 268px; }
+      body > div .container-parking .pariking-map .car.c9 {
+        left: 896px;
+        top: 268px; }
 body > div .modal {
   font-family: "Open sans"; }
 body > div #ModalCheckin .modal-body p {

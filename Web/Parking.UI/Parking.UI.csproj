@@ -131,11 +131,11 @@
     </Content>
     <Content Include="Content\Images\img-01.png" />
     <Content Include="Content\Scripts\App\Collections\SpaceCollection.js" />
-    <Content Include="Content\Scripts\App\Models\AccessTypeModel.js" />
-    <Content Include="Content\Scripts\App\Models\CheckinModel.js" />
-    <Content Include="Content\Scripts\App\Models\SpaceModel.js" />
-    <Content Include="Content\Scripts\App\Models\UserInformationModel.js" />
-    <Content Include="Content\Scripts\App\Models\UserModel.js" />
+    <Content Include="Content\Scripts\App\Models\AccessType.js" />
+    <Content Include="Content\Scripts\App\Models\Checkin.js" />
+    <Content Include="Content\Scripts\App\Models\Space.js" />
+    <Content Include="Content\Scripts\App\Models\UserInformation.js" />
+    <Content Include="Content\Scripts\App\Models\User.js" />
     <Content Include="Content\Scripts\App\Router.js" />
     <Content Include="Content\Scripts\App\Views\Dashboard.js" />
     <Content Include="Content\Scripts\App\Views\HeaderUserInfo.js" />

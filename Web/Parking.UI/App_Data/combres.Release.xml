@@ -82,7 +82,7 @@
       <resource path="~/Content/Scripts/Plugins/pubnub-3.1.min.js" minifierRef="off" />
     </resourceSet>
 
-    <resourceSet name="CoreJs" type="js">
+    <resourceSet name="CoreJs" type="js" >
       <resource path="~/Content/Scripts/Parking.js" />
       <resource path="~/Content/Scripts/Shared/Common.js" />
       <resource path="~/Content/Scripts/Shared/Configuration.js"  />
@@ -97,11 +97,11 @@
       <resource path="~/Content/Scripts/App/Views/Dashboard.js"  />
 
       <!-- Models -->
-      <resource path="~/Content/Scripts/App/Models/UserInformationModel.js"  />
-      <resource path="~/Content/Scripts/App/Models/UserModel.js"  />
-      <resource path="~/Content/Scripts/App/Models/SpaceModel.js"  />
-      <resource path="~/Content/Scripts/App/Models/AccessTypeModel.js"  />
-      <resource path="~/Content/Scripts/App/Models/CheckinModel.js"  />
+      <resource path="~/Content/Scripts/App/Models/UserInformation.js"  />
+      <resource path="~/Content/Scripts/App/Models/User.js"  />
+      <resource path="~/Content/Scripts/App/Models/Space.js"  />
+      <resource path="~/Content/Scripts/App/Models/AccessType.js"  />
+      <resource path="~/Content/Scripts/App/Models/Checkin.js"  />
 
       <!-- Collections -->
       <resource path="~/Content/Scripts/App/Collections/SpaceCollection.js"  />
@@ -111,6 +111,5 @@
 
       <resource path="~/Content/Scripts/Shared/Loader.js"  />
     </resourceSet>
-
   </resourceSets>
 </combres>
