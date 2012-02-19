@@ -1,0 +1,44 @@
+﻿
+
+{{#if currentUser.IsAuthenticated}}
+    <div class="layout-width panel-dashboard">
+        <div style="text-align: left; margin-left: 0px;" class="span2 action-button">
+
+                <div class="btn-group green">
+                    <a href="#" class="btn">Time to leave!</a>
+                    <a href="#" data-toggle="dropdown" class="btn dropdown-toggle">
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a>In 5 minutes</a></li>
+                        <li><a>In 10 minutes</a></li>
+                        <li><a>In 15 minutes</a></li>
+                    </ul>
+                </div>
+
+        </div>
+        <div style="text-align: right" class="span10 panel-notifications">
+            <ul>
+                <li class="in">
+                    <div>
+                        <img src="/Content/Images/img-01.png">
+                        <div class="user">
+                            <span class="name">Daniel Ramirez</span>
+                            <span class="time">15 minutes ago...</span>
+                        </div>
+                    </div>
+                </li>
+                <li class="out">
+                    <div>
+                        <img src="/Content/Images/img-01.png">
+                        <div class="user">
+                            <span class="name">Daniel Ramirez</span>
+                            <span class="time">15 minutes ago...</span>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+</div>
+
+{{/if}}
