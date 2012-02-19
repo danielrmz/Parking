@@ -142,12 +142,14 @@
     <Content Include="Content\Scripts\Plugins\handlebars-1.0.0.js" />
     <Content Include="Content\Scripts\Shared\Header.js" />
     <Content Include="Content\Scripts\Shared\Loader.js" />
+    <Content Include="Content\Styles\Images\bg-dashboard.png" />
+    <Content Include="Content\Styles\Images\bg-horizontal.png" />
     <Content Include="Content\Styles\Images\Bootstrap\glyphicons-halflings-white.png" />
     <Content Include="Content\Styles\Images\Bootstrap\glyphicons-halflings.png" />
     <Content Include="Content\Styles\Images\Gritter\gritter-long.png" />
     <Content Include="Content\Styles\Images\Gritter\gritter.png" />
     <Content Include="Content\Styles\Images\Gritter\ie-spacer.gif" />
-    <Content Include="Content\Styles\Images\icn-car.png" />
+    <Content Include="Content\Styles\Images\icn-car-min.png" />
     <Content Include="Content\Styles\Images\icn-header-sheet.png" />
     <Content Include="Content\Styles\Images\logo-myplace.png" />
     <Content Include="Content\Styles\Images\txr-bg-canvas-gray.png" />
@@ -174,11 +176,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Content>
-    <Content Include="Content\Styles\Images\bg-parking.png" />
-    <Content Include="Content\Styles\Images\icn-edit.png" />
-    <Content Include="Content\Styles\Images\icn-new-car.png" />
     <Content Include="Content\Images\icn-sieena-footer.png" />
-    <Content Include="Content\Styles\Images\icon-sheet.png" />
     <Content Include="Content\Styles\Plugins\Bootstrap\bootstrap-responsive.css" />
     <Content Include="Content\Styles\Plugins\Bootstrap\bootstrap-responsive.min.css" />
     <Content Include="Content\Styles\Plugins\Bootstrap\bootstrap.css" />
