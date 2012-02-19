@@ -23,7 +23,7 @@ namespace("Parking.App.Views");
 
         events: {
            
-        },
+        }
          
 
     });
