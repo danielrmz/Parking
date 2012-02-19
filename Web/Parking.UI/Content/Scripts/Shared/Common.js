@@ -26,14 +26,15 @@ namespace("Parking.Common");
             if(view.model != null) {
                 model = view.model.toJSON();
             } 
-            
+
             var locale          = Parking.Configuration["locale"] || "en-US";
             var localeResources = Parking.Resources["i18n"][locale] || {};
-            var currentUser     = Parking.App._user.toJSON();
-
+            var currentUser     = typeof(Parking.App._user) == 'undefined'? {} : Parking.App._user.toJSON();
+            
             $(view.el).html(tmpl({ "i18n": localeResources, "model": model, "currentUser": currentUser }));
             
             callback = callback || function() { };
+
             if(typeof(callback) == 'function') {
                 callback(tmpl, model);
             }
@@ -52,13 +53,19 @@ namespace("Parking.Common");
             xhr.setRequestHeader('x-parking-token', token);
         });
 
+    };
+
+    common.SetupAjaxErrorHandler = function () {
         $.ajaxSetup({
-            "complete": function(data) { 
-                if(data.status == 200) {
-                    var message = JSON.parse(data["responseText"]); 
-                    if(message["Error"] == true && message["Type"] == "APIException") {
-                        common.DisplayGlobalError(message["Response"]);
-                    }           
+            "complete": function(data) {  
+                if(data.status == 200) { 
+                    try {
+                        var message = JSON.parse(data["responseText"]); 
+                        if(message["Error"] == true && message["Type"] == "APIException") {
+                            common.DisplayGlobalError(message["Response"]);
+                        }           
+                    }catch(error) {
+                    }
                 } 
             }, 
             "statusCode": {
@@ -70,7 +77,6 @@ namespace("Parking.Common");
                 }
             }
         }); 
-
     };
 
     /*

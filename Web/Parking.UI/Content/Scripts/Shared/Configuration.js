@@ -10,7 +10,7 @@ namespace("Parking.Configuration");
 
 (function($, config, undefined) {
 
-    config.ClientTemplatesUrl = "/Content/Scripts/App/Backbone/Templates/";
+    config.ClientTemplatesUrl = "/Content/Templates/";
     config.APIEndpointUrl = "/api/";
     config.i18nResourceEndpoint = "/Static/i18n";
     

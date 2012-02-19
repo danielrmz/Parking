@@ -38,8 +38,4 @@ namespace("Parking.Common");
         }
     };
 
-    $(common.HeaderDate);
-    setInterval(common.HeaderDate, 60 * 1000);
-    setInterval(common.HeaderDateTick, 1000);
-
 })(jQuery, Parking.Common);
