@@ -122,6 +122,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="apple-touch-icon-72x72-precomposed.png" />
     <Content Include="App_Data\combres.Debug.xml">
       <SubType>Designer</SubType>
     </Content>
