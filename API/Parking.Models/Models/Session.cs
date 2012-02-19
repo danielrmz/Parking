@@ -32,7 +32,7 @@ namespace Sieena.Parking.API.Models
             Session s = new Session() { 
                         UserId = userId,
                         CreatedAt = DateTime.Now,
-                        ExpiresAt = rememberMe ? DateTime.MinValue : DateTime.Now.Add(timeOut),
+                        ExpiresAt = rememberMe ? DateTime.MaxValue : DateTime.Now.Add(timeOut),
                         LastAccess= DateTime.Now,
                         Data = string.Empty
             };
@@ -79,7 +79,7 @@ namespace Sieena.Parking.API.Models
         /// </summary>
         public static void CleanAll()
         {
-            ctx.Sessions.Where(s => s.ExpiresAt < DateTime.Now && s.ExpiresAt != DateTime.MinValue).ToList().ForEach(s => ctx.Sessions.DeleteOnSubmit(s));
+            ctx.Sessions.Where(s => s.ExpiresAt < DateTime.Now && s.ExpiresAt != DateTime.MaxValue).ToList().ForEach(s => ctx.Sessions.DeleteOnSubmit(s));
             ctx.SubmitChanges();
         }
 
@@ -92,7 +92,7 @@ namespace Sieena.Parking.API.Models
         public static Session Get(Guid sessionId)
         {
             Session sess = ctx.Sessions.Where(s => s.SessionId.Equals(sessionId)).FirstOrDefault();
-            if (sess.ExpiresAt < DateTime.Now && sess.ExpiresAt != DateTime.MinValue)
+            if (sess.ExpiresAt < DateTime.Now && sess.ExpiresAt != DateTime.MaxValue)
             {
                 ctx.Sessions.DeleteOnSubmit(sess);
                 ctx.SubmitChanges();
@@ -113,7 +113,7 @@ namespace Sieena.Parking.API.Models
         public static Session Get(int userId)
         {
             Session sess = ctx.Sessions.Where(s => s.UserId.Equals(userId)).FirstOrDefault();
-            if (sess.ExpiresAt < DateTime.Now && sess.ExpiresAt != DateTime.MinValue)
+            if (sess.ExpiresAt < DateTime.Now && sess.ExpiresAt != DateTime.MaxValue)
             {
                 ctx.Sessions.DeleteOnSubmit(sess);
                 ctx.SubmitChanges();
