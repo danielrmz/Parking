@@ -36,7 +36,7 @@
     </minifier>
     -->
   </jsMinifiers>
-  
+
   <resourceSets url="~/app.axd"
                 defaultDuration="30"
                 defaultVersion="auto"
@@ -51,13 +51,13 @@
     <resourceSet name="CoreResources" type="js" minifierRef="off" debugEnabled="false">
       <resource path="~/Content/Scripts/Shared/Resources.js"  />
     </resourceSet>
-    
+
     <resourceSet name="CoreTemplates" type="js" minifierRef="off" debugEnabled="false">
-      <resource path="~/Content/Scripts/App/Backbone/Templates/Account/Login.html" />
-      <resource path="~/Content/Scripts/App/Backbone/Templates/Parking/Home.html" />
-      <resource path="~/Content/Scripts/App/Backbone/Templates/Shared/HeaderUserInfo.html" />
+      <resource path="~/Content/Templates/Account/Login.html" />
+      <resource path="~/Content/Templates/Parking/Home.html" />
+      <resource path="~/Content/Templates/Shared/HeaderUserInfo.html" />
     </resourceSet>
-    
+
     <resourceSet name="PluginsCss" type="css">
       <resource path="~/Content/Styles/Plugins/Bootstrap/bootstrap.min.css" />
       <resource path="~/Content/Styles/Plugins/jquery.gritter.css" />
@@ -80,7 +80,7 @@
       <resource path="~/Content/Scripts/Plugins/backbone-0.9.1.js" />
       <resource path="~/Content/Scripts/Plugins/handlebars-1.0.0.js" />
     </resourceSet>
-    
+
     <resourceSet name="CoreJs" type="js">
       <resource path="~/Content/Scripts/Parking.js" />
       <resource path="~/Content/Scripts/Shared/Common.js" />
@@ -88,26 +88,28 @@
       <resource path="~/Content/Scripts/Shared/Header.js"  />
 
       <!-- BackboneJS -->
-        <!-- Views -->
-        <resource path="~/Content/Scripts/App/Backbone/Views/HeaderUserInfo.js" />
-        <resource path="~/Content/Scripts/App/Backbone/Views/Static.js" />
-        <resource path="~/Content/Scripts/App/Backbone/Views/Login.js"  />
-        <resource path="~/Content/Scripts/App/Backbone/Views/Main.js"  />
-        <resource path="~/Content/Scripts/App/Home/Index.js" />
-        
-        <!-- Models -->
-        <resource path="~/Content/Scripts/App/Backbone/Models/UserInformationModel.js"  />
-        <resource path="~/Content/Scripts/App/Backbone/Models/UserModel.js"  />
-        <resource path="~/Content/Scripts/App/Backbone/Models/SpaceModel.js"  />
-        <resource path="~/Content/Scripts/App/Backbone/Models/AccessTypeModel.js"  />
-        <resource path="~/Content/Scripts/App/Backbone/Models/CheckinModel.js"  />
+      <!-- Views -->
+      <resource path="~/Content/Scripts/App/Views/HeaderUserInfo.js" />
+      <resource path="~/Content/Scripts/App/Views/Static.js" />
+      <resource path="~/Content/Scripts/App/Views/Login.js"  />
+      <resource path="~/Content/Scripts/App/Views/Main.js"  />
+      <resource path="~/Content/Scripts/App/Views/Dashboard.js"  />
 
-        <!-- Collections -->
-        <resource path="~/Content/Scripts/App/Backbone/Collections/SpaceCollection.js"  />
-      
-        <!-- Main Router -->
-        <resource path="~/Content/Scripts/App/Backbone/Router.js" />
+      <!-- Models -->
+      <resource path="~/Content/Scripts/App/Models/UserInformationModel.js"  />
+      <resource path="~/Content/Scripts/App/Models/UserModel.js"  />
+      <resource path="~/Content/Scripts/App/Models/SpaceModel.js"  />
+      <resource path="~/Content/Scripts/App/Models/AccessTypeModel.js"  />
+      <resource path="~/Content/Scripts/App/Models/CheckinModel.js"  />
+
+      <!-- Collections -->
+      <resource path="~/Content/Scripts/App/Collections/SpaceCollection.js"  />
+
+      <!-- Main Router -->
+      <resource path="~/Content/Scripts/App/Router.js" />
+
+      <resource path="~/Content/Scripts/Shared/Loader.js"  />
     </resourceSet>
-    
+
   </resourceSets>
 </combres>
