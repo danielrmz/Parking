@@ -22,12 +22,9 @@ namespace("Parking.App.Views");
         },
 
         events: {
-           "click .js-logout": "logout"
+           
         },
-
-        "logout": function(e) {
-            return false;
-        }
+         
 
     });
 

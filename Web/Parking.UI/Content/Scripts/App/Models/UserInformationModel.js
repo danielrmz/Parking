@@ -63,7 +63,7 @@ namespace("Parking.App.Models");
             Parking.Common.SetupAjaxToken(this.get('SessionId'));
         },
 
-        destroy: function() {
+        destroy: function(callback) {
             var self = this;
 
             $.ajax('/api/session', { type: 'DELETE', success: function() { 
@@ -73,6 +73,8 @@ namespace("Parking.App.Models");
 
                 self.clear();
 
+                callback = callback || function() { };
+                callback();
             } });
 
 

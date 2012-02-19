@@ -16,10 +16,13 @@ namespace("Parking.App.Views");
         
         model: Parking.App._user,
 
-        render: function() { 
-         
+        initialize: function() {
+            
+        },
+
+        render: function() {  
             if(Parking.App._user == null || !Parking.App._user.get("IsAuthenticated")) {
-                // Redirect to main page.
+                // Redirect to main page. 
                 Parking.App._router.navigate("login");
                 return;
             }

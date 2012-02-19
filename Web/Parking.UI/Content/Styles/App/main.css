@@ -19,7 +19,8 @@ body > div input:focus, body > div textarea:focus {
   -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 3px rgba(82, 168, 236, 0.6);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 3px rgba(82, 168, 236, 0.6); }
 body > div .form-login {
-  margin-top: 40px;
+  width: 345px;
+  margin: 40px auto;
   background: white;
   padding: 10px 20px 5px;
   box-shadow: #999 0 0 5px 0px;
