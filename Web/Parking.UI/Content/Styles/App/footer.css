@@ -5,30 +5,28 @@
  * @author The JSONS
  * @copyright 2012 
  */
-footer {
-  margin-top: 50px; }
-  footer > div {
-    border-top: 1px solid #BBB;
-    padding-top: 5px; }
-  footer .copy {
+footer > div {
+  border-top: 1px solid #BBB;
+  padding-top: 5px; }
+footer .copy {
+  display: inline-block;
+  margin-right: 10px; }
+  footer .copy .separator {
+    margin-left: 5px; }
+footer ul.list-inline {
+  margin: 0;
+  list-style: none;
+  display: inline-block; }
+  footer ul.list-inline li {
     display: inline-block;
-    margin-right: 10px; }
-    footer .copy .separator {
-      margin-left: 5px; }
-  footer ul.list-inline {
-    margin: 0;
-    list-style: none;
-    display: inline-block; }
-    footer ul.list-inline li {
-      display: inline-block;
-      margin-right: 5px; }
-      footer ul.list-inline li a {
-        color: #3A6EA5; }
-  footer .separator {
-    padding: 0;
-    color: gray;
-    position: relative;
-    top: -1px;
-    font-size: 7px; }
-    footer .separator::after {
-      content: "\25A0"; }
+    margin-right: 5px; }
+    footer ul.list-inline li a {
+      color: #3A6EA5; }
+footer .separator {
+  padding: 0;
+  color: gray;
+  position: relative;
+  top: -1px;
+  font-size: 7px; }
+  footer .separator::after {
+    content: "\25A0"; }

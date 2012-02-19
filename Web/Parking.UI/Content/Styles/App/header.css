@@ -123,3 +123,48 @@ header {
       height: 35px;
       width: 120px;
       background: url("../Images/logo-myplace.png"); }
+
+#dashboard {
+  width: 100%;
+  background: #73757d url(../Images/bg-dashboard.png) repeat-x; }
+
+.panel-dashboard {
+  height: 50px;
+  padding: 10px; }
+
+.action-button {
+  margin-top: 10px; }
+
+.panel-notifications {
+  float: right; }
+  .panel-notifications ul {
+    list-style: none; }
+    .panel-notifications ul li {
+      width: 180px;
+      text-align: left;
+      float: right;
+      background: #52545C;
+      border: 1px outset #44454D;
+      border-top: 0;
+      border-left: 0;
+      padding: 3px;
+      color: white;
+      font-weight: 300;
+      font-size: 11px;
+      margin-left: 10px; }
+      .panel-notifications ul li .user {
+        padding: 8px;
+        line-height: 13px; }
+        .panel-notifications ul li .user span {
+          display: block; }
+      .panel-notifications ul li img {
+        height: 40px;
+        width: 40px;
+        max-height: 40px;
+        max-width: 40px;
+        float: left;
+        margin-right: 7px; }
+      .panel-notifications ul li.in img {
+        border: 2px solid #669E00; }
+      .panel-notifications ul li.out img {
+        border: 2px solid #932F00; }

@@ -43,8 +43,8 @@ body > div .form-login {
     font-size: 11px;
     color: silver; }
 body > div .pariking-map {
-  background: url("/Content/Styles/Images/bg-parking.png") no-repeat scroll center 0 transparent;
-  height: 1302px;
+  background: url("/Content/Styles/Images/bg-horizontal.png") no-repeat scroll center -2px transparent;
+  height: 379px;
   width: auto;
   position: relative;
   /*Section A*/
@@ -52,118 +52,187 @@ body > div .pariking-map {
   /*Section C*/ }
   body > div .pariking-map .car {
     position: absolute;
-    left: 10px;
-    bottom: 51px;
-    width: 122px;
-    height: 64px;
-    background: url("/Content/Styles/Images/icn-car.png") no-repeat scroll 0 0 transparent; }
+    left: 3px;
+    top: 12px;
+    width: 53px;
+    height: 97px;
+    background: url("/Content/Styles/Images/icn-car-min.png") no-repeat scroll 0 0 transparent; }
+  body > div .pariking-map .car:hover {
+    cursor: pointer;
+    opacity: 0.8; }
+  body > div .pariking-map .a1 {
+    -moz-transform: rotate(-180deg);
+    -webkit-transform: rotate(-180deg);
+    -o-transform: rotate(-180deg);
+    -ms-transform: rotate(-180deg); }
   body > div .pariking-map .a2 {
-    bottom: 130px; }
+    left: 64px;
+    -moz-transform: rotate(-180deg);
+    -webkit-transform: rotate(-180deg);
+    -o-transform: rotate(-180deg);
+    -ms-transform: rotate(-180deg); }
   body > div .pariking-map .a3 {
-    bottom: 205px; }
+    left: 126px;
+    -moz-transform: rotate(-180deg);
+    -webkit-transform: rotate(-180deg);
+    -o-transform: rotate(-180deg);
+    -ms-transform: rotate(-180deg); }
   body > div .pariking-map .a4 {
-    bottom: 286px; }
+    left: 186px;
+    -moz-transform: rotate(-180deg);
+    -webkit-transform: rotate(-180deg);
+    -o-transform: rotate(-180deg);
+    -ms-transform: rotate(-180deg); }
   body > div .pariking-map .a5 {
-    bottom: 367px; }
+    left: 248px;
+    -moz-transform: rotate(-180deg);
+    -webkit-transform: rotate(-180deg);
+    -o-transform: rotate(-180deg);
+    -ms-transform: rotate(-180deg); }
   body > div .pariking-map .a6 {
-    bottom: 240px;
+    left: 32px;
+    top: 99px;
     -moz-transform: rotate(-90deg);
     -webkit-transform: rotate(-90deg);
     -o-transform: rotate(-90deg);
-    -ms-transform: rotate(-90deg);
-    bottom: 348px;
-    left: 236px; }
+    -ms-transform: rotate(-90deg); }
   body > div .pariking-map .a7 {
-    bottom: 240px;
-    bottom: 232px;
-    left: 368px; }
+    left: 136px;
+    top: 99px;
+    -moz-transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg); }
   body > div .pariking-map .a8 {
-    bottom: 240px;
-    bottom: 145px;
-    left: 368px; }
+    left: 32px;
+    top: 178px;
+    -moz-transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg); }
   body > div .pariking-map .a9 {
-    bottom: 60px;
-    left: 368px; }
+    left: 136px;
+    top: 178px;
+    -moz-transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg); }
+  body > div .pariking-map .a10 {
+    left: 3px;
+    top: 268px; }
+  body > div .pariking-map .a11 {
+    left: 64px;
+    top: 268px; }
+  body > div .pariking-map .a12 {
+    left: 126px;
+    top: 268px; }
+  body > div .pariking-map .a13 {
+    left: 186px;
+    top: 268px; }
+  body > div .pariking-map .a14 {
+    left: 248px;
+    top: 268px; }
   body > div .pariking-map .b1 {
-    bottom: 473px; }
+    left: 317px;
+    -moz-transform: rotate(-180deg);
+    -webkit-transform: rotate(-180deg);
+    -o-transform: rotate(-180deg);
+    -ms-transform: rotate(-180deg); }
   body > div .pariking-map .b2 {
-    bottom: 539px; }
+    left: 384px;
+    -moz-transform: rotate(-180deg);
+    -webkit-transform: rotate(-180deg);
+    -o-transform: rotate(-180deg);
+    -ms-transform: rotate(-180deg); }
   body > div .pariking-map .b3 {
-    bottom: 604px; }
+    left: 453px;
+    -moz-transform: rotate(-180deg);
+    -webkit-transform: rotate(-180deg);
+    -o-transform: rotate(-180deg);
+    -ms-transform: rotate(-180deg); }
   body > div .pariking-map .b4 {
-    bottom: 668px; }
+    left: 524px;
+    -moz-transform: rotate(-180deg);
+    -webkit-transform: rotate(-180deg);
+    -o-transform: rotate(-180deg);
+    -ms-transform: rotate(-180deg); }
   body > div .pariking-map .b5 {
-    bottom: 734px; }
+    left: 596px;
+    -moz-transform: rotate(-180deg);
+    -webkit-transform: rotate(-180deg);
+    -o-transform: rotate(-180deg);
+    -ms-transform: rotate(-180deg); }
   body > div .pariking-map .b6 {
-    bottom: 801px; }
+    left: 308px;
+    top: 268px; }
   body > div .pariking-map .b7 {
-    bottom: 801px;
-    left: 368px; }
+    left: 365px;
+    top: 268px; }
   body > div .pariking-map .b8 {
-    bottom: 734px;
-    left: 368px; }
+    left: 424px;
+    top: 268px; }
   body > div .pariking-map .b9 {
-    bottom: 669px;
-    left: 368px; }
+    left: 483px;
+    top: 268px; }
   body > div .pariking-map .b10 {
-    bottom: 604px;
-    left: 368px; }
+    left: 541px;
+    top: 268px; }
   body > div .pariking-map .b11 {
-    bottom: 539px;
-    left: 368px; }
+    left: 601px;
+    top: 268px; }
   body > div .pariking-map .c1 {
-    bottom: 913px; }
+    left: 776px;
+    -moz-transform: rotate(-180deg);
+    -webkit-transform: rotate(-180deg);
+    -o-transform: rotate(-180deg);
+    -ms-transform: rotate(-180deg); }
   body > div .pariking-map .c2 {
-    bottom: 995px; }
+    left: 841px;
+    -moz-transform: rotate(-180deg);
+    -webkit-transform: rotate(-180deg);
+    -o-transform: rotate(-180deg);
+    -ms-transform: rotate(-180deg); }
   body > div .pariking-map .c3 {
-    bottom: 1072px; }
+    left: 903px;
+    -moz-transform: rotate(-180deg);
+    -webkit-transform: rotate(-180deg);
+    -o-transform: rotate(-180deg);
+    -ms-transform: rotate(-180deg); }
   body > div .pariking-map .c4 {
-    bottom: 1151px; }
+    left: 688px;
+    top: 100px;
+    -moz-transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg); }
   body > div .pariking-map .c5 {
-    bottom: 1230px; }
+    left: 659px;
+    top: 268px; }
   body > div .pariking-map .c6 {
-    bottom: 1203px;
-    left: 147px;
-    -moz-transform: rotate(-90deg);
-    -webkit-transform: rotate(-90deg);
-    -o-transform: rotate(-90deg);
-    -ms-transform: rotate(-90deg); }
+    left: 719px;
+    top: 268px; }
   body > div .pariking-map .c7 {
-    bottom: 1203px;
-    left: 235px;
-    -moz-transform: rotate(-90deg);
-    -webkit-transform: rotate(-90deg);
-    -o-transform: rotate(-90deg);
-    -ms-transform: rotate(-90deg); }
+    left: 782px;
+    top: 268px; }
   body > div .pariking-map .c8 {
-    bottom: 1076px;
-    left: 147px;
-    -moz-transform: rotate(-90deg);
-    -webkit-transform: rotate(-90deg);
-    -o-transform: rotate(-90deg);
-    -ms-transform: rotate(-90deg); }
+    left: 841px;
+    top: 268px; }
   body > div .pariking-map .c9 {
-    bottom: 1076px;
-    left: 235px;
-    -moz-transform: rotate(-90deg);
-    -webkit-transform: rotate(-90deg);
-    -o-transform: rotate(-90deg);
-    -ms-transform: rotate(-90deg); }
-  body > div .pariking-map .c10 {
-    bottom: 1230px;
-    left: 368px; }
-  body > div .pariking-map .c11 {
-    bottom: 1150px;
-    left: 368px; }
-  body > div .pariking-map .c12 {
-    bottom: 1073px;
-    left: 368px; }
-  body > div .pariking-map .c13 {
-    bottom: 994px;
-    left: 368px; }
-  body > div .pariking-map .c14 {
-    bottom: 913px;
-    left: 368px; }
+    left: 903px;
+    top: 268px; }
+body > div .modal {
+  font-family: "Open sans"; }
+body > div #ModalCheckin .modal-body p {
+  color: #666666;
+  font-family: "Open sans";
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 37px;
+  margin: 0 0 9px;
+  padding-right: 50px; }
+  body > div #ModalCheckin .modal-body p strong {
+    color: #5BB75B;
+    font-size: 40px; }
 body > div .new-car {
   background: url("../Images/icn-new-car.png") no-repeat center 0 transparent;
   width: 49px;
@@ -265,3 +334,27 @@ body > div .row-fluid .span6.container-parking {
   width: 503px;
   padding: 0;
   border: 1px solid #fff; }
+body > div .popup-container p {
+  margin-left: 44px; }
+body > div .popup-container .img-user {
+  border: 1px solid #CCCCCC;
+  display: inline-bock;
+  float: left;
+  margin: 0 10px 40px 0; }
+body > div .popup-container .tel span {
+  font-weight: 700; }
+body > div .popup-container .tel span.icon {
+  background: url("../Images/icn-phone.png") no-repeat scroll 0 0 transparent;
+  display: inline-block;
+  height: 16px;
+  position: relative;
+  top: 2px;
+  width: 16px; }
+body > div .popup-container .place {
+  margin-bottom: 5px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 5px; }
+  body > div .popup-container .place span {
+    font-weight: 700; }
+body > div .popup-container .mail span {
+  font-weight: 700; }

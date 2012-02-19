@@ -19,7 +19,6 @@ namespace("Parking.App.Views");
 
         render: function (done) {
             var view = this;
-
             if(Parking.App._user != null && Parking.App._user.get("IsAuthenticated")) {
                 // Redirect to main page.
                 Parking.App._router.navigate("home");

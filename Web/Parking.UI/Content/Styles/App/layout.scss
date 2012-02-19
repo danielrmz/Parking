@@ -24,13 +24,13 @@ html, body {
 header {
 }
 
-body #body {
-	margin-top: 20px;
+body #body { 
 	font-family: 'Open Sans', sans-serif;
 }
 
 footer {
 	padding: 5px;
+	padding-top: 0px;
 	margin: 0 auto;
 	text-align: left;
 	font-size: 11px;
@@ -83,4 +83,33 @@ label, input, button, select, textarea {
 	opacity: 0.5;
 }
 
+.btn-group.green {
+ .btn {
+	  background: #7cc11e; 
+	  background: -moz-linear-gradient(top, #7cc11e 0%, #65ad00 79%); 
+	  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #7cc11e), color-stop(79%, #65ad00)); 
+	  background: -webkit-linear-gradient(top, #7cc11e 0%, #65ad00 79%); 
+	  background: -o-linear-gradient(top, #7cc11e 0%, #65ad00 79%); 
+	  background: -ms-linear-gradient(top, #7cc11e 0%, #65ad00 79%); 
+	  background: linear-gradient(top, #7cc11e 0%, #65ad00 79%); 
+	  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#7cc11e', endColorstr='#65ad00',GradientType=0 ); 
+	  border: 1px solid #64AC00;
+	  border-bottom: 1px solid #5C9F00;
+	  color: white;
+	  text-shadow: none;
+	  outline: 0; 
+	  &:active {
+		background: -moz-linear-gradient(top, #65ad00 0%, #7cc11e 79%); 
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #65ad00), color-stop(79%, #7cc11e)); 
+		background: -webkit-linear-gradient(top, #65ad00 0%, #7cc11e 79%); 
+		background: -o-linear-gradient(top, #65ad00 0%, #7cc11e 79%); 
+		background: -ms-linear-gradient(top, #65ad00 0%, #7cc11e 79%); 
+		background: linear-gradient(top, #65ad00 0%, #7cc11e 79%); 
+	  }
+  }
+
+	 .dropdown-menu li > a:hover, .dropdown-menu .active > a, .dropdown-menu .active > a:hover {
+		background: #5A9B00; 
+	  }
+  } 
 /* @endgroup */
