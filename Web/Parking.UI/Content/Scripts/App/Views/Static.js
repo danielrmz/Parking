@@ -11,7 +11,7 @@ namespace("Parking.App.Views");
 
 (function ($, undefined) {
 
-    Parking.App.Views.Static = Backbone.View.extend({ 
+    Parking.App.Views.Static = Backbone.View.extend({
         render: Parking.Common.RenderViewTemplate
     });
 

@@ -21,7 +21,7 @@ namespace Sieena.Parking.API.Models
     using Exceptions;
     using Sieena.Parking.Common.Utils;
 
-    public partial class User : ParkingModel, IUser
+    public partial class User : IUser
     {
         public static UserInformation GetUserInformation(User u)
         {
@@ -52,22 +52,25 @@ namespace Sieena.Parking.API.Models
         /// <returns></returns>
         public static User SaveUser(User u)
         {
-            u.Email = u.Email.ToLower();
-            u.ValidateAndRaise();
-
-            if (u.UserId == 0)
+            using (EntityContext ctx = new EntityContext())
             {
-                u.Password = GetSHA1(u.Password);
-                ctx.Users.InsertOnSubmit(u);
-            }
-            else
-            {
-                ctx.Users.Attach(u, true);
-            }
+                u.Email = u.Email.ToLower();
+                u.ValidateAndRaise();
 
-            ctx.SubmitChanges();
+                if (u.UserId == 0)
+                {
+                    u.Password = Crypto.GetSHA1(u.Password);
+                    ctx.Users.AddObject(u);
+                }
+                else
+                {
+                    ctx.Users.Attach(u);
+                }
 
-            return u;
+                ctx.SaveChanges();
+
+                return u;
+            }
         }
 
         /// <summary>
@@ -77,22 +80,25 @@ namespace Sieena.Parking.API.Models
         /// <param name="r"></param>
         public static void AddRoles(User u, List<Role> r)
         {
-            foreach (Role ri in r)
+            using (EntityContext ctx = new EntityContext())
             {
-                Models.UserRole ur = new Models.UserRole()
+                foreach (Role ri in r)
                 {
-                    UserId = u.UserId,
-                    RoleId = ri.RoleId
-                };
-                if (ctx.UserRoles.Where(uro => uro.UserId.Equals(u.UserId) && uro.RoleId.Equals(ri.RoleId)).Any())
-                {
+                    Models.UserRole ur = new Models.UserRole()
+                    {
+                        UserId = u.UserId,
+                        RoleId = ri.RoleId
+                    };
+                    if (ctx.UserRoles.Where(uro => uro.UserId.Equals(u.UserId) && uro.RoleId.Equals(ri.RoleId)).Any())
+                    {
+                    }
+                    else
+                    {
+                        ctx.UserRoles.AddObject(ur);
+                    }
                 }
-                else
-                {
-                    ctx.UserRoles.InsertOnSubmit(ur);
-                }
+                ctx.SaveChanges();
             }
-            ctx.SubmitChanges();
         }
 
         /// <summary>
@@ -102,10 +108,13 @@ namespace Sieena.Parking.API.Models
         /// <param name="r"></param>
         public static void DeleteRoles(User u, List<Role> r)
         {
-            ctx.UserRoles.Where(ur => ur.UserId.Equals(u.UserId) 
-                                        && r.Where( ri => ri.RoleId.Equals(ur.RoleId)).Any()
-                                    ).ToList().ForEach(ur => ctx.UserRoles.DeleteOnSubmit(ur));
-            ctx.SubmitChanges();
+            using (EntityContext ctx = new EntityContext())
+            {
+                ctx.UserRoles.Where(ur => ur.UserId.Equals(u.UserId)
+                                            && r.Where(ri => ri.RoleId.Equals(ur.RoleId)).Any()
+                                        ).ToList().ForEach(ur => ctx.UserRoles.DeleteObject(ur));
+                ctx.SaveChanges();
+            }
         }
 
         /// <summary>
@@ -115,15 +124,18 @@ namespace Sieena.Parking.API.Models
         /// <returns></returns>
         public static bool DeleteUser(string email)
         {
-            User u = GetByEmail(email);
-            if (u != null)
+            using (EntityContext ctx = new EntityContext())
             {
-                u.IsActive = false;
-            }
+                User u = ctx.Users.Where(ux => ux.Email.Equals(email)).FirstOrDefault();
+                if (u != null)
+                {
+                    u.IsActive = false;
+                }
 
-            ctx.SubmitChanges();
-            
-            return true;
+                ctx.SaveChanges();
+
+                return true;
+            }
         }
 
         /// <summary>
@@ -133,8 +145,11 @@ namespace Sieena.Parking.API.Models
         /// <returns></returns>
         public static User GetByEmail(string email)
         {
-            email = email.ToLower().Trim();
-            return ctx.Users.Where(u => u.Email.Equals(email)).FirstOrDefault();
+            using (EntityContext ctx = new EntityContext())
+            {
+                email = email.ToLower().Trim();
+                return ctx.Users.Where(u => u.Email.Equals(email)).FirstOrDefault();
+            }
         }
 
         /// <summary>
@@ -143,8 +158,11 @@ namespace Sieena.Parking.API.Models
         /// <param name="email"></param>
         /// <returns></returns>
         public static User GetById(int id)
-        { 
-            return ctx.Users.Where(u => u.UserId.Equals(id)).FirstOrDefault();
+        {
+            using (EntityContext ctx = new EntityContext())
+            {
+                return ctx.Users.Where(u => u.UserId.Equals(id)).FirstOrDefault();
+            }
         }
 
         /// <summary>
@@ -153,7 +171,10 @@ namespace Sieena.Parking.API.Models
         /// <returns></returns>
         public static List<User> GetAll()
         {
-            return ctx.Users.ToList();
+            using (EntityContext ctx = new EntityContext())
+            {
+                return ctx.Users.ToList();
+            }
         }
 
         /// <summary>
@@ -163,8 +184,11 @@ namespace Sieena.Parking.API.Models
         /// <returns></returns>
         public static List<User> FindByEmail(string emailToMatch)
         {
-            emailToMatch = emailToMatch.ToLower().Trim();
-            return ctx.Users.Where(u => u.Email.Contains(emailToMatch)).ToList();
+            using (EntityContext ctx = new EntityContext())
+            {
+                emailToMatch = emailToMatch.ToLower().Trim();
+                return ctx.Users.Where(u => u.Email.Contains(emailToMatch)).ToList();
+            }
         }
 
         /// <summary>
@@ -194,7 +218,7 @@ namespace Sieena.Parking.API.Models
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 // Could be several reasons, but go to next auth type 
             }
@@ -216,26 +240,35 @@ namespace Sieena.Parking.API.Models
             using (PrincipalContext context = new PrincipalContext(ContextType.Domain, "SIEENA", "daniel.ramirez", "xrZ40uye"))
             {
                 UserPrincipal up = UserPrincipal.FindByIdentity(context, IdentityType.SamAccountName, username);
-                User u = new User()
+
+                using (EntityContext ctx = new EntityContext())
                 {
-                    Email = up.EmailAddress,
-                    CreatedAt = DateTime.Now,
-                    IsActive = true,
-                    Password = password
-                };
+                    User u = new User()
+                    {
+                        Email = up.EmailAddress,
+                        CreatedAt = DateTime.Now,
+                        IsActive = true,
+                        Password = password
+                    };
 
-                u = User.SaveUser(u);
+                    ctx.Users.AddObject(u);
+                    ctx.SaveChanges();
 
-                UserInfo.Save(new UserInfo()
-                {
-                    UserId = u.UserId,
-                    FirstName = up.Name,
-                    LastName = up.Surname
-                });
 
-                User.AddRoles(u, new List<Role>() { Role.GetAll().OrderByDescending(r => r.RoleLevel).First() });
+                    UserInfo ui = new UserInfo()
+                    {
+                        UserId = u.UserId,
+                        FirstName = up.Name,
+                        LastName = up.Surname
+                    };
 
-                return u;
+                    ctx.UserInfos.AddObject(ui);
+                    ctx.SaveChanges();
+
+                    User.AddRoles(u, new List<Role>() { Role.GetAll().OrderByDescending(r => r.RoleLevel).First() });
+
+                    return u;
+                }
             }
 
         }
@@ -268,7 +301,7 @@ namespace Sieena.Parking.API.Models
             }
             else if (u != null)
             {
-                if (!u.Password.Equals(GetSHA1(password)))
+                if (!u.Password.Equals(Crypto.GetSHA1(password)))
                 {
                     u = null;
                 }
@@ -277,21 +310,6 @@ namespace Sieena.Parking.API.Models
             return u != null;
         }
 
-        /// <summary>
-        /// Obtains the SHA1 sum of a string.
-        /// </summary>
-        /// <param name="str"></param>
-        /// <returns></returns>
-        private static string GetSHA1(string str)
-        {
-            SHA1 sha1 = SHA1Managed.Create();
-            ASCIIEncoding encoding = new ASCIIEncoding();
-            byte[] stream = null;
-            StringBuilder sb = new StringBuilder();
-            stream = sha1.ComputeHash(encoding.GetBytes(str));
-            for (int i = 0; i < stream.Length; i++) sb.AppendFormat("{0:x2}", stream[i]);
-            return sb.ToString();
-        }
     }
 
 }

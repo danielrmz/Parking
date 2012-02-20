@@ -30,10 +30,13 @@
 
 	.form-login {
 		width: 345px;
-		margin: 40px auto;
+		margin: 120px auto 120px auto;
 		background: white; 
 		padding: 10px 20px 5px; 
-		box-shadow: #999 0 0 5px 0px; 
+		box-shadow: #999 0 0 5px 0px;
+		-webkit-box-shadow: #999 0 0 5px 0px;
+		-moz-box-shadow: #999 0 0 5px 0px;
+		 
 		border-radius: 3px;
 
 		.fields {
@@ -44,7 +47,7 @@
 			}
 
 			input[type=password] {
-				width: 89%;
+				width: 84%;
 			}
 		}
 
@@ -64,6 +67,7 @@
 			padding-top: 7px;
 			font-size: 11px;
 			color: silver;
+			width: 100px;
 		}
 	}
 

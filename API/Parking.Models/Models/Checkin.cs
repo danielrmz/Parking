@@ -17,7 +17,7 @@ namespace Sieena.Parking.API.Models
     /// <summary>
     /// Represents the checkin from a person to a specified place.
     /// </summary>
-    public partial class Checkin : ParkingModel, ICheckin
+    public partial class Checkin :  ICheckin
     {
         /// <summary>
         /// Gets all the checkins in the system.
@@ -25,7 +25,10 @@ namespace Sieena.Parking.API.Models
         /// <returns></returns>
         public static List<Checkin> GetAll()
         {
-            return ctx.Checkins.OrderByDescending(c => c.CheckInId).ToList();
+            using (EntityContext ctx = new EntityContext())
+            {
+                return ctx.Checkins.OrderByDescending(c => c.CheckInId).ToList();
+            }
         }
 
 
@@ -36,7 +39,10 @@ namespace Sieena.Parking.API.Models
         /// <returns></returns>
         public static Checkin Get(int id)
         {
-            return ctx.Checkins.Where(c => c.CheckInId.Equals(id)).FirstOrDefault();
+            using (EntityContext ctx = new EntityContext())
+            {
+                return ctx.Checkins.Where(c => c.CheckInId.Equals(id)).FirstOrDefault();
+            }
         }
 
         /// <summary>
@@ -46,16 +52,19 @@ namespace Sieena.Parking.API.Models
         /// <returns></returns>
         public static Checkin Save(Checkin c)
         {
-            c.ValidateAndRaise();
-
-            if (c.CheckInId == 0)
+            using (EntityContext ctx = new EntityContext())
             {
-                ctx.Checkins.InsertOnSubmit(c);
+                c.ValidateAndRaise();
+
+                if (c.CheckInId == 0)
+                {
+                    ctx.Checkins.AddObject(c);
+                }
+
+                ctx.SaveChanges();
+
+                return c;
             }
-
-            ctx.SubmitChanges();
-
-            return c;
         }
 
         /// <summary>
@@ -65,11 +74,14 @@ namespace Sieena.Parking.API.Models
         /// <returns></returns>
         public static Checkin Delete(int id)
         {
-            Checkin c = Get(id);
-            ctx.Checkins.DeleteOnSubmit(c);
-            ctx.SubmitChanges();
+            using (EntityContext ctx = new EntityContext())
+            {
+                Checkin c = ctx.Checkins.Where(cx => cx.CheckInId == id).FirstOrDefault();
+                ctx.Checkins.DeleteObject(c);
+                ctx.SaveChanges();
+                return c;
+            }
             
-            return c;
         }
     }
 }

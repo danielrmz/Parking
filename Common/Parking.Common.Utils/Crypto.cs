@@ -11,6 +11,23 @@ namespace Sieena.Parking.Common.Utils
     {
         private static byte[] _salt = Encoding.ASCII.GetBytes("o6806642kbM7c5");
 
+
+        /// <summary>
+        /// Obtains the SHA1 sum of a string.
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static string GetSHA1(string str)
+        {
+            SHA1 sha1 = SHA1Managed.Create();
+            ASCIIEncoding encoding = new ASCIIEncoding();
+            byte[] stream = null;
+            StringBuilder sb = new StringBuilder();
+            stream = sha1.ComputeHash(encoding.GetBytes(str));
+            for (int i = 0; i < stream.Length; i++) sb.AppendFormat("{0:x2}", stream[i]);
+            return sb.ToString();
+        }
+
         /// <summary>
         /// Encrypt the given string using AES.  The string can be decrypted using 
         /// DecryptStringAES().  The sharedSecret parameters must match.

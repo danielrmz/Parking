@@ -12,19 +12,20 @@ namespace("Parking.App.Views");
 (function ($, undefined) {
 
     Parking.App.Views.Login = Backbone.View.extend({
-
+        
         template: Parking.Configuration.ClientTemplatesUrl + "Account/Login.html",
 
         model: Parking.App._user,
 
         render: function (done) {
-            var view = this;
+            var view = this; 
+
             if(Parking.App._user != null && Parking.App._user.get("IsAuthenticated")) {
                 // Redirect to main page. 
-                Parking.App._router.navigate("home");
+                Parking.App.router.navigate("home", true);
                 return;
             }
-            
+             
             Parking.Common.RenderViewTemplate.apply(this, arguments);
         },
 
@@ -51,7 +52,7 @@ namespace("Parking.App.Views");
                             Parking.App._user.save(data["Response"]);
                     
                             // Redirect to the core app view
-                             Parking.App._router.navigate("home", true);
+                             Parking.App.router.navigate("home", true);
 
                         } else {
                             submit.val(submit.data("click")).attr("disabled", false);

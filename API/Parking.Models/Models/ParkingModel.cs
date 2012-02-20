@@ -15,7 +15,15 @@ namespace Sieena.Parking.API.Models
             {
                 if (_context == null)
                 {
-                    _context = new DataStoreDataContext(); 
+                    _context = new DataStoreDataContext();
+                }
+                else
+                {
+                    if (_context.Connection.State == System.Data.ConnectionState.Closed)
+                    {
+                        _context.Dispose();
+                        _context = new DataStoreDataContext();
+                    }
                 }
 
                 return _context;

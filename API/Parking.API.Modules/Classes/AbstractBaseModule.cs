@@ -150,7 +150,8 @@ namespace Sieena.Parking.API.Modules.Classes
                             Time = ConvertToUnixTime(DateTime.Now),
                             Response = me.Errors.ToArray(),
                             Type = "ValidationResult",
-                            Error = true
+                            Error = true,
+                            IsGlobalError = false
                         });
                         return r;
                     }
@@ -193,6 +194,9 @@ namespace Sieena.Parking.API.Modules.Classes
         {
             #region Get the type of the Entity
             string type = string.Empty;
+            bool globalError = false;
+            Exception ex = null;
+
             if (data != null)
             {
                 try
@@ -215,12 +219,18 @@ namespace Sieena.Parking.API.Modules.Classes
             }
 
             bool isError = false;
+
+            
             if (data is Exception)
             {
+                ex = data as Exception;
+                globalError = (data is Exception && !(data is APIException));
                 isError = true;
                 type = data.InnerException != null ? data.InnerException.GetType().Name : type;
                 data = data.InnerException != null ? data.InnerException.Message : data.Message;
             }
+
+
             #endregion
 
             #region Calculate Signature
@@ -231,12 +241,30 @@ namespace Sieena.Parking.API.Modules.Classes
 
             #endregion
 
-            return Response.AsJson(new {
-                Time = ConvertToUnixTime(DateTime.Now),
-                Response = data == null ? string.Empty : data,
-                Type = type,
-                Error = isError
-            });
+            if (!isError)
+            {
+
+                return Response.AsJson(new
+                {
+                    Time = ConvertToUnixTime(DateTime.Now),
+                    Response = data == null ? string.Empty : data,
+                    Type = type,
+                    Error = isError,
+                    IsGlobalError = globalError
+                });
+            }
+            else
+            {
+                return Response.AsJson(new
+                {
+                    Time = ConvertToUnixTime(DateTime.Now),
+                    Response = data == null ? string.Empty : data,
+                    Type = type,
+                    Error = isError,
+                    IsGlobalError = globalError,
+                    StackTrace = ex.StackTrace
+                });
+            }
         }
 
         /// <summary>

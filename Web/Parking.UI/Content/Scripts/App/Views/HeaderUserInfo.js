@@ -26,8 +26,8 @@ namespace("Parking.App.Views");
         },
 
         "logout": function(e) {
-            Parking.App._user.destroy(function() { 
-                Parking.App._router.navigate("login");
+            Parking.App._user.destroy(function() {  
+                Parking.App.router.navigate("login", true);
             }); 
             
             return false;

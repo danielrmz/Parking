@@ -34,5 +34,15 @@ namespace Sieena.Parking.API.Models.Properties {
                 return ((string)(this["DataSourceConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"metadata=res://*/EntityContext.csdl|res://*/EntityContext.ssdl|res://*/EntityContext.msl;provider=System.Data.SqlClient;provider connection string=""data source=b26576c2-587f-42e2-84fa-9fe50000baae.sqlserver.sequelizer.com;persist security info=True;user id=qqnfafsndywwohmm;password=UfA723bXeqrcwbX3yAGxdGvNFmbK6HwmeTmmkrHTMQiR4Pifh8CgSfzmRVyNZx2D;multipleactiveresultsets=True;App=EntityFramework""")]
+        public string EntityContext {
+            get {
+                return ((string)(this["EntityContext"]));
+            }
+        }
     }
 }

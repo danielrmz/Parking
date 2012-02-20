@@ -10,12 +10,13 @@ namespace("Parking.Common");
 
 (function($, common, undefined) {
      
+    common.SetupAjaxErrorHandler();
+
     $(function() { 
         common.HeaderDate();
         setInterval(common.HeaderDate, 60 * 1000);
         setInterval(common.HeaderDateTick, 1000);
 
-        common.SetupAjaxErrorHandler();
 
         /* (function(){
  

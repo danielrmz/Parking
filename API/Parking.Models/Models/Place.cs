@@ -17,7 +17,7 @@ namespace Sieena.Parking.API.Models
     /// <summary>
     /// A whole container of spaces. i.e. Parking Lot
     /// </summary>
-    public partial class Place : ParkingModel,  IPlace
+    public partial class Place :  IPlace
     {
         /// <summary>
         /// Gets all the available parking lots in the system.
@@ -25,7 +25,10 @@ namespace Sieena.Parking.API.Models
         /// <returns></returns>
         public static List<Place> GetAll()
         {
-            return ctx.Places.ToList();
+            using (EntityContext ctx = new EntityContext())
+            {
+                return ctx.Places.ToList();
+            }
         }
 
         /// <summary>
@@ -35,7 +38,10 @@ namespace Sieena.Parking.API.Models
         /// <returns></returns>
         public static Place Get(int id)
         {
-            return ctx.Places.Where(p => p.PlaceId.Equals(id)).FirstOrDefault(); 
+            using (EntityContext ctx = new EntityContext())
+            {
+                return ctx.Places.Where(p => p.PlaceId.Equals(id)).FirstOrDefault();
+            }
         }
 
         /// <summary>
@@ -45,16 +51,19 @@ namespace Sieena.Parking.API.Models
         /// <returns></returns>
         public static Place Save(Place p)
         {
-            p.ValidateAndRaise();
-
-            if (p.PlaceId == 0)
+            using (EntityContext ctx = new EntityContext())
             {
-                ctx.Places.InsertOnSubmit(p);
+                p.ValidateAndRaise();
+
+                if (p.PlaceId == 0)
+                {
+                    ctx.Places.AddObject(p);
+                }
+
+                ctx.SaveChanges();
+
+                return p;
             }
-
-            ctx.SubmitChanges();
-
-            return p;
         }
 
         /// <summary>
@@ -62,12 +71,16 @@ namespace Sieena.Parking.API.Models
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public static bool Delete(int id)
+        public static Place Delete(int id)
         {
-            ctx.Places.DeleteOnSubmit(ctx.Places.Where(p => p.PlaceId.Equals(id)).First());
-            ctx.SubmitChanges();
+            using (EntityContext ctx = new EntityContext())
+            {
+                Place p = ctx.Places.Where(px => px.PlaceId == id).FirstOrDefault();
+                ctx.Places.DeleteObject(p); 
+                ctx.SaveChanges();
+                return p;
+            }
 
-            return true;
         }
     }
 

@@ -38,6 +38,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.DirectoryServices" />
     <Reference Include="System.DirectoryServices.AccountManagement" />
@@ -52,10 +53,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataStore.designer.cs">
-      <DependentUpon>DataStore.dbml</DependentUpon>
-      <DesignTime>True</DesignTime>
+    <Compile Include="EntityContext.Designer.cs">
       <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EntityContext.edmx</DependentUpon>
     </Compile>
     <Compile Include="Exceptions\APIException.cs" />
     <Compile Include="Exceptions\AccessException.cs" />
@@ -83,7 +84,6 @@
     <Compile Include="Models\Checkin.cs" />
     <Compile Include="Models\Notification.cs" />
     <Compile Include="Models\Endpoint.cs" />
-    <Compile Include="Models\ParkingModel.cs" />
     <Compile Include="Models\Place.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\Session.cs" />
@@ -106,14 +106,10 @@
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="DataStore.dbml">
-      <SubType>Designer</SubType>
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>DataStore.designer.cs</LastGenOutput>
-    </None>
-    <None Include="DataStore.dbml.layout">
-      <DependentUpon>DataStore.dbml</DependentUpon>
-    </None>
+    <EntityDeploy Include="EntityContext.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>EntityContext.Designer.cs</LastGenOutput>
+    </EntityDeploy>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

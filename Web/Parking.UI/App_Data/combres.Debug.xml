@@ -107,9 +107,10 @@
       <resource path="~/Content/Scripts/App/Collections/SpaceCollection.js"  />
 
       <!-- Main Router -->
+      <resource path="~/Content/Scripts/Shared/Loader.js"  />
+      
       <resource path="~/Content/Scripts/App/Router.js" />
 
-      <resource path="~/Content/Scripts/Shared/Loader.js"  />
     </resourceSet>
 
   </resourceSets>

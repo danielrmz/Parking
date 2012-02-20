@@ -6,7 +6,7 @@ using Sieena.Parking.API.Models.Interfaces;
 
 namespace Sieena.Parking.API.Models
 {
-    public partial class Session : ParkingModel, ISession
+    public partial class Session : ISession
     {
         /// <summary>
         /// Sets a new session object
@@ -14,13 +14,16 @@ namespace Sieena.Parking.API.Models
         /// <param name="s"></param>
         public static Session Set(Session s)
         {
-            s.ValidateAndRaise();
+            using (EntityContext ctx = new EntityContext())
+            {
+                s.ValidateAndRaise();
 
-            s.SessionId = Guid.NewGuid();
-            ctx.Sessions.InsertOnSubmit(s);
-            ctx.SubmitChanges();
+                s.SessionId = Guid.NewGuid();
+                ctx.Sessions.AddObject(s);
+                ctx.SaveChanges();
 
-            return s;
+                return s;
+            }
         }
 
         /// <summary>
@@ -29,21 +32,24 @@ namespace Sieena.Parking.API.Models
         /// <param name="s"></param>
         public static Session Set(int userId, TimeSpan timeOut, bool rememberMe)
         {
-            Session s = new Session() { 
-                        UserId = userId,
-                        CreatedAt = DateTime.Now,
-                        ExpiresAt = rememberMe ? DateTime.MaxValue : DateTime.Now.Add(timeOut),
-                        LastAccess= DateTime.Now,
-                        Data = string.Empty
-            };
+            using (EntityContext ctx = new EntityContext())
+            {
+                Session s = new Session()
+                {
+                    UserId = userId,
+                    CreatedAt = DateTime.Now,
+                    ExpiresAt = rememberMe ? DateTime.MaxValue : DateTime.Now.Add(timeOut),
+                    LastAccess = DateTime.Now,
+                    Data = string.Empty
+                };
 
-            s.ValidateAndRaise();
+                s.ValidateAndRaise();
 
-            s.SessionId = Guid.NewGuid();
-            ctx.Sessions.InsertOnSubmit(s);
-            ctx.SubmitChanges();
-
-            return s;
+                s.SessionId = Guid.NewGuid();
+                ctx.Sessions.AddObject(s);
+                ctx.SaveChanges();
+                return s;
+            }
         }
 
         /// <summary>
@@ -52,11 +58,14 @@ namespace Sieena.Parking.API.Models
         /// <param name="sessionId"></param>
         public static void Expire(Guid sessionId)
         {
-            Session session = ctx.Sessions.Where(s => s.SessionId.Equals(sessionId)).FirstOrDefault();
-            if (session != null)
+            using (EntityContext ctx = new EntityContext())
             {
-                ctx.Sessions.DeleteOnSubmit(session);
-                ctx.SubmitChanges();
+                Session session = ctx.Sessions.Where(s => s.SessionId.Equals(sessionId)).FirstOrDefault();
+                if (session != null)
+                {
+                    ctx.Sessions.DeleteObject(session);
+                    ctx.SaveChanges();
+                }
             }
         }
 
@@ -66,11 +75,14 @@ namespace Sieena.Parking.API.Models
         /// <param name="sessionId"></param>
         public static void Expire(int userId)
         {
-            Session session = ctx.Sessions.Where(s => s.UserId.HasValue && s.UserId.Value.Equals(userId)).FirstOrDefault();
-            if (session != null)
+            using (EntityContext ctx = new EntityContext())
             {
-                ctx.Sessions.DeleteOnSubmit(session);
-                ctx.SubmitChanges();
+                Session session = ctx.Sessions.Where(s => s.UserId.HasValue && s.UserId.Value.Equals(userId)).FirstOrDefault();
+                if (session != null)
+                {
+                    ctx.Sessions.DeleteObject(session);
+                    ctx.SaveChanges();
+                }
             }
         }
 
@@ -79,8 +91,11 @@ namespace Sieena.Parking.API.Models
         /// </summary>
         public static void CleanAll()
         {
-            ctx.Sessions.Where(s => s.ExpiresAt < DateTime.Now && s.ExpiresAt != DateTime.MaxValue).ToList().ForEach(s => ctx.Sessions.DeleteOnSubmit(s));
-            ctx.SubmitChanges();
+            using (EntityContext ctx = new EntityContext())
+            {
+                ctx.Sessions.Where(s => s.ExpiresAt < DateTime.Now && s.ExpiresAt != DateTime.MaxValue).ToList().ForEach(s => ctx.Sessions.DeleteObject(s));
+                ctx.SaveChanges();
+            }
         }
 
         /// <summary>
@@ -91,17 +106,20 @@ namespace Sieena.Parking.API.Models
         /// <returns></returns>
         public static Session Get(Guid sessionId)
         {
-            Session sess = ctx.Sessions.Where(s => s.SessionId.Equals(sessionId)).FirstOrDefault();
-            if (sess.ExpiresAt < DateTime.Now && sess.ExpiresAt != DateTime.MaxValue)
+            using (EntityContext ctx = new EntityContext())
             {
-                ctx.Sessions.DeleteOnSubmit(sess);
-                ctx.SubmitChanges();
-                return null;
-            }
-            sess.LastAccess = DateTime.Now;
-            ctx.SubmitChanges();
+                Session sess = ctx.Sessions.Where(s => s.SessionId.Equals(sessionId)).FirstOrDefault();
+                if (sess.ExpiresAt < DateTime.Now && sess.ExpiresAt != DateTime.MaxValue)
+                {
+                    ctx.Sessions.DeleteObject(sess);
+                    ctx.SaveChanges();
+                    return null;
+                }
+                sess.LastAccess = DateTime.Now;
+                ctx.SaveChanges();
 
-            return sess;
+                return sess;
+            }
         }
 
         /// <summary>
@@ -112,17 +130,20 @@ namespace Sieena.Parking.API.Models
         /// <returns></returns>
         public static Session Get(int userId)
         {
-            Session sess = ctx.Sessions.Where(s => s.UserId.Equals(userId)).FirstOrDefault();
-            if (sess.ExpiresAt < DateTime.Now && sess.ExpiresAt != DateTime.MaxValue)
+            using (EntityContext ctx = new EntityContext())
             {
-                ctx.Sessions.DeleteOnSubmit(sess);
-                ctx.SubmitChanges();
-                return null;
-            }
-            sess.LastAccess = DateTime.Now;
-            ctx.SubmitChanges();
+                Session sess = ctx.Sessions.Where(s => s.UserId.HasValue && s.UserId.Value.Equals(userId)).FirstOrDefault();
+                if (sess.ExpiresAt < DateTime.Now && sess.ExpiresAt != DateTime.MaxValue)
+                {
+                    ctx.Sessions.DeleteObject(sess);
+                    ctx.SaveChanges();
+                    return null;
+                }
+                sess.LastAccess = DateTime.Now;
+                ctx.SaveChanges();
 
-            return sess;
+                return sess;
+            }
         }
     }
 }

@@ -26,11 +26,11 @@ namespace("Parking.App.Models");
             return this.FirstName + " " + this.LastName;
         },
 
-        initialize: function() {
-            this.load();
+        initialize: function(x) {
+           
+        },
 
-            
-            // Load required associated views. 
+        initializeViews: function() {
             (new Parking.App.Views.HeaderUserInfo({ model: this, el: $('.user-info .user') })).render(); 
             (new Parking.App.Views.Dashboard({model: this, el: $('#dashboard') })).render(); 
         },
@@ -39,7 +39,7 @@ namespace("Parking.App.Models");
             var self = this;
             var sessionId = $.cookie('ParkingSessionId');
             
-            if(sessionId != null) {
+            if(sessionId != null) { 
                 this.set("SessionId", $.cookie('ParkingSessionId'));
                 this.set("UserName", $.cookie('ParkingUserId')); 
             
@@ -49,8 +49,14 @@ namespace("Parking.App.Models");
                 $.get("/api/session", function(data) { 
                     if(data.Error == false) {
                         self.set(data["Response"]);
+                        self.trigger("login");
+                        self.initializeViews();
                     }
                 });
+            } else { 
+            console.log("triggering login");
+                self.trigger("login");
+                this.initializeViews();
             }
         },
 
@@ -73,7 +79,7 @@ namespace("Parking.App.Models");
 
                 self.clear();
 
-                callback = callback || function() { };
+                callback = callback || function() { }; 
                 callback();
             } });
 

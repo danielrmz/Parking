@@ -1,5 +1,5 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Parking.API.Models.Properties" GeneratedClassName="Settings">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Sieena.Parking.API.Models.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
     <Setting Name="DataSourceConnectionString" Type="(Connection string)" Scope="Application">
@@ -9,6 +9,13 @@
   &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">Data Source=b26576c2-587f-42e2-84fa-9fe50000baae.sqlserver.sequelizer.com;Persist Security Info=True;User ID=qqnfafsndywwohmm;Password=UfA723bXeqrcwbX3yAGxdGvNFmbK6HwmeTmmkrHTMQiR4Pifh8CgSfzmRVyNZx2D</Value>
+    </Setting>
+    <Setting Name="EntityContext" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;metadata=res://*/EntityContext.csdl|res://*/EntityContext.ssdl|res://*/EntityContext.msl;provider=System.Data.SqlClient;provider connection string="data source=b26576c2-587f-42e2-84fa-9fe50000baae.sqlserver.sequelizer.com;persist security info=True;user id=qqnfafsndywwohmm;password=UfA723bXeqrcwbX3yAGxdGvNFmbK6HwmeTmmkrHTMQiR4Pifh8CgSfzmRVyNZx2D;multipleactiveresultsets=True;App=EntityFramework"&lt;/ConnectionString&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">metadata=res://*/EntityContext.csdl|res://*/EntityContext.ssdl|res://*/EntityContext.msl;provider=System.Data.SqlClient;provider connection string="data source=b26576c2-587f-42e2-84fa-9fe50000baae.sqlserver.sequelizer.com;persist security info=True;user id=qqnfafsndywwohmm;password=UfA723bXeqrcwbX3yAGxdGvNFmbK6HwmeTmmkrHTMQiR4Pifh8CgSfzmRVyNZx2D;multipleactiveresultsets=True;App=EntityFramework"</Value>
     </Setting>
   </Settings>
 </SettingsFile>

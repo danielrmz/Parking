@@ -17,7 +17,7 @@ namespace Sieena.Parking.API.Models
     /// <summary>
     /// Notification to a user
     /// </summary>
-    public partial class Notification : ParkingModel,  INotification
+    public partial class Notification :  INotification
     {
         /// <summary>
         /// Gets all the notifications. 
@@ -27,7 +27,10 @@ namespace Sieena.Parking.API.Models
         /// <returns></returns>
         internal static List<Notification> GetAll()
         {
-            return ctx.Notifications.ToList();
+            using (EntityContext ctx = new EntityContext())
+            {
+                return ctx.Notifications.ToList();
+            }
         }
 
         /// <summary>
@@ -38,15 +41,19 @@ namespace Sieena.Parking.API.Models
         /// <returns></returns>
         public static List<Notification> GetLastByUserId(int userId, int lastAmount)
         {
-            IEnumerable<Notification> nots = ctx.Notifications
-                              .Where(n => n.UserId.Equals(userId))
-                              .OrderByDescending(n => n.CreatedAt);
+            using (EntityContext ctx = new EntityContext())
+            {
+                IEnumerable<Notification> nots = ctx.Notifications
+                                  .Where(n => n.UserId.Equals(userId))
+                                  .OrderByDescending(n => n.CreatedAt);
 
-            if(lastAmount > 0) {
-                nots = nots.Take(lastAmount);
+                if (lastAmount > 0)
+                {
+                    nots = nots.Take(lastAmount);
+                }
+
+                return nots.ToList();
             }
-
-            return nots.ToList();
         }
 
 
@@ -57,7 +64,10 @@ namespace Sieena.Parking.API.Models
         /// <returns></returns>
         public static Notification Get(int id)
         {
-            return ctx.Notifications.Where(n => n.NotificationId.Equals(id)).FirstOrDefault(); 
+            using (EntityContext ctx = new EntityContext())
+            {
+                return ctx.Notifications.Where(n => n.NotificationId.Equals(id)).FirstOrDefault();
+            }
         }
 
         /// <summary>
@@ -67,17 +77,19 @@ namespace Sieena.Parking.API.Models
         /// <returns></returns>
         public static Notification Save(Notification n)
         {
-           
-            n.ValidateAndRaise();
-
-            if (n.NotificationId == 0)
+            using (EntityContext ctx = new EntityContext())
             {
-                ctx.Notifications.InsertOnSubmit(n);
+                n.ValidateAndRaise();
+
+                if (n.NotificationId == 0)
+                {
+                    ctx.Notifications.AddObject(n);
+                }
+
+                ctx.SaveChanges();
+
+                return n;
             }
-
-            ctx.SubmitChanges();
-
-            return n;
         }
 
         /// <summary>
@@ -87,10 +99,13 @@ namespace Sieena.Parking.API.Models
         /// <returns></returns>
         public static Notification Delete(int id)
         {
-            Notification n = Get(id);
-            ctx.Notifications.DeleteOnSubmit(n);
-            ctx.SubmitChanges();
-            return n;
+            using (EntityContext ctx = new EntityContext())
+            {
+                Notification n = ctx.Notifications.Where(nx => nx.NotificationId == id).FirstOrDefault();
+                ctx.Notifications.DeleteObject(n);
+                ctx.SaveChanges();
+                return n;
+            }
         }
 
     }

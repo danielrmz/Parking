@@ -17,7 +17,7 @@ namespace Sieena.Parking.API.Models
     /// <summary>
     /// Represents a parking space.
     /// </summary>
-    public partial class Space : ParkingModel, ISpace
+    public partial class Space : ISpace
     {
         
         /// <summary>
@@ -26,7 +26,10 @@ namespace Sieena.Parking.API.Models
         /// <returns></returns>
         public static List<Space> GetAllByPlaceId(int id)
         {
-            return ctx.Spaces.Where( s => s.PlaceId.Equals(id) && s.Deleted == false ).ToList(); 
+            using (EntityContext ctx = new EntityContext())
+            {
+                return ctx.Spaces.Where(s => s.PlaceId.Equals(id) && s.Deleted == false).ToList();
+            }
         }
 
         /// <summary>
@@ -36,7 +39,10 @@ namespace Sieena.Parking.API.Models
         /// <returns></returns>
         public static Space Get(int id)
         {
-            return ctx.Spaces.Where(s => s.SpaceId.Equals(id)).FirstOrDefault(); 
+            using (EntityContext ctx = new EntityContext())
+            {
+                return ctx.Spaces.Where(s => s.SpaceId.Equals(id)).FirstOrDefault();
+            }
         }
 
         /// <summary>
@@ -46,17 +52,19 @@ namespace Sieena.Parking.API.Models
         /// <returns></returns>
         public static Space Save(Space s)
         {
-            
-            s.ValidateAndRaise();
-
-            if (s.SpaceId == 0)
+            using (EntityContext ctx = new EntityContext())
             {
-                ctx.Spaces.InsertOnSubmit(s);
+                s.ValidateAndRaise();
+
+                if (s.SpaceId == 0)
+                {
+                    ctx.Spaces.AddObject(s);
+                }
+
+                ctx.SaveChanges();
+
+                return s;
             }
-
-            ctx.SubmitChanges();
-
-            return s;
         }
 
         /// <summary>
@@ -66,10 +74,13 @@ namespace Sieena.Parking.API.Models
         /// <returns></returns>
         public static Space Delete(int id)
         {
-            Space s = Get(id);
-            ctx.Spaces.DeleteOnSubmit(s);
-            ctx.SubmitChanges();
-            return s;
+            using (EntityContext ctx = new EntityContext())
+            {
+                Space s = ctx.Spaces.Where(sx => sx.SpaceId == id).FirstOrDefault();
+                ctx.Spaces.DeleteObject(s);
+                ctx.SaveChanges();
+                return s;
+            }
         }
 
     }

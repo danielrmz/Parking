@@ -1,0 +1,554 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Sieena.Parking.API.Models.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="SieenaParkingAPIModelsStoreContainer">
+          <EntitySet Name="AccessTypes" EntityType="Sieena.Parking.API.Models.Store.AccessTypes" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Applications" EntityType="Sieena.Parking.API.Models.Store.Applications" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Checkins" EntityType="Sieena.Parking.API.Models.Store.Checkins" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Endpoints" EntityType="Sieena.Parking.API.Models.Store.Endpoints" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Notifications" EntityType="Sieena.Parking.API.Models.Store.Notifications" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="OAuthProviders" EntityType="Sieena.Parking.API.Models.Store.OAuthProviders" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="OAuthTokens" EntityType="Sieena.Parking.API.Models.Store.OAuthTokens" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PlaceMaps" EntityType="Sieena.Parking.API.Models.Store.PlaceMaps" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Places" EntityType="Sieena.Parking.API.Models.Store.Places" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Roles" EntityType="Sieena.Parking.API.Models.Store.Roles" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Sessions" EntityType="Sieena.Parking.API.Models.Store.Sessions" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SpaceLocations" EntityType="Sieena.Parking.API.Models.Store.SpaceLocations" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Spaces" EntityType="Sieena.Parking.API.Models.Store.Spaces" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UserEndpoints" EntityType="Sieena.Parking.API.Models.Store.UserEndpoints" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UserInfos" EntityType="Sieena.Parking.API.Models.Store.UserInfos" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UserRoles" EntityType="Sieena.Parking.API.Models.Store.UserRoles" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Users" EntityType="Sieena.Parking.API.Models.Store.Users" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="AccessTypes">
+          <Key>
+            <PropertyRef Name="AccessTypeId" />
+          </Key>
+          <Property Name="AccessTypeId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="AccessTypeName" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Applications">
+          <Key>
+            <PropertyRef Name="ApplicationId" />
+          </Key>
+          <Property Name="ApplicationId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ApplicationName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="CreatedAt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Checkins">
+          <Key>
+            <PropertyRef Name="CheckInId" />
+          </Key>
+          <Property Name="CheckInId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="StartTime" Type="datetime" Nullable="false" />
+          <Property Name="EndTime" Type="datetime" />
+          <Property Name="SpaceId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="ReservationId" Type="int" />
+          <Property Name="RegisteredFrom" Type="int" Nullable="false" />
+          <Property Name="RegisteredBy" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Endpoints">
+          <Key>
+            <PropertyRef Name="EndpointTypeId" />
+          </Key>
+          <Property Name="EndpointTypeId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="EndpointName" Type="nvarchar" Nullable="false" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Notifications">
+          <Key>
+            <PropertyRef Name="NotificationId" />
+          </Key>
+          <Property Name="NotificationId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="Message" Type="nvarchar" MaxLength="2000" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CheckInId" Type="int" />
+          <Property Name="ReadAt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="OAuthProviders">
+          <Key>
+            <PropertyRef Name="ProviderId" />
+          </Key>
+          <Property Name="ProviderId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ProviderName" Type="nvarchar" Nullable="false" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="OAuthTokens">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="ProviderId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="ProviderId" Type="int" Nullable="false" />
+          <Property Name="ConsumerKey" Type="nvarchar" Nullable="false" MaxLength="512" />
+          <Property Name="ConsumerSecret" Type="nvarchar" Nullable="false" MaxLength="512" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PlaceMaps">
+          <Key>
+            <PropertyRef Name="PlaceMapId" />
+          </Key>
+          <Property Name="PlaceMapId" Type="int" Nullable="false" />
+          <Property Name="PlaceId" Type="int" Nullable="false" />
+          <Property Name="PlaceMapUrl" Type="nvarchar" Nullable="false" MaxLength="512" />
+          <Property Name="PlaceMapVersion" Type="int" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Places">
+          <Key>
+            <PropertyRef Name="PlaceId" />
+          </Key>
+          <Property Name="PlaceId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PlaceName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedAt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="RoleLevel" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sessions">
+          <Key>
+            <PropertyRef Name="SessionId" />
+          </Key>
+          <Property Name="SessionId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="CreatedAt" Type="datetime" />
+          <Property Name="ExpiresAt" Type="datetime" />
+          <Property Name="Data" Type="nvarchar(max)" />
+          <Property Name="LastAccess" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SpaceLocations">
+          <Key>
+            <PropertyRef Name="SpaceId" />
+          </Key>
+          <Property Name="SpaceId" Type="int" Nullable="false" />
+          <Property Name="MarkerTop" Type="int" Nullable="false" />
+          <Property Name="MarkerLeft" Type="int" Nullable="false" />
+          <Property Name="MarkerWidth" Type="int" Nullable="false" />
+          <Property Name="MarkerHeight" Type="int" Nullable="false" />
+          <Property Name="CanvasWidth" Type="int" Nullable="false" />
+          <Property Name="CanvasHeight" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Spaces">
+          <Key>
+            <PropertyRef Name="SpaceId" />
+          </Key>
+          <Property Name="SpaceId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PlaceId" Type="int" Nullable="false" />
+          <Property Name="Alias" Type="nvarchar" MaxLength="255" />
+          <Property Name="AccessTypeId" Type="int" Nullable="false" />
+          <Property Name="OwnerId" Type="int" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserEndpoints">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="EndpointTypeId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="EndpointTypeId" Type="int" Nullable="false" />
+          <Property Name="IsEnabled" Type="bit" Nullable="false" />
+          <Property Name="Value" Type="nvarchar" MaxLength="255" />
+          <Property Name="Priority" Type="int" />
+        </EntityType>
+        <EntityType Name="UserInfos">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="255" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="1" />
+          <Property Name="PhoneHome" Type="nvarchar" MaxLength="255" />
+          <Property Name="PhoneOffce" Type="nvarchar" MaxLength="255" />
+          <Property Name="PhoneOfficeExtension" Type="nvarchar" MaxLength="255" />
+          <Property Name="PhoneCel" Type="nvarchar" MaxLength="255" />
+          <Property Name="ProfilePictureUrl" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="UserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="1024" />
+          <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="LastAccess" Type="datetime" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Sieena.Parking.API.Models" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="EntityContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AccessTypes" EntityType="Sieena.Parking.API.Models.AccessType" />
+          <EntitySet Name="Applications" EntityType="Sieena.Parking.API.Models.Application" />
+          <EntitySet Name="Checkins" EntityType="Sieena.Parking.API.Models.Checkin" />
+          <EntitySet Name="Endpoints" EntityType="Sieena.Parking.API.Models.Endpoint" />
+          <EntitySet Name="Notifications" EntityType="Sieena.Parking.API.Models.Notification" />
+          <EntitySet Name="OAuthProviders" EntityType="Sieena.Parking.API.Models.OAuthProvider" />
+          <EntitySet Name="OAuthTokens" EntityType="Sieena.Parking.API.Models.OAuthToken" />
+          <EntitySet Name="PlaceMaps" EntityType="Sieena.Parking.API.Models.PlaceMap" />
+          <EntitySet Name="Places" EntityType="Sieena.Parking.API.Models.Place" />
+          <EntitySet Name="Roles" EntityType="Sieena.Parking.API.Models.Role" />
+          <EntitySet Name="Sessions" EntityType="Sieena.Parking.API.Models.Session" />
+          <EntitySet Name="SpaceLocations" EntityType="Sieena.Parking.API.Models.SpaceLocation" />
+          <EntitySet Name="Spaces" EntityType="Sieena.Parking.API.Models.Space" />
+          <EntitySet Name="UserEndpoints" EntityType="Sieena.Parking.API.Models.UserEndpoint" />
+          <EntitySet Name="UserInfos" EntityType="Sieena.Parking.API.Models.UserInfo" />
+          <EntitySet Name="UserRoles" EntityType="Sieena.Parking.API.Models.UserRole" />
+          <EntitySet Name="Users" EntityType="Sieena.Parking.API.Models.User" />
+        </EntityContainer>
+        <EntityType Name="AccessType">
+          <Key>
+            <PropertyRef Name="AccessTypeId" />
+          </Key>
+          <Property Name="AccessTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccessTypeName" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Application">
+          <Key>
+            <PropertyRef Name="ApplicationId" />
+          </Key>
+          <Property Name="ApplicationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ApplicationName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="CreatedAt" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="Checkin">
+          <Key>
+            <PropertyRef Name="CheckInId" />
+          </Key>
+          <Property Name="CheckInId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StartTime" Type="DateTime" Nullable="false" />
+          <Property Name="EndTime" Type="DateTime" />
+          <Property Name="SpaceId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="ReservationId" Type="Int32" />
+          <Property Name="RegisteredFrom" Type="Int32" Nullable="false" />
+          <Property Name="RegisteredBy" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Endpoint">
+          <Key>
+            <PropertyRef Name="EndpointTypeId" />
+          </Key>
+          <Property Name="EndpointTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EndpointName" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Notification">
+          <Key>
+            <PropertyRef Name="NotificationId" />
+          </Key>
+          <Property Name="NotificationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Message" Type="String" MaxLength="2000" Unicode="true" FixedLength="false" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CheckInId" Type="Int32" />
+          <Property Name="ReadAt" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="OAuthProvider">
+          <Key>
+            <PropertyRef Name="ProviderId" />
+          </Key>
+          <Property Name="ProviderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProviderName" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="OAuthToken">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="ProviderId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="ProviderId" Type="Int32" Nullable="false" />
+          <Property Name="ConsumerKey" Type="String" Nullable="false" MaxLength="512" Unicode="true" FixedLength="false" />
+          <Property Name="ConsumerSecret" Type="String" Nullable="false" MaxLength="512" Unicode="true" FixedLength="false" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PlaceMap">
+          <Key>
+            <PropertyRef Name="PlaceMapId" />
+          </Key>
+          <Property Name="PlaceMapId" Type="Int32" Nullable="false" />
+          <Property Name="PlaceId" Type="Int32" Nullable="false" />
+          <Property Name="PlaceMapUrl" Type="String" Nullable="false" MaxLength="512" Unicode="true" FixedLength="false" />
+          <Property Name="PlaceMapVersion" Type="Int32" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Place">
+          <Key>
+            <PropertyRef Name="PlaceId" />
+          </Key>
+          <Property Name="PlaceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PlaceName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="CreatedAt" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="RoleLevel" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Session">
+          <Key>
+            <PropertyRef Name="SessionId" />
+          </Key>
+          <Property Name="SessionId" Type="Guid" Nullable="false" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="CreatedAt" Type="DateTime" />
+          <Property Name="ExpiresAt" Type="DateTime" />
+          <Property Name="Data" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="LastAccess" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="SpaceLocation">
+          <Key>
+            <PropertyRef Name="SpaceId" />
+          </Key>
+          <Property Name="SpaceId" Type="Int32" Nullable="false" />
+          <Property Name="MarkerTop" Type="Int32" Nullable="false" />
+          <Property Name="MarkerLeft" Type="Int32" Nullable="false" />
+          <Property Name="MarkerWidth" Type="Int32" Nullable="false" />
+          <Property Name="MarkerHeight" Type="Int32" Nullable="false" />
+          <Property Name="CanvasWidth" Type="Int32" Nullable="false" />
+          <Property Name="CanvasHeight" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Space">
+          <Key>
+            <PropertyRef Name="SpaceId" />
+          </Key>
+          <Property Name="SpaceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PlaceId" Type="Int32" Nullable="false" />
+          <Property Name="Alias" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="AccessTypeId" Type="Int32" Nullable="false" />
+          <Property Name="OwnerId" Type="Int32" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserEndpoint">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="EndpointTypeId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="EndpointTypeId" Type="Int32" Nullable="false" />
+          <Property Name="IsEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="Value" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Priority" Type="Int32" />
+        </EntityType>
+        <EntityType Name="UserInfo">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="LastName" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Gender" Type="String" MaxLength="1" Unicode="true" FixedLength="false" />
+          <Property Name="PhoneHome" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="PhoneOffce" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="PhoneOfficeExtension" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="PhoneCel" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="ProfilePictureUrl" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="UserRole">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="1024" Unicode="true" FixedLength="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="LastAccess" Type="DateTime" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SieenaParkingAPIModelsStoreContainer" CdmEntityContainer="EntityContext">
+          <EntitySetMapping Name="AccessTypes"><EntityTypeMapping TypeName="Sieena.Parking.API.Models.AccessType"><MappingFragment StoreEntitySet="AccessTypes">
+            <ScalarProperty Name="AccessTypeId" ColumnName="AccessTypeId" />
+            <ScalarProperty Name="AccessTypeName" ColumnName="AccessTypeName" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Applications"><EntityTypeMapping TypeName="Sieena.Parking.API.Models.Application"><MappingFragment StoreEntitySet="Applications">
+            <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+            <ScalarProperty Name="ApplicationName" ColumnName="ApplicationName" />
+            <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Checkins"><EntityTypeMapping TypeName="Sieena.Parking.API.Models.Checkin"><MappingFragment StoreEntitySet="Checkins">
+            <ScalarProperty Name="CheckInId" ColumnName="CheckInId" />
+            <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+            <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+            <ScalarProperty Name="SpaceId" ColumnName="SpaceId" />
+            <ScalarProperty Name="UserId" ColumnName="UserId" />
+            <ScalarProperty Name="ReservationId" ColumnName="ReservationId" />
+            <ScalarProperty Name="RegisteredFrom" ColumnName="RegisteredFrom" />
+            <ScalarProperty Name="RegisteredBy" ColumnName="RegisteredBy" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Endpoints"><EntityTypeMapping TypeName="Sieena.Parking.API.Models.Endpoint"><MappingFragment StoreEntitySet="Endpoints">
+            <ScalarProperty Name="EndpointTypeId" ColumnName="EndpointTypeId" />
+            <ScalarProperty Name="EndpointName" ColumnName="EndpointName" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Notifications"><EntityTypeMapping TypeName="Sieena.Parking.API.Models.Notification"><MappingFragment StoreEntitySet="Notifications">
+            <ScalarProperty Name="NotificationId" ColumnName="NotificationId" />
+            <ScalarProperty Name="UserId" ColumnName="UserId" />
+            <ScalarProperty Name="Message" ColumnName="Message" />
+            <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+            <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+            <ScalarProperty Name="CheckInId" ColumnName="CheckInId" />
+            <ScalarProperty Name="ReadAt" ColumnName="ReadAt" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="OAuthProviders"><EntityTypeMapping TypeName="Sieena.Parking.API.Models.OAuthProvider"><MappingFragment StoreEntitySet="OAuthProviders">
+            <ScalarProperty Name="ProviderId" ColumnName="ProviderId" />
+            <ScalarProperty Name="ProviderName" ColumnName="ProviderName" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="OAuthTokens"><EntityTypeMapping TypeName="Sieena.Parking.API.Models.OAuthToken"><MappingFragment StoreEntitySet="OAuthTokens">
+            <ScalarProperty Name="UserId" ColumnName="UserId" />
+            <ScalarProperty Name="ProviderId" ColumnName="ProviderId" />
+            <ScalarProperty Name="ConsumerKey" ColumnName="ConsumerKey" />
+            <ScalarProperty Name="ConsumerSecret" ColumnName="ConsumerSecret" />
+            <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="PlaceMaps"><EntityTypeMapping TypeName="Sieena.Parking.API.Models.PlaceMap"><MappingFragment StoreEntitySet="PlaceMaps">
+            <ScalarProperty Name="PlaceMapId" ColumnName="PlaceMapId" />
+            <ScalarProperty Name="PlaceId" ColumnName="PlaceId" />
+            <ScalarProperty Name="PlaceMapUrl" ColumnName="PlaceMapUrl" />
+            <ScalarProperty Name="PlaceMapVersion" ColumnName="PlaceMapVersion" />
+            <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Places"><EntityTypeMapping TypeName="Sieena.Parking.API.Models.Place"><MappingFragment StoreEntitySet="Places">
+            <ScalarProperty Name="PlaceId" ColumnName="PlaceId" />
+            <ScalarProperty Name="PlaceName" ColumnName="PlaceName" />
+            <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Roles"><EntityTypeMapping TypeName="Sieena.Parking.API.Models.Role"><MappingFragment StoreEntitySet="Roles">
+            <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+            <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+            <ScalarProperty Name="RoleLevel" ColumnName="RoleLevel" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Sessions"><EntityTypeMapping TypeName="Sieena.Parking.API.Models.Session"><MappingFragment StoreEntitySet="Sessions">
+            <ScalarProperty Name="SessionId" ColumnName="SessionId" />
+            <ScalarProperty Name="UserId" ColumnName="UserId" />
+            <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+            <ScalarProperty Name="ExpiresAt" ColumnName="ExpiresAt" />
+            <ScalarProperty Name="Data" ColumnName="Data" />
+            <ScalarProperty Name="LastAccess" ColumnName="LastAccess" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="SpaceLocations"><EntityTypeMapping TypeName="Sieena.Parking.API.Models.SpaceLocation"><MappingFragment StoreEntitySet="SpaceLocations">
+            <ScalarProperty Name="SpaceId" ColumnName="SpaceId" />
+            <ScalarProperty Name="MarkerTop" ColumnName="MarkerTop" />
+            <ScalarProperty Name="MarkerLeft" ColumnName="MarkerLeft" />
+            <ScalarProperty Name="MarkerWidth" ColumnName="MarkerWidth" />
+            <ScalarProperty Name="MarkerHeight" ColumnName="MarkerHeight" />
+            <ScalarProperty Name="CanvasWidth" ColumnName="CanvasWidth" />
+            <ScalarProperty Name="CanvasHeight" ColumnName="CanvasHeight" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Spaces"><EntityTypeMapping TypeName="Sieena.Parking.API.Models.Space"><MappingFragment StoreEntitySet="Spaces">
+            <ScalarProperty Name="SpaceId" ColumnName="SpaceId" />
+            <ScalarProperty Name="PlaceId" ColumnName="PlaceId" />
+            <ScalarProperty Name="Alias" ColumnName="Alias" />
+            <ScalarProperty Name="AccessTypeId" ColumnName="AccessTypeId" />
+            <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
+            <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+            <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="UserEndpoints"><EntityTypeMapping TypeName="Sieena.Parking.API.Models.UserEndpoint"><MappingFragment StoreEntitySet="UserEndpoints">
+            <ScalarProperty Name="UserId" ColumnName="UserId" />
+            <ScalarProperty Name="EndpointTypeId" ColumnName="EndpointTypeId" />
+            <ScalarProperty Name="IsEnabled" ColumnName="IsEnabled" />
+            <ScalarProperty Name="Value" ColumnName="Value" />
+            <ScalarProperty Name="Priority" ColumnName="Priority" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="UserInfos"><EntityTypeMapping TypeName="Sieena.Parking.API.Models.UserInfo"><MappingFragment StoreEntitySet="UserInfos">
+            <ScalarProperty Name="UserId" ColumnName="UserId" />
+            <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+            <ScalarProperty Name="LastName" ColumnName="LastName" />
+            <ScalarProperty Name="Gender" ColumnName="Gender" />
+            <ScalarProperty Name="PhoneHome" ColumnName="PhoneHome" />
+            <ScalarProperty Name="PhoneOffce" ColumnName="PhoneOffce" />
+            <ScalarProperty Name="PhoneOfficeExtension" ColumnName="PhoneOfficeExtension" />
+            <ScalarProperty Name="PhoneCel" ColumnName="PhoneCel" />
+            <ScalarProperty Name="ProfilePictureUrl" ColumnName="ProfilePictureUrl" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="UserRoles"><EntityTypeMapping TypeName="Sieena.Parking.API.Models.UserRole"><MappingFragment StoreEntitySet="UserRoles">
+            <ScalarProperty Name="UserId" ColumnName="UserId" />
+            <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Users"><EntityTypeMapping TypeName="Sieena.Parking.API.Models.User"><MappingFragment StoreEntitySet="Users">
+            <ScalarProperty Name="UserId" ColumnName="UserId" />
+            <ScalarProperty Name="Password" ColumnName="Password" />
+            <ScalarProperty Name="Email" ColumnName="Email" />
+            <ScalarProperty Name="LastAccess" ColumnName="LastAccess" />
+            <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+            <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="EntityContext">
+        <EntityTypeShape EntityType="Sieena.Parking.API.Models.AccessType" Width="1.5" PointX="0.75" PointY="0.75" Height="1.2636116536458335" IsExpanded="true" />
+        <EntityTypeShape EntityType="Sieena.Parking.API.Models.Application" Width="1.5" PointX="2.75" PointY="0.75" Height="1.4279589843749996" IsExpanded="true" />
+        <EntityTypeShape EntityType="Sieena.Parking.API.Models.Checkin" Width="1.5" PointX="0.75" PointY="3.75" Height="2.2496956380208335" IsExpanded="true" />
+        <EntityTypeShape EntityType="Sieena.Parking.API.Models.Endpoint" Width="1.5" PointX="2.75" PointY="3.75" Height="1.2636116536458317" IsExpanded="true" />
+        <EntityTypeShape EntityType="Sieena.Parking.API.Models.Notification" Width="1.5" PointX="4.75" PointY="0.75" Height="2.0853483072916674" IsExpanded="true" />
+        <EntityTypeShape EntityType="Sieena.Parking.API.Models.OAuthProvider" Width="1.5" PointX="4.75" PointY="3.75" Height="1.2636116536458322" IsExpanded="true" />
+        <EntityTypeShape EntityType="Sieena.Parking.API.Models.OAuthToken" Width="1.5" PointX="6.75" PointY="0.75" Height="1.7566536458333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="Sieena.Parking.API.Models.PlaceMap" Width="1.5" PointX="0.75" PointY="6.75" Height="1.7566536458333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="Sieena.Parking.API.Models.Place" Width="1.5" PointX="2.75" PointY="6.75" Height="1.4279589843749996" IsExpanded="true" />
+        <EntityTypeShape EntityType="Sieena.Parking.API.Models.Role" Width="1.5" PointX="6.75" PointY="3.75" Height="1.4279589843749996" IsExpanded="true" />
+        <EntityTypeShape EntityType="Sieena.Parking.API.Models.Session" Width="1.5" PointX="4.75" PointY="6.75" Height="1.9210009765625031" IsExpanded="true" />
+        <EntityTypeShape EntityType="Sieena.Parking.API.Models.SpaceLocation" Width="1.5" PointX="6.75" PointY="6.75" Height="2.0853483072916674" IsExpanded="true" />
+        <EntityTypeShape EntityType="Sieena.Parking.API.Models.Space" Width="1.5" PointX="8.75" PointY="0.75" Height="2.0853483072916674" IsExpanded="true" />
+        <EntityTypeShape EntityType="Sieena.Parking.API.Models.UserEndpoint" Width="1.5" PointX="8.75" PointY="3.75" Height="1.7566536458333388" IsExpanded="true" />
+        <EntityTypeShape EntityType="Sieena.Parking.API.Models.UserInfo" Width="1.5" PointX="8.75" PointY="6.75" Height="2.4140429687500031" IsExpanded="true" />
+        <EntityTypeShape EntityType="Sieena.Parking.API.Models.UserRole" Width="1.5" PointX="0.75" PointY="9.75" Height="1.2636116536458388" IsExpanded="true" />
+        <EntityTypeShape EntityType="Sieena.Parking.API.Models.User" Width="1.5" PointX="2.75" PointY="9.75" Height="1.9210009765625031" IsExpanded="true" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
