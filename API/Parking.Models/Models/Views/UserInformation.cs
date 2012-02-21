@@ -8,6 +8,9 @@ namespace Sieena.Parking.API.Models.Views
 {
     public class UserInformation
     {
+        [Display(Name = "User Id")]
+        public int UserId { get; set; }
+
         [Display(Name = "User name")]
         public string UserName { get; set; }
 

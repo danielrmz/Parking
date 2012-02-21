@@ -12,9 +12,10 @@ namespace("Parking.App.Models");
 (function ($, models, undefined) {
 
     models.Checkin = Backbone.Model.extend({
+        idAttribute: "CheckInId",
 
         defaults: {
-//            CheckInId: 0,
+            CheckInId: 0,
             StartTime: new Date(),
             EndTime: "",
             SpaceId: 0,
@@ -24,8 +25,6 @@ namespace("Parking.App.Models");
         },
 
         initialize: function() {
-            this.set({"StartTime": this.defaults.StartTime});
-            console.log('Checkin model has been initialized');
         }
 
     });

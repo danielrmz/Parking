@@ -8,6 +8,7 @@
 */
 
 namespace("Parking.App.Views");
+namespace("Parking.App.Data");
 
 (function ($, views, undefined) {
 
@@ -15,10 +16,30 @@ namespace("Parking.App.Views");
 
         template: Parking.Configuration.ClientTemplatesUrl + "Shared/Dashboard.html",
         
-        render: Parking.Common.RenderViewTemplate,
+        render: function() {  
+            Parking.App.Helpers.RenderViewTemplate.apply(this, arguments);
+
+            if(Parking.App.Data.Users.length > 0) {
+                this.RecentCheckinsView.el = this.$(".panel-notifications");
+                this.RecentCheckinsView.render();
+            }
+        },
+
+        initializeView: function() { 
+            var self = this;
+            Parking.App.Data.Users.on("reset", function() { self.render(); });
+
+            // Initialize collection
+            Parking.App.Data.RecentCheckins = new Parking.App.Collections.CheckinsHistory();
+            
+            this.RecentCheckinsView = new views.DashboardNotifications({collection: Parking.App.Data.RecentCheckins });
+             
+        },
 
         initialize: function() {
+            var self = this;
             this.model.on("change", this.render, this);
+            this.initializeView();
         },
 
         events: {

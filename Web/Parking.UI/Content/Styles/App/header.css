@@ -140,6 +140,7 @@ header {
   .panel-notifications ul {
     list-style: none; }
     .panel-notifications ul li {
+      position: relative;
       width: 180px;
       text-align: left;
       float: right;
@@ -164,6 +165,8 @@ header {
         max-width: 40px;
         float: left;
         margin-right: 7px; }
+      .panel-notifications ul li.transitioning {
+        position: absolute; }
       .panel-notifications ul li.in img {
         border: 2px solid #669E00; }
       .panel-notifications ul li.out img {

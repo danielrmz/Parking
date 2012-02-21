@@ -8,6 +8,7 @@
 */
 
 namespace("Parking.App");
+namespace("Parking.App.Data");
 
 (function ($, undefined) {
     
@@ -23,31 +24,26 @@ namespace("Parking.App");
         'privacy': 'static'
       },
 
-      "main": function() {  
-        Parking.Common.SetWindowTitle("Home");
-        var loginView = new Parking.App.Views.Main({el: $("#main")}); 
-        loginView.render();
-      },
-
-      "login": function() { 
-        Parking.Common.SetWindowTitle("Login");
-        var loginView = new Parking.App.Views.Login({el: $("#main")});
-        loginView.render();
-      },
+      "main":  Parking.App.Helpers.RenderBackbonePage,
+      "login": Parking.App.Helpers.RenderBackbonePage,
 
       "static": function() {
-        var path  = window.location.pathname.substring(1);
-        var view  = new Parking.App.Views.Static({el: $("#main")}); 
-        Parking.Common.SetWindowTitle(path);
+        var path  = Backbone.history.fragment;
+        Parking.App.Helpers.SetWindowTitle(path);
+        
+        var view  = new Parking.App.Views.Static({el: $("#main")});
         view.template = Parking.Configuration.ClientTemplatesUrl + "Static/" + path + ".html";
         view.render();
       }
     });
     
     // Required 
-    Parking.App._user   = new Parking.App.Models.UserInformation();
+    Parking.App._user   = new Parking.App.Models.UserSession();
      
     Parking.App._user.on("login", function() {   
+        Parking.App.Data.Users = new Parking.App.Collections.Users();
+        Parking.App.Data.Users.fetch();
+
         Parking.App.router = new Parking.App.Router();
         
         // Start pushState

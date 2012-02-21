@@ -26,23 +26,32 @@ namespace Sieena.Parking.API.Models
         public static UserInformation GetUserInformation(User u)
         {
             UserInfo ui = UserInfo.GetByUserId(u.UserId);
-            Role role = Role.GetRolesForUser(u.UserId).First();
+            Role role = Role.GetRolesForUser(u.UserId).FirstOrDefault();
             Session ses = Session.Get(u.UserId);
 
             var user = new UserInformation();
-
+            user.UserId = u.UserId;
             user.Email = u.Email;
             user.UserName = u.Email.Split('@').First();
             user.IsAuthenticated = true;
-            user.ProfilePictureUrl = "";
+            user.ProfilePictureUrl = ui.ProfilePictureUrl;
             user.FirstName = ui.FirstName;
             user.LastName = ui.LastName;
-            user.Role = role.RoleName;
-            user.RoleId = role.RoleId;
+            user.Role = role == null ? string.Empty : role.RoleName;
+            user.RoleId = role == null ? 0 : role.RoleId;
 
-            user.SessionId = Crypto.EncryptStringAES(ses.SessionId.ToString(), ConfigurationManager.AppSettings["Crypto.Secret"]);
+            user.SessionId = (ses != null ) ? Crypto.EncryptStringAES(ses.SessionId.ToString(), ConfigurationManager.AppSettings["Crypto.Secret"])
+                : string.Empty;
 
             return user;
+        }
+
+        public static UserInfo GetBasicUserInformation(User u)
+        {
+            using (EntityContext ctx = new EntityContext())
+            {
+                return ctx.UserInfos.Where(ui => ui.UserId == u.UserId).FirstOrDefault();
+            }
         }
 
         /// <summary>
@@ -174,6 +183,28 @@ namespace Sieena.Parking.API.Models
             using (EntityContext ctx = new EntityContext())
             {
                 return ctx.Users.ToList();
+            }
+        }
+
+        /// <summary>
+        /// Returns all the users available in the system.
+        /// </summary>
+        /// <returns></returns>
+        public static List<UserInformation> GetByIdList(List<int> ids)
+        {
+            using (EntityContext ctx = new EntityContext())
+            {
+                List<User> us = ctx.Users.Where( u => ids.Contains(u.UserId)).ToList();
+                Dictionary<int, UserInfo> uis = ctx.UserInfos.Where(u => ids.Contains(u.UserId)).ToDictionary(k=> k.UserId, k=>k);
+
+                return us.Select(u => new UserInformation() { 
+                    Email =  u.Email,
+                    FirstName = uis[u.UserId].FirstName,
+                    LastName = uis[u.UserId].LastName,
+                    ProfilePictureUrl = uis[u.UserId].ProfilePictureUrl,
+                    UserName = u.Email.Split('@').First(),
+                    UserId = u.UserId
+                }).ToList();
             }
         }
 

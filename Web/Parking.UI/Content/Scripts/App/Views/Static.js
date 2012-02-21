@@ -12,7 +12,7 @@ namespace("Parking.App.Views");
 (function ($, undefined) {
 
     Parking.App.Views.Static = Backbone.View.extend({
-        render: Parking.Common.RenderViewTemplate
+        render: Parking.App.Helpers.RenderViewTemplate
     });
 
 })(jQuery);

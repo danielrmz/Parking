@@ -18,6 +18,8 @@ using Sieena.Parking.API.Models;
 namespace Sieena.Parking.API.Modules
 {
     using Classes;
+    using APISession = Sieena.Parking.API.Models.Session;
+    using Sieena.Parking.API.Models.Views;
 
     public class UsersModule : AbstractBaseModule
     {
@@ -26,28 +28,45 @@ namespace Sieena.Parking.API.Modules
         {
         }
 
-        [Api("/{id}", ApiMethod.GET)]
-        public User GetUser(DynamicDictionary parameters)
+        [Api("/{id}", ApiMethod.GET, true)]
+        public UserInfo GetUser(User u, APISession session, DynamicDictionary parameters)
         {
-            return null;
+            return UserInfo.GetByUserId(parameters["id"]);
         }
 
-        [Api("/", ApiMethod.POST)]
-        public User AddUser(DynamicDictionary parameters)
+        [Api("/", ApiMethod.POST, true)]
+        public UserInfo AddUser(User u, APISession session, DynamicDictionary parameters)
         {
-            return null;
+
+            UserInfo s = parameters.Fill<UserInfo>();
+
+            return UserInfo.Save(s);
         }
 
         [Api("/{id}", ApiMethod.PUT, true)]
-        public User UpdateUser(DynamicDictionary parameters)
+        public UserInfo UpdateUser(User u, APISession session, DynamicDictionary parameters)
+        {
+            UserInfo s = parameters.Fill<UserInfo>();
+            
+            return UserInfo.Save(s); 
+        }
+
+        [Api("/{id}", ApiMethod.DELETE, true, AccessLevel.Admin)]
+        public User DeleteUser(User u, APISession session, DynamicDictionary parameters)
         {
             return null;
         }
 
-        [Api("/{id}", ApiMethod.DELETE, true, AccessLevel.Admin)]
-        public User DeleteUser(DynamicDictionary parameters)
-        {
-            return null;
+        [Api("/GetAll", ApiMethod.GET, true)]
+        public List<UserInfo> GetUsersInformation(User u, APISession session, DynamicDictionary parms) {
+            List<User> users = User.GetAll();
+            List<UserInfo> uis = new List<UserInfo>();
+
+            users.ForEach(ux => {
+                uis.Add(User.GetBasicUserInformation(ux));
+            });
+
+            return uis;
         }
     }
 }

@@ -205,6 +205,7 @@ header {
 	ul {
 		list-style: none; 
 		li {
+			position: relative;
 			width: 180px;
 			text-align: left;
 			float: right;
@@ -226,20 +227,28 @@ header {
 					}
 			}
             
-		img {
-			height: 40px;
-			width: 40px;
-			max-height: 40px;
-			max-width: 40px;
-			float: left;
-			margin-right: 7px; 
+			img {
+				height: 40px;
+				width: 40px;
+				max-height: 40px;
+				max-width: 40px;
+				float: left;
+				margin-right: 7px; 
 			
-		}
-         &.in img {
-				border: 2px solid #669E00; }
-			&.out img {
-				border: 2px solid #932F00; }
 			}
+
+			&.transitioning {
+				position: absolute;
+			}
+        
+			&.in img {
+				border: 2px solid #669E00; 
+			}
+		
+			&.out img {
+			border: 2px solid #932F00; 
+			}
+		}
 	}
 
 }

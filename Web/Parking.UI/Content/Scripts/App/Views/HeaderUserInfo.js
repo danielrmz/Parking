@@ -15,7 +15,7 @@ namespace("Parking.App.Views");
 
         template: Parking.Configuration.ClientTemplatesUrl + "Shared/HeaderUserInfo.html",
         
-        render: Parking.Common.RenderViewTemplate,
+        render: Parking.App.Helpers.RenderViewTemplate,
 
         initialize: function() {
             this.model.on("change", this.render, this);

@@ -11,39 +11,6 @@ namespace("Parking.Common");
 (function($, common, undefined) {
     
     /**
-     * Renders a template in a backbone view context using Handlebars/Mustache and by fetching
-     * a remote template.
-     *
-     * @param {Function=} callback - Callback to be done when the template is fetched/compiled.
-     */
-    common.RenderViewTemplate = function(callback) {
-        var template = this.template;
-        var view     = this;
-
-        fetchTemplate(template, function (tmpl) {
-            var model = {};
-
-            if(view.model != null) {
-                model = view.model.toJSON();
-            } 
-
-            var locale          = Parking.Configuration["locale"] || "en-US";
-            var localeResources = Parking.Resources["i18n"][locale] || {};
-            var currentUser     = typeof(Parking.App._user) == 'undefined'? {} : Parking.App._user.toJSON();
-            
-            $(view.el).html(tmpl({ "i18n": localeResources, "model": model, "currentUser": currentUser }));
-            
-            callback = callback || function() { };
-
-            if(typeof(callback) == 'function') {
-                callback(tmpl, model);
-            }
-            
-        });
-
-    };
-
-    /**
      * Displays a global error modal box
      * @param {string} message
      */
@@ -70,7 +37,7 @@ namespace("Parking.Common");
      */
     common.SetupAjaxErrorHandler = function () {
         $.ajaxSetup({
-            "complete": function(data) { console.log("1");
+            "complete": function(data) { 
                 if(data.status == 200) { 
                     try {
                         var message = JSON.parse(data["responseText"]); 
@@ -95,13 +62,40 @@ namespace("Parking.Common");
             }
         }); 
     };
-     
-    /**
-     * Sets the window title
-     * @parma {string} title
-     */
-    common.SetWindowTitle = function(title) { 
-        $("title").html("My Place | " + title);
+      
+/*
+ * JavaScript Pretty Date
+ * Copyright (c) 2011 John Resig (ejohn.org)
+ * Licensed under the MIT and GPL licenses.
+ */
+// Takes an ISO time and returns a string representing how
+// long ago the date represents.
+    common.FormatTimeAgo = function (time) {
+        var date;
+        dnFormat = time.match("([0-9]{13})");
+
+        if(dnFormat[1] != "") {
+            date = new Date();
+            date.setTime((dnFormat[1]));
+        } else {
+            date = (typeof(time.getDate) == "undefined") ? new Date((time || "").replace(/-/g,"/").replace(/[TZ]/g," ")) : time;
+        }
+        var diff = (((new Date()).getTime() - date.getTime()) / 1000),
+		    day_diff = Math.floor(diff / 86400);
+			
+	    if ( isNaN(day_diff) || day_diff < 0 || day_diff >= 31 )
+		    return;
+		
+	    return day_diff == 0 && (
+			    diff < 60 && "just now" ||
+			    diff < 120 && "1 minute ago" ||
+			    diff < 3600 && Math.floor( diff / 60 ) + " minutes ago" ||
+			    diff < 7200 && "1 hour ago" ||
+			    diff < 86400 && Math.floor( diff / 3600 ) + " hours ago") ||
+		    day_diff == 1 && "Yesterday" ||
+		    day_diff < 7 && day_diff + " days ago" ||
+		    day_diff < 31 && Math.ceil( day_diff / 7 ) + " weeks ago";
     };
+    
 
 })(jQuery, Parking.Common);

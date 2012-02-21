@@ -90,6 +90,7 @@
     <Compile Include="Models\Space.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserInfo.cs" />
+    <Compile Include="Models\Views\CheckinInformation.cs" />
     <Compile Include="Models\Views\LogOnModel.cs" />
     <Compile Include="Models\Views\ChangePassword.cs" />
     <Compile Include="Models\Views\UserInformation.cs" />

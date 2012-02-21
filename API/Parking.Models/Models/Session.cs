@@ -133,6 +133,11 @@ namespace Sieena.Parking.API.Models
             using (EntityContext ctx = new EntityContext())
             {
                 Session sess = ctx.Sessions.Where(s => s.UserId.HasValue && s.UserId.Value.Equals(userId)).FirstOrDefault();
+                if (sess == null)
+                {
+                    return null;
+                }
+
                 if (sess.ExpiresAt < DateTime.Now && sess.ExpiresAt != DateTime.MaxValue)
                 {
                     ctx.Sessions.DeleteObject(sess);

@@ -19,7 +19,16 @@ namespace Sieena.Parking.API.Models
             using (EntityContext ctx = new EntityContext())
             {
                 u.ValidateAndRaise();
-                ctx.UserInfos.AddObject(u);
+
+                UserInfo existing = ctx.UserInfos.Where(ui => ui.UserId == u.UserId).FirstOrDefault();
+                if (existing == null)
+                {
+                    ctx.UserInfos.AddObject(u);
+                }
+                else
+                {
+                    ctx.UserInfos.Attach(u); 
+                }
                 ctx.SaveChanges();
                 return u;
             }

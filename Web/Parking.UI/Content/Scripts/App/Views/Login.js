@@ -26,7 +26,7 @@ namespace("Parking.App.Views");
                 return;
             }
              
-            Parking.Common.RenderViewTemplate.apply(this, arguments);
+            Parking.App.Helpers.RenderViewTemplate.apply(this, arguments);
         },
 
         events: { 
