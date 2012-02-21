@@ -39,11 +39,18 @@ namespace("Parking.App.Data");
     
     // Required 
     Parking.App._user   = new Parking.App.Models.UserSession();
-     
-    Parking.App._user.on("login", function() {   
-        Parking.App.Data.Users = new Parking.App.Collections.Users();
+    
+    Parking.App._user.on("loggedin", function() { 
         Parking.App.Data.Users.fetch();
+         
+        // Set global views. 
+        (new Parking.App.Views.HeaderUserInfo({ model: Parking.App._user, el: $('.user-info .user') })).render(); 
+        (new Parking.App.Views.Dashboard({model: Parking.App._user, el: $('#dashboard') })).render(); 
+    });
 
+    Parking.App._user.on("initialized", function() { 
+        Parking.App.Data.Users = new Parking.App.Collections.Users();
+        
         Parking.App.router = new Parking.App.Router();
         
         // Start pushState

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Sieena.Parking.API.Models.Exceptions
 {
-    public class AccessException : APIException
+    public class AccessException : Exception
     {
         public AccessException(string message) : base(message) { }
     }

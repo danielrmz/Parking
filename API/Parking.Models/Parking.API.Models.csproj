@@ -61,6 +61,7 @@
     <Compile Include="Exceptions\APIException.cs" />
     <Compile Include="Exceptions\AccessException.cs" />
     <Compile Include="Exceptions\CheckinExistsException.cs" />
+    <Compile Include="Exceptions\InvalidTokenException.cs" />
     <Compile Include="Exceptions\ModelValidationException.cs" />
     <Compile Include="Interfaces\IParkingModel.cs" />
     <Compile Include="Interfaces\IUser.cs" />

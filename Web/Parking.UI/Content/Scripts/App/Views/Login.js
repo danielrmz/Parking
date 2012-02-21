@@ -47,12 +47,12 @@ namespace("Parking.App.Views");
                     success: function(data){ 
                 
                         if(data.Error == false) {
-                            form.find(".alert-error").hide();
-
+                            form.find(".alert-error").hide(); 
                             Parking.App._user.save(data["Response"]);
-                    
+                            Parking.App._user.trigger("loggedin");
+
                             // Redirect to the core app view
-                             Parking.App.router.navigate("home", true);
+                            Parking.App.router.navigate("home", true);
 
                         } else {
                             submit.val(submit.data("click")).attr("disabled", false);

@@ -19,7 +19,7 @@ namespace("Parking.App.Data");
         render: function() {  
             Parking.App.Helpers.RenderViewTemplate.apply(this, arguments);
 
-            if(Parking.App.Data.Users.length > 0) {
+            if(this.RecentCheckinsView) {
                 this.RecentCheckinsView.el = this.$(".panel-notifications");
                 this.RecentCheckinsView.render();
             }
@@ -27,17 +27,20 @@ namespace("Parking.App.Data");
 
         initializeView: function() { 
             var self = this;
-            Parking.App.Data.Users.on("reset", function() { self.render(); });
-
-            // Initialize collection
-            Parking.App.Data.RecentCheckins = new Parking.App.Collections.CheckinsHistory();
+            if(!this.IsInitialized) {
+                Parking.App.Data.Users.on("reset", function() { self.render(); });
             
-            this.RecentCheckinsView = new views.DashboardNotifications({collection: Parking.App.Data.RecentCheckins });
-             
+                // Initialize collection
+                Parking.App.Data.RecentCheckins = new Parking.App.Collections.CheckinsHistory();
+            
+                this.RecentCheckinsView = new views.DashboardNotifications({collection: Parking.App.Data.RecentCheckins });  
+                this.IsInitialized = true;
+            }
         },
 
         initialize: function() {
             var self = this;
+            this.model.on("change:IsAuthenticated", this.initializeView, this);
             this.model.on("change", this.render, this);
             this.initializeView();
         },

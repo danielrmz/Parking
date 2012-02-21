@@ -42,8 +42,15 @@ namespace("Parking.Common");
                     try {
                         var message = JSON.parse(data["responseText"]); 
                         
-                        if(message["Error"] == true && message["IsGlobalError"] == true) {
-                            common.DisplayGlobalError(message["Response"] + "<br /><br /><strong>StackTrace: </strong><br /><span style='font-size:10px;'>" + message["StackTrace"].replace("\n","<br />") + "</span>");
+                        if(message["Error"] == true ) {
+                            if(message["IsGlobalError"] == true) {
+                                common.DisplayGlobalError(message["Response"] + "<br /><br /><strong>StackTrace: </strong><br /><span style='font-size:10px;'>" + message["StackTrace"].replace("\n","<br />") + "</span>");
+                                // Log
+                            }
+
+                            if(message["Type"] == "InvalidTokenException") {
+                                common.DisplayGlobalError(message["Response"] + " " + Parking.App.Data.User.toJSON()); 
+                            }
                         }           
                     }catch(error) {
                     }
@@ -73,7 +80,7 @@ namespace("Parking.Common");
     common.FormatTimeAgo = function (time) {
         var date;
         dnFormat = time.match("([0-9]{13})");
-
+        
         if(dnFormat[1] != "") {
             date = new Date();
             date.setTime((dnFormat[1]));
@@ -82,7 +89,7 @@ namespace("Parking.Common");
         }
         var diff = (((new Date()).getTime() - date.getTime()) / 1000),
 		    day_diff = Math.floor(diff / 86400);
-			
+		 
 	    if ( isNaN(day_diff) || day_diff < 0 || day_diff >= 31 )
 		    return;
 		

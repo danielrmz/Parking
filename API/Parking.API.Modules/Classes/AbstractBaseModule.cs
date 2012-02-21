@@ -95,14 +95,22 @@ namespace Sieena.Parking.API.Modules.Classes
                             var header_sign = Context.Request.Headers["x-parking-signature"].FirstOrDefault() ?? string.Empty;
 
                             // Validate signature and token.
-                            string signature = header_sign == string.Empty ? this.Request.Query["parking-signature"] : header_sign;
-                            string token = header_token == string.Empty ? this.Request.Query["parking-token"] : header_token;
                             string tokenRaw  = string.Empty;
 
-                            try {
-                                tokenRaw = Crypto.DecryptStringAES(token, ConfigurationManager.AppSettings["Crypto.Secret"]);
-                            } catch(Exception e) {
-                                throw new APIException(Resources.API_ErrorInvalidToken);
+                            if (!string.IsNullOrEmpty(header_token))
+                            {
+                                try
+                                {
+                                    tokenRaw = Crypto.DecryptStringAES(header_token, ConfigurationManager.AppSettings["Crypto.Secret"]);
+                                }
+                                catch (Exception e)
+                                {
+                                    throw new InvalidTokenException(e);
+                                }
+                            }
+                            else
+                            {
+                                throw new InvalidTokenException("Unable to access resource: " + tag.GetRoute());
                             }
 
                             Guid tokenGuid  = new Guid(tokenRaw);

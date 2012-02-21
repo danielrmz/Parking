@@ -7,6 +7,7 @@
 * @license     Propietary
 */
 namespace("Parking.App.Helpers");
+namespace("Parking.App.Data");
 
 (function($, helpers, undefined) {
     
@@ -35,10 +36,12 @@ namespace("Parking.App.Helpers");
             var locale          = Parking.Configuration["locale"] || "en-US";
             var localeResources = Parking.Resources["i18n"][locale] || {};
             var currentUser     = typeof(Parking.App._user) == 'undefined'? {} : Parking.App._user.toJSON();
-            
+            var callback =  typeof data == "function" ? data : function() { };
+            var data = typeof data == "function" ? {} : data;
+
             $(view.el).html(tmpl({ "i18n": localeResources, "model": model, "collection": collection, "currentUser": currentUser, "data": data }));
             
-
+            callback();
         });
 
     };
@@ -114,6 +117,9 @@ namespace("Parking.App.Helpers");
      * Handler to obtain the user's name from cache. 
      */
     Handlebars.registerHelper('userFullName', function(userId) {
+        if(!Parking.App.Data.Users) {
+            return "";
+        }
         var user = Parking.App.Data.Users.get(userId);
         if(user) {
             return user.get("FirstName") + " " + user.get("LastName");
@@ -125,6 +131,9 @@ namespace("Parking.App.Helpers");
      * Handler to obtain the user's name from cache. 
      */
     Handlebars.registerHelper('userProfilePicture', function(userId) {
+        if(!Parking.App.Data.Users) {
+            return "";
+        }
         var user = Parking.App.Data.Users.get(userId);
         if(user) {
             return user.get("ProfilePictureUrl");

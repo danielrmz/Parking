@@ -30,11 +30,7 @@ namespace("Parking.App.Models");
         initialize: function(x) {
            
         },
-
-        initializeViews: function() {
-            (new Parking.App.Views.HeaderUserInfo({ model: this, el: $('.user-info .user') })).render(); 
-            (new Parking.App.Views.Dashboard({model: this, el: $('#dashboard') })).render(); 
-        },
+         
 
         load: function() {
             var self = this;
@@ -50,13 +46,12 @@ namespace("Parking.App.Models");
                 $.get("/api/session", function(data) { 
                     if(data.Error == false) {
                         self.set(data["Response"]);
-                        self.trigger("login");
-                        self.initializeViews();
+                        self.trigger("initialized");
+                        self.trigger("loggedin");
                     }
                 });
             } else {  
-                self.trigger("login");
-                this.initializeViews();
+                self.trigger("initialized"); 
             }
         },
 
@@ -66,7 +61,7 @@ namespace("Parking.App.Models");
             $.cookie('ParkingUserId', this.get('UserName'));
             $.cookie('ParkingSessionId', this.get('SessionId'));
 
-            Parking.Common.SetupAjaxToken(this.get('SessionId'));
+            Parking.Common.SetupAjaxToken(this.get('SessionId')); 
         },
 
         destroy: function(callback) {
