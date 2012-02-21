@@ -89,22 +89,28 @@
       <resource path="~/Content/Scripts/Shared/Header.js"  />
 
       <!-- BackboneJS -->
+      <resource path="~/Content/Scripts/App/Helpers/Common.js" />
+
       <!-- Views -->
       <resource path="~/Content/Scripts/App/Views/HeaderUserInfo.js" />
       <resource path="~/Content/Scripts/App/Views/Static.js" />
       <resource path="~/Content/Scripts/App/Views/Login.js"  />
       <resource path="~/Content/Scripts/App/Views/Main.js"  />
       <resource path="~/Content/Scripts/App/Views/Dashboard.js"  />
+      <resource path="~/Content/Scripts/App/Views/DashboardNotifications.js"  />
 
       <!-- Models -->
+      <resource path="~/Content/Scripts/App/Models/UserSession.js"  />
       <resource path="~/Content/Scripts/App/Models/UserInformation.js"  />
-      <resource path="~/Content/Scripts/App/Models/User.js"  />
       <resource path="~/Content/Scripts/App/Models/Space.js"  />
       <resource path="~/Content/Scripts/App/Models/AccessType.js"  />
       <resource path="~/Content/Scripts/App/Models/Checkin.js"  />
+      <resource path="~/Content/Scripts/App/Models/CheckinNotification.js"  />
 
       <!-- Collections -->
       <resource path="~/Content/Scripts/App/Collections/SpaceCollection.js"  />
+      <resource path="~/Content/Scripts/App/Collections/CheckinsHistory.js"  />
+      <resource path="~/Content/Scripts/App/Collections/Users.js"  />
 
       <!-- Main Router -->
       <resource path="~/Content/Scripts/Shared/Loader.js"  />
@@ -112,7 +118,6 @@
       <resource path="~/Content/Scripts/App/Router.js" />
 
     </resourceSet>
-
 
   </resourceSets>
 </combres>

@@ -136,6 +136,7 @@
     <Content Include="Content\Scripts\App\Helpers\Common.js" />
     <Content Include="Content\Scripts\App\Models\AccessType.js" />
     <Content Include="Content\Scripts\App\Models\Checkin.js" />
+    <Content Include="Content\Scripts\App\Models\CheckinNotification.js" />
     <Content Include="Content\Scripts\App\Models\Space.js" />
     <Content Include="Content\Scripts\App\Models\UserSession.js" />
     <Content Include="Content\Scripts\App\Models\UserInformation.js" />

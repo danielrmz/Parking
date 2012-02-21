@@ -13,12 +13,13 @@ using System.Web;
 using Nancy;
 using Nancy.ViewEngines.Razor;
 using Nancy.Serializers.Json;
-using Sieena.Parking.API.Models;
 
 namespace Sieena.Parking.API.Modules
 {
     using Classes;
     using APISession = Sieena.Parking.API.Models.Session;
+    using Sieena.Parking.API.Models;
+    using Sieena.Parking.API.Models.Views;
 
     public class CheckinsModule : AbstractBaseModule
     {
@@ -42,9 +43,9 @@ namespace Sieena.Parking.API.Modules
         }
 
         [Api("/history/{amount}", ApiMethod.GET, true)]
-        public List<Checkin> GetLast(User u, APISession session, DynamicDictionary parameters)
+        public List<CheckinNotification> GetLast(User u, APISession session, DynamicDictionary parameters)
         {
-            return Checkin.GetLast(parameters["amount"]);
+            return Checkin.GetNotificationStream(parameters["amount"]);
         }
 
         [Api("/", ApiMethod.POST, true)]

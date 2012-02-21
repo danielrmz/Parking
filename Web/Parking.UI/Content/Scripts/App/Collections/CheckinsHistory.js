@@ -15,7 +15,7 @@ namespace("Parking.App.Collections");
         
         url: Parking.Configuration.APIEndpointUrl + "checkins/history/3",
 
-        model: Parking.App.Models.Checkin,
+        model: Parking.App.Models.CheckinNotification,
         
         initialize: function() {
             this.on("add", this.verifyLimit); 

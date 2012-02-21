@@ -105,7 +105,8 @@
       <resource path="~/Content/Scripts/App/Models/Space.js"  />
       <resource path="~/Content/Scripts/App/Models/AccessType.js"  />
       <resource path="~/Content/Scripts/App/Models/Checkin.js"  />
-
+      <resource path="~/Content/Scripts/App/Models/CheckinNotification.js"  />
+      
       <!-- Collections -->
       <resource path="~/Content/Scripts/App/Collections/SpaceCollection.js"  />
       <resource path="~/Content/Scripts/App/Collections/CheckinsHistory.js"  />

@@ -14,12 +14,15 @@ namespace Sieena.Parking.API.Models
 {
     using Interfaces;
     using Sieena.Parking.API.Models.Views;
+    using Sieena.Parking.API.Models.Exceptions;
+    using i18n = Sieena.Parking.Common.Resources.UI;
 
     /// <summary>
     /// Represents the checkin from a person to a specified place.
     /// </summary>
     public partial class Checkin :  ICheckin
     {
+        #region Getters
         /// <summary>
         /// Gets all the checkins in the system.
         /// </summary>
@@ -31,7 +34,6 @@ namespace Sieena.Parking.API.Models
                 return ctx.Checkins.OrderByDescending(c => c.CheckInId).ToList();
             }
         }
-
 
         /// <summary>
         /// Gets a specific instance 
@@ -46,6 +48,82 @@ namespace Sieena.Parking.API.Models
             }
         }
 
+        /// <summary>
+        /// Gets the last checkin the user has made.
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        public static Checkin GetLastForUser(int userId)
+        {
+            using (EntityContext ctx = new EntityContext())
+            {
+                return ctx.Checkins.Where(c => c.UserId == userId).OrderByDescending(c => c.CheckInId).Take(1).FirstOrDefault();
+            }
+        }
+
+        /// <summary>
+        /// Returns checkin information for the last X amount of recent checkins.
+        /// </summary>
+        /// <param name="amount"></param>
+        /// <returns></returns>
+        public static List<Checkin> GetLast(int amount)
+        {
+            using (EntityContext ctx = new EntityContext())
+            {
+                return ctx.Checkins.OrderByDescending(c => c.EndTime.HasValue ? c.EndTime.Value : c.StartTime)
+                                   .Take(amount)
+                                   .ToList();
+            }
+        }
+
+        /// <summary>
+        /// Returns the current checkins
+        /// </summary>
+        /// <param name="amount"></param>
+        /// <returns></returns>
+        public static List<Checkin> GetCurrent()
+        {
+            using (EntityContext ctx = new EntityContext())
+            {
+                return ctx.Checkins
+                          .Where(c => !c.EndTime.HasValue)
+                          .OrderByDescending(c => c.StartTime)
+                          .ToList();
+            }
+        }
+
+        /// <summary>
+        /// Returns checkin information for the last X amount of recent checkins.
+        /// </summary>
+        /// <param name="amount"></param>
+        /// <returns></returns>
+        public static List<CheckinNotification> GetNotificationStream(int amount)
+        {
+            using (EntityContext ctx = new EntityContext())
+            {
+                List<CheckinNotification> final = new List<CheckinNotification>();
+
+                List<CheckinNotification> nots = ctx.Checkins.OrderByDescending(c => c.CheckInId)
+                                   .Take(amount)
+                                   .ToList()
+                                   .Select(c => new CheckinNotification(c, NotificationType.Checkin))
+                                   .ToList();
+
+                nots.ForEach(n => {
+                    final.Add(n);
+                    if (n.EndTime.HasValue)
+                    {
+                        final.Add(new CheckinNotification(n, NotificationType.Checkout));
+                    }
+                });
+
+                return final.OrderByDescending(n => n.LastModified).Take(amount).ToList();
+            }
+        }
+    
+        #endregion
+
+        #region Checkin Management
 
         /// <summary>
         /// Checks out the current active user if exists in that space
@@ -81,6 +159,26 @@ namespace Sieena.Parking.API.Models
             }
         }
 
+        /// <summary>
+        /// Deletes a checkin
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public static Checkin Delete(int id)
+        {
+            using (EntityContext ctx = new EntityContext())
+            {
+                Checkin c = ctx.Checkins.Where(cx => cx.CheckInId == id).FirstOrDefault();
+                ctx.Checkins.DeleteObject(c);
+                ctx.SaveChanges();
+                return c;
+            }
+
+        }
+      
+        #endregion
+
+        #region Core
 
         /// <summary>
         /// Saves or updates a checkin
@@ -94,6 +192,10 @@ namespace Sieena.Parking.API.Models
                 c.ValidateAndRaise();
 
                 // Validate user has only one active checkin. 
+                if (ctx.Checkins.Where(ci => !ci.EndTime.HasValue && ci.UserId == c.UserId).Any())
+                {
+                    throw new CheckinExistsException(i18n.API_ErrorCheckinExists);
+                }
 
                 c.CheckInId = 0;
 
@@ -102,8 +204,7 @@ namespace Sieena.Parking.API.Models
                 ctx.SaveChanges();
 
                 // Notify users.
-                Pubnub nub = PubnubFactory.GetInstance();
-                nub.Publish(PubnubFactory.Channels.CheckinHistory, c);
+                Notify(NotificationType.Checkin, c);
 
                 return c;
             }
@@ -128,57 +229,49 @@ namespace Sieena.Parking.API.Models
                 ctx.SaveChanges();
 
                 // Notify users
+                Notify(NotificationType.Checkout, c);
+
                 return c;
             }
         }
 
-        /// <summary>
-        /// Deletes a checkin
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public static Checkin Delete(int id)
-        {
-            using (EntityContext ctx = new EntityContext())
-            {
-                Checkin c = ctx.Checkins.Where(cx => cx.CheckInId == id).FirstOrDefault();
-                ctx.Checkins.DeleteObject(c);
-                ctx.SaveChanges();
-                return c;
-            }
-            
-        }
-         
+        #endregion
 
+        #region Notifications
+        
         /// <summary>
-        /// Returns checkin information for the last X amount of recent checkins.
+        /// Notification types
         /// </summary>
-        /// <param name="amount"></param>
-        /// <returns></returns>
-        public static List<Checkin> GetLast(int amount)
+        public enum NotificationType
         {
-            using (EntityContext ctx = new EntityContext())
-            {
-                return  ctx.Checkins.OrderByDescending(c => c.EndTime.HasValue ? c.EndTime.Value : c.StartTime)
-                                   .Take(amount)
-                                   .ToList();
-            }
+            Checkin,
+            Checkout
         }
 
         /// <summary>
-        /// Returns the current checkins
+        /// Sends messages based on the notification type.
         /// </summary>
-        /// <param name="amount"></param>
-        /// <returns></returns>
-        public static List<Checkin> GetCurrent()
+        /// <param name="notify"></param>
+        /// <param name="checkin"></param>
+        public static void Notify(NotificationType notify, Checkin checkin) 
         {
-            using (EntityContext ctx = new EntityContext())
+            Pubnub nub = PubnubFactory.GetInstance();
+            nub.Publish(PubnubFactory.Channels.CheckinHistory, new CheckinNotification(checkin, notify));
+
+            switch (notify)
             {
-                return ctx.Checkins
-                          .Where(c => !c.EndTime.HasValue)
-                          .OrderByDescending(c => c.StartTime)
-                          .ToList();
+                case NotificationType.Checkin: 
+                    // Insert custom actions based on the type here.
+
+                    break;
+                case NotificationType.Checkout  :
+                    // Insert custom actions based on the type here.
+
+                    break;
             }
         }
+
+
+        #endregion
     }
 }

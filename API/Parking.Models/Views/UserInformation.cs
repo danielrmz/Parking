@@ -6,14 +6,17 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Sieena.Parking.API.Models.Views
 {
-    public class CheckinInformation
+    public class UserInformation
     {
         [Display(Name = "User Id")]
         public int UserId { get; set; }
 
         [Display(Name = "User name")]
         public string UserName { get; set; }
-         
+
+        [Display(Name = "Session Id")]
+        public string SessionId { get; set; }
+
         [Display(Name = "Email")]
         public string Email { get; set; }
 
@@ -26,16 +29,13 @@ namespace Sieena.Parking.API.Models.Views
         [Display(Name = "Profile Picture Url")]
         public string ProfilePictureUrl { get; set; }
 
-        [Display(Name = "Start Time")]
-        public DateTime StartTime { get; set; }
+        [Display(Name = "Is Authenticated")]
+        public bool IsAuthenticated { get; set; }
 
-        [Display(Name = "End Time")]
-        public DateTime? EndTime { get; set; }
+        [Display(Name = "Role")]
+        public string Role { get; set; }
 
-        [Display(Name = "Space Id")]
-        public int SpaceId { get; set; }
-
-        [Display(Name = "Checkin Id")]
-        public int CheckInId { get; set; }
+        [Display(Name = "RoleId")]
+        public int RoleId { get; set; }
     }
 }

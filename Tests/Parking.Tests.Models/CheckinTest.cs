@@ -24,6 +24,16 @@ namespace Sieena.Parking.Tests.Models
         [TestMethod]
         public void CheckOutTest()
         {
+            Checkin added = Checkin.GetLastForUser(39);
+            if (added == null || added.EndTime.HasValue)
+            {
+                added = Checkin.CheckIn(new Checkin() { StartTime = DateTime.Now, SpaceId = 1, UserId = 39, RegisteredBy = 39, RegisteredFrom = 1 });
+            }
+
+            Checkin removed = Checkin.CheckOut(added.CheckInId);
+            Assert.AreEqual(added.CheckInId, removed.CheckInId);
+            Assert.IsNotNull(removed.EndTime);
+            Assert.IsNotNull(removed.CheckInId);
         }
     }
 }

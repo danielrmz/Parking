@@ -61,6 +61,15 @@ namespace Sieena.Parking.Common.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The user has an active check in status..
+        /// </summary>
+        public static string API_ErrorCheckinExists {
+            get {
+                return ResourceManager.GetString("API_ErrorCheckinExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid session token.
         /// </summary>
         public static string API_ErrorInvalidToken {

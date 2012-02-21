@@ -31,7 +31,7 @@ namespace("Parking.App.Data");
         },
 
         onRemove: function(checkin) {
-            var element = $(this.el).find("[data-checkinid="+checkin.get("CheckInId")+"].js-checkin-notification"); 
+            var element = $(this.el).find("[data-notificationid="+checkin.get("NotificationId")+"].js-checkin-notification"); 
             element.addClass("transitioning").animate({ left: "-=50", opacity: 0, position: "absolute" }, 500, function(){element.remove();});
 
         },
