@@ -31,7 +31,7 @@ namespace Sieena.Parking.API.Models
         /// <summary>
         /// Initializes a new EntityContext object using the connection string found in the 'EntityContext' section of the application configuration file.
         /// </summary>
-        public EntityContext() : base(Properties.Settings.Default.EntityContext, "EntityContext")
+        public EntityContext() : base("name=EntityContext", "EntityContext")
         {
             this.ContextOptions.LazyLoadingEnabled = true;
             OnContextCreated();
@@ -336,6 +336,22 @@ namespace Sieena.Parking.API.Models
             }
         }
         private ObjectSet<User> _Users;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<SpaceBlocking> SpaceBlockings
+        {
+            get
+            {
+                if ((_SpaceBlockings == null))
+                {
+                    _SpaceBlockings = base.CreateObjectSet<SpaceBlocking>("SpaceBlockings");
+                }
+                return _SpaceBlockings;
+            }
+        }
+        private ObjectSet<SpaceBlocking> _SpaceBlockings;
 
         #endregion
         #region AddTo Methods
@@ -474,6 +490,14 @@ namespace Sieena.Parking.API.Models
         public void AddToUsers(User user)
         {
             base.AddObject("Users", user);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the SpaceBlockings EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToSpaceBlockings(SpaceBlocking spaceBlocking)
+        {
+            base.AddObject("SpaceBlockings", spaceBlocking);
         }
 
         #endregion
@@ -2178,6 +2202,114 @@ namespace Sieena.Parking.API.Models
         private global::System.Boolean _Deleted;
         partial void OnDeletedChanging(global::System.Boolean value);
         partial void OnDeletedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String CssClass
+        {
+            get
+            {
+                return _CssClass;
+            }
+            set
+            {
+                OnCssClassChanging(value);
+                ReportPropertyChanging("CssClass");
+                _CssClass = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("CssClass");
+                OnCssClassChanged();
+            }
+        }
+        private global::System.String _CssClass;
+        partial void OnCssClassChanging(global::System.String value);
+        partial void OnCssClassChanged();
+
+        #endregion
+    
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="Sieena.Parking.API.Models", Name="SpaceBlocking")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class SpaceBlocking : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new SpaceBlocking object.
+        /// </summary>
+        /// <param name="baseSpaceId">Initial value of the BaseSpaceId property.</param>
+        /// <param name="blockingSpaceId">Initial value of the BlockingSpaceId property.</param>
+        public static SpaceBlocking CreateSpaceBlocking(global::System.Int32 baseSpaceId, global::System.Int32 blockingSpaceId)
+        {
+            SpaceBlocking spaceBlocking = new SpaceBlocking();
+            spaceBlocking.BaseSpaceId = baseSpaceId;
+            spaceBlocking.BlockingSpaceId = blockingSpaceId;
+            return spaceBlocking;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 BaseSpaceId
+        {
+            get
+            {
+                return _BaseSpaceId;
+            }
+            set
+            {
+                if (_BaseSpaceId != value)
+                {
+                    OnBaseSpaceIdChanging(value);
+                    ReportPropertyChanging("BaseSpaceId");
+                    _BaseSpaceId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("BaseSpaceId");
+                    OnBaseSpaceIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _BaseSpaceId;
+        partial void OnBaseSpaceIdChanging(global::System.Int32 value);
+        partial void OnBaseSpaceIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 BlockingSpaceId
+        {
+            get
+            {
+                return _BlockingSpaceId;
+            }
+            set
+            {
+                if (_BlockingSpaceId != value)
+                {
+                    OnBlockingSpaceIdChanging(value);
+                    ReportPropertyChanging("BlockingSpaceId");
+                    _BlockingSpaceId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("BlockingSpaceId");
+                    OnBlockingSpaceIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _BlockingSpaceId;
+        partial void OnBlockingSpaceIdChanging(global::System.Int32 value);
+        partial void OnBlockingSpaceIdChanged();
 
         #endregion
     

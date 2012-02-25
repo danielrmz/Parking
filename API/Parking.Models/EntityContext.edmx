@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Sieena.Parking.API.Models.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="Sieena.Parking.API.Models.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="SieenaParkingAPIModelsStoreContainer">
           <EntitySet Name="AccessTypes" EntityType="Sieena.Parking.API.Models.Store.AccessTypes" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Applications" EntityType="Sieena.Parking.API.Models.Store.Applications" store:Type="Tables" Schema="dbo" />
@@ -17,6 +17,7 @@
           <EntitySet Name="Places" EntityType="Sieena.Parking.API.Models.Store.Places" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Roles" EntityType="Sieena.Parking.API.Models.Store.Roles" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Sessions" EntityType="Sieena.Parking.API.Models.Store.Sessions" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SpaceBlockings" EntityType="Sieena.Parking.API.Models.Store.SpaceBlockings" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="SpaceLocations" EntityType="Sieena.Parking.API.Models.Store.SpaceLocations" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Spaces" EntityType="Sieena.Parking.API.Models.Store.Spaces" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="UserEndpoints" EntityType="Sieena.Parking.API.Models.Store.UserEndpoints" store:Type="Tables" Schema="dbo" />
@@ -126,6 +127,14 @@
           <Property Name="Data" Type="nvarchar(max)" />
           <Property Name="LastAccess" Type="datetime" />
         </EntityType>
+        <EntityType Name="SpaceBlockings">
+          <Key>
+            <PropertyRef Name="BaseSpaceId" />
+            <PropertyRef Name="BlockingSpaceId" />
+          </Key>
+          <Property Name="BaseSpaceId" Type="int" Nullable="false" />
+          <Property Name="BlockingSpaceId" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="SpaceLocations">
           <Key>
             <PropertyRef Name="SpaceId" />
@@ -149,6 +158,7 @@
           <Property Name="OwnerId" Type="int" Nullable="false" />
           <Property Name="CreatedAt" Type="datetime" Nullable="false" />
           <Property Name="Deleted" Type="bit" Nullable="false" />
+          <Property Name="CssClass" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="UserEndpoints">
           <Key>
@@ -194,8 +204,7 @@
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="CreatedAt" Type="datetime" Nullable="false" />
         </EntityType>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Sieena.Parking.API.Models" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -217,6 +226,7 @@
           <EntitySet Name="UserInfos" EntityType="Sieena.Parking.API.Models.UserInfo" />
           <EntitySet Name="UserRoles" EntityType="Sieena.Parking.API.Models.UserRole" />
           <EntitySet Name="Users" EntityType="Sieena.Parking.API.Models.User" />
+          <EntitySet Name="SpaceBlockings" EntityType="Sieena.Parking.API.Models.SpaceBlocking" />
         </EntityContainer>
         <EntityType Name="AccessType">
           <Key>
@@ -343,6 +353,7 @@
           <Property Name="OwnerId" Type="Int32" Nullable="false" />
           <Property Name="CreatedAt" Type="DateTime" Nullable="false" />
           <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <Property Type="String" Name="CssClass" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="UserEndpoint">
           <Key>
@@ -387,6 +398,14 @@
           <Property Name="LastAccess" Type="DateTime" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="CreatedAt" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SpaceBlocking">
+          <Key>
+            <PropertyRef Name="BaseSpaceId" />
+            <PropertyRef Name="BlockingSpaceId" />
+          </Key>
+          <Property Type="Int32" Name="BaseSpaceId" Nullable="false" />
+          <Property Type="Int32" Name="BlockingSpaceId" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -472,7 +491,8 @@
             <ScalarProperty Name="CanvasHeight" ColumnName="CanvasHeight" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="Spaces"><EntityTypeMapping TypeName="Sieena.Parking.API.Models.Space"><MappingFragment StoreEntitySet="Spaces">
-            <ScalarProperty Name="SpaceId" ColumnName="SpaceId" />
+            <ScalarProperty Name="CssClass" ColumnName="CssClass" />
+                <ScalarProperty Name="SpaceId" ColumnName="SpaceId" />
             <ScalarProperty Name="PlaceId" ColumnName="PlaceId" />
             <ScalarProperty Name="Alias" ColumnName="Alias" />
             <ScalarProperty Name="AccessTypeId" ColumnName="AccessTypeId" />
@@ -510,6 +530,14 @@
             <ScalarProperty Name="IsActive" ColumnName="IsActive" />
             <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="SpaceBlockings">
+            <EntityTypeMapping TypeName="Sieena.Parking.API.Models.SpaceBlocking">
+              <MappingFragment StoreEntitySet="SpaceBlockings">
+                <ScalarProperty Name="BlockingSpaceId" ColumnName="BlockingSpaceId" />
+                <ScalarProperty Name="BaseSpaceId" ColumnName="BaseSpaceId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -544,10 +572,11 @@
         <EntityTypeShape EntityType="Sieena.Parking.API.Models.Session" Width="1.5" PointX="4.75" PointY="6.75" Height="1.9210009765625031" IsExpanded="true" />
         <EntityTypeShape EntityType="Sieena.Parking.API.Models.SpaceLocation" Width="1.5" PointX="6.75" PointY="6.75" Height="2.0853483072916674" IsExpanded="true" />
         <EntityTypeShape EntityType="Sieena.Parking.API.Models.Space" Width="1.5" PointX="8.75" PointY="0.75" Height="2.0853483072916674" IsExpanded="true" />
-        <EntityTypeShape EntityType="Sieena.Parking.API.Models.UserEndpoint" Width="1.5" PointX="8.75" PointY="3.75" Height="1.7566536458333388" IsExpanded="true" />
+        <EntityTypeShape EntityType="Sieena.Parking.API.Models.UserEndpoint" Width="1.5" PointX="9" PointY="3.75" Height="1.7566536458333388" IsExpanded="true" />
         <EntityTypeShape EntityType="Sieena.Parking.API.Models.UserInfo" Width="1.5" PointX="8.75" PointY="6.75" Height="2.4140429687500031" IsExpanded="true" />
         <EntityTypeShape EntityType="Sieena.Parking.API.Models.UserRole" Width="1.5" PointX="0.75" PointY="9.75" Height="1.2636116536458388" IsExpanded="true" />
         <EntityTypeShape EntityType="Sieena.Parking.API.Models.User" Width="1.5" PointX="2.75" PointY="9.75" Height="1.9210009765625031" IsExpanded="true" />
+        <EntityTypeShape EntityType="Sieena.Parking.API.Models.SpaceBlocking" Width="1.5" PointX="5.375" PointY="9.75" Height="1.2636116536458388" />
       </Diagram>
     </Diagrams>
   </Designer>
