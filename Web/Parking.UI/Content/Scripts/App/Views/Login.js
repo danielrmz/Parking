@@ -15,12 +15,12 @@ namespace("Parking.App.Views");
         
         template: Parking.Configuration.ClientTemplatesUrl + "Account/Login.html",
 
-        model: Parking.App._user,
+        model: Parking.App.Data.CurrentUser,
 
         render: function (done) {
             var view = this; 
 
-            if(Parking.App._user != null && Parking.App._user.get("IsAuthenticated")) {
+            if(Parking.App.Data.CurrentUser != null && Parking.App.Data.CurrentUser.get("IsAuthenticated")) {
                 // Redirect to main page. 
                 Parking.App.router.navigate("home", true);
                 return;
@@ -48,8 +48,7 @@ namespace("Parking.App.Views");
                 
                         if(data.Error == false) {
                             form.find(".alert-error").hide(); 
-                            Parking.App._user.save(data["Response"]);
-                            Parking.App._user.trigger("loggedin");
+                            Parking.App.Data.CurrentUser.save(data["Response"]);
 
                             // Redirect to the core app view
                             Parking.App.router.navigate("home", true);

@@ -35,7 +35,7 @@ namespace("Parking.App.Data");
             
             var locale          = Parking.Configuration["locale"] || "en-US";
             var localeResources = Parking.Resources["i18n"][locale] || {};
-            var currentUser     = typeof(Parking.App._user) == 'undefined'? {} : Parking.App._user.toJSON();
+            var currentUser     = typeof(Parking.App.Data.CurrentUser) == 'undefined'? {} : Parking.App.Data.CurrentUser.toJSON();
             var callback =  typeof data == "function" ? data : function() { };
             var data = typeof data == "function" ? {} : data;
 

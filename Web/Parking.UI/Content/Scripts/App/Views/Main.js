@@ -23,7 +23,7 @@ namespace("Parking.App.Data");
         },
 
         render: function() {  
-            if(Parking.App._user == null || !Parking.App._user.get("IsAuthenticated")) {
+            if(Parking.App.Data.CurrentUser == null || !Parking.App.Data.CurrentUser.get("IsAuthenticated")) {
                 // Redirect to main page. 
                 Parking.App.router.navigate("login", true);
                 return;

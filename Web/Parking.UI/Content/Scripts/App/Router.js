@@ -38,9 +38,9 @@ namespace("Parking.App.Data");
     });
     
     // Required 
-    app._user   = new app.Models.UserSession();
+    app.Data.CurrentUser   = new app.Models.UserSession();
     
-    app._user.on("pre-loggedin", function() {
+    app.Data.CurrentUser.on("pre-loggedin", function() {
         app.Data.Users = new app.Collections.Users();
         app.Data.SpaceBlockings = new app.Collections.SpaceBlockings();
         app.Data.CheckinsCurrent = new app.Collections.CheckinsCurrent();
@@ -53,17 +53,17 @@ namespace("Parking.App.Data");
         
     });
 
-    app._user.on("loggedin", function() { 
+    app.Data.CurrentUser.on("post-loggedin", function() { 
         // Get users last checkin
-        Parking.App.Data.CurrentUserCheckIn = new Parking.App.Models.Checkin({ UserId: Parking.App._user.get("UserId") });
+        Parking.App.Data.CurrentUserCheckIn = new Parking.App.Models.Checkin({ UserId: Parking.App.Data.CurrentUser.get("UserId") });
         Parking.App.Data.CurrentUserCheckIn.fetch({async: false});
 
         // Set global views. 
-        (new app.Views.HeaderUserInfo({ model: app._user, el: $('.user-info .user') })).render(); 
-        (new app.Views.Dashboard({model: app._user, el: $('#dashboard') })).render(); 
+        (new app.Views.HeaderUserInfo({ model: app.Data.CurrentUser, el: $('.user-info .user') })).render(); 
+        (new app.Views.Dashboard({model: app.Data.CurrentUser, el: $('#dashboard') })).render(); 
     });
 
-    app._user.on("initialized", function() { 
+    app.Data.CurrentUser.on("initialized", function() { 
         
         app.router = new app.Router();
         
@@ -85,6 +85,6 @@ namespace("Parking.App.Data");
         });
     });
     
-    app._user.load();
+    app.Data.CurrentUser.load();
 
 })(jQuery, Parking.App);

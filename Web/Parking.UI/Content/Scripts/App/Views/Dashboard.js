@@ -58,7 +58,7 @@ namespace("Parking.App.Data");
 
         initialize: function() { 
             this.model.on("change:IsBlocked", this.renderActionButton, this);
-            this.model.on("change:IsAuthenticated", this.initializeRecentCheckins, this);
+            this.model.on("change:IsAuthenticated", this.render, this);
             
             this.initializeRecentCheckins();
         },

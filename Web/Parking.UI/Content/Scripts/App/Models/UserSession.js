@@ -93,7 +93,7 @@ namespace("Parking.App.Models");
                         self.trigger("pre-loggedin");
                         self.set(data["Response"]);
                         self.trigger("initialized");
-                        self.trigger("loggedin");
+                        self.trigger("post-loggedin");
                     } else {
                         // Show token error 
                     }
@@ -104,13 +104,17 @@ namespace("Parking.App.Models");
         },
 
         save: function(data) {  
+            
+            Parking.Common.SetupAjaxToken(data['SessionId']); 
+
+            this.trigger("pre-loggedin");
             this.set(data);
+            this.trigger("post-loggedin");
 
             $.cookie('ParkingUserId', this.get('UserName'));
             $.cookie('ParkingSessionId', this.get('SessionId'));
 
-            Parking.Common.SetupAjaxToken(this.get('SessionId')); 
-            
+             
         },
 
         destroy: function(callback) {

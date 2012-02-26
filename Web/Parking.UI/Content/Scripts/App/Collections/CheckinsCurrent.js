@@ -18,12 +18,17 @@ namespace("Parking.App.Collections");
 
         model: Parking.App.Models.Checkin,
         
-        onMessageReceived: function(msg) { 
+        initialize: function() { 
+            this._super('initialize'); 
             console.log("CheckinCurrent collection has been initialized");
             this.bind("add", this.save);
+        },
+
+        onMessageReceived: function(msg) { 
             // Check type in order to check adding or removal.
             this.add(msg); 
-         
+        },
+
         save: function(checkinsCurrent) {
                 console.log("A checkin was added to the collection with the following data:" 
                     + " StartTime: "        + checkinsCurrent.get("StartTime") 
@@ -33,9 +38,7 @@ namespace("Parking.App.Collections");
                     + " RegistredFrom: "    + checkinsCurrent.get("RegistredFrom")
                     + " RegistredBy: "      + checkinsCurrent.get("RegistredBy")
                 );
-         },
-         
-        }
+         }
     });
 
 
