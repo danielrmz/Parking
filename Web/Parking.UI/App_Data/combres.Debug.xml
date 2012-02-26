@@ -55,11 +55,15 @@
     <resourceSet name="CoreTemplates" type="js" minifierRef="off" debugEnabled="false">
       <resource path="~/Content/Templates/Account/Login.html" />
       <resource path="~/Content/Templates/Parking/Home.html" />
+      <resource path="~/Content/Templates/Shared/Dashboard.html" />
+      <resource path="~/Content/Templates/Shared/DashboardNotification.html" />
+      <resource path="~/Content/Templates/Shared/DashboardNotifications.html" />
       <resource path="~/Content/Templates/Shared/HeaderUserInfo.html" />
     </resourceSet>
 
     <resourceSet name="PluginsCss" type="css">
       <resource path="~/Content/Styles/Plugins/Bootstrap/bootstrap.min.css" />
+      <resource path="~/Content/Styles/Plugins/Bootstrap/bootstrap-responsive.min.css" />
       <resource path="~/Content/Styles/Plugins/jquery.gritter.css" />
     </resourceSet>
 
@@ -89,6 +93,8 @@
       <resource path="~/Content/Scripts/Shared/Header.js"  />
 
       <!-- BackboneJS -->
+      <resource path="~/Content/Scripts/App/Helpers/BaseModel.js" />
+      <resource path="~/Content/Scripts/App/Helpers/BaseCollection.js" />
       <resource path="~/Content/Scripts/App/Helpers/Common.js" />
 
       <!-- Views -->
@@ -103,11 +109,13 @@
       <resource path="~/Content/Scripts/App/Models/UserSession.js"  />
       <resource path="~/Content/Scripts/App/Models/UserInformation.js"  /> 
       <resource path="~/Content/Scripts/App/Models/Space.js"  />
+      <resource path="~/Content/Scripts/App/Models/SpaceBlock.js"  />
       <resource path="~/Content/Scripts/App/Models/AccessType.js"  />
       <resource path="~/Content/Scripts/App/Models/Checkin.js"  />
       <resource path="~/Content/Scripts/App/Models/CheckinNotification.js"  />
       
       <!-- Collections -->
+      <resource path="~/Content/Scripts/App/Collections/SpaceBlockings.js"  />
       <resource path="~/Content/Scripts/App/Collections/SpaceCollection.js"  />
       <resource path="~/Content/Scripts/App/Collections/CheckinsHistory.js"  />
       <resource path="~/Content/Scripts/App/Collections/CheckinsCurrent.js"  />

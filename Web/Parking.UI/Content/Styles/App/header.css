@@ -136,7 +136,11 @@ header {
   margin-top: 10px; }
 
 .panel-notifications {
-  float: right; }
+  float: right;
+  height: 51px;
+  margin-bottom: 30px;
+  overflow-x: hidden;
+  overflow-y: hidden; }
   .panel-notifications ul {
     list-style: none; }
     .panel-notifications ul li {

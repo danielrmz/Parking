@@ -14,9 +14,12 @@ namespace Sieena.Parking.Tests.Models
         [TestMethod]
         public void CheckInTest()
         {
-            Checkin.ClearSpace(1);
+            Checkin.ClearSpace(28);
             Checkin.ClearUser(39);
-            Checkin added = Checkin.CheckIn(new Checkin() { StartTime = DateTime.Now, SpaceId = 1, UserId = 39, RegisteredBy = 39, RegisteredFrom = 1});
+            Checkin.ClearSpace(29);
+            Checkin.ClearUser(92);
+            Checkin added = Checkin.CheckIn(new Checkin() { StartTime = DateTime.Now, SpaceId = 28, UserId = 39, RegisteredBy = 39, RegisteredFrom = 1});
+            Checkin added2 = Checkin.CheckIn(new Checkin() { StartTime = DateTime.Now, SpaceId = 29, UserId = 92, RegisteredBy = 39, RegisteredFrom = 1 }); 
             Assert.IsNotNull(added);
             Assert.IsNotNull(added.CheckInId);
         }

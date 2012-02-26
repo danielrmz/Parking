@@ -67,5 +67,12 @@ namespace Sieena.Parking.API.Modules
         {
             return Checkin.CheckOut(parms["id"]);
         }
+
+
+        [Api("/user/{id}/{chid}", ApiMethod.GET, true)]
+        public Checkin GetCurrentForUser(User u, APISession session, DynamicDictionary parms)
+        {
+            return Checkin.GetLastForUser(parms["id"]);
+        }
     }
 }

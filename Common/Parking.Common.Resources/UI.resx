@@ -135,6 +135,12 @@
   <data name="API_ErrorSessionRequired" xml:space="preserve">
     <value>You require an active session to access that resource.</value>
   </data>
+  <data name="Dashboard_ActionBtn_Blocked" xml:space="preserve">
+    <value>Notify and Leave!</value>
+  </data>
+  <data name="Dashboard_ActionBtn_Normal" xml:space="preserve">
+    <value>Time to leave!</value>
+  </data>
   <data name="Footer_About" xml:space="preserve">
     <value>About</value>
   </data>

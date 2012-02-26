@@ -1,11 +1,10 @@
 ﻿
 
 {{#if currentUser.IsAuthenticated}}
-    <div class="layout-width panel-dashboard">
-        <div style="text-align: left; margin-left: 0px;" class="span2 action-button">
-
-                <div class="btn-group green">
-                    <a href="#" class="btn">Time to leave!</a>
+    <div class="row-fluid layout-width panel-dashboard">
+        <div style="text-align: left; margin-left: 0px;" class="span3 action-button js-button">
+            <div class="btn-group js-button-group" style="display: none;">
+                    <a href="#" class="btn js-button-label"></a>
                     <a href="#" data-toggle="dropdown" class="btn dropdown-toggle">
                         <span class="caret"></span>
                     </a>
@@ -14,10 +13,10 @@
                         <li><a>In 10 minutes</a></li>
                         <li><a>In 15 minutes</a></li>
                     </ul>
-                </div>
+             </div>
 
         </div>
-        <div style="text-align: right" class="span10 panel-notifications ">
+        <div style="text-align: right" class="span9 panel-notifications">
             
         </div>
 </div>

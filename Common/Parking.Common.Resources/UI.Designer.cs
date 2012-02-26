@@ -115,6 +115,24 @@ namespace Sieena.Parking.Common.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Notify and Leave!.
+        /// </summary>
+        public static string Dashboard_ActionBtn_Blocked {
+            get {
+                return ResourceManager.GetString("Dashboard_ActionBtn_Blocked", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time to leave!.
+        /// </summary>
+        public static string Dashboard_ActionBtn_Normal {
+            get {
+                return ResourceManager.GetString("Dashboard_ActionBtn_Normal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to About.
         /// </summary>
         public static string Footer_About {

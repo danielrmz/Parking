@@ -34,6 +34,9 @@
     <Reference Include="DataAnnotationsExtensions">
       <HintPath>..\..\packages\DataAnnotationsExtensions.1.0.1\lib\NETFramework40\DataAnnotationsExtensions.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\packages\Newtonsoft.Json.4.0.8\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.configuration" />
@@ -51,6 +54,9 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="TropoCSharp">
+      <HintPath>..\..\packages\tropo-webapi.1.0.2\lib\net40\TropoCSharp.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EntityContext.Designer.cs">
@@ -63,6 +69,7 @@
     <Compile Include="Exceptions\CheckinExistsException.cs" />
     <Compile Include="Exceptions\InvalidTokenException.cs" />
     <Compile Include="Exceptions\ModelValidationException.cs" />
+    <Compile Include="Interfaces\ISpaceBlocking.cs" />
     <Compile Include="Interfaces\IParkingModel.cs" />
     <Compile Include="Interfaces\IUser.cs" />
     <Compile Include="Interfaces\IUserRole.cs" />
@@ -84,6 +91,7 @@
     <Compile Include="Models\AccessType.cs" />
     <Compile Include="Models\Application.cs" />
     <Compile Include="Models\Checkin.cs" />
+    <Compile Include="Models\SpaceBlocking.cs" />
     <Compile Include="Models\Notification.cs" />
     <Compile Include="Models\Endpoint.cs" />
     <Compile Include="Models\Place.cs" />

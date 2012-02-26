@@ -6,24 +6,24 @@
 * @copyright   2012
 * @license     Propietary
 */
-
+namespace("Parking.App.Base");
 namespace("Parking.App.Collections");
 
 (function ($, collections, undefined) {
 
-    collections.CheckinsCurrent = Backbone.Collection.extend({
-        
+    collections.CheckinsCurrent = Parking.App.Base.ListenerCollection.extend({
+        channel: "parking:checkins:current",
+
         url: Parking.Configuration.APIEndpointUrl + "checkins/current",
 
         model: Parking.App.Models.Checkin,
         
-        initialize: function() {
+        onMessageReceived: function(msg) { 
             console.log("CheckinCurrent collection has been initialized");
             this.bind("add", this.save);
-            // Initialize PUBNUB Listener
-            this.listen();
-        },
-
+            // Check type in order to check adding or removal.
+            this.add(msg); 
+         
         save: function(checkinsCurrent) {
                 console.log("A checkin was added to the collection with the following data:" 
                     + " StartTime: "        + checkinsCurrent.get("StartTime") 
@@ -35,32 +35,7 @@ namespace("Parking.App.Collections");
                 );
          },
          
-        parse: function(response) { 
-            if(response["Error"] == false) { 
-                return response["Response"];
-            }
-        },
-
-        listen: function() {
-            var self = this;
-             
-            PUBNUB.subscribe({
-                channel : "parking:checkins:current",
-                restore : false, 
-                callback : function(message) { 
-                    console.log(message);
-                    // Detect the message, parse the type
-                    // and add it to the collection.
-
-                    // Trigger added event.
-                },
-                disconnect : function() { },
-                reconnect : function() { }, 
-                connect : function() { }
-            });
-             
         }
-
     });
 
 

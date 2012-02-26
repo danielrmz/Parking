@@ -25,11 +25,27 @@ namespace("Parking.Common");
      * @param {string} token
      */
     common.SetupAjaxToken = function(token) { 
-
-        $.ajaxPrefilter(function(options, originalOptions, xhr) {
+        common._ajaxTokenPrefilterToken = function(options, originalOptions, xhr) {
             xhr.setRequestHeader('x-parking-token', token);
-        });
+        };
 
+        common._ajaxTokenPrefilterBlank = function(options, originalOptions, xhr) {  };
+        
+        common._ajaxTokenPrefilter = function() { 
+            Parking.Common._ajaxTokenPrefilterToken.apply(this, arguments);
+        };
+
+        $.ajaxPrefilter(function() { common._ajaxTokenPrefilter.apply(this, arguments); });
+
+    };
+
+    /**
+     * Clears out the session token from the prefilter. 
+     */
+    common.ClearAjaxToken = function() {
+         Parking.Common._ajaxTokenPrefilter = function() { 
+            Parking.Common._ajaxTokenPrefilterBlank.apply(this, arguments); 
+         }; 
     };
 
     /**

@@ -6,12 +6,12 @@
 * @copyright   2012
 * @license     Propietary
 */
-
+namespace("Parking.App.Base");
 namespace("Parking.App.Models");
 
 (function ($, models, undefined) {
 
-    models.CheckinNotification = Backbone.Model.extend({
+    models.CheckinNotification = Parking.App.Base.Model.extend({
         idAttribute: "NotificationId",
 
         defaults: {

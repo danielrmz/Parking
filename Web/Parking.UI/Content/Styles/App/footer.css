@@ -6,8 +6,7 @@
  * @copyright 2012 
  */
 footer > div {
-  border-top: 1px solid #BBB;
-  padding-top: 5px; }
+  padding-top: 10px; }
 footer .copy {
   display: inline-block;
   margin-right: 10px; }

@@ -6,12 +6,12 @@
 * @copyright   2012
 * @license     Propietary
 */
-
+namespace("Parking.App.Base");
 namespace("Parking.App.Models");
 
 (function ($, models, undefined) {
     
-    models.Space = Backbone.Model.extend({
+    models.Space = Parking.App.Base.Model.extend({
 
         defaults: {            
             SpaceId: 0,

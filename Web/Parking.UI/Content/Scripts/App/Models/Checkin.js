@@ -6,18 +6,28 @@
 * @copyright   2012
 * @license     Propietary
 */
-
+namespace("Parking.App.Base");
 namespace("Parking.App.Models");
 
 (function ($, models, undefined) {
 
-    models.Checkin = Backbone.Model.extend({
+    models.Checkin = Parking.App.Base.Model.extend({
 
         urlRoot: Parking.Configuration.APIEndpointUrl + 'checkins/current',
 
         idAttribute: "CheckInId",
+        urlRoot: function() { 
+            var userId = this.get("UserId");
+            var checkinId = this.get("CheckInId");
+            if(checkinId == 0) {
+                return Parking.Configuration.APIEndpointUrl + "checkins/user/"+userId; 
+            } else {
+                return Parking.Configuration.APIEndpointUrl + "checkins"; 
+            }
+        },
 
         defaults: {
+            UserId: 0,
             CheckInId: "",
             StartTime: new Date(),
             EndTime: null,

@@ -225,6 +225,9 @@ namespace Sieena.Parking.API.Models
                     return null;
                 }
 
+
+                // Validate if users are blocking you.
+
                 c.EndTime = DateTime.Now;
                 ctx.SaveChanges();
 

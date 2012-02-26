@@ -7,12 +7,13 @@
 * @license     Propietary
 */
 
+namespace("Parking.App.Base");
 namespace("Parking.App.Models");
 
 
 (function ($, models, undefined) {
    
-    models.UserInformation = Backbone.Model.extend({
+    models.UserInformation = Parking.App.Base.Model.extend({
         urlRoot: Parking.Configuration.APIEndpointUrl + "users/",
         idAttribute: "UserId",
 
@@ -26,15 +27,6 @@ namespace("Parking.App.Models");
             PhoneOfficeExtension: "",
             PhoneCel: "",
             ProfilePictureUrl: ""
-        },
-
-        parse: function(response) {  
-            if(typeof response["Error"] == "undefined") {
-                return response;
-            }
-            if(response["Error"] == false) { 
-                return response["Response"];
-            }
         }
 
     });

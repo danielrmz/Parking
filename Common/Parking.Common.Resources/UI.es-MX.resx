@@ -135,6 +135,12 @@
   <data name="API_ErrorSessionRequired" xml:space="preserve">
     <value>Requieres de una sesion para accesar al recurso</value>
   </data>
+  <data name="Dashboard_ActionBtn_Blocked" xml:space="preserve">
+    <value>Notificar y vamonos!</value>
+  </data>
+  <data name="Dashboard_ActionBtn_Normal" xml:space="preserve">
+    <value>Vamonos!</value>
+  </data>
   <data name="Footer_About" xml:space="preserve">
     <value>Acerca</value>
   </data>

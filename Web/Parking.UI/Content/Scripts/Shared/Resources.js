@@ -7,6 +7,7 @@
 * @license     Propietary
 */
 namespace("Parking.Resources");
+namespace("Parking.Resources.i18n");
 
 (function($, resources, undefined) {
 
@@ -30,4 +31,10 @@ namespace("Parking.Resources");
                         "es-MX": ['','ro','do','ro','to']
                         };
     
+    resources.i18n.get = function(id) { 
+        var locale          = Parking.Configuration["locale"] || "en-US";
+        var localeResources = Parking.Resources["i18n"][locale] || {};
+        var resrc = localeResources[id] || id;
+        return resrc;   
+    };
 })(jQuery, Parking.Resources);

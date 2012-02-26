@@ -6,25 +6,30 @@
 * @copyright   2012
 * @license     Propietary
 */
-
+namespace("Parking.App.Base");
 namespace("Parking.App.Collections");
 
 (function ($, collections, undefined) {
 
-    collections.CheckinsHistory = Backbone.Collection.extend({
-        
+    collections.CheckinsHistory = Parking.App.Base.ListenerCollection.extend({
+
+        channel: "parking:checkins:history",
+
         url: Parking.Configuration.APIEndpointUrl + "checkins/history/3",
 
         model: Parking.App.Models.CheckinNotification,
         
         initialize: function() {
+            this._super('initialize'); 
+
             this.on("add", this.verifyLimit); 
             this.on("reset", this.verifyLimit);
-
-            // Initialize PUBNUB Listener
-            this.listen();
         },
         
+        onMessageReceived: function(msg) { 
+            this.add(msg); 
+        },
+
         verifyLimit: function(args) {
             // Only show the last X ones. 
 
@@ -43,38 +48,8 @@ namespace("Parking.App.Collections");
                 this.remove(_.first(sorted));
             }
 
-        },
-
-        parse: function(response) { 
-            if(response["Error"] == false) { 
-                return response["Response"];
-            }
-        },
-
-        listen: function() {
-            var self = this;
-             
-            PUBNUB.subscribe({
-                channel : "parking:checkins:history",
-                restore : false, 
-                callback : function(message) { 
-                    self.add(message);
-                    // Detect the message, parse the type
-                    // and add it to the collection.
-
-                    // Trigger added event.
-                },
-                disconnect : function() { },
-                reconnect : function() { }, 
-                connect : function() { }
-            });
-
-            /*PUBNUB.publish({             // SEND A MESSAGE.
-                channel : "hello_world",
-                message : "Hi from PubNub."
-            })*/
         }
-
+        
     });
 
 

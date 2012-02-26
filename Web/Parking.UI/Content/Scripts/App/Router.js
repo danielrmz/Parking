@@ -10,9 +10,9 @@
 namespace("Parking.App");
 namespace("Parking.App.Data");
 
-(function ($, undefined) {
+(function ($, app, undefined) {
     
-    Parking.App.Router = Backbone.Router.extend({
+    app.Router = Backbone.Router.extend({
       routes: {
         ''       : 'main',
         'home'   : 'main',
@@ -29,29 +29,43 @@ namespace("Parking.App.Data");
 
       "static": function() {
         var path  = Backbone.history.fragment;
-        Parking.App.Helpers.SetWindowTitle(path);
+        app.Helpers.SetWindowTitle(path);
         
-        var view  = new Parking.App.Views.Static({el: $("#main")});
+        var view  = new app.Views.Static({el: $("#main")});
         view.template = Parking.Configuration.ClientTemplatesUrl + "Static/" + path + ".html";
         view.render();
       }
     });
     
     // Required 
-    Parking.App._user   = new Parking.App.Models.UserSession();
+    app._user   = new app.Models.UserSession();
     
-    Parking.App._user.on("loggedin", function() { 
-        Parking.App.Data.Users.fetch();
-         
-        // Set global views. 
-        (new Parking.App.Views.HeaderUserInfo({ model: Parking.App._user, el: $('.user-info .user') })).render(); 
-        (new Parking.App.Views.Dashboard({model: Parking.App._user, el: $('#dashboard') })).render(); 
+    app._user.on("pre-loggedin", function() {
+        app.Data.Users = new app.Collections.Users();
+        app.Data.SpaceBlockings = new app.Collections.SpaceBlockings();
+        app.Data.CheckinsCurrent = new app.Collections.CheckinsCurrent();
+        
+        // Get global data. 
+        app.Data.SpaceBlockings.fetch({async: false});
+        app.Data.CheckinsCurrent.fetch({async: false});
+        app.Data.Users.fetch({async: false}); 
+
+        
     });
 
-    Parking.App._user.on("initialized", function() { 
-        Parking.App.Data.Users = new Parking.App.Collections.Users();
+    app._user.on("loggedin", function() { 
+        // Get users last checkin
+        Parking.App.Data.CurrentUserCheckIn = new Parking.App.Models.Checkin({ UserId: Parking.App._user.get("UserId") });
+        Parking.App.Data.CurrentUserCheckIn.fetch({async: false});
+
+        // Set global views. 
+        (new app.Views.HeaderUserInfo({ model: app._user, el: $('.user-info .user') })).render(); 
+        (new app.Views.Dashboard({model: app._user, el: $('#dashboard') })).render(); 
+    });
+
+    app._user.on("initialized", function() { 
         
-        Parking.App.router = new Parking.App.Router();
+        app.router = new app.Router();
         
         // Start pushState
         Backbone.history.start({ pushState: true });
@@ -66,11 +80,11 @@ namespace("Parking.App.Data");
                 // refresh.
                 evt.preventDefault();
 
-                Parking.App.router.navigate(href, true);
+                app.router.navigate(href, true);
             }
         });
     });
     
-    Parking.App._user.load();
+    app._user.load();
 
-})(jQuery);
+})(jQuery, Parking.App);

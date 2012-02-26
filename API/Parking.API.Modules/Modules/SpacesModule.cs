@@ -18,6 +18,7 @@ using Sieena.Parking.API.Models;
 namespace Sieena.Parking.API.Modules
 {
     using Classes;
+    using APISession = Sieena.Parking.API.Models.Session;
 
     public class SpacesModule : AbstractBaseModule
     {
@@ -65,5 +66,10 @@ namespace Sieena.Parking.API.Modules
             return Space.Delete(parameters["spaceid"]);
         }
 
+        [Api("/blockings", ApiMethod.GET, true)]
+        public List<SpaceBlocking> GetAllBlockings(User u, APISession session, DynamicDictionary parameters)
+        {
+            return SpaceBlocking.GetAll();
+        }
     }
 }

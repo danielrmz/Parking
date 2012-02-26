@@ -131,12 +131,16 @@
     </Content>
     <Content Include="Content\Images\img-01.png" />
     <Content Include="Content\Scripts\App\Collections\CheckinsCurrent.js" />
+    <Content Include="Content\Scripts\App\Collections\SpaceBlockings.js" />
     <Content Include="Content\Scripts\App\Collections\Users.js" />
     <Content Include="Content\Scripts\App\Collections\SpaceCollection.js" />
     <Content Include="Content\Scripts\App\Helpers\Common.js" />
+    <Content Include="Content\Scripts\App\Helpers\BaseModel.js" />
+    <Content Include="Content\Scripts\App\Helpers\BaseCollection.js" />
     <Content Include="Content\Scripts\App\Models\AccessType.js" />
     <Content Include="Content\Scripts\App\Models\Checkin.js" />
     <Content Include="Content\Scripts\App\Models\CheckinNotification.js" />
+    <Content Include="Content\Scripts\App\Models\SpaceBlock.js" />
     <Content Include="Content\Scripts\App\Models\Space.js" />
     <Content Include="Content\Scripts\App\Models\UserSession.js" />
     <Content Include="Content\Scripts\App\Models\UserInformation.js" />
@@ -145,7 +149,6 @@
     <Content Include="Content\Scripts\App\Views\DashboardNotifications.js" />
     <Content Include="Content\Scripts\App\Views\Dashboard.js" />
     <Content Include="Content\Scripts\App\Views\HeaderUserInfo.js" />
-    <Content Include="Content\Scripts\App\Views\Index.js" />
     <Content Include="Content\Scripts\App\Views\Login.js" />
     <Content Include="Content\Scripts\App\Views\Main.js" />
     <Content Include="Content\Scripts\App\Views\Static.js" />
