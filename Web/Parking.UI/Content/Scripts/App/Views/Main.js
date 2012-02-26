@@ -15,7 +15,7 @@ namespace("Parking.App.Data");
     Parking.App.Views.Main = Backbone.View.extend({
         template: Parking.Configuration.ClientTemplatesUrl + "Parking/Home.html",
         
-        model: Parking.App._user,
+        //model: Parking.App._user,
 
         initialize: function() {
             Parking.App.Data.CurrentCheckins = new Parking.App.Collections.CheckinsCurrent();
@@ -54,7 +54,7 @@ namespace("Parking.App.Data");
             //Backbone.emulateHTTP = true;
             //Backbone.emulateJSON = true;
 //            Parking.App.Data.CurrentCheckins.create( JSON.stringify( myCheckin ) );
-            //Parking.App.Data.CurrentCheckins.create( JSON.stringify( myCheckin ) );
+            Parking.App.Data.CurrentCheckins.create( myCheckin );
             //checkinCollection.add([myCheckin]);
 
 //            var form = $(this.el).find("form");
