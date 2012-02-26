@@ -15,7 +15,7 @@ namespace("Parking.App.Data");
     Parking.App.Views.Main = Backbone.View.extend({
         template: Parking.Configuration.ClientTemplatesUrl + "Parking/Home.html",
         
-        model: app.Data.CheckinsCurrent,
+        collection: Parking.App.Data.CheckinsCurrent,
 
         initialize: function() {
             //Parking.App.Data.CurrentCheckins = new Parking.App.Collections.CheckinsCurrent();
@@ -52,7 +52,7 @@ namespace("Parking.App.Data");
 
             //myCheckin.save();
 
-            Parking.App.Data.CurrentCheckins.create( myCheckin );
+            var myCheckin = Parking.App.Data.CurrentCheckins.create( myCheckin );
 
             var myAttributes = myCheckin.toJSON();
             console.log(myAttributes);
