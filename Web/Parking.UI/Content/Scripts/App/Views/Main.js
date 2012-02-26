@@ -37,13 +37,17 @@ namespace("Parking.App.Data");
         },
          
         "checkin": function(e) {
+            var car = $(e.target);
 
+            console.log(arguments);
             var myCheckin = new Parking.App.Models.Checkin({ 
                 SpaceId: 2,
                 ReservationId: null,
-                RegistredFrom: 1,
-                RegistredBy: 39,
-                StartTime: new Date()
+                RegisteredFrom: 1,
+                RegisteredBy: 39,
+                StartTime: new Date(),
+                EndTime: null,
+                UserId: 39
             });
 
             //myCheckin.save();

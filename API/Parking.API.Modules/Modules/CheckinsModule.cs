@@ -11,6 +11,7 @@ using System.Linq;
 using System.Web;
 
 using Nancy;
+using Nancy.ModelBinding;
 using Nancy.ViewEngines.Razor;
 using Nancy.Serializers.Json;
 
@@ -31,7 +32,7 @@ namespace Sieena.Parking.API.Modules
 
         [Api("/GetAll", ApiMethod.GET, true, AccessLevel.Admin)]
         public List<Checkin> GetAll(User u, APISession session, DynamicDictionary parameters)
-        {
+        { 
             return Checkin.GetAll();
         }
 
@@ -58,8 +59,9 @@ namespace Sieena.Parking.API.Modules
         [Api("/current", ApiMethod.PUT, true)]
         public Checkin CheckInPUT(User u, APISession session, DynamicDictionary parms)
         {
-            Checkin s = parms.Fill<Checkin>();
-            return Checkin.CheckIn(s);
+            Checkin t = this.Bind();
+            t.EndTime = null;
+            return Checkin.CheckIn(t);
         }
 
         [Api("/{id}", ApiMethod.PUT, true)]

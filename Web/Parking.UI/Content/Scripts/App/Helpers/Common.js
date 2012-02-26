@@ -105,6 +105,22 @@ namespace("Parking.App.Data");
         view.render();
     };
 
+    helpers.SetBackboneLinks = function() { 
+        $(document).on("click", "a:not([data-bypass])", function(evt) {
+            var href = $(this).attr("href");
+            var protocol = this.protocol + "//";
+
+            // Ensure the protocol is not part of URL, meaning its relative.
+            if (href && href.slice(0, protocol.length) !== protocol) {
+                // Stop the default event to ensure the link will not cause a page
+                // refresh.
+                evt.preventDefault();
+
+                Parking.App.router.navigate(href, true);
+            }
+        });
+    };
+
     /**
      * Register time ago helper for the templates.
      */

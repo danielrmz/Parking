@@ -33,8 +33,8 @@ namespace("Parking.App.Models");
             EndTime: null,
             SpaceId: 0,
             ReservationId: "",
-            RegistredFrom: 0,
-            RegistredBy: 0
+            RegisteredFrom: 0,
+            RegisteredBy: 0
         },
 
         initialize: function() {

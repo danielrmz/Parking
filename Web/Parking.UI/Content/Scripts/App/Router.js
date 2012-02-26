@@ -51,7 +51,6 @@ namespace("Parking.App.Data");
         app.Data.CheckinsCurrent.fetch({async: false});
         app.Data.Users.fetch({async: false}); 
         app.Data.Spaces.fetch({async: false});
-        
     });
 
     app.Data.CurrentUser.on("post-loggedin", function() { 
@@ -65,25 +64,11 @@ namespace("Parking.App.Data");
     });
 
     app.Data.CurrentUser.on("initialized", function() { 
-        
         app.router = new app.Router();
         
-        // Start pushState
         Backbone.history.start({ pushState: true });
          
-        $(document).on("click", "a:not([data-bypass])", function(evt) {
-            var href = $(this).attr("href");
-            var protocol = this.protocol + "//";
-
-            // Ensure the protocol is not part of URL, meaning its relative.
-            if (href && href.slice(0, protocol.length) !== protocol) {
-                // Stop the default event to ensure the link will not cause a page
-                // refresh.
-                evt.preventDefault();
-
-                app.router.navigate(href, true);
-            }
-        });
+        app.Helpers.SetBackboneLinks();
     });
     
     app.Data.CurrentUser.load();
