@@ -133,7 +133,7 @@
     <Content Include="Content\Scripts\App\Collections\CheckinsCurrent.js" />
     <Content Include="Content\Scripts\App\Collections\SpaceBlockings.js" />
     <Content Include="Content\Scripts\App\Collections\Users.js" />
-    <Content Include="Content\Scripts\App\Collections\SpaceCollection.js" />
+    <Content Include="Content\Scripts\App\Collections\Spaces.js" />
     <Content Include="Content\Scripts\App\Helpers\Common.js" />
     <Content Include="Content\Scripts\App\Helpers\BaseModel.js" />
     <Content Include="Content\Scripts\App\Helpers\BaseCollection.js" />

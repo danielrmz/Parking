@@ -15,11 +15,11 @@ namespace("Parking.App.Data");
     Parking.App.Views.Main = Backbone.View.extend({
         template: Parking.Configuration.ClientTemplatesUrl + "Parking/Home.html",
         
-        model: Parking.App.Data.CurrentCheckins,
+        model: app.Data.CheckinsCurrent,
 
         initialize: function() {
-            Parking.App.Data.CurrentCheckins = new Parking.App.Collections.CheckinsCurrent();
-//            Parking.App.Data.Checkin = new Parking.App.Models.Checkin();
+            //Parking.App.Data.CurrentCheckins = new Parking.App.Collections.CheckinsCurrent();
+            //Parking.App.Data.Checkin = new Parking.App.Models.Checkin();
         },
 
         render: function() {  

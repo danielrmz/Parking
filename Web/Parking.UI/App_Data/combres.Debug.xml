@@ -116,7 +116,7 @@
       
       <!-- Collections -->
       <resource path="~/Content/Scripts/App/Collections/SpaceBlockings.js"  />
-      <resource path="~/Content/Scripts/App/Collections/SpaceCollection.js"  />
+      <resource path="~/Content/Scripts/App/Collections/Spaces.js"  />
       <resource path="~/Content/Scripts/App/Collections/CheckinsHistory.js"  />
       <resource path="~/Content/Scripts/App/Collections/CheckinsCurrent.js"  />
       <resource path="~/Content/Scripts/App/Collections/Users.js"  />

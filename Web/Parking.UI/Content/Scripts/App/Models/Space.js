@@ -10,7 +10,7 @@ namespace("Parking.App.Base");
 namespace("Parking.App.Models");
 
 (function ($, models, undefined) {
-    
+ 
     models.Space = Parking.App.Base.Model.extend({
 
         defaults: {            
@@ -20,7 +20,8 @@ namespace("Parking.App.Models");
             AccessTypeId: 0,
             OwnerId: 0,
             CreatedAt: new Date(),
-            Deleted: false
+            Deleted: false,
+            CssClass: ""
         }
         
     });

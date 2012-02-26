@@ -11,9 +11,11 @@ namespace("Parking.App.Collections");
 
 (function ($, collections, undefined) {
     
-    collections.SpaceCollection = Backbone.Collection.extend({
+    collections.Spaces = Backbone.Collection.extend({
 
         model : Parking.App.Models.Space,
+
+        url: Parking.Configuration.APIEndpointUrl + "spaces/GetAllByPlaceId/1",
 
         getDeleted: function() {
             return this.filter(function(space){ return photo.get('Deleted'); });

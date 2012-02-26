@@ -44,12 +44,13 @@ namespace("Parking.App.Data");
         app.Data.Users = new app.Collections.Users();
         app.Data.SpaceBlockings = new app.Collections.SpaceBlockings();
         app.Data.CheckinsCurrent = new app.Collections.CheckinsCurrent();
+        app.Data.Spaces = new app.Collections.Spaces();
         
         // Get global data. 
         app.Data.SpaceBlockings.fetch({async: false});
         app.Data.CheckinsCurrent.fetch({async: false});
         app.Data.Users.fetch({async: false}); 
-
+        app.Data.Spaces.fetch({async: false});
         
     });
 
