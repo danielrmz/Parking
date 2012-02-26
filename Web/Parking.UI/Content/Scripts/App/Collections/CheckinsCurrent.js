@@ -18,10 +18,22 @@ namespace("Parking.App.Collections");
         model: Parking.App.Models.Checkin,
         
         initialize: function() {
-
+            console.log("CheckinCurrent collection has been initialized");
+            this.bind("add", this.save);
             // Initialize PUBNUB Listener
             this.listen();
         },
+
+        save: function(checkinsCurrent) {
+                console.log("A checkin was added to the collection with the following data:" 
+                    + " StartTime: "        + checkinsCurrent.get("StartTime") 
+                    + " EndTime: "          + checkinsCurrent.get("EndTime")
+                    + " SpaceId: "          + checkinsCurrent.get("SpaceId")
+                    + " ReservationId: "    + checkinsCurrent.get("ReservationId")
+                    + " RegistredFrom: "    + checkinsCurrent.get("RegistredFrom")
+                    + " RegistredBy: "      + checkinsCurrent.get("RegistredBy")
+                );
+         },
          
         parse: function(response) { 
             if(response["Error"] == false) { 

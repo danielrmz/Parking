@@ -12,12 +12,15 @@ namespace("Parking.App.Models");
 (function ($, models, undefined) {
 
     models.Checkin = Backbone.Model.extend({
+
+        urlRoot: Parking.Configuration.APIEndpointUrl + 'checkins/current',
+
         idAttribute: "CheckInId",
 
         defaults: {
-            CheckInId: 0,
+            CheckInId: "",
             StartTime: new Date(),
-            EndTime: "",
+            EndTime: null,
             SpaceId: 0,
             ReservationId: "",
             RegistredFrom: 0,
@@ -25,6 +28,19 @@ namespace("Parking.App.Models");
         },
 
         initialize: function() {
+            console.log("Checkin model has been initialized");
+            this.bind("add", this.insert);
+        },
+
+        insert: function(checkinsCurrent) {
+            console.log("A checkin was added to the collection with the following data:" 
+                + " StartTime: "        + checkinsCurrent.get("StartTime") 
+                + " EndTime: "          + checkinsCurrent.get("EndTime")
+                + " SpaceId: "          + checkinsCurrent.get("SpaceId")
+                + " ReservationId: "    + checkinsCurrent.get("ReservationId")
+                + " RegistredFrom: "    + checkinsCurrent.get("RegistredFrom")
+                + " RegistredBy: "      + checkinsCurrent.get("RegistredBy")
+            );
         }
 
     });

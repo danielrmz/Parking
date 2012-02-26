@@ -55,6 +55,13 @@ namespace Sieena.Parking.API.Modules
             return Checkin.CheckIn(s);
         }
 
+        [Api("/current", ApiMethod.PUT, true)]
+        public Checkin CheckInPUT(User u, APISession session, DynamicDictionary parms)
+        {
+            Checkin s = parms.Fill<Checkin>();
+            return Checkin.CheckIn(s);
+        }
+
         [Api("/{id}", ApiMethod.PUT, true)]
         public Checkin CheckOut(User u, APISession session, DynamicDictionary parms)
         {

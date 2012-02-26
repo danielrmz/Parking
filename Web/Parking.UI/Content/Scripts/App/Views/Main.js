@@ -8,6 +8,7 @@
 */
 
 namespace("Parking.App.Views");
+namespace("Parking.App.Data");
 
 (function ($, undefined) {
 
@@ -17,7 +18,8 @@ namespace("Parking.App.Views");
         model: Parking.App._user,
 
         initialize: function() {
-            
+            Parking.App.Data.CurrentCheckins = new Parking.App.Collections.CheckinsCurrent();
+            Parking.App.Data.Checkin = new Parking.App.Models.Checkin();
         },
 
         render: function() {  
@@ -31,54 +33,30 @@ namespace("Parking.App.Views");
         },
 
         events: { 
-            "click a1": "checkin",
-            "click a2": "checkin",
-            "click a3": "checkin",
-            "click a4": "checkin",
-            "click a5": "checkin",
-            "click a6": "checkin",
-            "click a7": "checkin",
-            "click a8": "checkin",
-            "click a9": "checkin",
-            "click a10": "checkin",
-            "click a11": "checkin",
-            "click a12": "checkin",
-            "click a13": "checkin",
-            "click a14": "checkin",
-
-            "click b1": "checkin",
-            "click b2": "checkin",
-            "click b3": "checkin",
-            "click b4": "checkin",
-            "click b5": "checkin",
-            "click b6": "checkin",
-            "click b7": "checkin",
-            "click b8": "checkin",
-            "click b9": "checkin",
-            "click b10": "checkin",
-            "click b11": "checkin",
-
-            "click c1": "checkin",
-            "click c2": "checkin",
-            "click c3": "checkin",
-            "click c4": "checkin",
-            "click c5": "checkin",
-            "click c6": "checkin",
-            "click c7": "checkin",
-            "click c8": "checkin",
-            "click c9": "checkin"
+            "click .car": "checkin"
         },
          
         "checkin": function(e) {
 
-            var myCheckin = new Checkin({ SpaceId: 0,
-            ReservationId: "",
-            RegistredFrom: 0,
-            RegistredBy: 0
+            var myCheckin = new Parking.App.Models.Checkin({ 
+                SpaceId: 2,
+                ReservationId: null,
+                RegistredFrom: 1,
+                RegistredBy: 39,
+                StartTime: new Date()
             });
+
+            myCheckin.save();
 
             var myAttributes = myCheckin.toJSON();
             console.log(myAttributes);
+
+            //Backbone.emulateHTTP = true;
+            //Backbone.emulateJSON = true;
+//            Parking.App.Data.CurrentCheckins.create( JSON.stringify( myCheckin ) );
+            //Parking.App.Data.CurrentCheckins.create( JSON.stringify( myCheckin ) );
+            //checkinCollection.add([myCheckin]);
+
 //            var form = $(this.el).find("form");
 //            var params = form.serialize();
 //            var self = this;
