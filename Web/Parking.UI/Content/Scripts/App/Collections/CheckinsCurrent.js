@@ -22,6 +22,7 @@ namespace("Parking.App.Collections");
             this._super('initialize'); 
             console.log("CheckinCurrent collection has been initialized");
             this.bind("add", this.save);
+            this.bind("reset", this.reset);
         },
 
         onMessageReceived: function(msg) { 
@@ -38,6 +39,23 @@ namespace("Parking.App.Collections");
                     + " RegistredFrom: "    + checkinsCurrent.get("RegistredFrom")
                     + " RegistredBy: "      + checkinsCurrent.get("RegistredBy")
                 );
+         },
+
+         reset: function(checkinsCurrent) {
+            console.log(checkinsCurrent);
+            console.log("Checkins was added via fetch method.");
+            for(i in checkinsCurrent)
+            {
+                console.log("A checkin was added to the collection with the following data:" 
+                    + " StartTime: "        + checkinsCurrent[i].StartTime
+                    + " EndTime: "          + checkinsCurrent[i].EndTime
+                    + " SpaceId: "          + checkinsCurrent[i].SpaceId
+                    + " ReservationId: "    + checkinsCurrent[i].ReservationId
+                    + " RegistredFrom: "    + checkinsCurrent[i].RegistredFrom
+                    + " RegistredBy: "      + checkinsCurrent[i].RegistredBy
+                );                
+            }
+            
          }
     });
 
