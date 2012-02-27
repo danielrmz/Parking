@@ -164,7 +164,9 @@
     <Content Include="Content\Styles\Images\Gritter\gritter-long.png" />
     <Content Include="Content\Styles\Images\Gritter\gritter.png" />
     <Content Include="Content\Styles\Images\Gritter\ie-spacer.gif" />
+    <Content Include="Content\Styles\Images\icn-car-me.png" />
     <Content Include="Content\Styles\Images\icn-car-min.png" />
+    <Content Include="Content\Styles\Images\icn-car-parked.png" />
     <Content Include="Content\Styles\Images\icn-header-sheet.png" />
     <Content Include="Content\Styles\Images\logo-myplace.png" />
     <Content Include="Content\Styles\Images\txr-bg-canvas-gray.png" />
