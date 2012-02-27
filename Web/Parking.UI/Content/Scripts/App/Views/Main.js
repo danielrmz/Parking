@@ -52,7 +52,7 @@ namespace("Parking.App.Data");
 
             //myCheckin.save();
 
-            var myCheckin = Parking.App.Data.CurrentCheckins.create( myCheckin );
+            var myCheckin = Parking.App.Data.CheckinsCurrent.create( myCheckin );
 
             var myAttributes = myCheckin.toJSON();
             console.log(myAttributes);

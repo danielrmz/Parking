@@ -52,7 +52,10 @@ namespace("Parking.App.Data");
             var isBlocked = this.model.get("IsBlocked");  
             
             // If the user does not have a check in or the last one is already closed, do not render the button.
-            if(Parking.App.Data.CurrentUserCheckIn == null || Parking.App.Data.CurrentUserCheckIn.get("EndTime") != null || Parking.App.Data.CurrentUserCheckIn.get("CheckInId") == "") {
+            if(Parking.App.Data.CurrentUserCheckIn == null 
+                || Parking.App.Data.CurrentUserCheckIn.get("EndTime") != null 
+                || Parking.App.Data.CurrentUserCheckIn.get("CheckInId") == "") {
+                btnGroup.hide();
                 return;
             }
 
@@ -65,12 +68,17 @@ namespace("Parking.App.Data");
         initialize: function() { 
             this.model.on("change:IsBlocked", this.renderActionButton, this);
             this.model.on("change:IsAuthenticated", this.render, this);
-            
+            Parking.App.Data.CurrentUserCheckIn.on("change:EndTime", this.renderActionButton, this);
+
             this.initializeRecentCheckins();
         },
 
         events: {
-           
+           "click .js-button-label": "doCheckout"
+        },
+
+        doCheckout: function() { 
+            Parking.App.Data.CurrentUserCheckIn.Checkout();
         }
          
 

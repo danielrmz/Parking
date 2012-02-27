@@ -50,10 +50,9 @@ namespace Sieena.Parking.API.Modules
         }
 
         [Api("/", ApiMethod.POST, true)]
-        public Checkin CheckIn(User u, APISession session, DynamicDictionary parms)
+        public Checkin CheckOutCurrent(User u, APISession session, DynamicDictionary parms)
         {
-            Checkin s = parms.Fill<Checkin>();
-            return Checkin.CheckIn(s);
+            return Checkin.CheckOutByUserId(u.UserId);
         }
 
         [Api("/current", ApiMethod.PUT, true)]
@@ -64,7 +63,7 @@ namespace Sieena.Parking.API.Modules
             return Checkin.CheckIn(t);
         }
 
-        [Api("/{id}", ApiMethod.PUT, true)]
+        [Api("/{id}", ApiMethod.POST, true, AccessLevel.Admin)]
         public Checkin CheckOut(User u, APISession session, DynamicDictionary parms)
         {
             return Checkin.CheckOut(parms["id"]);

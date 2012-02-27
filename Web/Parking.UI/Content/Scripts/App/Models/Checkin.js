@@ -51,6 +51,16 @@ namespace("Parking.App.Models");
                 + " RegistredFrom: "    + checkinsCurrent.get("RegistredFrom")
                 + " RegistredBy: "      + checkinsCurrent.get("RegistredBy")
             );
+        },
+
+
+        Checkout: function() {
+            var self = this;
+            $.post(Parking.Configuration.APIEndpointUrl + "checkins/", function(data) { 
+                if(data["Error"] == false) {
+                    self.set(data["Response"]);
+                }
+            });
         }
 
     });

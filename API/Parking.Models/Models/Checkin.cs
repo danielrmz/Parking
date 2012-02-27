@@ -20,7 +20,7 @@ namespace Sieena.Parking.API.Models
     /// <summary>
     /// Represents the checkin from a person to a specified place.
     /// </summary>
-    public partial class Checkin :  ICheckin
+    public partial class Checkin : ICheckin
     {
         #region Getters
         /// <summary>
@@ -208,6 +208,26 @@ namespace Sieena.Parking.API.Models
 
                 return c;
             }
+        }
+
+        /// <summary>
+        /// Checks out a user
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        public static Checkin CheckOutByUserId(int userId)
+        {
+            Checkin c = Checkin.GetLastForUser(userId);
+            if (c == null)
+            {
+                return null;
+            }
+
+            if (c.EndTime == null)
+            {
+                return CheckOut(c.CheckInId);
+            }
+            return c;
         }
 
         /// <summary>
