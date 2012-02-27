@@ -3,8 +3,7 @@
 *
 * @package     Parking.UI.Scripts
 * @author      The JSONs
-* @copyright   2012
-* @license     Propietary
+* @copyright   2012 Propiertary
 */
 
 namespace("Parking.App.Base");

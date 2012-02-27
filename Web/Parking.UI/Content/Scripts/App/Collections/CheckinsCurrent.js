@@ -3,8 +3,7 @@
 *
 * @package     Parking.UI.Scripts
 * @author      The JSONs
-* @copyright   2012
-* @license     Propietary
+* @copyright   2012 Propiertary
 */
 namespace("Parking.App.Base");
 namespace("Parking.App.Collections");
@@ -19,17 +18,33 @@ namespace("Parking.App.Collections");
         model: Parking.App.Models.Checkin,
         
         initialize: function() { 
-            this._super('initialize'); 
-            console.log("CheckinCurrent collection has been initialized");
-            this.bind("add", this.save);
-            this.bind("reset", this.reset);
+            this._super('initialize');  
+            //this.bind("add", this.save);
+            //this.bind("reset", this.reset);
         },
 
         onMessageReceived: function(msg) { 
             // Check type in order to check adding or removal.
-            this.add(msg); 
+            var checkinId = msg["CheckInId"];
+            var collectionObj = this.get(checkinId);
+             
+            if(collectionObj) {
+                // Probably an enddate update.
+                collectionObj.set(msg);
+                if(collectionObj.isCheckedOut()) {
+                    this.remove(collectionObj);
+                }
+            } else {
+                this.add(msg);
+            }
+
         },
 
+        isSpaceUsed: function(spaceId) { 
+            return this.filter(function(c) { return c.get("SpaceId") == spaceId }).length > 0;
+        }
+        
+        /*
         save: function(checkinsCurrent) {
                 console.log("A checkin was added to the collection with the following data:" 
                     + " StartTime: "        + checkinsCurrent.get("StartTime") 
@@ -56,7 +71,7 @@ namespace("Parking.App.Collections");
                 );                
             }
             
-         }
+         }*/
     });
 
 

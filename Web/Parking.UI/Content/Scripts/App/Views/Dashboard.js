@@ -3,8 +3,7 @@
 *
 * @package     Parking.UI.Scripts
 * @author      The JSONs
-* @copyright   2012
-* @license     Propietary
+* @copyright   2012 Propiertary
 */
 
 namespace("Parking.App.Views");
@@ -47,7 +46,7 @@ namespace("Parking.App.Data");
 
         renderActionButton: function() { 
             var dashboard = $(this.el);
-            var btnGroup = dashboard.find(".js-button .js-button-group");
+            var btnGroup  = dashboard.find(".js-button .js-button-group");
             var btnAction = btnGroup.find(".js-button-label");
             var isBlocked = this.model.get("IsBlocked");  
             
@@ -68,6 +67,7 @@ namespace("Parking.App.Data");
         initialize: function() { 
             this.model.on("change:IsBlocked", this.renderActionButton, this);
             this.model.on("change:IsAuthenticated", this.render, this);
+            Parking.App.Data.CurrentUserCheckIn.on("change:CheckInId", this.renderActionButton, this);
             Parking.App.Data.CurrentUserCheckIn.on("change:EndTime", this.renderActionButton, this);
 
             this.initializeRecentCheckins();

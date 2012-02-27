@@ -53,7 +53,7 @@ label, input, button, select, textarea {
 
 /* @endgroup */
 /* @group Bootstrap customizations */
-.modal-backdrop, modal-backdrop.fade.in {
+.modal-backdrop, .modal-backdrop.fade.in {
   opacity: 0.5; }
 
 .btn-group .btn {

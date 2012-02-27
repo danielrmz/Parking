@@ -3,8 +3,7 @@
 *
 * @package     Parking.UI.Scripts
 * @author      The JSONs
-* @copyright   2012 -
-* @license     Propietary
+* @copyright   2012 Propiertary
 */
 namespace("Parking.App.Helpers");
 namespace("Parking.App.Data");
@@ -20,6 +19,15 @@ namespace("Parking.App.Data");
     helpers.RenderViewTemplate = function(data) {
         var template = this.template;
         var view     = this;
+        
+        if(typeof view.secure != 'undefined' && view.secure) {
+            if(Parking.App.Data.CurrentUser == null || !Parking.App.Data.CurrentUser.get("IsAuthenticated")) {
+                Parking.App.router.navigate("login", true);
+                return;
+            }
+        }
+
+        // Verify 
 
         fetchTemplate(template, function (tmpl) {
             var model = {};
@@ -27,7 +35,7 @@ namespace("Parking.App.Data");
 
             if(view.model != null) {
                 model = view.model.toJSON();
-            } 
+            }  
 
             if(view.collection != null) {
                 collection = view.collection.toJSON();

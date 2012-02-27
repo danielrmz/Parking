@@ -55,11 +55,19 @@ namespace Sieena.Parking.API.Modules
             return Checkin.CheckOutByUserId(u.UserId);
         }
 
-        [Api("/current", ApiMethod.PUT, true)]
+        [Api("/current", ApiMethod.POST, true)]
         public Checkin CheckInPUT(User u, APISession session, DynamicDictionary parms)
         {
-            Checkin t = this.Bind();
-            t.EndTime = null;
+            Checkin t = this.Bind(); 
+            if (t.UserId == 0)
+            {
+                t.UserId = u.UserId;
+            }
+            
+            t.RegisteredBy = u.UserId;
+
+            // Check roles to see if the user can post
+
             return Checkin.CheckIn(t);
         }
 

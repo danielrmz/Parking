@@ -3,8 +3,7 @@
 *
 * @package     Parking.UI.Scripts
 * @author      The JSONs
-* @copyright   2012
-* @license     Propietary
+* @copyright   2012 Propiertary
 */
 namespace("Parking.App.Base");
 namespace("Parking.App.Models");
@@ -16,13 +15,15 @@ namespace("Parking.App.Models");
         urlRoot: Parking.Configuration.APIEndpointUrl + 'checkins/current',
 
         idAttribute: "CheckInId",
+
         urlRoot: function() { 
             var userId = this.get("UserId");
             var checkinId = this.get("CheckInId");
-            if(checkinId == 0) {
+            
+            if(checkinId == 0 && !this.isNew()) {
                 return Parking.Configuration.APIEndpointUrl + "checkins/user/"+userId; 
             } else {
-                return Parking.Configuration.APIEndpointUrl + "checkins"; 
+                return Parking.Configuration.APIEndpointUrl + "checkins/current"; 
             }
         },
 
@@ -38,8 +39,16 @@ namespace("Parking.App.Models");
         },
 
         initialize: function() {
-            console.log("Checkin model has been initialized");
-            this.bind("add", this.insert);
+           // console.log("Checkin model has been initialized");
+           // this.bind("add", this.insert);
+        },
+
+        isCheckedIn: function() {
+            return (this.get("CheckInId") > 0 && !this.isCheckedOut());
+        },
+
+        isCheckedOut: function() { 
+            return this.get("EndTime") != null;
         },
 
         insert: function(checkinsCurrent) {

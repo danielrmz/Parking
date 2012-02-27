@@ -1,71 +1,25 @@
 ﻿
-
-
 <div class="container-whole span12 container-parking">
-    <div class="pariking-map">
-        <!-- Section A -->  
-        <div class="car a1 vertical-down" data-content="<div class='popup-container'><img src='/Content/Images/img-01.png' class='img-user'><p class='place'>Estacionado en el lugar <span>B2</span></p><p class='tel'><span class='icon'></span>81 92 25 54 ext1. <b>114</b></p><p class='mail'><a href='#'>omar.lara@sieena.com</a></p></div>" data-original-title="Omar Lara">            
-        </div>
-        <div class="car a2 vertical-down"></div>
-        <div class="car a3 vertical-down"></div>
-        <div class="car a4 vertical-down"></div>
-        <div class="car a5 vertical-down"></div>
-        <div class="car a6 horizontal"></div>
-        <div class="car a7 horizontal"></div>
-        <div class="car a8 horizontal"></div>
-        <div class="car a9 horizontal"></div>
-        <div class="car a10"></div>
-        <div class="car a11"></div>
-        <div class="car a12"></div>
-        <div class="car a13"></div>
-        <div class="car a14"></div>
-        <!-- Section B -->
-        <div class="car b1 vertical-down"></div>
-        <div class="car b2 vertical-down"></div>
-        <div class="car b3 vertical-down"></div>
-        <div class="car b4 vertical-down"></div>
-        <div class="car b5 vertical-down"></div>
-        <div class="car b6"></div>
-        <div class="car b7"></div>
-        <div class="car b8"></div>
-        <div class="car b9"></div>
-        <div class="car b10"></div>
-        <div class="car b11"></div>
-        <!-- Section C -->
-        <div class="car c1 vertical-down"></div>
-        <div class="car c2 vertical-down"></div>
-        <div class="car c3 vertical-down"></div>
-        <div class="car c4 horizontal"></div>
-        <div class="car c5"></div>
-        <div class="car c6"></div>
-        <div class="car c7"></div>
-        <div class="car c8"></div>
-        <div class="car c9"></div>
-       
+    <div class="parking-map">
+        {{#each collection}}
+            <div class="car available {{CssClass}} {{SpaceDirection}} js-space" data-spaceid="{{SpaceId}}"></div>
+        {{/each}}  
     </div>
 </div>
-<!--
-<div class="modal" id="ModalCheckin">
+ 
+<div class="modal dialog-confirmation js-confirmation-dialog fade" style="display:none">
     <div class="modal-header">
         <a class="close" data-dismiss="modal">×</a>
-        <h3>Confirmar CheckIn</h3>
+        <h3>{{i18n.Main_ConfirmCheckinTitle}}</h3>
     </div>
     <div class="modal-body">
-        <p>
-            Por favor confirme que desea ocupar el lugar <strong>B-03</strong>
+        <p class="js-message">
+            {{{i18n.Main_ConfirmCheckinMessage}}}
         </p>
     </div>
     <div class="modal-footer">
-        <a href="#" class="btn btn-success">Checkin</a> <a href="#" class="btn">Cancelar</a>
+        <a href="#" class="btn btn-success">{{i18n.Buttons_Checkin}}</a> 
+        <a href="#" class="btn btn-close">{{i18n.Buttons_Cancel}}</a>
     </div>
-</div>
--->
-<!-- 
-<div class="container-whole assign-parking span2">
-    <h2>
-        Asignar Estacionamiento</h2>
-    <div class="new-car">
-    </div>
-</div>
--->
+</div> 
 

@@ -2017,7 +2017,8 @@ namespace Sieena.Parking.API.Models
         /// <param name="ownerId">Initial value of the OwnerId property.</param>
         /// <param name="createdAt">Initial value of the CreatedAt property.</param>
         /// <param name="deleted">Initial value of the Deleted property.</param>
-        public static Space CreateSpace(global::System.Int32 spaceId, global::System.Int32 placeId, global::System.Int32 accessTypeId, global::System.Int32 ownerId, global::System.DateTime createdAt, global::System.Boolean deleted)
+        /// <param name="spaceDirection">Initial value of the SpaceDirection property.</param>
+        public static Space CreateSpace(global::System.Int32 spaceId, global::System.Int32 placeId, global::System.Int32 accessTypeId, global::System.Int32 ownerId, global::System.DateTime createdAt, global::System.Boolean deleted, global::System.String spaceDirection)
         {
             Space space = new Space();
             space.SpaceId = spaceId;
@@ -2026,6 +2027,7 @@ namespace Sieena.Parking.API.Models
             space.OwnerId = ownerId;
             space.CreatedAt = createdAt;
             space.Deleted = deleted;
+            space.SpaceDirection = spaceDirection;
             return space;
         }
 
@@ -2226,6 +2228,30 @@ namespace Sieena.Parking.API.Models
         private global::System.String _CssClass;
         partial void OnCssClassChanging(global::System.String value);
         partial void OnCssClassChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String SpaceDirection
+        {
+            get
+            {
+                return _SpaceDirection;
+            }
+            set
+            {
+                OnSpaceDirectionChanging(value);
+                ReportPropertyChanging("SpaceDirection");
+                _SpaceDirection = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("SpaceDirection");
+                OnSpaceDirectionChanged();
+            }
+        }
+        private global::System.String _SpaceDirection;
+        partial void OnSpaceDirectionChanging(global::System.String value);
+        partial void OnSpaceDirectionChanged();
 
         #endregion
     

@@ -7,14 +7,15 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Configuration;
 
-/**
- * PubNub 3.0 Real-time Push Cloud API
- *
- * @author Stephen Blum
- * @package pubnub
- */
+/// <summary>
+/// Pubnub class Factory
+/// </summary>
 public static class PubnubFactory {
 
+    /// <summary>
+    /// Singleton that returns a new instance of PubNub with the keys already set up.
+    /// </summary>
+    /// <returns></returns>
     public static Pubnub GetInstance()
     {
         return new Pubnub(
@@ -25,7 +26,11 @@ public static class PubnubFactory {
         );
     }
 
+    /// <summary>
+    /// Channels available for MyPlace
+    /// </summary>
     public struct Channels {
         public static string CheckinHistory = "parking:checkins:history";
+        public static string CheckinCurrent = "parking:checkins:current";
     }
 }

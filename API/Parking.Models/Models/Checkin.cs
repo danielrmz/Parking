@@ -197,7 +197,15 @@ namespace Sieena.Parking.API.Models
                     throw new CheckinExistsException(i18n.API_ErrorCheckinExists);
                 }
 
+                // Validate space is not being used
+                if (ctx.Checkins.Where(ci => ci.SpaceId == c.SpaceId && !ci.EndTime.HasValue).Any())
+                {
+                    throw new CheckinExistsException(i18n.API_ErrorSpaceUsed);
+                }
+
                 c.CheckInId = 0;
+                c.StartTime = c.StartTime.ToUniversalTime();
+                c.EndTime = null;
 
                 ctx.Checkins.AddObject(c);
 
@@ -248,7 +256,7 @@ namespace Sieena.Parking.API.Models
 
                 // Validate if users are blocking you.
 
-                c.EndTime = DateTime.Now;
+                c.EndTime = DateTime.Now.ToUniversalTime();
                 ctx.SaveChanges();
 
                 // Notify users
@@ -280,6 +288,7 @@ namespace Sieena.Parking.API.Models
         {
             Pubnub nub = PubnubFactory.GetInstance();
             nub.Publish(PubnubFactory.Channels.CheckinHistory, new CheckinNotification(checkin, notify));
+            nub.Publish(PubnubFactory.Channels.CheckinCurrent, checkin);
 
             switch (notify)
             {

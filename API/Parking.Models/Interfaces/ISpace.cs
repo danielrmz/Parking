@@ -48,5 +48,15 @@ namespace Sieena.Parking.API.Models.Interfaces
         [Integer]
         [Display(Name = "Deleted")]
         bool Deleted { get; set; }
+
+        [Required]
+        [DataType(DataType.Text)]
+        [Display(Name = "CssClass")]
+        string CssClass { get; set; }
+
+        [Required]
+        [DataType(DataType.Text)]
+        [Display(Name = "Space Direction")]
+        string SpaceDirection { get; set; }
     }
 }

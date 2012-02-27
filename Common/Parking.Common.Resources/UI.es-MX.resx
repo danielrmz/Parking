@@ -135,6 +135,15 @@
   <data name="API_ErrorSessionRequired" xml:space="preserve">
     <value>Requieres de una sesion para accesar al recurso</value>
   </data>
+  <data name="API_ErrorSpaceUsed" xml:space="preserve">
+    <value>El espacio esta siendo usado actualmente</value>
+  </data>
+  <data name="Buttons_Cancel" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="Buttons_Checkin" xml:space="preserve">
+    <value>Checkin</value>
+  </data>
   <data name="Dashboard_ActionBtn_Blocked" xml:space="preserve">
     <value>Notificar y vamonos!</value>
   </data>
@@ -188,6 +197,18 @@
   </data>
   <data name="Login_Username" xml:space="preserve">
     <value>Usuario</value>
+  </data>
+  <data name="Main_ConfirmCheckinMessage" xml:space="preserve">
+    <value>Por favor confirme que desea ocupar el lugar: &lt;strong&gt;{{Alias}}&lt;/strong&gt;</value>
+  </data>
+  <data name="Main_ConfirmCheckinTitle" xml:space="preserve">
+    <value>Confirmar Checkin</value>
+  </data>
+  <data name="Main_ErrorSpaceNotAvailable" xml:space="preserve">
+    <value>Espacio no disponible!</value>
+  </data>
+  <data name="Main_InfoAlreadyCheckedIn" xml:space="preserve">
+    <value>Ya estas estacionado!</value>
   </data>
   <data name="Membership_AppId" xml:space="preserve">
     <value>Parking</value>

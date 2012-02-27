@@ -3,8 +3,7 @@
 *
 * @package     Parking.UI.Scripts
 * @author      The JSONs
-* @copyright   2012
-* @license     Propietary
+* @copyright   2012 Propiertary 
 */
 
 namespace("Parking.App.Base");
@@ -28,13 +27,20 @@ namespace("Parking.App.Models");
             return this.FirstName + " " + this.LastName;
         },
 
-        initialize: function() {
-            var self = this;
-            this.on("change:IsAuthenticated", function() { 
-                if(self.get("IsAuthenticated")) {
-                    self.isBlocked(function(b) { self.set("IsBlocked", b); });
-                }
-            });
+        initialize: function() { 
+            this.on("change:IsAuthenticated", this.verifyIsBlocked, this);
+            this.on("renew:IsBlocked", this.verifyIsBlocked, this);
+        },
+
+        verifyIsBlocked: function() {
+            if(this.get("IsAuthenticated")) {
+                var self = this;
+                this.isBlocked(function(b) { self.set("IsBlocked", b); });
+            }
+        },
+
+        isAdmin: function() {
+            return this.get("Role") == "Administrator";
         },
 
         getLastCheckin: function(cbk) {

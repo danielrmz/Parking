@@ -65,6 +65,7 @@ namespace Sieena.Parking.API.Models
             {
                 u.Email = u.Email.ToLower();
                 u.ValidateAndRaise();
+                u.CreatedAt = u.CreatedAt.ToUniversalTime();
 
                 if (u.UserId == 0)
                 {
@@ -277,7 +278,7 @@ namespace Sieena.Parking.API.Models
                     User u = new User()
                     {
                         Email = up.EmailAddress,
-                        CreatedAt = DateTime.Now,
+                        CreatedAt = DateTime.Now.ToUniversalTime(),
                         IsActive = true,
                         Password = password
                     };

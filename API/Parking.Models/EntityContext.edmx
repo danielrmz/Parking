@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Sieena.Parking.API.Models.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="Sieena.Parking.API.Models.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="SieenaParkingAPIModelsStoreContainer">
           <EntitySet Name="AccessTypes" EntityType="Sieena.Parking.API.Models.Store.AccessTypes" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Applications" EntityType="Sieena.Parking.API.Models.Store.Applications" store:Type="Tables" Schema="dbo" />
@@ -159,6 +159,7 @@
           <Property Name="CreatedAt" Type="datetime" Nullable="false" />
           <Property Name="Deleted" Type="bit" Nullable="false" />
           <Property Name="CssClass" Type="nvarchar" MaxLength="20" />
+          <Property Name="SpaceDirection" Type="nvarchar" Nullable="false" MaxLength="5" />
         </EntityType>
         <EntityType Name="UserEndpoints">
           <Key>
@@ -354,6 +355,7 @@
           <Property Name="CreatedAt" Type="DateTime" Nullable="false" />
           <Property Name="Deleted" Type="Boolean" Nullable="false" />
           <Property Type="String" Name="CssClass" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="SpaceDirection" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="UserEndpoint">
           <Key>
@@ -491,7 +493,8 @@
             <ScalarProperty Name="CanvasHeight" ColumnName="CanvasHeight" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="Spaces"><EntityTypeMapping TypeName="Sieena.Parking.API.Models.Space"><MappingFragment StoreEntitySet="Spaces">
-            <ScalarProperty Name="CssClass" ColumnName="CssClass" />
+            <ScalarProperty Name="SpaceDirection" ColumnName="SpaceDirection" />
+                <ScalarProperty Name="CssClass" ColumnName="CssClass" />
                 <ScalarProperty Name="SpaceId" ColumnName="SpaceId" />
             <ScalarProperty Name="PlaceId" ColumnName="PlaceId" />
             <ScalarProperty Name="Alias" ColumnName="Alias" />

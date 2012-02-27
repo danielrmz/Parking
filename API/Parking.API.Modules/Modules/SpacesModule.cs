@@ -43,7 +43,7 @@ namespace Sieena.Parking.API.Modules
         {
             Space s = parameters.Fill<Space>();
             s.Deleted = false;
-            s.CreatedAt = DateTime.Now;
+            s.CreatedAt = DateTime.Now.ToUniversalTime();
             s.SpaceId = 0;
             return Space.Save(s);
         }

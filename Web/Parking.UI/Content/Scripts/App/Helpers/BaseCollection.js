@@ -3,8 +3,7 @@
 *
 * @package     Parking.UI.Scripts
 * @author      The JSONs
-* @copyright   2012
-* @license     Propietary
+* @copyright   2012 Propiertary 
 */
 
 namespace("Parking.App.Base");
@@ -23,7 +22,7 @@ namespace("Parking.App.Base");
      * Base collection type.  
      */
     base.Collection = Backbone.Collection.extend({
-        parse: function(response) {  
+        parse: function(response) { 
             if(typeof response["Error"] == "undefined") {
                 return response;
             }

@@ -3,92 +3,155 @@
 *
 * @package     Parking.UI.Scripts
 * @author      The JSONs
-* @copyright   2012
-* @license     Propietary
+* @copyright   2012 Propiertary 
 */
 
-namespace("Parking.App.Views");
 namespace("Parking.App.Data");
+namespace("Parking.App.Views");
 
 (function ($, undefined) {
+    var i18n = Parking.Resources.i18n;
 
     Parking.App.Views.Main = Backbone.View.extend({
+        
+        secure: true,
+        
         template: Parking.Configuration.ClientTemplatesUrl + "Parking/Home.html",
         
-        collection: Parking.App.Data.CheckinsCurrent,
-
         initialize: function() {
-            //Parking.App.Data.CurrentCheckins = new Parking.App.Collections.CheckinsCurrent();
-            //Parking.App.Data.Checkin = new Parking.App.Models.Checkin();
+            this.collection = Parking.App.Data.Spaces;
+            Parking.App.Data.CheckinsCurrent.on("remove", this.onRemove, this);
+            Parking.App.Data.CheckinsCurrent.on("add", this.onAdd, this);
         },
 
-        render: function() {  
-            if(Parking.App.Data.CurrentUser == null || !Parking.App.Data.CurrentUser.get("IsAuthenticated")) {
-                // Redirect to main page. 
-                Parking.App.router.navigate("login", true);
-                return;
+        render: function() {
+            Parking.App.Helpers.RenderViewTemplate.apply(this, arguments);
+
+            // Update checked in spaces.
+            this.renderCheckedInSpaces();
+        },
+          
+        renderCheckedInSpaces: function() {
+            var map = $(this.el);
+
+            $(this.el).find(".js-space").removeClass("used").removeClass("me").addClass("available");
+            if(Parking.App.Data.CheckinsCurrent) { 
+                Parking.App.Data.CheckinsCurrent.map(function(checkin) { 
+                    var spaceId = checkin.get("SpaceId");
+                    var spaceUI = map.find("[data-spaceid=" + spaceId + "].js-space");
+                    spaceUI.removeClass("available").addClass("used");
+
+                    if(checkin.get("UserId") == Parking.App.Data.CurrentUser.get("UserId")) {
+                        spaceUI.addClass("me");
+                    }
+                    spaceUI.data("checkinid", checkin.get("CheckInId"));
+                });
+            }
+        },
+       
+        onAdd: function(checkin) { 
+            var spaceId = checkin.get("SpaceId");
+            var car = $(this.el).find("[data-spaceid=" + spaceId + "]");
+
+            car.data("checkinid", checkin.get("CheckInId")); 
+            car.removeClass("available").addClass("used");
+
+            if(Parking.App.Data.CurrentUser.get("UserId") == checkin.get("UserId")) {
+                car.addClass("me");
             }
 
-            Parking.App.Helpers.RenderViewTemplate.apply(this, arguments);
+            // Recheck if the user is blocked.
+            Parking.App.Data.CurrentUser.trigger("renew:IsBlocked");
+                                                        
+        },
+
+        onRemove: function(checkin) { 
+            var spaceId = checkin.get("SpaceId");
+            var car = $(this.el).find("[data-spaceid=" + spaceId + "]");
+            car.data("checkinid", null); 
+            car.removeClass("used").removeClass("me").addClass("available");
         },
 
         events: { 
-            "click .car": "checkin"
+            "click .js-space.used": "showDetailsDialog",
+            "click .js-space.available": "showConfirmDialog",
+            "click .js-confirmation-dialog .btn-close": "closeConfirmDialog",
+            "click .js-confirmation-dialog .btn-success": "doCheckin"
         },
-         
-        "checkin": function(e) {
-            var car = $(e.target);
 
-            console.log(arguments);
-            var myCheckin = new Parking.App.Models.Checkin({ 
-                SpaceId: 2,
-                ReservationId: null,
-                RegisteredFrom: 1,
-                RegisteredBy: 39,
-                StartTime: new Date(),
-                EndTime: null,
-                UserId: 39
-            });
+        "showDetailsDialog": function() {},
+       
+        "closeConfirmDialog": function() { 
+            $(this.el).find(".js-confirmation-dialog").modal('hide');
+            $(this.el).find(".selected").removeClass("selected");
+        },
 
-            //myCheckin.save();
+        "doCheckin": function() { 
+            var car = $(this.el).find(".selected");
+            var spaceId = car.data("spaceid");
+            var userId = 0;
+            var dialog = $(this.el).find(".js-confirmation-dialog");
 
-            var myCheckin = Parking.App.Data.CheckinsCurrent.create( myCheckin );
+            var data = { 
+                CheckInId: null,
+                SpaceId: spaceId,
+                UserId: userId
+            };
 
-            var myAttributes = myCheckin.toJSON();
-            console.log(myAttributes);
-
-            //Backbone.emulateHTTP = true;
-            //Backbone.emulateJSON = true;
-//            Parking.App.Data.CurrentCheckins.create( JSON.stringify( myCheckin ) );
+            var checkin = new Parking.App.Models.Checkin(data);
             
-            //checkinCollection.add([myCheckin]);
+            checkin.save({}, { success: function(m) { 
+                                                        Parking.App.Data.CurrentUserCheckIn.set(m);
+                                                        
+                                                        dialog.modal('hide');
+                                                        car.removeClass("selected");
+                                                        }
+                                            });
 
-//            var form = $(this.el).find("form");
-//            var params = form.serialize();
-//            var self = this;
-//            var submit = form.find("input[type=submit]");
+             
+        },
 
-//            submit.val(submit.data("afterclick")).attr("disabled", true);
-//            
-//            $.post(form.attr("action"), params, function(data){ 
-//                
-//                if(data.Error == false) {
-//                    form.find(".alert-error").hide();
-//                    Parking.App._user.set(data["Response"]);
-//                    Parking.App._views.HeaderUserInfo.render();
+        "showConfirmDialog": function(e) {
+            var car = $(e.target);
+            var spaceId = car.data("spaceid");
+            var space  = null;
+            var userId = 0;
 
-//                    // Redirect to the core app view
-//                     Parking.App._router.navigate("home", true);
+            if(!spaceId || spaceId <= 0 || isNaN(spaceId)) {
+                Parking.Common.DisplayGlobalError(i18n.get("Main_ErrorSpaceNotAvailable"));
+                return;
+            }
 
-//                } else {
-//                    submit.val(submit.data("click")).attr("disabled", false);
-//                    // Display error.
-//                    form.find(".alert-error .message").html(data["Response"]);
-//                    form.find(".alert-error").show();
-//                }
-//            });
+            space = Parking.App.Data.Spaces.get(spaceId);
 
-//            return false;
+            if(Parking.App.Data.CurrentUserCheckIn.isCheckedIn()) {
+                // Change to display a warning message
+                Parking.Common.DisplayGlobalError(i18n.get("Main_InfoAlreadyCheckedIn"));
+                return;
+            }
+
+            // Check that space isn't taken
+            if(Parking.App.Data.CheckinsCurrent.isSpaceUsed(spaceId)) {
+                Parking.Common.DisplayGlobalError(i18n.get("Main_ErrorSpaceNotAvailable"));
+                return;
+            }
+
+            // Proceed to open confirmation box
+            car.addClass("selected");
+
+            if(Parking.App.Data.CurrentUser.isAdmin()) {
+                // Display user selection box.
+                var dialog = $(this.el).find(".js-confirmation-dialog");
+                var msg = dialog.find(".js-message");
+                msg.html(i18n.get("Main_ConfirmCheckinMessage").replace("{{Alias}}", space.get("Alias")));
+
+                $(this.el).find(".js-confirmation-dialog").modal(); 
+            } else {
+                // Display confirm dialog.
+                $(this.el).find(".js-confirmation-dialog").modal();
+                
+            }
+
         }
 
     });

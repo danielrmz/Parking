@@ -115,6 +115,33 @@ namespace Sieena.Parking.Common.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The space is already in use.
+        /// </summary>
+        public static string API_ErrorSpaceUsed {
+            get {
+                return ResourceManager.GetString("API_ErrorSpaceUsed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string Buttons_Cancel {
+            get {
+                return ResourceManager.GetString("Buttons_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Checkin.
+        /// </summary>
+        public static string Buttons_Checkin {
+            get {
+                return ResourceManager.GetString("Buttons_Checkin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Notify and Leave!.
         /// </summary>
         public static string Dashboard_ActionBtn_Blocked {
@@ -273,6 +300,42 @@ namespace Sieena.Parking.Common.Resources {
         public static string Login_Username {
             get {
                 return ResourceManager.GetString("Login_Username", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to check-in in spot: &lt;strong&gt;{{Alias}}&lt;/strong&gt;.
+        /// </summary>
+        public static string Main_ConfirmCheckinMessage {
+            get {
+                return ResourceManager.GetString("Main_ConfirmCheckinMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm Checkin.
+        /// </summary>
+        public static string Main_ConfirmCheckinTitle {
+            get {
+                return ResourceManager.GetString("Main_ConfirmCheckinTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Space not available!.
+        /// </summary>
+        public static string Main_ErrorSpaceNotAvailable {
+            get {
+                return ResourceManager.GetString("Main_ErrorSpaceNotAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You are already checked in.
+        /// </summary>
+        public static string Main_InfoAlreadyCheckedIn {
+            get {
+                return ResourceManager.GetString("Main_InfoAlreadyCheckedIn", resourceCulture);
             }
         }
         

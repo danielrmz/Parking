@@ -3,8 +3,7 @@
 *
 * @package     Parking.UI.Scripts
 * @author      The JSONs
-* @copyright   2012
-* @license     Propietary
+* @copyright   2012 Propiertary
 */
 namespace("Parking.App.Base");
 namespace("Parking.App.Models");
@@ -12,6 +11,8 @@ namespace("Parking.App.Models");
 (function ($, models, undefined) {
  
     models.Space = Parking.App.Base.Model.extend({
+        
+        idAttribute: "SpaceId",
 
         defaults: {            
             SpaceId: 0,
@@ -21,7 +22,8 @@ namespace("Parking.App.Models");
             OwnerId: 0,
             CreatedAt: new Date(),
             Deleted: false,
-            CssClass: ""
+            CssClass: "",
+            SpaceDirection: ""
         }
         
     });

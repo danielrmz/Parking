@@ -254,7 +254,7 @@ namespace Sieena.Parking.API.Modules.Classes
 
                 return Response.AsJson(new
                 {
-                    Time = ConvertToUnixTime(DateTime.Now),
+                    Time = ConvertToUnixTime(DateTime.Now.ToUniversalTime()),
                     Response = data == null ? string.Empty : data,
                     Type = type,
                     Error = isError,
@@ -265,7 +265,7 @@ namespace Sieena.Parking.API.Modules.Classes
             {
                 return Response.AsJson(new
                 {
-                    Time = ConvertToUnixTime(DateTime.Now),
+                    Time = ConvertToUnixTime(DateTime.Now.ToUniversalTime()),
                     Response = data == null ? string.Empty : data,
                     Type = type,
                     Error = isError,

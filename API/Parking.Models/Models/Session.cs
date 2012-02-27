@@ -38,8 +38,8 @@ namespace Sieena.Parking.API.Models
                 {
                     UserId = userId,
                     CreatedAt = DateTime.Now,
-                    ExpiresAt = rememberMe ? DateTime.MaxValue : DateTime.Now.Add(timeOut),
-                    LastAccess = DateTime.Now,
+                    ExpiresAt = rememberMe ? DateTime.MaxValue : DateTime.Now.ToUniversalTime().Add(timeOut),
+                    LastAccess = DateTime.Now.ToUniversalTime(),
                     Data = string.Empty
                 };
 
@@ -93,7 +93,7 @@ namespace Sieena.Parking.API.Models
         {
             using (EntityContext ctx = new EntityContext())
             {
-                ctx.Sessions.Where(s => s.ExpiresAt < DateTime.Now && s.ExpiresAt != DateTime.MaxValue).ToList().ForEach(s => ctx.Sessions.DeleteObject(s));
+                ctx.Sessions.Where(s => s.ExpiresAt < DateTime.Now.ToUniversalTime() && s.ExpiresAt != DateTime.MaxValue).ToList().ForEach(s => ctx.Sessions.DeleteObject(s));
                 ctx.SaveChanges();
             }
         }
@@ -114,13 +114,13 @@ namespace Sieena.Parking.API.Models
                     return null;
                 }
 
-                if (sess.ExpiresAt < DateTime.Now && sess.ExpiresAt != DateTime.MaxValue)
+                if (sess.ExpiresAt < DateTime.Now.ToUniversalTime() && sess.ExpiresAt != DateTime.MaxValue)
                 {
                     ctx.Sessions.DeleteObject(sess);
                     ctx.SaveChanges();
                     return null;
                 }
-                sess.LastAccess = DateTime.Now;
+                sess.LastAccess = DateTime.Now.ToUniversalTime();
                 ctx.SaveChanges();
 
                 return sess;
@@ -143,13 +143,13 @@ namespace Sieena.Parking.API.Models
                     return null;
                 }
 
-                if (sess.ExpiresAt < DateTime.Now && sess.ExpiresAt != DateTime.MaxValue)
+                if (sess.ExpiresAt < DateTime.Now.ToUniversalTime() && sess.ExpiresAt != DateTime.MaxValue)
                 {
                     ctx.Sessions.DeleteObject(sess);
                     ctx.SaveChanges();
                     return null;
                 }
-                sess.LastAccess = DateTime.Now;
+                sess.LastAccess = DateTime.Now.ToUniversalTime();
                 ctx.SaveChanges();
 
                 return sess;
