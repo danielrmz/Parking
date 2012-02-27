@@ -47,10 +47,6 @@ namespace("Parking.App.Base");
 
         onMessageReceived: function(message) {  },
 
-        super: function() { 
-            return base.ListenerCollection.prototype;
-        },
-
         initialize: function() {
             this.listen();
         },
