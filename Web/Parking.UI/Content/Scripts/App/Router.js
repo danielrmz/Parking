@@ -37,13 +37,13 @@ namespace("Parking.App.Data");
     });
     
     // Required 
-    app.Data.CurrentUser   = new app.Models.UserSession();
-    
+    app.Data.CurrentUser     = new app.Models.UserSession();
+    app.Data.Users           = new app.Collections.Users();
+    app.Data.SpaceBlockings  = new app.Collections.SpaceBlockings();
+    app.Data.CheckinsCurrent = new app.Collections.CheckinsCurrent();
+    app.Data.Spaces          = new app.Collections.Spaces();
+        
     app.Data.CurrentUser.on("pre-loggedin", function() {
-        app.Data.Users = new app.Collections.Users();
-        app.Data.SpaceBlockings = new app.Collections.SpaceBlockings();
-        app.Data.CheckinsCurrent = new app.Collections.CheckinsCurrent();
-        app.Data.Spaces = new app.Collections.Spaces();
         
         // Get global data. 
         app.Data.SpaceBlockings.fetch({async: false});

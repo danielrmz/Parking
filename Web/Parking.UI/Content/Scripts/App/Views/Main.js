@@ -20,6 +20,7 @@ namespace("Parking.App.Views");
         
         initialize: function() {
             this.collection = Parking.App.Data.Spaces;
+            
             Parking.App.Data.CheckinsCurrent.on("remove", this.onRemove, this);
             Parking.App.Data.CheckinsCurrent.on("add", this.onAdd, this);
         },
