@@ -16,10 +16,10 @@ namespace("Parking.Resources");
      * Provides the logic for the header clock
      */
     common.HeaderDate = function() {
-        var d = new Date();
+        var d = new Date(); 
 
-        var locale = config['locale'] || 'en-US';
-        var months = resources[locale].Months;
+        var locale = config['locale'] || 'en-US'; 
+        var months = resources.Months[locale];
         var supers = resources.DaysSuperScripts[locale];
         var currentDay = d.getDate();
         var hrs = d.getHours();
