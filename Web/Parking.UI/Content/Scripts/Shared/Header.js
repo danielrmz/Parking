@@ -19,7 +19,7 @@ namespace("Parking.Resources");
         var d = new Date();
 
         var locale = config['locale'] || 'en-US';
-        var months = resources[locale];
+        var months = resources[locale].Months;
         var supers = resources.DaysSuperScripts[locale];
         var currentDay = d.getDate();
         var hrs = d.getHours();
