@@ -30,7 +30,7 @@ namespace("Parking.App.Collections");
          *
          * @type {Parking.App.Models.UserInformation}
          */
-        "model": appmodels.UserInformation,
+        "model": appmodels.UserInformation
          
     });
 

@@ -31,7 +31,7 @@ namespace("Parking.App.Collections");
          *
          * @type {string}
          */
-        "url": config.APIEndpointUrl + "spaces/GetAllByPlaceId/1",
+        "url": config.APIEndpointUrl + "spaces/GetAllByPlaceId/1"
          
         
     });
