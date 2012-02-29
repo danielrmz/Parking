@@ -7,9 +7,10 @@ namespace("Parking.Common");
 namespace("Parking.Configuration");
 namespace("Parking.Resources");
 
-(function($, common) {
+(function($, parking) {
     var config    = parking["Configuration"]; 
     var resources = parking["Resources"];
+    var common    = parking["Common"];
 
     /**
      * Provides the logic for the header clock
@@ -45,4 +46,4 @@ namespace("Parking.Resources");
         }
     };
 
-})(jQuery, Parking["Common"]);
+})(jQuery, Parking);
