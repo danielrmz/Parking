@@ -5,7 +5,7 @@
 */
 namespace("Parking.Configuration");
 
-(function($, config, undefined) {
+(function($, config) {
 
     /**
      * The client templates remote location. If they are not found,

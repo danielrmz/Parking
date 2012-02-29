@@ -5,8 +5,9 @@
 */
 namespace("Parking.Common");
 
-(function($, common, undefined) {
-     
+(function($, parking) {
+    var common   = parking["Common"]; 
+
     common.SetupAjaxErrorHandler();
      
     $(function() { 
@@ -16,4 +17,4 @@ namespace("Parking.Common");
         setInterval(function() { $("[data-time]").each(function() { $(this).html(common.FormatTimeAgo($(this).data("time"))); });  }, 60000);
     });
 
-})(jQuery, Parking.Common);
+})(jQuery, Parking);

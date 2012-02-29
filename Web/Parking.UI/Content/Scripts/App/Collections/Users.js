@@ -6,7 +6,7 @@
 namespace("Parking.App.Base");
 namespace("Parking.App.Collections");
 
-(function ($, parking, undefined) {
+(function ($, parking) {
     var config         = parking["Configuration"];
     var appbase        = parking["App"]["Base"];
     var appmodels      = parking["App"]["Models"];
@@ -14,7 +14,8 @@ namespace("Parking.App.Collections");
 
     /**
      * Represents all the users in the system
-     * @extends Parking.Base.Collection
+     *
+     * @extends appbase.Collection
      */
     appcollections.Users = appbase.Collection.extend({
         

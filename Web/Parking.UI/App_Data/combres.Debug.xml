@@ -84,7 +84,7 @@
       <resource path="~/Content/Scripts/Plugins/backbone-0.9.1.min.js" />
       <resource path="~/Content/Scripts/Plugins/handlebars-1.0.0.min.js" />
       <resource path="~/Content/Scripts/Plugins/pubnub-3.1.min.js" />
-      <resource path="~/Content/Scripts/Plugins/spin.min.js" />
+      <!-- <resource path="~/Content/Scripts/Plugins/spin.min.js" />-->
     </resourceSet>
 
     <resourceSet name="CoreJs" type="js" >

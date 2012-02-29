@@ -6,7 +6,7 @@
 namespace("Parking.App.Base");
 namespace("Parking.App.Collections");
 
-(function ($, parking, undefined) {
+(function ($, parking) {
     var config         = parking["Configuration"];
     var appbase        = parking["App"]["Base"];
     var appmodels      = parking["App"]["Models"];
@@ -16,14 +16,14 @@ namespace("Parking.App.Collections");
      * Collection that represents the current checkins. 
      * Since it inherits from ListenerCollection this will be updated in real time.
      *
-     * @extends Parking.Base.Collection
+     * @extends appbase.Collection
      */
     appcollections.SpaceBlockings = appbase.Collection.extend({
 
         /**
          * Collection base model.
          *
-         * @type {Parking.App.Models.SpaceBlock}
+         * @type {appmodels.SpaceBlock}
          */
         "model": appmodels.SpaceBlock,
 
@@ -37,7 +37,7 @@ namespace("Parking.App.Collections");
         /**
          * Gets the Space Ids of the spaces blocking a particular one
          * @param {number} spaceId Space we are gonna retrieve the ones that are blocking it
-         * @param Array.<number> Array of space ids that are blocking the specified one.
+         * @return Array.<number> Array of space ids that are blocking the specified one.
          */
         getBlockingIdsBySpaceId: function(spaceId) { 
             return this.filter(function(model){ return model.get("BaseSpaceId") == spaceId}).map(function(model) { return model.get("BlockingSpaceId"); });

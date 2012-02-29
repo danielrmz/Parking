@@ -6,7 +6,7 @@
 namespace("Parking.App.Base");
 namespace("Parking.App.Collections");
 
-(function ($, parking, undefined) {
+(function ($, parking) {
     var config         = parking["Configuration"];
     var appbase        = parking["App"]["Base"];
     var appmodels      = parking["App"]["Models"];
@@ -16,7 +16,7 @@ namespace("Parking.App.Collections");
      * Collection that represents the current checkins. 
      * Since it inherits from ListenerCollection this will be updated in real time.
      *
-     * @extends Parking.Base.ListenerCollection
+     * @extends appbase.ListenerCollection
      */
     appcollections.CheckinsCurrent = appbase.ListenerCollection.extend({
         
@@ -30,7 +30,7 @@ namespace("Parking.App.Collections");
         /**
          * Collection base model.
          *
-         * @type {Parking.App.Models.Checkin}
+         * @type {appmodels.Checkin}
          */
         "model": appmodels.Checkin,
         

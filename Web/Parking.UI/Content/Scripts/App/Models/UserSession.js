@@ -9,7 +9,7 @@
 namespace("Parking.App.Base");
 namespace("Parking.App.Models");
 
-(function ($, parking, undefined) {
+(function ($, parking) {
     var common         = parking["Common"];
     var config         = parking["Configuration"];
     var appbase        = parking["App"]["Base"];
@@ -19,12 +19,12 @@ namespace("Parking.App.Models");
     /**
      * Represents the current logged in user in the system.
      *
-     * @extends Parking.App.Base.Model
+     * @extends appbase.Model
      */
     appmodels.UserSession = appbase.Model.extend({
         
         /**
-         * @enum {Object}
+         * @enum {string|number|boolean|null|Date}
          */
         "defaults": { 
             "SessionId": "",
@@ -191,7 +191,7 @@ namespace("Parking.App.Models");
                 this.set("UserName", $.cookie('ParkingUserId')); 
             
                 // Fetch data from server based on these cookies
-                Parking.Common.SetupAjaxToken(this.get('SessionId'));
+                common.SetupAjaxToken(this.get('SessionId'));
                
                 $.get(config.APIEndpointUrl + "session", function(data) { 
                     if(data.Error == false) {

@@ -6,7 +6,7 @@
 namespace("Parking.App.Base");
 namespace("Parking.App.Collections");
 
-(function ($, parking, undefined) {
+(function ($, parking) {
     var config         = parking["Configuration"];
     var appbase        = parking["App"]["Base"];
     var appmodels      = parking["App"]["Models"];
@@ -15,14 +15,14 @@ namespace("Parking.App.Collections");
     /**
      * Represents the collection of spaces in the system.
      *
-     * @extends Parking.Base.Collection
+     * @extends appbase.Collection
      */
     appcollections.Spaces = appbase.Collection.extend({
 
         /**
          * Collection base model.
          *
-         * @type {Parking.App.Models.Space}
+         * @type {appmodels.Space}
          */
         "model": appmodels.Space,
 

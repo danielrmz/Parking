@@ -8,7 +8,7 @@ namespace("Parking.App.Data");
 namespace("Parking.App.Views");
 namespace("Parking.App.Base");
 
-(function($, parking, undefined) {
+(function($, parking) {
     var common    = parking["Common"];
     var resources = parking["Resources"];
     var config    = parking["Configuration"];
@@ -21,7 +21,7 @@ namespace("Parking.App.Base");
      * Renders a template in a backbone view context using Handlebars/Mustache and by fetching
      * a remote template.
      *
-     * @param {Function=} callback - Callback to be done when the template is fetched/compiled.
+     * @param {Object=} data Extra data to be passed to the template
      */
     apphelpers.RenderViewTemplate = function(data) {
         var template = this.template;
@@ -52,7 +52,7 @@ namespace("Parking.App.Base");
             var localeResources = resources["i18n"][locale] || {};
             var currentUser     = typeof(appdata.CurrentUser) == 'undefined'? {} : appdata.CurrentUser.toJSON();
             var callback =  typeof data == "function" ? data : function() { };
-            var data = typeof data == "function" ? {} : data;
+            data = typeof data == "function" ? {} : data;
 
             $(view.el).html(tmpl({ "i18n": localeResources, "model": model, "collection": collection, "currentUser": currentUser, "data": data }));
             
@@ -90,7 +90,7 @@ namespace("Parking.App.Base");
       
     /**
      * Sets the window title
-     * @parma {string} title
+     * @param {string} title
      */
     apphelpers.SetWindowTitle = function(title) { 
         $("title").html("My Place | " + title);

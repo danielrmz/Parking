@@ -8,7 +8,7 @@
 
 namespace("Parking.App.Base");
 
-(function ($, parking, undefined) {
+(function ($, parking) {
     var common  = parking["Common"];
     var appbase = parking["App"]["Base"];
 
@@ -51,6 +51,7 @@ namespace("Parking.App.Base");
             } else {
                 common.DisplayGlobalError(response["Response"] + "<br /><br /><strong>StackTrace: </strong><br /><span style='font-size:10px;'>" + response["StackTrace"].replace("\n","<br />") + "</span>");
             }
+            return null;
         }
     });
 
@@ -84,6 +85,7 @@ namespace("Parking.App.Base");
             if(response["Error"] == false) { 
                 return response["Response"];
             }
+            return null;
         },
 
         /**

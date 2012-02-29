@@ -7,7 +7,7 @@
 */
 namespace("Parking.Common");
 
-(function($, parking, undefined) {
+(function($, parking) {
     var common  = parking["Common"]; 
 
     /**
@@ -127,39 +127,16 @@ namespace("Parking.Common");
     
     /**
      * Initializes the spinner/loader 
-     *
+
+     * @return {Object}
      */
     common.InitializeLoader = function() { 
-        var opts = {
-          "lines": 10, // The number of lines to draw
-          "length": 10, // The length of each line
-          "width": 5, // The line thickness
-          "radius": 1, // The radius of the inner circle
-          "color": "#72757C", // #rgb or #rrggbb
-          "speed": 0.8, // Rounds per second
-          "trail": 25, // Afterglow percentage
-          "shadow": false, // Whether to render a shadow
-          "hwaccel": false // Whether to use hardware acceleration
-        };
-
+        
         var loading = $(".js-loading");
         loading.setLoaderText = common.SetLoaderText;
 
         return loading;
-
-        var spinner = new Spinner(opts).spin();
-        var target = $(".js-loading-image"); 
-
-        if(target.size() > 0) {
-            target.append(spinner["el"]);
-        }
-        
-        spinner.hide = function() {
-            this.stop();
-            $(".js-loading").hide();
-        };
-        $(".js-loading").show();
-        return spinner;
+         
     };
 
     /**

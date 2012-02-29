@@ -6,7 +6,7 @@
 namespace("Parking.App.Base");
 namespace("Parking.App.Models");
 
-(function ($, parking, undefined) {
+(function ($, parking) {
     var config         = parking["Configuration"];
     var appbase        = parking["App"]["Base"];
     var appmodels      = parking["App"]["Models"]; 
@@ -15,12 +15,12 @@ namespace("Parking.App.Models");
      * AccessType model. 
      * Determines who can access the application
      *
-     * @extends Parking.App.Base.Model
+     * @extends appbase.Model
      */
     appmodels.AccessType = appbase.Model.extend({
         
         /**
-         * @enum {Object}
+         * @enum {string|number|boolean|null|Date}
          */
         "defaults": {            
             "AccessTypeName": ""       

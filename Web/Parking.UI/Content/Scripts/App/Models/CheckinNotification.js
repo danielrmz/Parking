@@ -6,14 +6,14 @@
 namespace("Parking.App.Base");
 namespace("Parking.App.Models");
 
-(function ($, parking, undefined) {
+(function ($, parking) {
     var config         = parking["Configuration"];
     var appbase        = parking["App"]["Base"];
     var appmodels      = parking["App"]["Models"]; 
 
     /**
      *
-     * @extends Parking.App.Base.Model
+     * @extends appbase.Model
      */
     appmodels.CheckinNotification = appbase.Model.extend({
         
@@ -24,7 +24,7 @@ namespace("Parking.App.Models");
         "idAttribute": "NotificationId",
 
         /**
-         * @enum {Object}
+         * @enum {string|number|boolean|null|Date}
          */
         "defaults": {
             "NotificationId": "",

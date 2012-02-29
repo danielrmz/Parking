@@ -4,8 +4,12 @@
 * @license Copyright 2012. The JSONS
 */
 namespace("Parking.Common");
+namespace("Parking.Configuration");
+namespace("Parking.Resources");
 
-(function($, common, undefined) {
+(function($, common) {
+    var config    = parking["Configuration"]; 
+    var resources = parking["Resources"];
 
     /**
      * Provides the logic for the header clock
@@ -13,15 +17,15 @@ namespace("Parking.Common");
     common.HeaderDate = function() {
         var d = new Date();
 
-        var locale = Parking.Configuration['locale'] || 'en-US';
-        var months = Parking.Resources.Months[locale];
-        var supers = Parking.Resources.DaysSuperScripts[locale];
+        var locale = config['locale'] || 'en-US';
+        var months = resources[locale];
+        var supers = resources.DaysSuperScripts[locale];
         var currentDay = d.getDate();
         var hrs = d.getHours();
         var ampm = hrs >= 12 ? "PM" : "AM";
         var mins = d.getMinutes();
         
-        var hrs = hrs > 12 ? hrs - 12 : hrs;
+        hrs = hrs > 12 ? hrs - 12 : hrs;
         $(".js-day ").html(currentDay);
         $(".js-dayup").html(currentDay >= 4 ? supers[4] : supers[currentDay]);
         $(".js-monthyear").html(months[d.getMonth()] + " " + d.getFullYear());

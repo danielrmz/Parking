@@ -6,14 +6,14 @@
 namespace("Parking.App.Base");
 namespace("Parking.App.Models");
 
-(function ($, parking, undefined) {
+(function ($, parking) {
     var config         = parking["Configuration"];
     var appbase        = parking["App"]["Base"];
     var appmodels      = parking["App"]["Models"]; 
 
     /**
      *
-     * @extends Parking.App.Base.Model
+     * @extends appbase.Model
      */
     appmodels.Checkin = appbase.Model.extend({
          
@@ -25,21 +25,21 @@ namespace("Parking.App.Models");
 
         /**
          * Model's base endpoint
-         * @type {string}
+         * @type {function(): string}
          */
         "urlRoot": function() { 
             var userId = this.get("UserId");
             var checkinId = this.get("CheckInId");
             
             if(checkinId == 0 && !this.isNew()) {
-                return Parking.Configuration.APIEndpointUrl + "checkins/user/"+userId; 
+                return config.APIEndpointUrl + "checkins/user/"+userId; 
             } else {
-                return Parking.Configuration.APIEndpointUrl + "checkins/current"; 
+                return config.APIEndpointUrl + "checkins/current"; 
             }
         },
 
         /**
-         * @enum {Object}
+         * @enum {string|number|boolean|null|Date}
          */
         "defaults": {
             "UserId": 0,
@@ -68,7 +68,7 @@ namespace("Parking.App.Models");
 
         Checkout: function() {
             var self = this;
-            $.post(Parking.Configuration.APIEndpointUrl + "checkins/", function(data) { 
+            $.post(config.APIEndpointUrl + "checkins/", function(data) { 
                 if(data["Error"] == false) {
                     self.set(data["Response"]);
                 }

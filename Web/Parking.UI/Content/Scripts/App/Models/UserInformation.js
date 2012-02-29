@@ -6,14 +6,14 @@
 namespace("Parking.App.Base");
 namespace("Parking.App.Models");
 
-(function ($, parking, undefined) {
+(function ($, parking) {
     var config         = parking["Configuration"];
     var appbase        = parking["App"]["Base"];
     var appmodels      = parking["App"]["Models"];
 
    /**
     * User information for a particular user
-    * @extends Parking.App.Base.Model
+    * @extends appbase.Model
     */
     appmodels.UserInformation = appbase.Model.extend({
         
@@ -30,7 +30,7 @@ namespace("Parking.App.Models");
         "idAttribute": "UserId",
 
         /**
-         * @enum {Object}
+         * @enum {string|number|boolean|null|Date}
          */
         "defaults": { 
             "UserId": 0,

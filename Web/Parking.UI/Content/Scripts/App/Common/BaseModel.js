@@ -7,7 +7,7 @@
 namespace("Parking.App.Base");
 
 
-(function ($, parking, undefined) {
+(function ($, parking) {
     var appbase = parking["App"]["Base"];
     
     /**
@@ -29,6 +29,7 @@ namespace("Parking.App.Base");
             if(response["Error"] == false) { 
                 return response["Response"];
             }
+            return null;
         }
     });
 

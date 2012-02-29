@@ -5,8 +5,11 @@
 */
 namespace("Parking.Resources");
 namespace("Parking.Resources.i18n");
+namespace("Parking.Configuration");
 
-(function($, resources, undefined) {
+(function($, parking) {
+    var config    = parking["Configuration"]; 
+    var resources = parking["Resources"];
 
     resources.Months = {
                         "en-US": ['Jan','Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
@@ -19,10 +22,10 @@ namespace("Parking.Resources.i18n");
                         };
     
     resources.i18n.get = function(id) { 
-        var locale          = Parking.Configuration["locale"] || "en-US";
-        var localeResources = Parking.Resources["i18n"][locale] || {};
+        var locale          = config["locale"] || "en-US";
+        var localeResources = resources["i18n"][locale] || {};
         var resrc = localeResources[id] || id;
         return resrc;   
     };
 
-})(jQuery, Parking.Resources);
+})(jQuery, Parking);
