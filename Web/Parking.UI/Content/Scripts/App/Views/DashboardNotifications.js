@@ -1,27 +1,34 @@
 ﻿/**
 * Base namespace for the application.
 *
-* @package     Parking.UI.Scripts
-* @author      The JSONs
-* @copyright   2012 Propiertary 
+* @license Copyright 2012. The JSONS
 */
 
 namespace("Parking.App.Views");
 namespace("Parking.App.Data");
 
-(function ($, views, undefined) {
+(function ($, parking, undefined) {
+    var i18n           = parking["Resources"]["i18n"];
+    var common         = parking["Common"];
+    var config         = parking["Configuration"];
+    var appbase        = parking["App"]["Base"];
+    var appmodels      = parking["App"]["Models"]; 
+    var appdata        = parking["App"]["Data"]; 
+    var appviews       = parking["App"]["Views"];
+    var appcollections = parking["App"]["Collections"];
+    var apphelpers     = parking["App"]["Helpers"];
 
-    views.DashboardNotifications = Backbone.View.extend({
+    appviews.DashboardNotifications = appbase.View.extend({
 
-        template: Parking.Configuration.ClientTemplatesUrl + "Shared/DashboardNotifications.html",
-        singleTemplate: Parking.Configuration.ClientTemplatesUrl + "Shared/DashboardNotification.html",
+        template: config.ClientTemplatesUrl + "Shared/DashboardNotifications.html",
+        singleTemplate: config.ClientTemplatesUrl + "Shared/DashboardNotification.html",
 
-        render: Parking.App.Helpers.RenderViewTemplate,
+        render: apphelpers.RenderViewTemplate,
 
         onAdd: function(checkin) { 
             var ul = $(this.el).find("ul");  
 
-            Parking.App.Helpers.RenderTemplate(this.singleTemplate, checkin.toJSON(), function(html) { 
+            apphelpers.RenderTemplate(this.singleTemplate, checkin.toJSON(), function(html) { 
                 var el = $(html);
                 el.hide();
                 ul.prepend(el);
@@ -51,4 +58,4 @@ namespace("Parking.App.Data");
     });
 
 
-})(jQuery, Parking.App.Views);
+})(jQuery, Parking);

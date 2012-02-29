@@ -1,22 +1,36 @@
 ﻿/**
-* Base namespace for the application.
+* Space Blocking
 *
-* @package     Parking.UI.Scripts
-* @author      The JSONs
-* @copyright   2012 Propiertary
+* @license Copyright 2012. The JSONS
 */
 namespace("Parking.App.Base");
 namespace("Parking.App.Models");
 
-(function ($, models, undefined) {
-    
-    models.SpaceBlock = Parking.App.Base.Model.extend({
+(function ($, parking, undefined) {
+    var config         = parking["Configuration"];
+    var appbase        = parking["App"]["Base"];
+    var appmodels      = parking["App"]["Models"]; 
 
-        defaults: {            
-            BaseSpaceId: 0,
-            BlockingSpaceId: 0
-        }
+    /**
+     *
+     * @extends Parking.App.Base.Model
+     */
+    appmodels.SpaceBlock = appbase.Model.extend({
+
+        /**
+         * @enum {Object}
+         */
+        "defaults": {            
+            "BaseSpaceId": 0,
+            "BlockingSpaceId": 0
+        },
         
+        /**
+         * @constructor
+         */
+        "initialize": function() {
+        }
+
     });
 
-})(jQuery, Parking.App.Models);
+})(jQuery, Parking);

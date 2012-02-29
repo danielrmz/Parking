@@ -1,32 +1,38 @@
 ﻿/**
 * Base namespace for the application.
 *
-* @package     Parking.UI.Scripts
-* @author      The JSONs
-* @copyright   2012 Propiertary 
+* @license Copyright 2012. The JSONS
 */
 
 namespace("Parking.App.Data");
 namespace("Parking.App.Views");
 
-(function ($, undefined) {
-    var i18n = Parking.Resources.i18n;
+(function ($, parking, undefined) {
+    var i18n           = parking["Resources"]["i18n"];
+    var common         = parking["Common"];
+    var config         = parking["Configuration"];
+    var appbase        = parking["App"]["Base"];
+    var appmodels      = parking["App"]["Models"]; 
+    var appdata        = parking["App"]["Data"]; 
+    var appviews       = parking["App"]["Views"];
+    var appcollections = parking["App"]["Collections"];
+    var apphelpers     = parking["App"]["Helpers"];
 
-    Parking.App.Views.Main = Backbone.View.extend({
+    appviews.Main = appbase.View.extend({
         
         secure: true,
         
-        template: Parking.Configuration.ClientTemplatesUrl + "Parking/Home.html",
+        template: config.ClientTemplatesUrl + "Parking/Home.html",
         
         initialize: function() {
-            this.collection = Parking.App.Data.Spaces;
+            this.collection = appdata.Spaces;
             
-            Parking.App.Data.CheckinsCurrent.on("remove", this.onRemove, this);
-            Parking.App.Data.CheckinsCurrent.on("add", this.onAdd, this);
+            appdata.CheckinsCurrent.on("remove", this.onRemove, this);
+            appdata.CheckinsCurrent.on("add", this.onAdd, this);
         },
 
         render: function() {
-            Parking.App.Helpers.RenderViewTemplate.apply(this, arguments);
+            apphelpers.RenderViewTemplate.apply(this, arguments);
 
             // Update checked in spaces.
             this.renderCheckedInSpaces();
@@ -36,8 +42,8 @@ namespace("Parking.App.Views");
             var map = $(this.el);
 
             $(this.el).find(".js-space").removeClass("used").removeClass("me").addClass("available");
-            if(Parking.App.Data.CheckinsCurrent) { 
-                Parking.App.Data.CheckinsCurrent.map(function(checkin) { 
+            if(appdata.CheckinsCurrent) { 
+                appdata.CheckinsCurrent.map(function(checkin) { 
                     var spaceId = checkin.get("SpaceId");
                     var spaceUI = map.find("[data-spaceid=" + spaceId + "].js-space");
                     spaceUI.removeClass("available").addClass("used");
@@ -57,12 +63,12 @@ namespace("Parking.App.Views");
             car.data("checkinid", checkin.get("CheckInId")); 
             car.removeClass("available").addClass("used");
 
-            if(Parking.App.Data.CurrentUser.get("UserId") == checkin.get("UserId")) {
+            if(appdata.CurrentUser.get("UserId") == checkin.get("UserId")) {
                 car.addClass("me");
             }
 
             // Recheck if the user is blocked.
-            Parking.App.Data.CurrentUser.trigger("renew:IsBlocked");
+            appdata.CurrentUser.trigger("renew:IsBlocked");
                                                         
         },
 
@@ -99,10 +105,10 @@ namespace("Parking.App.Views");
                 UserId: userId
             };
 
-            var checkin = new Parking.App.Models.Checkin(data);
+            var checkin = new appmodels.Checkin(data);
             
             checkin.save({}, { success: function(m) { 
-                                                        Parking.App.Data.CurrentUserCheckIn.set(m);
+                                                        appdata.CurrentUserCheckIn.set(m);
                                                         
                                                         dialog.modal('hide');
                                                         car.removeClass("selected");
@@ -119,33 +125,33 @@ namespace("Parking.App.Views");
             var userId = 0;
 
             if(!spaceId || spaceId <= 0 || isNaN(spaceId)) {
-                Parking.Common.DisplayGlobalError(i18n.get("Main_ErrorSpaceNotAvailable"));
+                common.DisplayGlobalError(i18n.get("Main_ErrorSpaceNotAvailable"));
                 return;
             }
 
-            space = Parking.App.Data.Spaces.get(spaceId);
+            space = appdata.Spaces.get(spaceId);
 
-            if(Parking.App.Data.CurrentUserCheckIn.isCheckedIn()) {
+            if(appdata.CurrentUserCheckIn.isCheckedIn()) {
                 // Change to display a warning message
-                Parking.Common.DisplayGlobalError(i18n.get("Main_InfoAlreadyCheckedIn"));
+                common.DisplayGlobalError(i18n.get("Main_InfoAlreadyCheckedIn"));
                 return;
             }
 
             // Check that space isn't taken
-            if(Parking.App.Data.CheckinsCurrent.isSpaceUsed(spaceId)) {
-                Parking.Common.DisplayGlobalError(i18n.get("Main_ErrorSpaceNotAvailable"));
+            if(appdata.CheckinsCurrent.isSpaceUsed(spaceId)) {
+                common.DisplayGlobalError(i18n.get("Main_ErrorSpaceNotAvailable"));
                 return;
             }
 
             // Proceed to open confirmation box
             car.addClass("selected");
 
-            if(Parking.App.Data.CurrentUser.isAdmin()) {
+            if(appdata.CurrentUser.isAdmin()) {
                 // Display user selection box.
                 var dialog = $(this.el).find(".js-confirmation-dialog");
                 var msg = dialog.find(".js-message");
                 msg.html(i18n.get("Main_ConfirmCheckinMessage").replace("{{Alias}}", space.get("Alias")));
-
+                
                 $(this.el).find(".js-confirmation-dialog").modal(); 
             } else {
                 // Display confirm dialog.
@@ -158,4 +164,4 @@ namespace("Parking.App.Views");
     });
 
 
-})(jQuery);
+})(jQuery, Parking);

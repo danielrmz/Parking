@@ -1,20 +1,27 @@
 ﻿/**
 * Base namespace for the application.
 *
-* @package     Parking.UI.Scripts
-* @author      The JSONs
-* @copyright   2012 Propiertary 
+* @license Copyright 2012. The JSONS
 */
 
 namespace("Parking.App.Views");
 
-(function ($, views, undefined) {
+(function ($, parking, undefined) {
+    var i18n           = parking["Resources"]["i18n"];
+    var common         = parking["Common"];
+    var config         = parking["Configuration"];
+    var appbase        = parking["App"]["Base"];
+    var appmodels      = parking["App"]["Models"]; 
+    var appdata        = parking["App"]["Data"]; 
+    var appviews       = parking["App"]["Views"];
+    var appcollections = parking["App"]["Collections"];
+    var apphelpers     = parking["App"]["Helpers"];
 
-    views.HeaderUserInfo = Backbone.View.extend({
+    appviews.HeaderUserInfo = appbase.View.extend({
 
-        template: Parking.Configuration.ClientTemplatesUrl + "Shared/HeaderUserInfo.html",
+        template: config.ClientTemplatesUrl + "Shared/HeaderUserInfo.html",
         
-        render: Parking.App.Helpers.RenderViewTemplate,
+        render: apphelpers.RenderViewTemplate,
 
         initialize: function() {
             this.model.on("change", this.render, this);
@@ -25,8 +32,8 @@ namespace("Parking.App.Views");
         },
 
         "logout": function(e) {
-            Parking.App.Data.CurrentUser.destroy(function() {  
-                Parking.App.router.navigate("login", true);
+            appdata.CurrentUser.destroy(function() {  
+                appdata.Router.navigate("login", true);
             }); 
             
             return false;
@@ -35,4 +42,4 @@ namespace("Parking.App.Views");
     });
 
 
-})(jQuery, Parking.App.Views);
+})(jQuery, Parking);

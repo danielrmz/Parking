@@ -1,24 +1,12 @@
 ﻿/**
 * Resources for the application. 
 *
-* @package     Parking.UI.Scripts
-* @author      The JSONs
-* @copyright   2012 Propiertary
+* @license Copyright 2012. The JSONS
 */
 namespace("Parking.Resources");
 namespace("Parking.Resources.i18n");
 
 (function($, resources, undefined) {
-
-    resources.LoadingImage = '<img alt="Loading..." class="loading" src="/Content/Images/ajax-loader.gif" />';
-    resources.SmallLoadingImage = '<img alt="Loading..." class="loading" src="/Content/Images/ajax-loader-small.gif" />';
-
-    resources.Icons = {
-        Ok: '/Content/Images/Icons/notification-ok.png',
-        Info: '/Content/Images/Icons/notification-info.png',
-        Alert: '/Content/Images/Icons/notification-alert.png',
-        Error: '/Content/Images/Icons/notification-error.png'
-    };
 
     resources.Months = {
                         "en-US": ['Jan','Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
@@ -36,4 +24,5 @@ namespace("Parking.Resources.i18n");
         var resrc = localeResources[id] || id;
         return resrc;   
     };
+
 })(jQuery, Parking.Resources);

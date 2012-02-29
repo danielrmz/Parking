@@ -1,9 +1,7 @@
 ﻿/**
 * Things to load manually after all the other scripts have been loaded 
 *
-* @package     Parking.UI.Scripts
-* @author      The JSONs
-* @copyright   2012 Propiertary
+* @license Copyright 2012. The JSONS
 */
 namespace("Parking.Common");
 

@@ -1,31 +1,49 @@
 ﻿/**
-* Base namespace for the application.
+* Space
 *
-* @package     Parking.UI.Scripts
-* @author      The JSONs
-* @copyright   2012 Propiertary
+* @license Copyright 2012. The JSONS
 */
 namespace("Parking.App.Base");
 namespace("Parking.App.Models");
 
-(function ($, models, undefined) {
- 
-    models.Space = Parking.App.Base.Model.extend({
-        
-        idAttribute: "SpaceId",
+(function ($, parking, undefined) {
+    var config         = parking["Configuration"];
+    var appbase        = parking["App"]["Base"];
+    var appmodels      = parking["App"]["Models"]; 
 
-        defaults: {            
-            SpaceId: 0,
-            PlaceId: 0,
-            Alias: "",
-            AccessTypeId: 0,
-            OwnerId: 0,
-            CreatedAt: new Date(),
-            Deleted: false,
-            CssClass: "",
-            SpaceDirection: ""
-        }
+    /**
+     *
+     * @extends Parking.App.Base.Model
+     */
+    appmodels.Space = appbase.Model.extend({
         
+        /**
+         * Primary Key
+         * @type {string}
+         */
+        "idAttribute": "SpaceId",
+        
+        /**
+         * @enum {Object}
+         */
+        "defaults": {            
+            "SpaceId": 0,
+            "PlaceId": 0,
+            "Alias": "",
+            "AccessTypeId": 0,
+            "OwnerId": 0,
+            "CreatedAt": new Date(),
+            "Deleted": false,
+            "CssClass": "",
+            "SpaceDirection": ""
+        },
+        
+        /**
+         * @constructor
+         */
+        "initialize": function() {
+        }
+
     });
 
-})(jQuery, Parking.App.Models);
+})(jQuery, Parking);

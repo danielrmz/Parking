@@ -1,14 +1,15 @@
 ﻿/**
 * Common scripts for the application. 
 *
-* @package     Parking.UI.Scripts
-* @author      The JSONs
-* @copyright   2012 Propiertary
+* @license Copyright 2012. The JSONS
 */
 namespace("Parking.Common");
 
 (function($, common, undefined) {
 
+    /**
+     * Provides the logic for the header clock
+     */
     common.HeaderDate = function() {
         var d = new Date();
 
@@ -28,6 +29,9 @@ namespace("Parking.Common");
         $(".js-time").html(hrs + "<span class='js-hrtick tick'>:</span>" + (mins < 10 ? "0" + mins : mins) + " " + ampm); 
     };
 
+    /**
+     * Provides the logic for the header clock
+     */
     common.HeaderDateTick = function() {
         var el = $(".js-hrtick");
         if(el.html() == ":") {
@@ -37,4 +41,4 @@ namespace("Parking.Common");
         }
     };
 
-})(jQuery, Parking.Common);
+})(jQuery, Parking["Common"]);

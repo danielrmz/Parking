@@ -1,30 +1,39 @@
 ﻿/**
-* Base namespace for the application.
-*
-* @package     Parking.UI.Scripts
-* @author      The JSONs
-* @copyright   2012 Propiertary 
-*/
-
+ * Spaces in the system
+ *
+ * @license Copyright 2012. The JSONS
+ */
 namespace("Parking.App.Base");
 namespace("Parking.App.Collections");
 
-(function ($, collections, undefined) {
-    
-    collections.Spaces = Parking.App.Base.Collection.extend({
+(function ($, parking, undefined) {
+    var config         = parking["Configuration"];
+    var appbase        = parking["App"]["Base"];
+    var appmodels      = parking["App"]["Models"];
+    var appcollections = parking["App"]["Collections"];
 
-        model : Parking.App.Models.Space,
+    /**
+     * Represents the collection of spaces in the system.
+     *
+     * @extends Parking.Base.Collection
+     */
+    appcollections.Spaces = appbase.Collection.extend({
 
-        url: Parking.Configuration.APIEndpointUrl + "spaces/GetAllByPlaceId/1",
+        /**
+         * Collection base model.
+         *
+         * @type {Parking.App.Models.Space}
+         */
+        "model": appmodels.Space,
 
-        getDeleted: function() {
-            return this.filter(function(space){ return photo.get('Deleted'); });
-        },
-
-        getAll: function() {
-            return this.without.apply(this, this.getDeleted());
-        }
+        /**
+         * Endpoint URL
+         *
+         * @type {string}
+         */
+        "url": config.APIEndpointUrl + "spaces/GetAllByPlaceId/1",
+         
         
     });
 
-})(jQuery, Parking.App.Collections);
+})(jQuery, Parking);

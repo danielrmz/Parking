@@ -1,29 +1,57 @@
 ﻿/**
-* Base namespace for the application.
-*
-* @package     Parking.UI.Scripts
-* @author      The JSONs
-* @copyright   2012 Propiertary
-*/
+ * Collection type that represents the current checkins in the application
+ *
+ * @license Copyright 2012. The JSONS
+ */
 namespace("Parking.App.Base");
 namespace("Parking.App.Collections");
 
-(function ($, collections, undefined) {
+(function ($, parking, undefined) {
+    var config         = parking["Configuration"];
+    var appbase        = parking["App"]["Base"];
+    var appmodels      = parking["App"]["Models"];
+    var appcollections = parking["App"]["Collections"];
 
-    collections.CheckinsCurrent = Parking.App.Base.ListenerCollection.extend({
-        channel: "parking:checkins:current",
-
-        url: Parking.Configuration.APIEndpointUrl + "checkins/current",
-
-        model: Parking.App.Models.Checkin,
+    /**
+     * Collection that represents the current checkins. 
+     * Since it inherits from ListenerCollection this will be updated in real time.
+     *
+     * @extends Parking.Base.ListenerCollection
+     */
+    appcollections.CheckinsCurrent = appbase.ListenerCollection.extend({
         
-        initialize: function() { 
-            this._super('initialize');  
-            //this.bind("add", this.save);
-            //this.bind("reset", this.reset);
+        /**
+         * Endpoint URL
+         *
+         * @type {string}
+         */
+        "url": config.APIEndpointUrl + "checkins/current",
+
+        /**
+         * Collection base model.
+         *
+         * @type {Parking.App.Models.Checkin}
+         */
+        "model": appmodels.Checkin,
+        
+        /**
+         * Constructor
+         * @constructor
+         */
+        "initialize": function() { 
+            this._super('initialize');   
         },
 
+        /**
+         * @inheritDoc
+         */
+        channel: "parking:checkins:current",
+
+        /**
+         * @inheritDoc
+         */
         onMessageReceived: function(msg) { 
+
             // Check type in order to check adding or removal.
             var checkinId = msg["CheckInId"];
             var collectionObj = this.get(checkinId);
@@ -31,48 +59,28 @@ namespace("Parking.App.Collections");
             if(collectionObj) {
                 // Probably an enddate update.
                 collectionObj.set(msg);
+
                 if(collectionObj.isCheckedOut()) {
                     this.remove(collectionObj);
                 }
+
             } else {
                 this.add(msg);
             }
 
         },
 
+        /**
+         * Determines if a space in the collection is taken or not.
+         *
+         * @param {number} spaceId The Space Id
+         * @return {boolean} True if the space is taken by someone, False otherwise.
+         */
         isSpaceUsed: function(spaceId) { 
             return this.filter(function(c) { return c.get("SpaceId") == spaceId }).length > 0;
         }
-        
-        /*
-        save: function(checkinsCurrent) {
-                console.log("A checkin was added to the collection with the following data:" 
-                    + " StartTime: "        + checkinsCurrent.get("StartTime") 
-                    + " EndTime: "          + checkinsCurrent.get("EndTime")
-                    + " SpaceId: "          + checkinsCurrent.get("SpaceId")
-                    + " ReservationId: "    + checkinsCurrent.get("ReservationId")
-                    + " RegistredFrom: "    + checkinsCurrent.get("RegistredFrom")
-                    + " RegistredBy: "      + checkinsCurrent.get("RegistredBy")
-                );
-         },
-
-         reset: function(checkinsCurrent) {
-            console.log(checkinsCurrent);
-            console.log("Checkins was added via fetch method.");
-            for(i in checkinsCurrent)
-            {
-                console.log("A checkin was added to the collection with the following data:" 
-                    + " StartTime: "        + checkinsCurrent[i].StartTime
-                    + " EndTime: "          + checkinsCurrent[i].EndTime
-                    + " SpaceId: "          + checkinsCurrent[i].SpaceId
-                    + " ReservationId: "    + checkinsCurrent[i].ReservationId
-                    + " RegistredFrom: "    + checkinsCurrent[i].RegistredFrom
-                    + " RegistredBy: "      + checkinsCurrent[i].RegistredBy
-                );                
-            }
-            
-         }*/
+         
     });
 
 
-})(jQuery, Parking.App.Collections);
+})(jQuery, Parking);

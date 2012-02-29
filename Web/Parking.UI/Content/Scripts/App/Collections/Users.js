@@ -1,32 +1,38 @@
 ﻿/**
-* Base namespace for the application.
-*
-* @package     Parking.UI.Scripts
-* @author      The JSONs
-* @copyright   2012 Propiertary 
-*/
-
+ * Users in the system
+ *
+ * @license Copyright 2012. The JSONS
+ */
+namespace("Parking.App.Base");
 namespace("Parking.App.Collections");
 
-(function ($, collections, undefined) {
+(function ($, parking, undefined) {
+    var config         = parking["Configuration"];
+    var appbase        = parking["App"]["Base"];
+    var appmodels      = parking["App"]["Models"];
+    var appcollections = parking["App"]["Collections"];
 
-    collections.Users = Backbone.Collection.extend({
+    /**
+     * Represents all the users in the system
+     * @extends Parking.Base.Collection
+     */
+    appcollections.Users = appbase.Collection.extend({
         
-        url: Parking.Configuration.APIEndpointUrl + "users/GetAll",
+        /**
+         * Endpoint URL
+         *
+         * @type {string}
+         */
+        "url": config.APIEndpointUrl + "users/GetAll",
 
-        model: Parking.App.Models.UserInformation,
-        
-        initialize: function() {
-        },
+        /**
+         * Collection base model.
+         *
+         * @type {Parking.App.Models.UserInformation}
+         */
+        "model": appmodels.UserInformation,
          
-        parse: function(response) { 
-            if(response["Error"] == false) { 
-                return response["Response"];
-            }
-        }
-         
-
     });
 
 
-})(jQuery, Parking.App.Collections);
+})(jQuery, Parking);

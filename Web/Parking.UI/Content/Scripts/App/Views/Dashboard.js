@@ -1,23 +1,30 @@
 ﻿/**
 * Base namespace for the application.
 *
-* @package     Parking.UI.Scripts
-* @author      The JSONs
-* @copyright   2012 Propiertary
+* @license Copyright 2012. The JSONS
 */
 
+namespace("Parking.App.Collections");
 namespace("Parking.App.Views");
 namespace("Parking.App.Data");
 
-(function ($, views, undefined) {
-    var i18n = Parking.Resources.i18n;
+(function ($, parking, undefined) {
+    var i18n           = parking["Resources"]["i18n"];
+    var common         = parking["Common"];
+    var config         = parking["Configuration"];
+    var appbase        = parking["App"]["Base"];
+    var appmodels      = parking["App"]["Models"]; 
+    var appdata        = parking["App"]["Data"]; 
+    var appviews       = parking["App"]["Views"];
+    var appcollections = parking["App"]["Collections"];
+    var apphelpers     = parking["App"]["Helpers"];
 
-    views.Dashboard = Backbone.View.extend({
+    appviews.Dashboard = appbase.View.extend({
 
-        template: Parking.Configuration.ClientTemplatesUrl + "Shared/Dashboard.html",
+        template: config.ClientTemplatesUrl + "Shared/Dashboard.html",
         
         render: function() {  
-            Parking.App.Helpers.RenderViewTemplate.apply(this, arguments); 
+            apphelpers.RenderViewTemplate.apply(this, arguments); 
             
             this.renderActionButton();
             this.renderRecentCheckins(); 
@@ -26,12 +33,12 @@ namespace("Parking.App.Data");
         initializeRecentCheckins: function() { 
             var self = this; 
             if(!this.IsInitialized) {
-                Parking.App.Data.Users.on("reset", function() { self.renderRecentCheckins(); });
+                appdata.Users.on("reset", function() { self.renderRecentCheckins(); });
             
                 // Initialize collection
-                Parking.App.Data.RecentCheckins = new Parking.App.Collections.CheckinsHistory();
+                appdata.RecentCheckins = new appcollections.CheckinsHistory();
             
-                this.RecentCheckinsView = new views.DashboardNotifications({collection: Parking.App.Data.RecentCheckins });  
+                this.RecentCheckinsView = new appviews.DashboardNotifications({collection: appdata.RecentCheckins });  
                 this.IsInitialized = true;
                 this.render();
             }
@@ -51,9 +58,9 @@ namespace("Parking.App.Data");
             var isBlocked = this.model.get("IsBlocked");  
             
             // If the user does not have a check in or the last one is already closed, do not render the button.
-            if(Parking.App.Data.CurrentUserCheckIn == null 
-                || Parking.App.Data.CurrentUserCheckIn.get("EndTime") != null 
-                || Parking.App.Data.CurrentUserCheckIn.get("CheckInId") == "") {
+            if(appdata.CurrentUserCheckIn == null 
+                || appdata.CurrentUserCheckIn.get("EndTime") != null 
+                || appdata.CurrentUserCheckIn.get("CheckInId") == "") {
                 btnGroup.hide();
                 return;
             }
@@ -67,8 +74,8 @@ namespace("Parking.App.Data");
         initialize: function() { 
             this.model.on("change:IsBlocked", this.renderActionButton, this);
             this.model.on("change:IsAuthenticated", this.render, this);
-            Parking.App.Data.CurrentUserCheckIn.on("change:CheckInId", this.renderActionButton, this);
-            Parking.App.Data.CurrentUserCheckIn.on("change:EndTime", this.renderActionButton, this);
+            appdata.CurrentUserCheckIn.on("change:CheckInId", this.renderActionButton, this);
+            appdata.CurrentUserCheckIn.on("change:EndTime", this.renderActionButton, this);
 
             this.initializeRecentCheckins();
         },
@@ -78,11 +85,11 @@ namespace("Parking.App.Data");
         },
 
         doCheckout: function() { 
-            Parking.App.Data.CurrentUserCheckIn.Checkout();
+            appdata.CurrentUserCheckIn.Checkout();
         }
          
 
     });
 
 
-})(jQuery, Parking.App.Views);
+})(jQuery, Parking);

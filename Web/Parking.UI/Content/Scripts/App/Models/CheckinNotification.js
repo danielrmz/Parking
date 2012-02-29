@@ -1,35 +1,51 @@
 ﻿/**
-* Base namespace for the application.
+* Checkin Notification
 *
-* @package     Parking.UI.Scripts
-* @author      The JSONs
-* @copyright   2012 Propiertary
+* @license Copyright 2012. The JSONS
 */
 namespace("Parking.App.Base");
 namespace("Parking.App.Models");
 
-(function ($, models, undefined) {
+(function ($, parking, undefined) {
+    var config         = parking["Configuration"];
+    var appbase        = parking["App"]["Base"];
+    var appmodels      = parking["App"]["Models"]; 
 
-    models.CheckinNotification = Parking.App.Base.Model.extend({
-        idAttribute: "NotificationId",
+    /**
+     *
+     * @extends Parking.App.Base.Model
+     */
+    appmodels.CheckinNotification = appbase.Model.extend({
+        
+        /**
+         * Primary Key
+         * @type {string}
+         */
+        "idAttribute": "NotificationId",
 
-        defaults: {
-            NotificationId: "",
-            CheckInId: 0,
-            UserId: 0,
-            SpaceId: 0,
-            StartTime: new Date(),
-            EndTime: null, 
-            RegisteredFrom: 0,
-            RegisteredBy: 0,
-            LastModified: new Date(),
-            NotificationType: 0,
-            NotificationDesc: ""
+        /**
+         * @enum {Object}
+         */
+        "defaults": {
+            "NotificationId": "",
+            "CheckInId": 0,
+            "UserId": 0,
+            "SpaceId": 0,
+            "StartTime": new Date(),
+            "EndTime": null, 
+            "RegisteredFrom": 0,
+            "RegisteredBy": 0,
+            "LastModified": new Date(),
+            "NotificationType": 0,
+            "NotificationDesc": ""
         },
 
-        initialize: function() {
+        /**
+         * @constructor
+         */
+        "initialize": function() {
         }
 
     });
 
-})(jQuery, Parking.App.Models);
+})(jQuery, Parking);

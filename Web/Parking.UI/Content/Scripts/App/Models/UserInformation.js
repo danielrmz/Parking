@@ -1,33 +1,55 @@
 ﻿/**
-* Base namespace for the application.
+* User information
 *
-* @package     Parking.UI.Scripts
-* @author      The JSONs
-* @copyright   2012 Propiertary
+* @license Copyright 2012. The JSONS
 */
-
 namespace("Parking.App.Base");
 namespace("Parking.App.Models");
 
+(function ($, parking, undefined) {
+    var config         = parking["Configuration"];
+    var appbase        = parking["App"]["Base"];
+    var appmodels      = parking["App"]["Models"];
 
-(function ($, models, undefined) {
-   
-    models.UserInformation = Parking.App.Base.Model.extend({
-        urlRoot: Parking.Configuration.APIEndpointUrl + "users/",
-        idAttribute: "UserId",
+   /**
+    * User information for a particular user
+    * @extends Parking.App.Base.Model
+    */
+    appmodels.UserInformation = appbase.Model.extend({
+        
+        /**
+         * Model's base endpoint
+         * @type {string}
+         */
+        "urlRoot": config.APIEndpointUrl + "users/",
+        
+        /**
+         * Primary Key
+         * @type {string}
+         */
+        "idAttribute": "UserId",
 
-        defaults: { 
-            UserId: 0,
-            FirstName: "",
-            LastName: "",
-            Gender: "",
-            PhoneHome: "",
-            PhoneOffice: "",
-            PhoneOfficeExtension: "",
-            PhoneCel: "",
-            ProfilePictureUrl: ""
+        /**
+         * @enum {Object}
+         */
+        "defaults": { 
+            "UserId": 0,
+            "FirstName": "",
+            "LastName": "",
+            "Gender": "",
+            "PhoneHome": "",
+            "PhoneOffice": "",
+            "PhoneOfficeExtension": "",
+            "PhoneCel": "",
+            "ProfilePictureUrl": ""
+        },
+
+        /**
+         * @constructor
+         */
+        "initialize": function() {
         }
 
     });
 
-})(jQuery, Parking.App.Models);
+})(jQuery, Parking);

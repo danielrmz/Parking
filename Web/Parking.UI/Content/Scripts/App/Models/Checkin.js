@@ -1,22 +1,33 @@
 ﻿/**
-* Base namespace for the application.
+* Checkin
 *
-* @package     Parking.UI.Scripts
-* @author      The JSONs
-* @copyright   2012 Propiertary
+* @license Copyright 2012. The JSONS
 */
 namespace("Parking.App.Base");
 namespace("Parking.App.Models");
 
-(function ($, models, undefined) {
+(function ($, parking, undefined) {
+    var config         = parking["Configuration"];
+    var appbase        = parking["App"]["Base"];
+    var appmodels      = parking["App"]["Models"]; 
 
-    models.Checkin = Parking.App.Base.Model.extend({
+    /**
+     *
+     * @extends Parking.App.Base.Model
+     */
+    appmodels.Checkin = appbase.Model.extend({
+         
+        /**
+         * Primary Key
+         * @type {string}
+         */
+        "idAttribute": "CheckInId",
 
-        urlRoot: Parking.Configuration.APIEndpointUrl + 'checkins/current',
-
-        idAttribute: "CheckInId",
-
-        urlRoot: function() { 
+        /**
+         * Model's base endpoint
+         * @type {string}
+         */
+        "urlRoot": function() { 
             var userId = this.get("UserId");
             var checkinId = this.get("CheckInId");
             
@@ -27,20 +38,24 @@ namespace("Parking.App.Models");
             }
         },
 
-        defaults: {
-            UserId: 0,
-            CheckInId: "",
-            StartTime: new Date(),
-            EndTime: null,
-            SpaceId: 0,
-            ReservationId: "",
-            RegisteredFrom: 0,
-            RegisteredBy: 0
+        /**
+         * @enum {Object}
+         */
+        "defaults": {
+            "UserId": 0,
+            "CheckInId": "",
+            "StartTime": new Date(),
+            "EndTime": null,
+            "SpaceId": 0,
+            "ReservationId": "",
+            "RegisteredFrom": 0,
+            "RegisteredBy": 0
         },
 
-        initialize: function() {
-           // console.log("Checkin model has been initialized");
-           // this.bind("add", this.insert);
+        /**
+         * @constructor
+         */
+        "initialize": function() {
         },
 
         isCheckedIn: function() {
@@ -50,18 +65,6 @@ namespace("Parking.App.Models");
         isCheckedOut: function() { 
             return this.get("EndTime") != null;
         },
-
-        insert: function(checkinsCurrent) {
-            console.log("A checkin was added to the collection with the following data:" 
-                + " StartTime: "        + checkinsCurrent.get("StartTime") 
-                + " EndTime: "          + checkinsCurrent.get("EndTime")
-                + " SpaceId: "          + checkinsCurrent.get("SpaceId")
-                + " ReservationId: "    + checkinsCurrent.get("ReservationId")
-                + " RegistredFrom: "    + checkinsCurrent.get("RegistredFrom")
-                + " RegistredBy: "      + checkinsCurrent.get("RegistredBy")
-            );
-        },
-
 
         Checkout: function() {
             var self = this;
@@ -74,4 +77,4 @@ namespace("Parking.App.Models");
 
     });
 
-})(jQuery, Parking.App.Models);
+})(jQuery, Parking);

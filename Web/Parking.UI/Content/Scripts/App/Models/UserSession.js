@@ -1,37 +1,120 @@
 ﻿/**
-* User Information
+* User Session data
 *
-* @package     Parking.UI.Scripts
-* @author      The JSONs
-* @copyright   2012 Propiertary 
+* =reference jquery.cookie.js
+*
+* @license Copyright 2012. The JSONS
 */
 
 namespace("Parking.App.Base");
 namespace("Parking.App.Models");
 
-(function ($, models, undefined) {
-    
-    models.UserSession = Parking.App.Base.Model.extend({
-        SessionId: "",
-        UserId: "",
-        UserName: "", 
-        Email: "",
-        FirstName: "",
-        LastName: "",
-        ProfilePictureUrl: "",
-        IsAuthenticated: false,
-        Role: "",
-        RoleId: 0,
-        IsBlocked: false,
-        FullName: function() { 
-            return this.FirstName + " " + this.LastName;
+(function ($, parking, undefined) {
+    var common         = parking["Common"];
+    var config         = parking["Configuration"];
+    var appbase        = parking["App"]["Base"];
+    var appmodels      = parking["App"]["Models"]; 
+    var appdata        = parking["App"]["Data"]; 
+
+    /**
+     * Represents the current logged in user in the system.
+     *
+     * @extends Parking.App.Base.Model
+     */
+    appmodels.UserSession = appbase.Model.extend({
+        
+        /**
+         * @enum {Object}
+         */
+        "defaults": { 
+            "SessionId": "",
+            "UserId": "",
+            "UserName": "", 
+            "Email": "",
+            "FirstName": "",
+            "LastName": "",
+            "ProfilePictureUrl": "",
+            "IsAuthenticated": false,
+            "Role": "",
+            "RoleId": 0,
+            "IsBlocked": false
         },
 
-        initialize: function() { 
+        /**
+         * Initializes the following events:
+         *  - change:IsAuthenticated - Updates the status of isblocked
+         *  - renew:IsBlocked - Updates the status of isblocked
+         *
+         * @constructor
+         */
+        "initialize": function() { 
             this.on("change:IsAuthenticated", this.verifyIsBlocked, this);
             this.on("renew:IsBlocked", this.verifyIsBlocked, this);
         },
+        
+        /**
+         * Saves the session information to a cookie 
+         * and sets the ajax token information.
+         *
+         * @param {Object} data
+         */
+        "save": function(data) {  
+            
+            common.SetupAjaxToken(data['SessionId']); 
 
+            this.trigger("pre-loggedin");
+            this.set(data);
+            this.trigger("post-loggedin");
+
+            $.cookie('ParkingUserId', this.get('UserName'));
+            $.cookie('ParkingSessionId', this.get('SessionId')); 
+        },
+
+        /**
+         * Destroys the current session, cookies
+         *
+         * @param {Function=} callback
+         */
+        "destroy": function(callback) {
+            var self = this;
+
+            // Can't delegate directly to Backbone.sync
+            $.ajax(config.APIEndpointUrl + 'session', { type: 'DELETE', success: function() { 
+            
+                    $.cookie('ParkingUserId', null);
+                    $.cookie('ParkingSessionId', null);
+
+                    self.clear();
+                
+                    common.ClearAjaxToken();
+                 
+                    callback = callback || function() { }; 
+                    callback();
+                } 
+            });
+        },
+
+        /**
+         * Returns the complete full name
+         *
+         * @return {string} Returns "FirstName LastName"
+         */
+        FullName: function() { 
+            return this.FirstName + " " + this.LastName;
+        },
+        
+        /**
+         * Returns if the user is an administrator or not
+         * @return {boolean}
+         */
+        isAdmin: function() {
+            return this.get("Role") == "Administrator";
+        },
+
+        /**
+         * Verifies if the user is blocked or not. 
+         * If it is not authenticated it does not check anything.
+         */
         verifyIsBlocked: function() {
             if(this.get("IsAuthenticated")) {
                 var self = this;
@@ -39,23 +122,28 @@ namespace("Parking.App.Models");
             }
         },
 
-        isAdmin: function() {
-            return this.get("Role") == "Administrator";
-        },
-
+        /**
+         * Gets the last check in from the checked in user.
+         *
+         * @param {Function=} cbk Callback to be called when the last checked in is fetched.
+         */
         getLastCheckin: function(cbk) {
             cbk = cbk || function (){};
             var self = this;
 
             // Get current user check in state. 
-            if(Parking.App.Data.CurrentUserCheckIn == null) {
-                Parking.App.Data.CurrentUserCheckIn = new Parking.App.Models.Checkin({ UserId: self.get("UserId") });
-                Parking.App.Data.CurrentUserCheckIn.fetch({success: cbk});
+            if(appdata.CurrentUserCheckIn == null) {
+                appdata.CurrentUserCheckIn = new appmodels.Checkin({ "UserId": self.get("UserId") });
+                appdata.CurrentUserCheckIn.fetch({success: cbk});
             } else {
-                cbk(Parking.App.Data.CurrentUserCheckIn);
+                cbk(appdata.CurrentUserCheckIn);
             }
         },
 
+        /**
+         * Gets the blocking users for the current logged in user
+         * @param {Function=} cbk Callback to be called when the last checked in is fetched.
+         */
         getBlockingUsers: function(cbk) {
             var self = this;
             cbk = cbk || function () { };
@@ -70,8 +158,8 @@ namespace("Parking.App.Models");
                     return;
                 }
                  
-                var blockings = Parking.App.Data.SpaceBlockings.getBlockingIdsBySpaceId(spaceId);
-                var checkins  = Parking.App.Data.CheckinsCurrent.filter(function(model) { return _.include(blockings, model.get("SpaceId")); }); 
+                var blockings = appdata.SpaceBlockings.getBlockingIdsBySpaceId(spaceId);
+                var checkins  = appdata.CheckinsCurrent.filter(function(model) { return _.include(blockings, model.get("SpaceId")); }); 
                 var users = _.map(checkins, function(m) { return m.get("UserId"); });
                 
                 cbk(users);
@@ -79,10 +167,21 @@ namespace("Parking.App.Models");
 
         },
 
+        /**
+         * Gets the blocking users for the current logged in user
+         * @param {Function=} cbk Callback to be called when the blocking users calculation is complete
+         */
         isBlocked: function(cbk) {
             this.getBlockingUsers(function(users) { cbk(users.length > 0); });
         },
 
+        /**
+         * Loads the user info from db based on the cookie
+         * Triggers the following events when the load is complete
+         *  - pre-loggedin
+         *  - post-loggedin
+         *  - initialized
+         */
         load: function() {
             var self = this;
             var sessionId = $.cookie('ParkingSessionId');
@@ -94,7 +193,7 @@ namespace("Parking.App.Models");
                 // Fetch data from server based on these cookies
                 Parking.Common.SetupAjaxToken(this.get('SessionId'));
                
-                $.get("/api/session", function(data) { 
+                $.get(config.APIEndpointUrl + "session", function(data) { 
                     if(data.Error == false) {
                         self.trigger("pre-loggedin");
                         self.set(data["Response"]);
@@ -107,41 +206,8 @@ namespace("Parking.App.Models");
             } else {  
                 self.trigger("initialized"); 
             }
-        },
-
-        save: function(data) {  
-            
-            Parking.Common.SetupAjaxToken(data['SessionId']); 
-
-            this.trigger("pre-loggedin");
-            this.set(data);
-            this.trigger("post-loggedin");
-
-            $.cookie('ParkingUserId', this.get('UserName'));
-            $.cookie('ParkingSessionId', this.get('SessionId'));
-
-             
-        },
-
-        destroy: function(callback) {
-            var self = this;
-
-            $.ajax('/api/session', { type: 'DELETE', success: function() { 
-            
-                $.cookie('ParkingUserId', null);
-                $.cookie('ParkingSessionId', null);
-
-                self.clear();
-                
-                Parking.Common.ClearAjaxToken();
-                 
-                callback = callback || function() { }; 
-                callback();
-            } });
-
-
         }
     
     });
 
-})(jQuery, Parking.App.Models);
+})(jQuery, Parking);

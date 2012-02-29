@@ -1,16 +1,21 @@
 ﻿/**
-* Base namespace for the application.
+* Routing definition for the Backbonejs App
 *
-* @package     Parking.UI.Scripts
-* @author      The JSONs
-* @copyright   2012 Propiertary 
+* @license Copyright 2012. The JSONS
 */
 
 namespace("Parking.App");
 namespace("Parking.App.Data");
 
-(function ($, app, undefined) {
-    
+(function ($, parking, undefined) {
+    var common  = parking["Common"];
+    var app     = parking["App"];
+    var appdata = parking["App"]["Data"];
+    var apphelpers     = parking["App"]["Helpers"];
+    var appmodels      = parking["App"]["Models"];
+    var appviews       = parking["App"]["Views"];
+    var appcollections = parking["App"]["Collections"];
+
     app.Router = Backbone.Router.extend({
       routes: {
         ''       : 'main',
@@ -23,53 +28,56 @@ namespace("Parking.App.Data");
         'privacy': 'static'
       },
 
-      "main":  Parking.App.Helpers.RenderBackbonePage,
-      "login": Parking.App.Helpers.RenderBackbonePage,
+      "main":  apphelpers.RenderBackbonePage,
+      "login": apphelpers.RenderBackbonePage,
+      "static":apphelpers.RenderStaticPage 
 
-      "static": function() {
-        var path  = Backbone.history.fragment;
-        app.Helpers.SetWindowTitle(path);
-        
-        var view  = new app.Views.Static({el: $("#main")});
-        view.template = Parking.Configuration.ClientTemplatesUrl + "Static/" + path + ".html";
-        view.render();
-      }
     });
     
-    // Required 
-    app.Data.CurrentUser     = new app.Models.UserSession();
-    app.Data.Users           = new app.Collections.Users();
-    app.Data.SpaceBlockings  = new app.Collections.SpaceBlockings();
-    app.Data.CheckinsCurrent = new app.Collections.CheckinsCurrent();
-    app.Data.Spaces          = new app.Collections.Spaces();
+    // Required, consider moving these to another part
+    appdata.CurrentUser     = new appmodels.UserSession();
+    appdata.Users           = new appcollections.Users();
+    appdata.SpaceBlockings  = new appcollections.SpaceBlockings();
+    appdata.CheckinsCurrent = new appcollections.CheckinsCurrent();
+    appdata.Spaces          = new appcollections.Spaces();
         
-    app.Data.CurrentUser.on("pre-loggedin", function() {
-        
+    appdata.CurrentUser.on("pre-loggedin", function() {
+        loader.show();
+
         // Get global data. 
-        app.Data.SpaceBlockings.fetch({async: false});
-        app.Data.CheckinsCurrent.fetch({async: false});
-        app.Data.Users.fetch({async: false}); 
-        app.Data.Spaces.fetch({async: false});
+        loader.setLoaderText("Loading Spaces...");
+        appdata.Spaces.fetch({"async": false});
+        appdata.SpaceBlockings.fetch({"async": false});
+        
+        loader.setLoaderText("Loading current checkins...");
+        appdata.CheckinsCurrent.fetch({"async": false});
+
+        loader.setLoaderText("Loading Users...");
+        appdata.Users.fetch({"async": false}); 
+
     });
 
-    app.Data.CurrentUser.on("post-loggedin", function() { 
+    appdata.CurrentUser.on("post-loggedin", function() { 
         // Get users last checkin
-        Parking.App.Data.CurrentUserCheckIn = new Parking.App.Models.Checkin({ UserId: Parking.App.Data.CurrentUser.get("UserId") });
-        Parking.App.Data.CurrentUserCheckIn.fetch({async: false});
+        appdata.CurrentUserCheckIn = new appmodels.Checkin({ "UserId": appdata.CurrentUser.get("UserId") });
+        appdata.CurrentUserCheckIn.fetch({"async": false});
 
         // Set global views. 
-        (new app.Views.HeaderUserInfo({ model: app.Data.CurrentUser, el: $('.user-info .user') })).render(); 
-        (new app.Views.Dashboard({model: app.Data.CurrentUser, el: $('#dashboard') })).render(); 
+        (new appviews.HeaderUserInfo({ "model": appdata.CurrentUser, "el": $('.user-info .user') })).render(); 
+        (new appviews.Dashboard({ "model": appdata.CurrentUser, "el": $('#dashboard') })).render(); 
     });
 
-    app.Data.CurrentUser.on("initialized", function() { 
-        app.router = new app.Router();
+    appdata.CurrentUser.on("initialized", function() { 
+        appdata.Router = new app.Router();
         
-        Backbone.history.start({ pushState: true });
+        Backbone.history.start({ "pushState": true });
          
-        app.Helpers.SetBackboneLinks();
+        apphelpers.SetBackboneLinks();
+
+        loader.hide();
     });
     
-    app.Data.CurrentUser.load();
+    var loader = common.InitializeLoader();
+    appdata.CurrentUser.load();
 
-})(jQuery, Parking.App);
+})(jQuery, Parking);

@@ -1,21 +1,37 @@
 ﻿/**
-* Base namespace for the application.
+* Access Type
 *
-* @package     Parking.UI.Scripts
-* @author      The JSONs
-* @copyright   2012 Propiertary
+* @license Copyright 2012. The JSONS
 */
 namespace("Parking.App.Base");
 namespace("Parking.App.Models");
 
-(function ($, models, undefined) {
+(function ($, parking, undefined) {
+    var config         = parking["Configuration"];
+    var appbase        = parking["App"]["Base"];
+    var appmodels      = parking["App"]["Models"]; 
     
-    models.AccessType = Parking.App.Base.Model.extend({
-
-        defaults: {            
-            AccessTypeName: ""       
-        }
+    /**
+     * AccessType model. 
+     * Determines who can access the application
+     *
+     * @extends Parking.App.Base.Model
+     */
+    appmodels.AccessType = appbase.Model.extend({
         
+        /**
+         * @enum {Object}
+         */
+        "defaults": {            
+            "AccessTypeName": ""       
+        },
+        
+        /**
+         * @constructor
+         */
+        "initialize": function() {
+        }
+
     });
 
-})(jQuery, Parking.App.Models);
+})(jQuery, Parking);

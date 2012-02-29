@@ -76,14 +76,15 @@
 
     <resourceSet name="PluginsJs" type="js">
       <resource path="~/Content/Scripts/Plugins/bootstrap.min.js"  />
-      <resource path="~/Content/Scripts/Plugins/jquery.gritter.js"  />
+      <!-- <resource path="~/Content/Scripts/Plugins/jquery.gritter.js"  />-->
       <resource path="~/Content/Scripts/Plugins/jquery.cookie.js"  />
       <resource path="~/Content/Scripts/Plugins/namespace.js" />
-      <resource path="~/Content/Scripts/Plugins/json2.js" />
+      <resource path="~/Content/Scripts/Plugins/json2.min.js" />
       <resource path="~/Content/Scripts/Plugins/underscore-1.3.1.js" />
-      <resource path="~/Content/Scripts/Plugins/backbone-0.9.1.js" />
-      <resource path="~/Content/Scripts/Plugins/handlebars-1.0.0.js" />
-      <resource path="~/Content/Scripts/Plugins/pubnub-3.1.min.js" minifierRef="off" />
+      <resource path="~/Content/Scripts/Plugins/backbone-0.9.1.min.js" />
+      <resource path="~/Content/Scripts/Plugins/handlebars-1.0.0.min.js" />
+      <resource path="~/Content/Scripts/Plugins/pubnub-3.1.min.js" />
+      <resource path="~/Content/Scripts/Plugins/spin.min.js" />
     </resourceSet>
 
     <resourceSet name="CoreJs" type="js" >
@@ -93,13 +94,13 @@
       <resource path="~/Content/Scripts/Shared/Header.js"  />
 
       <!-- BackboneJS -->
-      <resource path="~/Content/Scripts/App/Helpers/BaseModel.js" />
-      <resource path="~/Content/Scripts/App/Helpers/BaseCollection.js" />
-      <resource path="~/Content/Scripts/App/Helpers/Common.js" />
+      <resource path="~/Content/Scripts/App/Common/Helpers.js" />
+      <resource path="~/Content/Scripts/App/Common/BaseView.js" />
+      <resource path="~/Content/Scripts/App/Common/BaseModel.js" />
+      <resource path="~/Content/Scripts/App/Common/BaseCollection.js" />
 
       <!-- Views -->
-      <resource path="~/Content/Scripts/App/Views/HeaderUserInfo.js" />
-      <resource path="~/Content/Scripts/App/Views/Static.js" />
+      <resource path="~/Content/Scripts/App/Views/HeaderUserInfo.js" /> 
       <resource path="~/Content/Scripts/App/Views/Login.js"  />
       <resource path="~/Content/Scripts/App/Views/Main.js"  />
       <resource path="~/Content/Scripts/App/Views/Dashboard.js"  />

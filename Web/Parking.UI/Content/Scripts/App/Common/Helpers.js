@@ -1,28 +1,35 @@
 ﻿/**
-* Common scripts for the application. 
+* Common helper scripts for the application. 
 *
-* @package     Parking.UI.Scripts
-* @author      The JSONs
-* @copyright   2012 Propiertary
+* @license Copyright 2012. The JSONS
 */
 namespace("Parking.App.Helpers");
 namespace("Parking.App.Data");
+namespace("Parking.App.Views");
+namespace("Parking.App.Base");
 
-(function($, helpers, undefined) {
-    
+(function($, parking, undefined) {
+    var common    = parking["Common"];
+    var resources = parking["Resources"];
+    var config    = parking["Configuration"];
+    var apphelpers= parking["App"]["Helpers"];
+    var appdata   = parking["App"]["Data"];
+    var appviews  = parking["App"]["Views"];
+    var appbase   = parking["App"]["Base"];
+
     /**
      * Renders a template in a backbone view context using Handlebars/Mustache and by fetching
      * a remote template.
      *
      * @param {Function=} callback - Callback to be done when the template is fetched/compiled.
      */
-    helpers.RenderViewTemplate = function(data) {
+    apphelpers.RenderViewTemplate = function(data) {
         var template = this.template;
         var view     = this;
         
         if(typeof view.secure != 'undefined' && view.secure) {
-            if(Parking.App.Data.CurrentUser == null || !Parking.App.Data.CurrentUser.get("IsAuthenticated")) {
-                Parking.App.router.navigate("login", true);
+            if(appdata.CurrentUser == null || !appdata.CurrentUser.get("IsAuthenticated")) {
+                appdata.Router.navigate("login", true);
                 return;
             }
         }
@@ -41,9 +48,9 @@ namespace("Parking.App.Data");
                 collection = view.collection.toJSON();
             }
             
-            var locale          = Parking.Configuration["locale"] || "en-US";
-            var localeResources = Parking.Resources["i18n"][locale] || {};
-            var currentUser     = typeof(Parking.App.Data.CurrentUser) == 'undefined'? {} : Parking.App.Data.CurrentUser.toJSON();
+            var locale          = config["locale"] || "en-US";
+            var localeResources = resources["i18n"][locale] || {};
+            var currentUser     = typeof(appdata.CurrentUser) == 'undefined'? {} : appdata.CurrentUser.toJSON();
             var callback =  typeof data == "function" ? data : function() { };
             var data = typeof data == "function" ? {} : data;
 
@@ -62,23 +69,21 @@ namespace("Parking.App.Data");
      * @param {Object} data - data to be used in the template. 
      * @param {Function} callback - Callback to be done when the template is fetched/compiled.
      */
-    helpers.RenderTemplate = function(template, data, callback) {
+    apphelpers.RenderTemplate = function(template, data, callback) {
         if(callback == null) {
             throw new Error("Callback was expected");
         }
 
         fetchTemplate(template, function (tmpl) {
-            var locale          = Parking.Configuration["locale"] || "en-US";
-            var localeResources = Parking.Resources["i18n"][locale] || {};
-            var currentUser     = typeof(Parking.App._user) == 'undefined'? {} : Parking.App._user.toJSON();
+            var locale          = config["locale"] || "en-US";
+            var localeResources = resources["i18n"][locale] || {};
+            var currentUser     = typeof(appdata.CurrentUser) == 'undefined'? {} : appdata.CurrentUser.toJSON();
             data = data || {};
             data["i18n"] = localeResources;
             data["currentUser"] = currentUser; 
 
             var html = tmpl(data);
             callback(html);
-
-
         });
 
     };
@@ -87,8 +92,20 @@ namespace("Parking.App.Data");
      * Sets the window title
      * @parma {string} title
      */
-    helpers.SetWindowTitle = function(title) { 
+    apphelpers.SetWindowTitle = function(title) { 
         $("title").html("My Place | " + title);
+    };
+
+    /**
+     * Renders the static page contents.
+     */
+    apphelpers.RenderStaticPage = function() { 
+        var path  = Backbone.history.fragment;
+        apphelpers.SetWindowTitle(path);
+        
+        var view  = new appbase.View({ "el" : $("#main")});
+        view.template = config.ClientTemplatesUrl + "Static/" + path + ".html";
+        view.render();
     };
 
     /**
@@ -96,24 +113,27 @@ namespace("Parking.App.Data");
      * To be used the view has to have the same name 
      * as the routing method
      */
-    helpers.RenderBackbonePage = function() {
+    apphelpers.RenderBackbonePage = function() {
         var frag = Backbone.history.fragment;
         
-        frag = Parking.App.router.routes[frag];
+        frag = appdata.Router.routes[frag];
 
         frag = frag.charAt(0).toUpperCase() + frag.substring(1);
         
-        if(typeof Parking.App.Views[frag] == "undefined") {
-            Parking.Common.DisplayGlobalError("Page does not exist: " + frag);
+        if(typeof appviews[frag] == "undefined") {
+            common.DisplayGlobalError("Page does not exist: " + frag);
             return;
         }
 
-        helpers.SetWindowTitle(frag);
-        var view = new Parking.App.Views[frag]({el: $("#main")});
+        apphelpers.SetWindowTitle(frag);
+        var view = new appviews[frag]({ "el": $("#main")});
         view.render();
     };
 
-    helpers.SetBackboneLinks = function() { 
+    /**
+     * Converts all the links in a page to possible backbone pages.
+     */
+    apphelpers.SetBackboneLinks = function() { 
         $(document).on("click", "a:not([data-bypass])", function(evt) {
             var href = $(this).attr("href");
             var protocol = this.protocol + "//";
@@ -124,7 +144,7 @@ namespace("Parking.App.Data");
                 // refresh.
                 evt.preventDefault();
 
-                Parking.App.router.navigate(href, true);
+                appdata.Router.navigate(href, true);
             }
         });
     };
@@ -133,7 +153,7 @@ namespace("Parking.App.Data");
      * Register time ago helper for the templates.
      */
     Handlebars.registerHelper('timeAgo', function(time) {
-        var t = Parking.Common.FormatTimeAgo(time); 
+        var t = common.FormatTimeAgo(time); 
         return t;
     });
 
@@ -141,10 +161,10 @@ namespace("Parking.App.Data");
      * Handler to obtain the user's name from cache. 
      */
     Handlebars.registerHelper('userFullName', function(userId) {
-        if(!Parking.App.Data.Users) {
+        if(!appdata.Users) {
             return "";
         }
-        var user = Parking.App.Data.Users.get(userId);
+        var user = appdata.Users.get(userId);
         if(user) {
             return user.get("FirstName") + " " + user.get("LastName");
         }
@@ -155,14 +175,14 @@ namespace("Parking.App.Data");
      * Handler to obtain the user's name from cache. 
      */
     Handlebars.registerHelper('userProfilePicture', function(userId) {
-        if(!Parking.App.Data.Users) {
+        if(!appdata.Users) {
             return "";
         }
-        var user = Parking.App.Data.Users.get(userId);
+        var user = appdata.Users.get(userId);
         if(user) {
             return user.get("ProfilePictureUrl");
         }
         return "";
     });
 
-})(jQuery, Parking.App.Helpers);
+})(jQuery, Parking);
