@@ -13,6 +13,7 @@ using System.Text;
 namespace Sieena.Parking.API.Models
 {
     using Interfaces;
+    using Sieena.Parking.Common.Utils;
     using Sieena.Parking.API.Models.Views;
     using Sieena.Parking.API.Models.Exceptions;
     using i18n = Sieena.Parking.Common.Resources.UI;
@@ -204,7 +205,7 @@ namespace Sieena.Parking.API.Models
                 }
 
                 c.CheckInId = 0;
-                c.StartTime = c.StartTime.ToUniversalTime();
+                c.StartTime = c.StartTime.ToCommonTime();
                 c.EndTime = null;
 
                 ctx.Checkins.AddObject(c);
@@ -256,7 +257,7 @@ namespace Sieena.Parking.API.Models
 
                 // Validate if users are blocking you.
 
-                c.EndTime = DateTime.Now.ToUniversalTime();
+                c.EndTime = DateTime.Now.ToCommonTime();
                 ctx.SaveChanges();
 
                 // Notify users

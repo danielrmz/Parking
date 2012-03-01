@@ -15,9 +15,13 @@ namespace("Parking.Common");
      *
      * @param {string} message
      */
-    common.DisplayGlobalError = function(message) {
-        $(".js-globalError .message").html(message)
-        $(".js-globalError").modal()
+    common.DisplayGlobalError = function(message, onClose) {
+        $(".js-globalError .message").html(message);
+        $(".js-globalError").modal();
+
+        if(onClose) {
+            $(".js-globalError").off("hide").on("hide", onClose);
+        }
     };
 
     /**
@@ -61,14 +65,21 @@ namespace("Parking.Common");
                         var message = JSON.parse(data["responseText"]); 
                         
                         if(message["Error"] == true ) {
+                            if(message["Type"] == "InvalidTokenException" || message["Type"] == "AccessException") {
+                                common.DisplayGlobalError(message["Response"], function() { 
+                                    $.cookie('ParkingUserId', null);
+                                    $.cookie('ParkingSessionId', null);
+                                    common.ClearAjaxToken();
+                                    location.reload(); 
+                                }); 
+                            }
+
                             if(message["IsGlobalError"] == true) {
                                 common.DisplayGlobalError(message["Response"] + "<br /><br /><strong>StackTrace: </strong><br /><span style='font-size:10px;'>" + message["StackTrace"].replace("\n","<br />") + "</span>");
                                 // Log
                             }
 
-                            if(message["Type"] == "InvalidTokenException") {
-                                common.DisplayGlobalError(message["Response"]); 
-                            }
+                            
                         }           
                     }catch(error) {
                     }
@@ -110,7 +121,7 @@ namespace("Parking.Common");
         }
         var diff = (((new Date()).getTime() - date.getTime()) / 1000),
 		    day_diff = Math.floor(diff / 86400);
-		 
+		
 	    if ( isNaN(day_diff) || day_diff < 0 || day_diff >= 31 )
 		    return;
 		

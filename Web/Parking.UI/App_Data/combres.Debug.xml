@@ -86,7 +86,7 @@
       <!-- <resource path="~/Content/Scripts/Plugins/jquery.gritter.js"  />-->
       <!-- <resource path="~/Content/Scripts/Plugins/spin.min.js" />-->
     </resourceSet>
-
+    
     <resourceSet name="CoreJs" type="js" >
       <resource path="~/Content/Scripts/Parking.js" />
       <resource path="~/Content/Scripts/Shared/Common.js" />

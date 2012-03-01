@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Sieena.Parking.API.Models.Interfaces;
+using Sieena.Parking.Common.Utils;
 
 namespace Sieena.Parking.API.Models
 {
@@ -38,7 +39,7 @@ namespace Sieena.Parking.API.Models
                 {
                     UserId = userId,
                     CreatedAt = DateTime.Now,
-                    ExpiresAt = rememberMe ? DateTime.MaxValue : DateTime.Now.ToUniversalTime().Add(timeOut),
+                    ExpiresAt = rememberMe ? DateTime.MaxValue : DateTime.Now.ToCommonTime().Add(timeOut),
                     LastAccess = DateTime.Now.ToUniversalTime(),
                     Data = string.Empty
                 };
@@ -93,7 +94,7 @@ namespace Sieena.Parking.API.Models
         {
             using (EntityContext ctx = new EntityContext())
             {
-                ctx.Sessions.Where(s => s.ExpiresAt < DateTime.Now.ToUniversalTime() && s.ExpiresAt != DateTime.MaxValue).ToList().ForEach(s => ctx.Sessions.DeleteObject(s));
+                ctx.Sessions.Where(s => s.ExpiresAt < DateTime.Now.ToCommonTime() && s.ExpiresAt != DateTime.MaxValue).ToList().ForEach(s => ctx.Sessions.DeleteObject(s));
                 ctx.SaveChanges();
             }
         }
@@ -114,13 +115,13 @@ namespace Sieena.Parking.API.Models
                     return null;
                 }
 
-                if (sess.ExpiresAt < DateTime.Now.ToUniversalTime() && sess.ExpiresAt != DateTime.MaxValue)
+                if (sess.ExpiresAt < DateTime.Now.ToCommonTime() && sess.ExpiresAt != DateTime.MaxValue)
                 {
                     ctx.Sessions.DeleteObject(sess);
                     ctx.SaveChanges();
                     return null;
                 }
-                sess.LastAccess = DateTime.Now.ToUniversalTime();
+                sess.LastAccess = DateTime.Now.ToCommonTime();
                 ctx.SaveChanges();
 
                 return sess;
@@ -143,13 +144,13 @@ namespace Sieena.Parking.API.Models
                     return null;
                 }
 
-                if (sess.ExpiresAt < DateTime.Now.ToUniversalTime() && sess.ExpiresAt != DateTime.MaxValue)
+                if (sess.ExpiresAt < DateTime.Now.ToCommonTime() && sess.ExpiresAt != DateTime.MaxValue)
                 {
                     ctx.Sessions.DeleteObject(sess);
                     ctx.SaveChanges();
                     return null;
                 }
-                sess.LastAccess = DateTime.Now.ToUniversalTime();
+                sess.LastAccess = DateTime.Now.ToCommonTime();
                 ctx.SaveChanges();
 
                 return sess;

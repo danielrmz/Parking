@@ -6,6 +6,7 @@
 
 namespace("Parking.App.Data");
 namespace("Parking.App.Views");
+namespace("Parking.App.Models");
 
 (function ($, parking) {
     var i18n           = parking["Resources"]["i18n"];
@@ -170,7 +171,7 @@ namespace("Parking.App.Views");
                     var spaceUI = map.find("[data-spaceid=" + spaceId + "].js-space");
                     spaceUI.removeClass("available").addClass("used");
 
-                    if(checkin.get("UserId") == Parking.App.Data.CurrentUser.get("UserId")) {
+                    if(checkin.get("UserId") == appdata.CurrentUser.get("UserId")) {
                         spaceUI.addClass("me");
                     }
                     spaceUI.data("checkinid", checkin.get("CheckInId"));

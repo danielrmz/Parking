@@ -13,12 +13,14 @@ using System.Web;
 using Nancy;
 using Nancy.ViewEngines.Razor;
 using Nancy.Serializers.Json;
-using Sieena.Parking.API.Models;
+
 
 namespace Sieena.Parking.API.Modules
 {
     using Classes;
     using APISession = Sieena.Parking.API.Models.Session;
+    using Sieena.Parking.API.Models;
+    using Sieena.Parking.Common.Utils;
 
     public class SpacesModule : AbstractBaseModule
     {
@@ -43,7 +45,7 @@ namespace Sieena.Parking.API.Modules
         {
             Space s = parameters.Fill<Space>();
             s.Deleted = false;
-            s.CreatedAt = DateTime.Now.ToUniversalTime();
+            s.CreatedAt = DateTime.Now.ToCommonTime();
             s.SpaceId = 0;
             return Space.Save(s);
         }
