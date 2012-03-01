@@ -14,6 +14,7 @@ using Nancy;
 using Nancy.Bootstrapper;
 
 using Sieena.Parking.API.Modules;
+using Sieena.Parking.API.Modules.Classes;
 
 namespace Parking.UI.Api
 {
@@ -31,6 +32,9 @@ namespace Parking.UI.Api
             });
 
             pipelines.BeforeRequest += bp;
+
+            // Register gzip compression
+            pipelines.RegisterCompressionCheck();
 
             base.ApplicationStartup(container, pipelines);
         }

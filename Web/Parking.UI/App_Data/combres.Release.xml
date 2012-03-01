@@ -48,7 +48,6 @@
                 defaultJSMinifierRef="closure"
                 >
 
-
     <resourceSet name="CoreResources" type="js" minifierRef="off" debugEnabled="false">
       <resource path="~/Content/Scripts/Shared/Resources.js"  />
     </resourceSet>
@@ -77,14 +76,14 @@
 
     <resourceSet name="PluginsJs" type="js">
       <resource path="~/Content/Scripts/Plugins/bootstrap.min.js"  />
-      <!-- <resource path="~/Content/Scripts/Plugins/jquery.gritter.js"  />-->
-      <resource path="~/Content/Scripts/Plugins/jquery.cookie.js"  />
+      <resource path="~/Content/Scripts/Plugins/jquery.cookie.min.js"  />
       <resource path="~/Content/Scripts/Plugins/namespace.js" />
       <resource path="~/Content/Scripts/Plugins/json2.min.js" />
       <resource path="~/Content/Scripts/Plugins/underscore-1.3.1.js" />
       <resource path="~/Content/Scripts/Plugins/backbone-0.9.1.min.js" />
       <resource path="~/Content/Scripts/Plugins/handlebars-1.0.0.min.js" />
       <resource path="~/Content/Scripts/Plugins/pubnub-3.1.min.js" />
+      <!-- <resource path="~/Content/Scripts/Plugins/jquery.gritter.js"  />-->
       <!-- <resource path="~/Content/Scripts/Plugins/spin.min.js" />-->
     </resourceSet>
 
