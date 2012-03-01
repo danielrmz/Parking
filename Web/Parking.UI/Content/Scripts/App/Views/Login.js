@@ -54,8 +54,10 @@ namespace("Parking.App.Views");
                 
                         if(data.Error == false) {
                             form.find(".alert-error").hide(); 
+                            
+                            $(self.el).html(""); 
                             appdata.CurrentUser.save(data["Response"]);
-
+                             
                             // Redirect to the core app view
                             appdata.Router.navigate("home", true);
 

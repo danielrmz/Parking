@@ -61,6 +61,8 @@ namespace("Parking.App.Data");
         // Get users last checkin
         appdata.CurrentUserCheckIn = new appmodels.Checkin({ "UserId": appdata.CurrentUser.get("UserId") });
         appdata.CurrentUserCheckIn.fetch({"async": false});
+        
+        loader.hide();
 
         // Set global views. 
         (new appviews.HeaderUserInfo({ "model": appdata.CurrentUser, "el": $('.user-info .user') })).render(); 

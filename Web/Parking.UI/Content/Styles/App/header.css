@@ -17,6 +17,15 @@ header {
     padding: 8px 15px;
     float: left;
     min-width: 52px; }
+  header a.block-text {
+    color: #D0411B;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 15px;
+    padding-right: 0px; }
+    header a.block-text:hover {
+      text-decoration: underline; }
   header .block-silver {
     background-color: #C3C3C9;
     color: #636B7B;

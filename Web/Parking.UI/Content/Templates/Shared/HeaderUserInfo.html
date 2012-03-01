@@ -1,17 +1,18 @@
 ﻿
 
 {{#if model.IsAuthenticated}}
+
 <div class="block-light user-name"> 
     <p>
-        {{i18n.Header_WelcomeText}} <span>{{model.FirstName}} {{model.LastName}}</span>
-        <br /><a href="#" class="btn-sign-out js-logout">{{i18n.Header_Logout}}</a>
+        {{i18n.Header_WelcomeText}}, <span>{{model.FirstName}} {{model.LastName}}</span>
+        <br /><a href="/logout" class="btn-sign-out js-logout">{{i18n.Header_Logout}}</a>
     </p> 
 </div>
 
 {{else}}
 
-<a href="/login" class="block-light login">
-    <span></span>
+<a href="/login" class="block-light block-text">
+    Login
 </a>
 
 {{/if}}

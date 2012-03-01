@@ -7,6 +7,7 @@
  */
 
 header {
+
 	.block-light { 
 		background-color: transparent; 
 		color: #636B7B;
@@ -17,6 +18,20 @@ header {
 		float: left;
 		min-width: 52px;
 	}
+	
+	a.block-text { 
+		color:#D0411B; 
+		font-size: 12px;
+		font-weight: 600;  
+		text-decoration: none;
+		padding: 15px;
+		padding-right: 0px;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+
 	.block-silver { 
 		background-color:#C3C3C9; 
 		color: #636B7B;
@@ -39,7 +54,7 @@ header {
 		min-width: 52px;
 	}
 
-	 .user-info {
+	.user-info {
 
 		p { 
 			margin: 0;  
