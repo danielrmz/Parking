@@ -18,81 +18,58 @@ namespace("Parking.App.Views");
     var appcollections = parking["App"]["Collections"];
     var apphelpers     = parking["App"]["Helpers"];
 
+    /**
+     * Main Car View
+     *
+     * @extends appbase.View
+     */
     appviews.Main = appbase.View.extend({
         
-        secure: true,
-        
-        template: config.ClientTemplatesUrl + "Parking/Home.html",
-        
-        initialize: function() {
+        /**
+         * @constructor
+         */
+        "initialize": function() {
             this.collection = appdata.Spaces;
             
             appdata.CheckinsCurrent.on("remove", this.onRemove, this);
             appdata.CheckinsCurrent.on("add", this.onAdd, this);
         },
 
-        render: function() {
+        /**
+         * Determines if the view is secure or not
+         * @type {boolean}
+         */
+        secure: true,
+        
+        /**
+         * View's template
+         * @type {string}
+         */
+        "template": config.ClientTemplatesUrl + "Parking/Home.html",
+        
+        /**
+         * @inheritDoc
+         */
+        "render": function() {
             apphelpers.RenderViewTemplate.apply(this, arguments);
 
             // Update checked in spaces.
             this.renderCheckedInSpaces();
         },
-          
-        renderCheckedInSpaces: function() {
-            var map = $(this.el);
-
-            $(this.el).find(".js-space").removeClass("used").removeClass("me").addClass("available");
-            if(appdata.CheckinsCurrent) { 
-                appdata.CheckinsCurrent.map(function(checkin) { 
-                    var spaceId = checkin.get("SpaceId");
-                    var spaceUI = map.find("[data-spaceid=" + spaceId + "].js-space");
-                    spaceUI.removeClass("available").addClass("used");
-
-                    if(checkin.get("UserId") == Parking.App.Data.CurrentUser.get("UserId")) {
-                        spaceUI.addClass("me");
-                    }
-                    spaceUI.data("checkinid", checkin.get("CheckInId"));
-                });
-            }
-        },
-       
-        onAdd: function(checkin) { 
-            var spaceId = checkin.get("SpaceId");
-            var car = $(this.el).find("[data-spaceid=" + spaceId + "]");
-
-            car.data("checkinid", checkin.get("CheckInId")); 
-            car.removeClass("available").addClass("used");
-
-            if(appdata.CurrentUser.get("UserId") == checkin.get("UserId")) {
-                car.addClass("me");
-            }
-
-            // Recheck if the user is blocked.
-            appdata.CurrentUser.trigger("renew:IsBlocked");
-                                                        
-        },
-
-        onRemove: function(checkin) { 
-            var spaceId = checkin.get("SpaceId");
-            var car = $(this.el).find("[data-spaceid=" + spaceId + "]");
-            car.data("checkinid", null); 
-            car.removeClass("used").removeClass("me").addClass("available");
-        },
-
-        events: { 
+        
+        /**
+         * @enum {string}
+         */
+        "events": { 
             "click .js-space.used": "showDetailsDialog",
             "click .js-space.available": "showConfirmDialog",
             "click .js-confirmation-dialog .btn-close": "closeConfirmDialog",
             "click .js-confirmation-dialog .btn-success": "doCheckin"
         },
 
-        "showDetailsDialog": function() {},
-       
-        "closeConfirmDialog": function() { 
-            $(this.el).find(".js-confirmation-dialog").modal('hide');
-            $(this.el).find(".selected").removeClass("selected");
-        },
-
+        /**
+         * Does the checkin for a user.
+         */
         "doCheckin": function() { 
             var car = $(this.el).find(".selected");
             var spaceId = car.data("spaceid");
@@ -118,6 +95,25 @@ namespace("Parking.App.Views");
              
         },
 
+
+        /**
+         * Shows the details for a checked in user.
+         */
+        "showDetailsDialog": function() {},
+       
+        /**
+         * Closes the confirmation dialog
+         */
+        "closeConfirmDialog": function() { 
+            $(this.el).find(".js-confirmation-dialog").modal('hide');
+            $(this.el).find(".selected").removeClass("selected");
+        },
+
+        
+        /**
+         * Shows the confirm dialog
+         * @param {Object} e
+         */
         "showConfirmDialog": function(e) {
             var car = $(e.target);
             var spaceId = car.data("spaceid");
@@ -159,7 +155,63 @@ namespace("Parking.App.Views");
                 
             }
 
+        },
+
+        /**
+         * Renders the check in spaces
+         */
+        renderCheckedInSpaces: function() {
+            var map = $(this.el);
+
+            $(this.el).find(".js-space").removeClass("used").removeClass("me").addClass("available");
+            if(appdata.CheckinsCurrent) { 
+                appdata.CheckinsCurrent.map(function(checkin) { 
+                    var spaceId = checkin.get("SpaceId");
+                    var spaceUI = map.find("[data-spaceid=" + spaceId + "].js-space");
+                    spaceUI.removeClass("available").addClass("used");
+
+                    if(checkin.get("UserId") == Parking.App.Data.CurrentUser.get("UserId")) {
+                        spaceUI.addClass("me");
+                    }
+                    spaceUI.data("checkinid", checkin.get("CheckInId"));
+                });
+            }
+        },
+       
+        /**
+         * Event-handler to add a check in to the map.
+         * @param {Object} checkin Checkin to add
+         * @private
+         */
+        onAdd: function(checkin) { 
+            var spaceId = checkin.get("SpaceId");
+            var car = $(this.el).find("[data-spaceid=" + spaceId + "]");
+
+            car.data("checkinid", checkin.get("CheckInId")); 
+            car.removeClass("available").addClass("used");
+
+            if(appdata.CurrentUser.get("UserId") == checkin.get("UserId")) {
+                car.addClass("me");
+            }
+
+            // Recheck if the user is blocked.
+            appdata.CurrentUser.trigger("renew:IsBlocked");
+                                                        
+        },
+
+        /**
+         * Event-handler to remove the checkin from the map
+         * @param {Object} checkin Checkin to remove
+         * @private
+         */
+        onRemove: function(checkin) { 
+            var spaceId = checkin.get("SpaceId");
+            var car = $(this.el).find("[data-spaceid=" + spaceId + "]");
+            car.data("checkinid", null); 
+            car.removeClass("used").removeClass("me").addClass("available");
         }
+
+        
 
     });
 

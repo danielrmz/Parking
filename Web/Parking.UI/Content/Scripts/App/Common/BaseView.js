@@ -16,6 +16,11 @@ namespace("Parking.App.Base");
      * @extends Backbone.View
      */
     appbase.View = Backbone.View.extend({
+
+        /**
+         * Renders the view template
+         * @type {Function}
+         */
         "render": apphelpers.RenderViewTemplate
     });
 

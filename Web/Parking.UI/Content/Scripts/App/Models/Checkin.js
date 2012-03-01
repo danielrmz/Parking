@@ -58,14 +58,25 @@ namespace("Parking.App.Models");
         "initialize": function() {
         },
 
+        /**
+         * Determines if the check in is a saved one and active one.
+         * @return {boolean}
+         */
         isCheckedIn: function() {
             return (this.get("CheckInId") > 0 && !this.isCheckedOut());
         },
 
+        /**
+         * Determines if the check in has already left the parking lot.
+         * @return {boolean}
+         */
         isCheckedOut: function() { 
             return this.get("EndTime") != null;
         },
 
+        /**
+         * Checks out the checkin
+         */
         Checkout: function() {
             var self = this;
             $.post(config.APIEndpointUrl + "checkins/", function(data) { 

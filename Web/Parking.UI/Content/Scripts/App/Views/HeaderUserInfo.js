@@ -17,20 +17,45 @@ namespace("Parking.App.Views");
     var appcollections = parking["App"]["Collections"];
     var apphelpers     = parking["App"]["Helpers"];
 
+    /**
+     * User information panel
+     *
+     * @extends appbase.View
+     */
     appviews.HeaderUserInfo = appbase.View.extend({
-
-        template: config.ClientTemplatesUrl + "Shared/HeaderUserInfo.html",
         
-        render: apphelpers.RenderViewTemplate,
-
-        initialize: function() {
+        /**
+         * @constructor
+         */
+        "initialize": function() {
             this.model.on("change", this.render, this);
         },
 
-        events: {
+        /**
+         * View's template
+         * @type {string}
+         */
+        "template": config.ClientTemplatesUrl + "Shared/HeaderUserInfo.html",
+        
+        /**
+         * @inheritDoc
+         */
+        "render": apphelpers.RenderViewTemplate,
+
+        
+        /**
+         * @enum {string}
+         */
+        "events": {
            "click .js-logout": "logout"
         },
 
+        /**
+         * Event for the logout link. 
+         * Logs out a user.
+         *
+         * @return {boolean}
+         */
         "logout": function(e) {
             appdata.CurrentUser.destroy(function() {  
                 appdata.Router.navigate("login", true);

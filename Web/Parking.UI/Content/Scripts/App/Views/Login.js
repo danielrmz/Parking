@@ -17,13 +17,29 @@ namespace("Parking.App.Views");
     var appcollections = parking["App"]["Collections"];
     var apphelpers     = parking["App"]["Helpers"];
 
+    /**
+     * Login View
+     *
+     * @extends appbase.View
+     */
     appviews.Login = appbase.View.extend({
         
-        template: config.ClientTemplatesUrl + "Account/Login.html",
+        /**
+         * View's template
+         * @type {string}
+         */
+        "template": config.ClientTemplatesUrl + "Account/Login.html",
 
-        model: appdata.CurrentUser,
+        /**
+         * Model associated to the view
+         * @type {appdata.CurrentUser}
+         */
+        "model": appdata.CurrentUser,
 
-        render: function (done) {
+        /**
+         * @inheritDoc
+         */
+        "render": function (done) {
             var view = this; 
 
             if(appdata.CurrentUser != null && appdata.CurrentUser.get("IsAuthenticated")) {
@@ -35,10 +51,19 @@ namespace("Parking.App.Views");
             apphelpers.RenderViewTemplate.apply(this, arguments);
         },
 
-        events: { 
+        /**
+         * @enum {string}
+         */
+        "events": { 
            "click .js-submit": "submit"
         },
         
+        /**
+         * Handles the submittion of the login form.
+         *
+         * @param {Object} e
+         * @return {boolean}
+         */
         "submit": function(e) {
             var form   = $(this.el).find("form");
             var params = form.serialize();

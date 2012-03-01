@@ -19,17 +19,52 @@ namespace("Parking.App.Data");
     var appcollections = parking["App"]["Collections"];
     var apphelpers     = parking["App"]["Helpers"];
 
+    /**
+     * Dashboard View. Represents the whole strip under the header
+     *
+     * @extends appbase.View
+     */
     appviews.Dashboard = appbase.View.extend({
-
-        template: config.ClientTemplatesUrl + "Shared/Dashboard.html",
         
-        render: function() {  
+        /**
+         * @constructor
+         */
+        "initialize": function() { 
+            this.model.on("change:IsBlocked", this.renderActionButton, this);
+            this.model.on("change:IsAuthenticated", this.render, this);
+            appdata.CurrentUserCheckIn.on("change:CheckInId", this.renderActionButton, this);
+            appdata.CurrentUserCheckIn.on("change:EndTime", this.renderActionButton, this);
+
+            this.initializeRecentCheckins();
+        },
+
+        /**
+         * View's template
+         * @type {string}
+         */
+        "template": config.ClientTemplatesUrl + "Shared/Dashboard.html",
+        
+        /**
+         * Renders the template and the nested views. 
+         */
+        "render": function() {  
             apphelpers.RenderViewTemplate.apply(this, arguments); 
             
             this.renderActionButton();
             this.renderRecentCheckins(); 
         },
 
+        /**
+         * @enum {string}
+         */
+        "events": {
+           "click .js-button-label": "doCheckout"
+        },
+
+        /**
+         * Initializes the recent check in dashboard widget
+         * @private
+         */
         initializeRecentCheckins: function() { 
             var self = this; 
             if(!this.IsInitialized) {
@@ -44,6 +79,9 @@ namespace("Parking.App.Data");
             }
         },
 
+        /**
+         * Renders the recent check ins widget
+         */
         renderRecentCheckins: function() {
             if(this.RecentCheckinsView) {  
                 this.RecentCheckinsView.el = $(this.el).find(".panel-notifications");
@@ -51,6 +89,9 @@ namespace("Parking.App.Data");
             }
         },
 
+        /**
+         * Renders the action button widget
+         */
         renderActionButton: function() { 
             var dashboard = $(this.el);
             var btnGroup  = dashboard.find(".js-button .js-button-group");
@@ -71,19 +112,9 @@ namespace("Parking.App.Data");
             btnGroup.show();
         },
 
-        initialize: function() { 
-            this.model.on("change:IsBlocked", this.renderActionButton, this);
-            this.model.on("change:IsAuthenticated", this.render, this);
-            appdata.CurrentUserCheckIn.on("change:CheckInId", this.renderActionButton, this);
-            appdata.CurrentUserCheckIn.on("change:EndTime", this.renderActionButton, this);
-
-            this.initializeRecentCheckins();
-        },
-
-        events: {
-           "click .js-button-label": "doCheckout"
-        },
-
+        /**
+         * Does the checkout for the actual signed-in user
+         */
         doCheckout: function() { 
             appdata.CurrentUserCheckIn.Checkout();
         }

@@ -18,14 +18,53 @@ namespace("Parking.App.Data");
     var appcollections = parking["App"]["Collections"];
     var apphelpers     = parking["App"]["Helpers"];
 
+    /**
+     * Dashboard Notifications View. 
+     * This displays the recent checked in users
+     *
+     * @extends appbase.View
+     */
     appviews.DashboardNotifications = appbase.View.extend({
+        
+        /**
+         * @constructor
+         */
+        "initialize": function() { 
+            var self = this;
+            this.collection.on("reset", function() { self.render(); });
+            this.collection.on("add", function() { self.onAdd.apply(self, arguments); });
+            this.collection.on("remove", function() {  self.onRemove.apply(self, arguments);   });
+            this.collection.fetch();
+        },
 
-        template: config.ClientTemplatesUrl + "Shared/DashboardNotifications.html",
+        /**
+         * @enum {string}
+         */
+        "events": {
+        },
 
+        /**
+         * View's template
+         * @type {string}
+         */
+        "template": config.ClientTemplatesUrl + "Shared/DashboardNotifications.html",
+
+        /**
+         * @inheritDoc
+         */
+        "render": apphelpers.RenderViewTemplate,
+        
+        /**
+         * View's individual template
+         * @type {string}
+         */
         singleTemplate: config.ClientTemplatesUrl + "Shared/DashboardNotification.html",
 
-        render: apphelpers.RenderViewTemplate,
-
+        /**
+         * Event-handler to add a recent check in to the list.
+         * @param {Object} checkin CheckinNotification to add
+         * @private
+         */
         onAdd: function(checkin) { 
             var ul = $(this.el).find("ul");  
 
@@ -37,23 +76,16 @@ namespace("Parking.App.Data");
             });
         },
 
+        /**
+         * Event-handler to remove the notification from the list
+         * @param {Object} checkin CheckinNotification to remove
+         * @private
+         */
         onRemove: function(checkin) {
             var element = $(this.el).find("[data-notificationid="+checkin.get("NotificationId")+"].js-checkin-notification"); 
             element.addClass("transitioning").animate({ left: "-=50", opacity: 0, position: "absolute" }, 500, function(){element.remove();});
-
-        },
-
-        initialize: function() { 
-            var self = this;
-            this.collection.on("reset", function() { self.render(); });
-            this.collection.on("add", function() { self.onAdd.apply(self, arguments); });
-            this.collection.on("remove", function() {  self.onRemove.apply(self, arguments);   });
-            this.collection.fetch();
-        },
-
-        events: {
-           
         }
+
          
 
     });
