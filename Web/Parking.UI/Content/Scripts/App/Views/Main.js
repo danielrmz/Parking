@@ -76,6 +76,13 @@ namespace("Parking.App.Models");
             var spaceId = car.data("spaceid");
             var userId = 0;
             var dialog = $(this.el).find(".js-confirmation-dialog");
+            var btn = dialog.find(".btn-success");
+
+            if(btn.hasClass("disabled")) {
+                return false;
+            }
+
+            btn.addClass("disabled");
 
             var data = { 
                 CheckInId: null,
@@ -83,11 +90,13 @@ namespace("Parking.App.Models");
                 UserId: userId
             };
 
+            
+
             var checkin = new appmodels.Checkin(data);
             
             checkin.save({}, { success: function(m) { 
                                                         appdata.CurrentUserCheckIn.set(m);
-                                                        
+                                                        btn.removeClass("disabled");
                                                         dialog.modal('hide');
                                                         car.removeClass("selected");
                                                         }
@@ -144,13 +153,15 @@ namespace("Parking.App.Models");
             car.addClass("selected");
 
             if(appdata.CurrentUser.isAdmin()) {
+                
+
+                
+            } else {
                 // Display user selection box.
                 var dialog = $(this.el).find(".js-confirmation-dialog");
                 var msg = dialog.find(".js-message");
                 msg.html(i18n.get("Main_ConfirmCheckinMessage").replace("{{Alias}}", space.get("Alias")));
-                
-                $(this.el).find(".js-confirmation-dialog").modal(); 
-            } else {
+
                 // Display confirm dialog.
                 $(this.el).find(".js-confirmation-dialog").modal();
                 
@@ -163,10 +174,13 @@ namespace("Parking.App.Models");
          */
         renderCheckedInSpaces: function() {
             var map = $(this.el);
-
+            
             $(this.el).find(".js-space").removeClass("used").removeClass("me").addClass("available");
             if(appdata.CheckinsCurrent) { 
-                appdata.CheckinsCurrent.map(function(checkin) { 
+                appdata.CheckinsCurrent.map(function(checkin) {
+                    if(checkin.isCheckedOut()) {
+                        return;
+                    } 
                     var spaceId = checkin.get("SpaceId");
                     var spaceUI = map.find("[data-spaceid=" + spaceId + "].js-space");
                     spaceUI.removeClass("available").addClass("used");
