@@ -3047,30 +3047,6 @@ namespace Sieena.Parking.API.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String PhoneOffce
-        {
-            get
-            {
-                return _PhoneOffce;
-            }
-            set
-            {
-                OnPhoneOffceChanging(value);
-                ReportPropertyChanging("PhoneOffce");
-                _PhoneOffce = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("PhoneOffce");
-                OnPhoneOffceChanged();
-            }
-        }
-        private global::System.String _PhoneOffce;
-        partial void OnPhoneOffceChanging(global::System.String value);
-        partial void OnPhoneOffceChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
         public global::System.String PhoneOfficeExtension
         {
             get
@@ -3137,6 +3113,54 @@ namespace Sieena.Parking.API.Models
         private global::System.String _ProfilePictureUrl;
         partial void OnProfilePictureUrlChanging(global::System.String value);
         partial void OnProfilePictureUrlChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String PhoneOffice
+        {
+            get
+            {
+                return _PhoneOffice;
+            }
+            set
+            {
+                OnPhoneOfficeChanging(value);
+                ReportPropertyChanging("PhoneOffice");
+                _PhoneOffice = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("PhoneOffice");
+                OnPhoneOfficeChanged();
+            }
+        }
+        private global::System.String _PhoneOffice;
+        partial void OnPhoneOfficeChanging(global::System.String value);
+        partial void OnPhoneOfficeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ContactEmail
+        {
+            get
+            {
+                return _ContactEmail;
+            }
+            set
+            {
+                OnContactEmailChanging(value);
+                ReportPropertyChanging("ContactEmail");
+                _ContactEmail = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ContactEmail");
+                OnContactEmailChanged();
+            }
+        }
+        private global::System.String _ContactEmail;
+        partial void OnContactEmailChanging(global::System.String value);
+        partial void OnContactEmailChanged();
 
         #endregion
     

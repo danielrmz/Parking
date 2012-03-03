@@ -59,6 +59,7 @@
       <resource path="~/Content/Templates/Shared/DashboardNotification.html" />
       <resource path="~/Content/Templates/Shared/DashboardNotifications.html" />
       <resource path="~/Content/Templates/Shared/HeaderUserInfo.html" />
+      <resource path="~/Content/Templates/Shared/PopUserInfo.html" />
     </resourceSet>
 
     <resourceSet name="PluginsCss" type="css">

@@ -36,7 +36,7 @@ namespace Sieena.Parking.API.Models.Interfaces
 
         [DataType(DataType.Text)]
         [Display(Name = "Office Phone")]
-        string PhoneOffce { get; set; }
+        string PhoneOffice { get; set; }
 
         [DataType(DataType.Text)]
         [Display(Name = "Office Extension")]
@@ -45,6 +45,11 @@ namespace Sieena.Parking.API.Models.Interfaces
         [DataType(DataType.Text)]
         [Display(Name = "Cellphone")]
         string PhoneCel { get; set; }
+
+        [DataType(DataType.Text)]
+        [Display(Name = "Contact Email")]
+        string ContactEmail { get; set; }
+
 
         [DataType(DataType.Text)]
         [Display(Name = "Profile Pic url")]

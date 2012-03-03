@@ -21,6 +21,12 @@ namespace("Parking.Configuration");
                         "es-MX": ['','ro','do','ro','to']
                         };
     
+    resources.getMonthName = function(monthId) {
+        var locale = config["locale"] || "en-US"; 
+        var resrc  = resources.Months[locale] || resources.Months["en-US"];
+        return resrc[monthId];
+    };
+
     resources.i18n.get = function(id) { 
         var locale          = config["locale"] || "en-US";
         var localeResources = resources["i18n"][locale] || {};

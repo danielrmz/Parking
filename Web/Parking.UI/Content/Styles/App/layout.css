@@ -45,6 +45,9 @@ footer {
 .right {
   float: right; }
 
+.clearfix {
+  clear: both; }
+
 .right-alignment {
   text-align: right; }
 
@@ -53,6 +56,13 @@ label, input, button, select, textarea {
 
 /* @endgroup */
 /* @group Bootstrap customizations */
+.popover-inner {
+  width: auto;
+  min-width: 280px; }
+
+.modal-open .popover {
+  z-index: 1039; }
+
 .modal-backdrop, .modal-backdrop.fade.in {
   opacity: 0.8; }
 

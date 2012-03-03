@@ -150,6 +150,14 @@ namespace("Parking.App.Base");
     };
 
     /**
+     * Register helper to display short timestamps
+     */
+    Handlebars.registerHelper('shortDate', function(time) {
+        var str = time.getDate() + "/"+ resources.getMonthName(parseInt(time.getMonth()))  + "/" + time.getFullYear() +" " + time.getHours() + ":" + time.getMinutes();
+        return str;
+    });
+
+    /**
      * Register time ago helper for the templates.
      */
     Handlebars.registerHelper('timeAgo', function(time) {

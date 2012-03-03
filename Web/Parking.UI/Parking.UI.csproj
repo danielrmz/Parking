@@ -215,6 +215,7 @@
     <Content Include="Content\Styles\Plugins\jquery.gritter.css" />
     <Content Include="Content\Templates\Account\Login.html" />
     <Content Include="Content\Templates\Parking\Home.html" />
+    <Content Include="Content\Templates\Shared\PopUserInfo.html" />
     <Content Include="Content\Templates\Shared\DashboardNotification.html" />
     <Content Include="Content\Templates\Shared\DashboardNotifications.html" />
     <Content Include="Content\Templates\Shared\Dashboard.html" />

@@ -181,10 +181,11 @@
           <Property Name="LastName" Type="nvarchar" MaxLength="255" />
           <Property Name="Gender" Type="nvarchar" MaxLength="1" />
           <Property Name="PhoneHome" Type="nvarchar" MaxLength="255" />
-          <Property Name="PhoneOffce" Type="nvarchar" MaxLength="255" />
+          <Property Name="PhoneOffice" Type="nvarchar" MaxLength="255" />
           <Property Name="PhoneOfficeExtension" Type="nvarchar" MaxLength="255" />
           <Property Name="PhoneCel" Type="nvarchar" MaxLength="255" />
           <Property Name="ProfilePictureUrl" Type="nvarchar" MaxLength="255" />
+          <Property Name="ContactEmail" Type="nvarchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="UserRoles">
           <Key>
@@ -377,10 +378,11 @@
           <Property Name="LastName" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
           <Property Name="Gender" Type="String" MaxLength="1" Unicode="true" FixedLength="false" />
           <Property Name="PhoneHome" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
-          <Property Name="PhoneOffce" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
           <Property Name="PhoneOfficeExtension" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
           <Property Name="PhoneCel" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
           <Property Name="ProfilePictureUrl" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Type="String" Name="PhoneOffice" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ContactEmail" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="UserRole">
           <Key>
@@ -511,12 +513,13 @@
             <ScalarProperty Name="Priority" ColumnName="Priority" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="UserInfos"><EntityTypeMapping TypeName="Sieena.Parking.API.Models.UserInfo"><MappingFragment StoreEntitySet="UserInfos">
-            <ScalarProperty Name="UserId" ColumnName="UserId" />
+            <ScalarProperty Name="ContactEmail" ColumnName="ContactEmail" />
+                <ScalarProperty Name="PhoneOffice" ColumnName="PhoneOffice" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
             <ScalarProperty Name="FirstName" ColumnName="FirstName" />
             <ScalarProperty Name="LastName" ColumnName="LastName" />
             <ScalarProperty Name="Gender" ColumnName="Gender" />
             <ScalarProperty Name="PhoneHome" ColumnName="PhoneHome" />
-            <ScalarProperty Name="PhoneOffce" ColumnName="PhoneOffce" />
             <ScalarProperty Name="PhoneOfficeExtension" ColumnName="PhoneOfficeExtension" />
             <ScalarProperty Name="PhoneCel" ColumnName="PhoneCel" />
             <ScalarProperty Name="ProfilePictureUrl" ColumnName="ProfilePictureUrl" />
@@ -576,7 +579,7 @@
         <EntityTypeShape EntityType="Sieena.Parking.API.Models.SpaceLocation" Width="1.5" PointX="6.75" PointY="6.75" Height="2.0853483072916674" IsExpanded="true" />
         <EntityTypeShape EntityType="Sieena.Parking.API.Models.Space" Width="1.5" PointX="8.75" PointY="0.75" Height="2.0853483072916674" IsExpanded="true" />
         <EntityTypeShape EntityType="Sieena.Parking.API.Models.UserEndpoint" Width="1.5" PointX="9" PointY="3.75" Height="1.7566536458333388" IsExpanded="true" />
-        <EntityTypeShape EntityType="Sieena.Parking.API.Models.UserInfo" Width="1.5" PointX="8.75" PointY="6.75" Height="2.4140429687500031" IsExpanded="true" />
+        <EntityTypeShape EntityType="Sieena.Parking.API.Models.UserInfo" Width="1.5" PointX="8.75" PointY="6.75" Height="2.5783902994791656" IsExpanded="true" />
         <EntityTypeShape EntityType="Sieena.Parking.API.Models.UserRole" Width="1.5" PointX="0.75" PointY="9.75" Height="1.2636116536458388" IsExpanded="true" />
         <EntityTypeShape EntityType="Sieena.Parking.API.Models.User" Width="1.5" PointX="2.75" PointY="9.75" Height="1.9210009765625031" IsExpanded="true" />
         <EntityTypeShape EntityType="Sieena.Parking.API.Models.SpaceBlocking" Width="1.5" PointX="5.375" PointY="9.75" Height="1.2636116536458388" />

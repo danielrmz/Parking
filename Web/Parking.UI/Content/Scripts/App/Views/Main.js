@@ -74,7 +74,7 @@ namespace("Parking.App.Models");
         "doCheckin": function() { 
             var car = $(this.el).find(".selected");
             var spaceId = car.data("spaceid");
-            var userId = 0;
+            var userId = car.data("tmpUserId");
             var dialog = $(this.el).find(".js-confirmation-dialog");
             var btn = dialog.find(".btn-success");
 
@@ -90,15 +90,21 @@ namespace("Parking.App.Models");
                 UserId: userId
             };
 
-            
+            var onComplete = function() {
+                btn.removeClass("disabled");
+                dialog.modal('hide');
+                $(".modal-backdrop").remove();
+                car.removeClass("selected");
+            };
 
             var checkin = new appmodels.Checkin(data);
-            
+            checkin.on("error", function(model, error) { 
+                onComplete();
+                common.DisplayGlobalError(error.join("<br />"));
+            });
             checkin.save({}, { success: function(m) { 
                                                         appdata.CurrentUserCheckIn.set(m);
-                                                        btn.removeClass("disabled");
-                                                        dialog.modal('hide');
-                                                        car.removeClass("selected");
+                                                        onComplete();
                                                         }
                                             });
 
@@ -109,7 +115,26 @@ namespace("Parking.App.Models");
         /**
          * Shows the details for a checked in user.
          */
-        "showDetailsDialog": function() {},
+        "showDetailsDialog": function(e) {
+            var car = $(e.target);
+            var checkinid = car.data("checkinid"); 
+
+            if(checkinid > 0) {
+                var checkin = appdata.CheckinsCurrent.get(checkinid);
+                var space = appdata.Spaces.get(checkin.get("SpaceId"));
+                var user = appdata.Users.get(checkin.get("UserId"));
+                var popOverTemplate = config.ClientTemplatesUrl + "Shared/PopUserInfo.html";
+                checkin.set("StartTime", checkin.StartTime());
+                apphelpers.RenderTemplate(popOverTemplate, {"user": user.toJSON(), "checkin": checkin.toJSON(), "space": space.toJSON()}, function(content) { 
+                    car.popover({ 
+                                    "trigger": "manual", 
+                                    "title": user.FullName() + "<a class='close' onclick='$(\"[data-spaceid="+space.get("SpaceId")+"]\").popover(\"hide\");'>&times;</a>", 
+                                    "content": content 
+                               });
+                    car.popover("show");
+                }); 
+            } 
+        },
        
         /**
          * Closes the confirmation dialog
@@ -151,7 +176,7 @@ namespace("Parking.App.Models");
 
             // Proceed to open confirmation box
             car.addClass("selected");
-
+            
             if(appdata.CurrentUser.isAdmin()) {
                 
 
@@ -161,6 +186,7 @@ namespace("Parking.App.Models");
                 var dialog = $(this.el).find(".js-confirmation-dialog");
                 var msg = dialog.find(".js-message");
                 msg.html(i18n.get("Main_ConfirmCheckinMessage").replace("{{Alias}}", space.get("Alias")));
+                car.data("tmpUserId", appdata.CurrentUser.get("UserId"));
 
                 // Display confirm dialog.
                 

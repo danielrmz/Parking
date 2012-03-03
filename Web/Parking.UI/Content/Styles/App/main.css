@@ -386,3 +386,12 @@ body > div .popup-container .place {
     font-weight: 700; }
 body > div .popup-container .mail span {
   font-weight: 700; }
+body > div .popup-userinfo {
+  min-width: 300px; }
+  body > div .popup-userinfo .panel-img {
+    margin-right: 10px; }
+    body > div .popup-userinfo .panel-img img {
+      width: 100px; }
+  body > div .popup-userinfo .panel-info label {
+    font-weight: bold;
+    display: inline; }

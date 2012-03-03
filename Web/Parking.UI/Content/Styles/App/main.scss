@@ -322,4 +322,23 @@
 			.icon{}
 		}
 	}
+
+
+	.popup-userinfo {
+		min-width: 300px;
+
+		.panel-img {  
+			img { 
+				width: 100px;
+			}
+			margin-right: 10px;
+		}
+		
+		.panel-info {  
+			label {
+				font-weight: bold;
+				display: inline;
+			}
+		}
+	}
  }

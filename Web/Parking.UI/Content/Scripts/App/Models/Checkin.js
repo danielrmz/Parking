@@ -58,6 +58,59 @@ namespace("Parking.App.Models");
         "initialize": function() {
         },
 
+        "validate": function(attrs) { 
+            
+            var errors = [];
+            if(attrs.SpaceId == 0) {
+                errors.push("A space id must be defined for the checkin model");
+            }
+            if(attrs.UserId == 0) {
+                errors.push("A user id must be specified for the checkin model");
+            }
+            if(errors.length > 0) {
+                return errors;
+            }
+        },
+
+        StartTime: function() {
+            var st = this.get("StartTime");
+            var time = null;
+
+            if(typeof st == "string") {
+                var reg = st.match(/Date\(([0-9]+)\)/);
+                if(reg) {
+                    st = st.replace(/\//g, "");
+                    time = new Date(parseFloat(reg[1]));
+                } else {
+                    time = st;
+                } 
+            } else {
+                time = st;
+            }
+
+            return time;
+        },
+
+        EndTime: function() {
+            var st = this.get("EndTime");
+            var time = null;
+
+            if(typeof st == "string") {
+                var reg = st.match(/Date\(([0-9]+)\)/);
+                if(reg) {
+                    st = st.replace(/\//g, "");
+                    time = new Date(parseFloat(reg[1]));
+                } else {
+                    time = st;
+                } 
+            } else {
+                time = st;
+            }
+
+
+            return time;
+        },
+
         /**
          * Determines if the check in is a saved one and active one.
          * @return {boolean}
@@ -85,6 +138,7 @@ namespace("Parking.App.Models");
                 }
             });
         }
+         
 
     });
 

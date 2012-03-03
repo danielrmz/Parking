@@ -41,13 +41,18 @@ namespace("Parking.App.Models");
             "PhoneOffice": "",
             "PhoneOfficeExtension": "",
             "PhoneCel": "",
-            "ProfilePictureUrl": ""
+            "ProfilePictureUrl": "",
+            "ContactEmail":""
         },
 
         /**
          * @constructor
          */
         "initialize": function() {
+        },
+
+        FullName: function() {  
+            return this.get("FirstName") + " " + this.get("LastName");
         }
 
     });
