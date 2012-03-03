@@ -22,6 +22,9 @@ namespace("Parking.App.Views");
      *
      * @extends appbase.View
      */
+
+    
+
     appviews.Login = appbase.View.extend({
         
         /**
@@ -41,14 +44,17 @@ namespace("Parking.App.Views");
          */
         "render": function (done) {
             var view = this; 
-
             if(appdata.CurrentUser != null && appdata.CurrentUser.get("IsAuthenticated")) {
                 // Redirect to main page. 
                 appdata.Router.navigate("home", true);
+
                 return;
             }
              
+            
             apphelpers.RenderViewTemplate.apply(this, arguments);
+            $(this.el).find(".form-login").animate({opacity:1}, 2000);
+
         },
 
         /**
@@ -80,6 +86,8 @@ namespace("Parking.App.Views");
                         if(data.Error == false) {
                             form.find(".alert-error").hide(); 
                             
+                           
+                            $(self.el).find(".form-login").animate({opacity:0}, 1000);
                             $(self.el).html(""); 
                             appdata.CurrentUser.save(data["Response"]);
                              

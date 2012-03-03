@@ -28,6 +28,7 @@ body > div .container-loading {
     width: 50px;
     margin: 0px auto; }
 body > div .form-login {
+  opacity: 0;
   width: 345px;
   margin: 120px auto 120px auto;
   background: white;
@@ -68,7 +69,7 @@ body > div .container-parking {
       top: 12px;
       width: 53px;
       height: 97px;
-      background: url("/Content/Styles/Images/icn-car-min.png") no-repeat scroll 0 0 transparent;
+      background: url("/Content/Styles/Images/car-sprite.png") no-repeat scroll 0 0 transparent;
       /*Section A*/
       /*Section B*/
       /*Section C*/ }
@@ -76,19 +77,15 @@ body > div .container-parking {
         opacity: 0.5; }
         body > div .container-parking .parking-map .car.available:hover {
           cursor: pointer;
-          opacity: 0.8; }
+          opacity: 1; }
       body > div .container-parking .parking-map .car.used {
-        background: url("/Content/Styles/Images/icn-car-parked.png") no-repeat scroll 0 0 transparent; }
+        background-position: -53px 0; }
       body > div .container-parking .parking-map .car.me {
-        background: url("/Content/Styles/Images/icn-car-me.png") no-repeat scroll 0 0 transparent; }
+        background-position: -106px 0; }
       body > div .container-parking .parking-map .car.selected {
         opacity: 1;
         z-index: 1045;
-        background: url("/Content/Styles/Images/icn-car-parked.png") no-repeat scroll 0 0 transparent;
-        border: 2px solid green;
-        box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.57);
-        -moz-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.57);
-        -webkit-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.57); }
+        background-position: -106px 0; }
       body > div .container-parking .parking-map .car.down {
         -moz-transform: rotate(-180deg);
         -webkit-transform: rotate(-180deg);
@@ -200,6 +197,70 @@ body > div .dialog-confirmation .modal-body p {
     color: #5BB75B;
     font-size: 40px;
     display: block; }
+body > div .dialog-select-user .well {
+  margin: 0;
+  border-radius: 0; }
+body > div .dialog-select-user input.search-query {
+  transition-property: width;
+  transition-duration: 2s;
+  transition-timing-function: ease-in-out;
+  transition-delay: 0s;
+  width: 300px;
+  opacity: 0.5; }
+body > div .dialog-select-user input.search-query:focus {
+  width: 422px;
+  opacity: 1; }
+body > div .dialog-select-user .help-block {
+  border-bottom: 1px solid #EFEFEF;
+  font-size: 11px;
+  padding: 0 10px 3px; }
+body > div .dialog-select-user .label-info {
+  background-color: #3A87AD;
+  font-size: 10px;
+  line-height: 11px;
+  margin-right: 5px;
+  text-transform: none; }
+body > div .dialog-select-user .available-user {
+  margin: 0;
+  max-height: 293px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  width: auto;
+  padding-bottom: 10px; }
+  body > div .dialog-select-user .available-user li {
+    float: left;
+    list-style-type: none;
+    margin: 10px 10px 0;
+    padding: 5px 5px 1px;
+    width: 27%;
+    border: 1px solid transparent;
+    min-height: 31px;
+    position: relative; }
+  body > div .dialog-select-user .available-user img {
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    border: 1px solid #ccc;
+    left: 3px;
+    top: 3px; }
+  body > div .dialog-select-user .available-user span {
+    display: block;
+    height: 19px;
+    margin-left: 32px;
+    margin-top: 3px;
+    overflow: hidden;
+    text-overflow: ellipsis; }
+  body > div .dialog-select-user .available-user li.selected {
+    background-color: #5BB75B;
+    border-color: #458E45;
+    border-radius: 2px 2px 2px 2px;
+    box-shadow: 0 1px 14px -8px black inset;
+    color: #FFFFFF;
+    text-shadow: 1px 0px 2px #000000; }
+  body > div .dialog-select-user .available-user li.selected img {
+    border-color: #fff; }
+body > div .dialog-select-user .modal-body {
+  padding: 0; }
 body > div .new-car {
   background: url("../Images/icn-new-car.png") no-repeat center 0 transparent;
   width: 49px;

@@ -163,9 +163,13 @@ namespace("Parking.App.Models");
                 msg.html(i18n.get("Main_ConfirmCheckinMessage").replace("{{Alias}}", space.get("Alias")));
 
                 // Display confirm dialog.
-                $(this.el).find(".js-confirmation-dialog").modal();
                 
+                dialog.modal();
+                dialog.off("hide").on("hide", function(){car.removeClass("selected");}
+                );                
             }
+
+            
 
         },
 

@@ -54,7 +54,7 @@ label, input, button, select, textarea {
 /* @endgroup */
 /* @group Bootstrap customizations */
 .modal-backdrop, .modal-backdrop.fade.in {
-  opacity: 0.5; }
+  opacity: 0.8; }
 
 .btn-group .btn {
   color: white;

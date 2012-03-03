@@ -38,15 +38,16 @@
 			margin: 0px auto;
 		}
 	}
+
 	.form-login {
+		opacity:0;
 		width: 345px;
 		margin: 120px auto 120px auto;
 		background: white; 
 		padding: 10px 20px 5px; 
 		box-shadow: #999 0 0 5px 0px;
 		-webkit-box-shadow: #999 0 0 5px 0px;
-		-moz-box-shadow: #999 0 0 5px 0px;
-		 
+		-moz-box-shadow: #999 0 0 5px 0px;		 
 		border-radius: 3px;
 
 		.fields {
@@ -96,33 +97,29 @@
 				top:12px; 
 				width:53px; 
 				height:97px; 
-				background: url("/Content/Styles/Images/icn-car-min.png") no-repeat scroll 0 0 transparent; 
+				background: url("/Content/Styles/Images/car-sprite.png") no-repeat scroll 0 0 transparent; 
 
 				&.available {
 					opacity: 0.5;
 					
 					&:hover {
 						cursor:pointer; 
-						opacity:0.8;
+						opacity:1;
 					}
 				}
 
 				&.used {
-					background: url("/Content/Styles/Images/icn-car-parked.png") no-repeat scroll 0 0 transparent; 
+					background-position:-53px 0; 
 				}
 
 				&.me {
-					background: url("/Content/Styles/Images/icn-car-me.png") no-repeat scroll 0 0 transparent; 
+					background-position:-106px 0; 
 				}
 
 				&.selected {
 					opacity: 1;
 					z-index: 1045;
-					background: url("/Content/Styles/Images/icn-car-parked.png") no-repeat scroll 0 0 transparent; 
-					border: 2px solid green;
-					box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.57);
-					-moz-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.57);
-					-webkit-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.57);
+					background-position:-106px 0; 					
 				}
 
 				&.down {
@@ -202,7 +199,54 @@
 			font-size: 40px;
 			display: block;
 		}
+
+		
 	}
+
+	.dialog-select-user
+	{
+		.well{margin:0; border-radius:0}
+		input.search-query{
+			transition-property: width;
+			transition-duration: 2s;
+			transition-timing-function: ease-in-out;
+			transition-delay: 0s;
+			width:300px;
+			opacity:0.5;
+		}
+
+		input.search-query:focus{
+			width:422px;
+			opacity:1;
+		}
+
+		.help-block {
+			border-bottom: 1px solid #EFEFEF;
+			font-size: 11px;
+			padding: 0 10px 3px;
+		}
+
+		.label-info {
+			background-color: #3A87AD;
+			font-size: 10px;
+			line-height: 11px;
+			margin-right: 5px;
+			text-transform: none;
+		}
+
+		.available-user{
+			margin: 0;max-height: 293px;overflow-x: hidden;overflow-y: auto;width: auto;padding-bottom:10px;
+			li{float: left; list-style-type: none; margin: 10px 10px 0; padding: 5px 5px 1px; width: 27%; border:1px solid transparent; min-height:31px; position:relative}
+			img{position:absolute; width:28px; height:28px; border:1px solid #ccc; left:3px; top:3px;}
+			span {display: block;height: 19px;margin-left: 32px;margin-top: 3px;overflow: hidden;text-overflow: ellipsis;}
+			li.selected {background-color: #5BB75B;border-color: #458E45;border-radius: 2px 2px 2px 2px;box-shadow: 0 1px 14px -8px #000000 inset;color: #FFFFFF;text-shadow: 1px 0px 2px #000000;}	
+			li.selected img{border-color:#fff}
+			
+		}
+		.modal-body{padding: 0;}
+	
+	}
+
 	 
 	.new-car
 	{
