@@ -7,6 +7,8 @@
 namespace("Parking.App.Data");
 namespace("Parking.App.Views");
 namespace("Parking.App.Models");
+namespace("Parking.Resources");
+namespace("Parking.Resources.i18n");
 
 (function ($, parking) {
     var i18n           = parking["Resources"]["i18n"];
