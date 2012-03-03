@@ -96,6 +96,8 @@ body > div .container-parking {
         -webkit-transform: rotate(-90deg);
         -o-transform: rotate(-90deg);
         -ms-transform: rotate(-90deg); }
+      body > div .container-parking .parking-map .car.red {
+        background-position: -159px 0; }
       body > div .container-parking .parking-map .car.a2 {
         left: 55px; }
       body > div .container-parking .parking-map .car.a3 {
