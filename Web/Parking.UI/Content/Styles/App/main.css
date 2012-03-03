@@ -204,7 +204,8 @@ body > div .dialog-select-user .well {
   border-radius: 0; }
 body > div .dialog-select-user input.search-query {
   transition-property: width;
-  transition-duration: 2s;
+  transition-property: opacity;
+  transition-duration: 5s;
   transition-timing-function: ease-in-out;
   transition-delay: 0s;
   width: 300px;
@@ -244,7 +245,8 @@ body > div .dialog-select-user .available-user {
     height: 28px;
     border: 1px solid #ccc;
     left: 3px;
-    top: 3px; }
+    top: 3px;
+    overflow: hidden; }
   body > div .dialog-select-user .available-user span {
     display: block;
     height: 19px;

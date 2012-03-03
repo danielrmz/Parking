@@ -212,7 +212,8 @@
 		.well{margin:0; border-radius:0}
 		input.search-query{
 			transition-property: width;
-			transition-duration: 2s;
+			transition-property: opacity;
+			transition-duration: 5s;
 			transition-timing-function: ease-in-out;
 			transition-delay: 0s;
 			width:300px;
@@ -241,7 +242,7 @@
 		.available-user{
 			margin: 0;max-height: 293px;overflow-x: hidden;overflow-y: auto;width: auto;padding-bottom:10px;
 			li{float: left; list-style-type: none; margin: 10px 10px 0; padding: 5px 5px 1px; width: 27%; border:1px solid transparent; min-height:31px; position:relative}
-			img{position:absolute; width:28px; height:28px; border:1px solid #ccc; left:3px; top:3px;}
+			img{position:absolute; width:28px; height:28px; border:1px solid #ccc; left:3px; top:3px;overflow:hidden}
 			span {display: block;height: 19px;margin-left: 32px;margin-top: 3px;overflow: hidden;text-overflow: ellipsis;}
 			li.selected {background-color: #5BB75B;border-color: #458E45;border-radius: 2px 2px 2px 2px;box-shadow: 0 1px 14px -8px #000000 inset;color: #FFFFFF;text-shadow: 1px 0px 2px #000000;}	
 			li.selected img{border-color:#fff}

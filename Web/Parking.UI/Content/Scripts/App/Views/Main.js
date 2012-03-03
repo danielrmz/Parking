@@ -36,6 +36,9 @@ namespace("Parking.Resources.i18n");
             
             appdata.CheckinsCurrent.on("remove", this.onRemove, this);
             appdata.CheckinsCurrent.on("add", this.onAdd, this);
+            this.UserSearch = new appviews.UserList();
+
+              
         },
 
         /**
@@ -58,6 +61,9 @@ namespace("Parking.Resources.i18n");
 
             // Update checked in spaces.
             this.renderCheckedInSpaces();
+
+            this.UserSearch.el = $(this.el).find(".cph-users");
+            this.UserSearch.render();
         },
         
         /**
@@ -192,8 +198,9 @@ namespace("Parking.Resources.i18n");
             car.addClass("selected");
             
             if(appdata.CurrentUser.isAdmin()) {
-                
-
+                var dialog = $(this.el).find(".dialog-select-user");
+                dialog.modal();
+                dialog.off("hide").on("hide", function(){car.removeClass("selected");});
                 
             } else {
                 // Display user selection box.

@@ -147,6 +147,7 @@
     <Content Include="Content\Scripts\App\Models\UserInformation.js" />
     <Content Include="Content\Scripts\App\Router.js" />
     <Content Include="Content\Scripts\App\Collections\CheckinsHistory.js" />
+    <Content Include="Content\Scripts\App\Views\UserList.js" />
     <Content Include="Content\Scripts\App\Views\DashboardNotifications.js" />
     <Content Include="Content\Scripts\App\Views\Dashboard.js" />
     <Content Include="Content\Scripts\App\Views\HeaderUserInfo.js" />
@@ -165,7 +166,6 @@
     <Content Include="Content\Styles\Images\bg-horizontal.png" />
     <Content Include="Content\Styles\Images\Bootstrap\glyphicons-halflings-white.png" />
     <Content Include="Content\Styles\Images\Bootstrap\glyphicons-halflings.png" />
-    <Content Include="Content\Styles\Images\car-sprite.png" />
     <Content Include="Content\Styles\Images\Gritter\gritter-long.png" />
     <Content Include="Content\Styles\Images\Gritter\gritter.png" />
     <Content Include="Content\Styles\Images\Gritter\ie-spacer.gif" />
@@ -221,6 +221,7 @@
     <Content Include="Content\Templates\Shared\DashboardNotifications.html" />
     <Content Include="Content\Templates\Shared\Dashboard.html" />
     <Content Include="Content\Templates\Shared\HeaderUserInfo.html" />
+    <Content Include="Content\Templates\Shared\UserList.htm" />
     <Content Include="Content\Templates\Static\About.html" />
     <Content Include="Content\Templates\Static\Help.html" />
     <Content Include="Content\Templates\Static\Privacy.html" />
