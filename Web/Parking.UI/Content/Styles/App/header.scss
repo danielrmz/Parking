@@ -215,11 +215,63 @@ header {
 	}
 
 	.panel-notifications {
-		float: right;  
-        height: 51px;
-        margin-bottom: 30px;
-        overflow-x: hidden;
-        overflow-y: hidden;
+		float: right; 
+		height: 51px;
+		margin-bottom: 30px;
+		overflow-x: hidden;
+		overflow-y: hidden;
+
+		ul {
+			list-style: none; 
+			li {
+				position: relative;
+				width: 180px;
+				text-align: left;
+				float: right;
+				background: #52545C;
+				border: 1px outset #44454D;
+				border-top: 0;
+				border-left: 0;
+				padding: 3px;
+				color: white;
+				font-weight: 300;
+				font-size: 11px;
+				margin-left: 10px; 
+		
+				.user {
+					padding: 8px;
+					line-height: 13px;
+					span {
+						display: block; 
+					}
+				}
+            
+				img {
+					height: 40px;
+					width: 40px;
+					max-height: 40px;
+					max-width: 40px;
+					float: left;
+					margin-right: 7px; 
+			
+				}
+
+				&.transitioning {
+					position: absolute;
+				}
+        
+				&.in img {
+					border: 2px solid #669E00; 
+				}
+		
+				&.out img {
+				border: 2px solid #932F00; 
+				}
+		}
+	}
+
+}
+    
 
 		ul {
 			list-style: none; 
