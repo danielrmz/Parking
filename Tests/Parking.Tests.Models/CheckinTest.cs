@@ -11,7 +11,7 @@ namespace Sieena.Parking.Tests.Models
     [TestClass]
     public class CheckinTest
     {
-        [TestMethod]
+        //[TestMethod]
         public void CheckInTest()
         {
             //Checkin.ClearSpace(28);
@@ -24,7 +24,7 @@ namespace Sieena.Parking.Tests.Models
             Assert.IsNotNull(added.CheckInId);
         }
 
-        [TestMethod]
+        //[TestMethod]
         public void CheckOutTest()
         {
             Checkin added = Checkin.GetLastForUser(92);
