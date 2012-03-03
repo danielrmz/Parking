@@ -125,14 +125,26 @@ namespace("Parking.App.Models");
                 var user = appdata.Users.get(checkin.get("UserId"));
                 var popOverTemplate = config.ClientTemplatesUrl + "Shared/PopUserInfo.html";
                 checkin.set("StartTime", checkin.StartTime());
+
                 apphelpers.RenderTemplate(popOverTemplate, {"user": user.toJSON(), "checkin": checkin.toJSON(), "space": space.toJSON()}, function(content) { 
                     car.popover({ 
                                     "trigger": "manual", 
+                                    "placement": function(popover, car) { 
+                                        var carLeft = $(car).offset()["left"];
+                                        var popoverWidth = $(popover).width();
+                                        var parentOffset = $(car).offsetParent().offset()["left"];
+                                        var length = carLeft + (popoverWidth == 0 ? 330 : popoverWidth) + parentOffset + 60;
+                                         
+                                        if(length > $(window).width()) {
+                                            return "left";
+                                        }
+                                        return "right";
+                                    },
                                     "title": user.FullName() + "<a class='close' onclick='$(\"[data-spaceid="+space.get("SpaceId")+"]\").popover(\"hide\");'>&times;</a>", 
                                     "content": content 
                                });
-                    car.popover("show");
-                }); 
+                    car.popover("show"); 
+                });
             } 
         },
        
@@ -253,7 +265,8 @@ namespace("Parking.App.Models");
             var spaceId = checkin.get("SpaceId");
             var car = $(this.el).find("[data-spaceid=" + spaceId + "]");
             car.data("checkinid", null); 
-            car.removeClass("used").removeClass("me").addClass("available");
+            car.removeClass("used").removeClass("me").addClass("available"); 
+            car.popover("hide");
         }
 
         
