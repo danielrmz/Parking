@@ -166,6 +166,7 @@
     <Content Include="Content\Styles\Images\bg-horizontal.png" />
     <Content Include="Content\Styles\Images\Bootstrap\glyphicons-halflings-white.png" />
     <Content Include="Content\Styles\Images\Bootstrap\glyphicons-halflings.png" />
+    <Content Include="Content\Styles\Images\car-sprite.png" />
     <Content Include="Content\Styles\Images\Gritter\gritter-long.png" />
     <Content Include="Content\Styles\Images\Gritter\gritter.png" />
     <Content Include="Content\Styles\Images\Gritter\ie-spacer.gif" />
