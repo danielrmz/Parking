@@ -92,6 +92,10 @@
       <Project>{C1D175EC-4991-4D72-B073-5B0072224155}</Project>
       <Name>Parking.Common.Utils</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Parking.API.Models\Parking.API.Models.csproj">
+      <Project>{160EAC2B-7C52-405A-80A0-2B020CC51549}</Project>
+      <Name>Parking.API.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
