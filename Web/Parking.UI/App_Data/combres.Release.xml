@@ -106,6 +106,7 @@
       <resource path="~/Content/Scripts/App/Views/Main.js"  />
       <resource path="~/Content/Scripts/App/Views/Dashboard.js"  />
       <resource path="~/Content/Scripts/App/Views/DashboardNotifications.js"  />
+      <resource path="~/Content/Scripts/App/Views/UserList.js"  />
 
       <!-- Models -->
       <resource path="~/Content/Scripts/App/Models/UserSession.js"  />
