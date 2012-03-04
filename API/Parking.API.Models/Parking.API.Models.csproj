@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{160EAC2B-7C52-405A-80A0-2B020CC51549}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Sieena.Parking.API.Models</RootNamespace>
+    <AssemblyName>Parking.API.Models</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DataAnnotationsExtensions">
+      <HintPath>..\..\packages\DataAnnotationsExtensions.1.0.1\lib\NETFramework40\DataAnnotationsExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\packages\Newtonsoft.Json.4.0.8\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.DirectoryServices.AccountManagement" />
+    <Reference Include="System.DirectoryServices.Protocols" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="TropoCSharp">
+      <HintPath>..\..\packages\tropo-webapi.1.0.2\lib\net40\TropoCSharp.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="EntityContext.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EntityContext.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Exceptions\APIException.cs" />
+    <Compile Include="Exceptions\AccessException.cs" />
+    <Compile Include="Exceptions\CheckinExistsException.cs" />
+    <Compile Include="Exceptions\InvalidTokenException.cs" />
+    <Compile Include="Exceptions\ModelValidationException.cs" />
+    <Compile Include="Interfaces\ISpaceBlocking.cs" />
+    <Compile Include="Interfaces\IParkingModel.cs" />
+    <Compile Include="Interfaces\IUser.cs" />
+    <Compile Include="Interfaces\IUserRole.cs" />
+    <Compile Include="Interfaces\IUserInfo.cs" />
+    <Compile Include="Interfaces\IUserEndpoint.cs" />
+    <Compile Include="Interfaces\ISpace.cs" />
+    <Compile Include="Interfaces\ISpaceLocation.cs" />
+    <Compile Include="Interfaces\IRole.cs" />
+    <Compile Include="Interfaces\IPlace.cs" />
+    <Compile Include="Interfaces\IPlaceMap.cs" />
+    <Compile Include="Interfaces\IOAuthToken.cs" />
+    <Compile Include="Interfaces\IOAuthProvider.cs" />
+    <Compile Include="Interfaces\INotification.cs" />
+    <Compile Include="Interfaces\IEndpoint.cs" />
+    <Compile Include="Interfaces\ICheckin.cs" />
+    <Compile Include="Interfaces\IApplication.cs" />
+    <Compile Include="Interfaces\IAccessType.cs" />
+    <Compile Include="Interfaces\ISession.cs" />
+    <Compile Include="Models\AccessType.cs" />
+    <Compile Include="Models\Application.cs" />
+    <Compile Include="Models\Checkin.cs" />
+    <Compile Include="Models\SpaceBlocking.cs" />
+    <Compile Include="Models\Notification.cs" />
+    <Compile Include="Models\Endpoint.cs" />
+    <Compile Include="Models\Place.cs" />
+    <Compile Include="Models\Role.cs" />
+    <Compile Include="Models\Session.cs" />
+    <Compile Include="Models\Space.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserInfo.cs" />
+    <Compile Include="Views\CheckinNotification.cs" />
+    <Compile Include="Views\LogOnModel.cs" />
+    <Compile Include="Views\ChangePassword.cs" />
+    <Compile Include="Views\UserInformation.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\Extensions.cs" />
+    <Compile Include="Utilities\ModelValidationError.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <EntityDeploy Include="EntityContext.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>EntityContext.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\Parking.Common.Resources\Parking.Common.Resources.csproj">
+      <Project>{E53B19E7-BCF9-4F29-96D0-84CBF1424D99}</Project>
+      <Name>Parking.Common.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\Parking.Common.Utils\Parking.Common.Utils.csproj">
+      <Project>{C1D175EC-4991-4D72-B073-5B0072224155}</Project>
+      <Name>Parking.Common.Utils</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

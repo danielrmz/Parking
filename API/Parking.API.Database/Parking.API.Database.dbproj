@@ -40,8 +40,10 @@
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <OutputPath>.\sql\debug\</OutputPath>
     <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
-    <TargetConnectionString>Data Source=b26576c2-587f-42e2-84fa-9fe50000baae.sqlserver.sequelizer.com;Persist Security Info=True;User ID=qqnfafsndywwohmm;Pooling=False</TargetConnectionString>
-    <TargetDatabase>dbb26576c2587f42e284fa9fe50000baae</TargetDatabase>
+    <TargetConnectionString>
+    </TargetConnectionString>
+    <TargetDatabase>
+    </TargetDatabase>
     <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
     <SuppressWarnings>
     </SuppressWarnings>
@@ -50,7 +52,7 @@
     <DeployToDatabase>False</DeployToDatabase>
   </PropertyGroup>
   <!--Import the settings-->
-  <Import Project="Targets\Microsoft.Data.Schema.SqlTasks.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\TeamData\Microsoft.Data.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Scripts" />
     <Folder Include="Scripts\Pre-Deployment" />
@@ -143,6 +145,9 @@
     <Build Include="Schema Objects\Schemas\dbo\Tables\Constraints\DF_Users_IsActive.defconst.sql">
       <SubType>Code</SubType>
     </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Constraints\DF_Spaces_SpaceDirection.defconst.sql">
+      <SubType>Code</SubType>
+    </Build>
     <Build Include="Schema Objects\Database Level Objects\Storage\Files\dbb26576c2587f42e284fa9fe50000baae_log.sqlfile.sql">
       <SubType>Code</SubType>
     </Build>
@@ -156,6 +161,12 @@
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Schemas\dbo\Tables\Indexes\IX_Notifications_2.index.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Indexes\IX_Sessions.index.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Indexes\IX_Sessions_1.index.sql">
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\PK_OAuthProviders.pkey.sql">
@@ -191,13 +202,19 @@
     <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\PK_Users.pkey.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\PK_UserInfos.pkey.sql">
-      <SubType>Code</SubType>
-    </Build>
     <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\PK_Notifications.pkey.sql">
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\PK_Spaces.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\PK_Sessions.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\PK_UserInfos.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\PK_SpaceBlockings.pkey.sql">
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\PK_Places.pkey.sql">
@@ -233,13 +250,19 @@
     <Build Include="Schema Objects\Schemas\dbo\Tables\Users.table.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\UserInfos.table.sql">
-      <SubType>Code</SubType>
-    </Build>
     <Build Include="Schema Objects\Schemas\dbo\Tables\Notifications.table.sql">
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Schemas\dbo\Tables\Spaces.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Sessions.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\UserInfos.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\SpaceBlockings.table.sql">
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Schemas\dbo\Tables\Places.table.sql">

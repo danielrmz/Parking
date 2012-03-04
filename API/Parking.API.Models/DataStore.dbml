@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="DataSource" Class="DataStoreDataContext" AccessModifier="Internal" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=b26576c2-587f-42e2-84fa-9fe50000baae.sqlserver.sequelizer.com;Persist Security Info=True;User ID=qqnfafsndywwohmm" SettingsObjectName="Sieena.Parking.API.Models.Properties.Settings" SettingsPropertyName="DataSourceConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.AccessTypes" Member="AccessTypes">
+    <Type Name="AccessType">
+      <Column Name="AccessTypeId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="AccessTypeName" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Users" Member="Users">
+    <Type Name="User">
+      <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="NVarChar(1024) NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="LastAccess" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="IsActive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedAt" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Applications" Member="Applications">
+    <Type Name="Application">
+      <Column Name="ApplicationId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ApplicationName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedAt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Checkins" Member="Checkins">
+    <Type Name="Checkin">
+      <Column Name="CheckInId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="StartTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="EndTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SpaceId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ReservationId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RegisteredFrom" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="RegisteredBy" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Endpoints" Member="Endpoints">
+    <Type Name="Endpoint">
+      <Column Name="EndpointTypeId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="EndpointName" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Notifications" Member="Notifications">
+    <Type Name="Notification">
+      <Column Name="NotificationId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Message" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="CreatedAt" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedBy" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CheckInId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ReadAt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.OAuthProviders" Member="OAuthProviders">
+    <Type Name="OAuthProvider">
+      <Column Name="ProviderId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ProviderName" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.OAuthTokens" Member="OAuthTokens">
+    <Type Name="OAuthToken">
+      <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ProviderId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ConsumerKey" Type="System.String" DbType="NVarChar(512) NOT NULL" CanBeNull="false" />
+      <Column Name="ConsumerSecret" Type="System.String" DbType="NVarChar(512) NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedAt" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PlaceMaps" Member="PlaceMaps">
+    <Type Name="PlaceMap">
+      <Column Name="PlaceMapId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="PlaceId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PlaceMapUrl" Type="System.String" DbType="NVarChar(512) NOT NULL" CanBeNull="false" />
+      <Column Name="PlaceMapVersion" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedAt" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Places" Member="Places">
+    <Type Name="Place">
+      <Column Name="PlaceId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PlaceName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CreatedAt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Roles" Member="Roles">
+    <Type Name="Role">
+      <Column Name="RoleId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="RoleName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="RoleLevel" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SpaceLocations" Member="SpaceLocations">
+    <Type Name="SpaceLocation">
+      <Column Name="SpaceId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MarkerTop" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MarkerLeft" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MarkerWidth" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MarkerHeight" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CanvasWidth" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CanvasHeight" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Spaces" Member="Spaces">
+    <Type Name="Space">
+      <Column Name="SpaceId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PlaceId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Alias" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="AccessTypeId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="OwnerId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedAt" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Deleted" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserEndpoints" Member="UserEndpoints">
+    <Type Name="UserEndpoint">
+      <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="EndpointTypeId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IsEnabled" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Value" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Priority" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserRoles" Member="UserRoles">
+    <Type Name="UserRole">
+      <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="RoleId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserInfos" Member="UserInfos">
+    <Type Name="UserInfo">
+      <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="LastName" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Gender" Type="System.String" DbType="NVarChar(1)" CanBeNull="true" />
+      <Column Name="PhoneHome" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="PhoneOffce" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="PhoneOfficeExtension" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="PhoneCel" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ProfilePictureUrl" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Sessions" Member="Sessions">
+    <Type Name="Session">
+      <Column Name="SessionId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="UserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CreatedAt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ExpiresAt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Data" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="LastAccess" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

@@ -280,14 +280,6 @@
     <Content Include="Api\Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\API\Parking.API.Modules\Parking.API.Endpoints.csproj">
-      <Project>{A83D4BD4-75EF-4CAE-8363-E3B3CB0EDA67}</Project>
-      <Name>Parking.API.Endpoints</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\API\Parking.Models\Parking.API.Models.csproj">
-      <Project>{160EAC2B-7C52-405A-80A0-2B020CC51549}</Project>
-      <Name>Parking.API.Models</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Common\Parking.Common.Resources\Parking.Common.Resources.csproj">
       <Project>{E53B19E7-BCF9-4F29-96D0-84CBF1424D99}</Project>
       <Name>Parking.Common.Resources</Name>

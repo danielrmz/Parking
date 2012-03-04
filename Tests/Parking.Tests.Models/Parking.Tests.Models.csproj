@@ -53,12 +53,6 @@
     <Compile Include="UserTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\API\Parking.Models\Parking.API.Models.csproj">
-      <Project>{160EAC2B-7C52-405A-80A0-2B020CC51549}</Project>
-      <Name>Parking.API.Models</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
