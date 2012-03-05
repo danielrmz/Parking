@@ -234,7 +234,7 @@ namespace("Parking.Resources.i18n");
             
             if(appdata.CurrentUser.isAdmin()) {
                 var dialog = $(this.el).find(".js-confirmation-dialog.js-dialog-select-user");
-                dialog.modal();
+                dialog.modal('show');
                 dialog.off("hide").on("hide", function(){car.removeClass("selected");});
                 this.UserSelector.trigger("render");
             } else {
@@ -246,7 +246,7 @@ namespace("Parking.Resources.i18n");
 
                 // Display confirm dialog.
                 
-                dialog.modal();
+                dialog.modal('show');
                 dialog.off("hide").on("hide", function(){car.removeClass("selected");} );                
             }
 
