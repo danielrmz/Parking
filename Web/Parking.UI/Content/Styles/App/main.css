@@ -249,7 +249,10 @@ body > div .dialog-select-user .available-user {
     border: 1px solid #ccc;
     left: 3px;
     top: 3px;
-    overflow: hidden; }
+    overflow: hidden;
+    background-color: #FFFFFF;
+    background-image: url("/content/styles/images/user-default.png");
+    text-indent: -699px; }
   body > div .dialog-select-user .available-user span {
     display: block;
     height: 19px;
