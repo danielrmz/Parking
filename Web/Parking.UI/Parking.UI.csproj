@@ -205,6 +205,7 @@
       <DesignTime>True</DesignTime>
     </Content>
     <Content Include="Content\Images\icn-sieena-footer.png" />
+    <Content Include="Content\Styles\Images\user-default.png" />
     <Content Include="Content\Styles\Plugins\Bootstrap\bootstrap-responsive.css" />
     <Content Include="Content\Styles\Plugins\Bootstrap\bootstrap-responsive.min.css" />
     <Content Include="Content\Styles\Plugins\Bootstrap\bootstrap.css" />
