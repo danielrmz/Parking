@@ -201,17 +201,19 @@ body > div .dialog-confirmation .modal-body p {
     display: block; }
 body > div .dialog-select-user .well {
   margin: 0;
-  border-radius: 0; }
+  border-radius: 0;
+  padding: 10px; }
 body > div .dialog-select-user input.search-query {
   transition-property: width;
   transition-property: opacity;
   transition-duration: 5s;
   transition-timing-function: ease-in-out;
   transition-delay: 0s;
-  width: 300px;
-  opacity: 0.5; }
+  width: 505px;
+  opacity: 0.5;
+  border-radius: 5px; }
 body > div .dialog-select-user input.search-query:focus {
-  width: 422px;
+  width: 505px;
   opacity: 1; }
 body > div .dialog-select-user .help-block {
   border-bottom: 1px solid #EFEFEF;
@@ -232,6 +234,7 @@ body > div .dialog-select-user .available-user {
   padding-bottom: 10px; }
   body > div .dialog-select-user .available-user li {
     float: left;
+    cursor: pointer;
     list-style-type: none;
     margin: 10px 10px 0;
     padding: 5px 5px 1px;
@@ -399,3 +402,5 @@ body > div .popup-userinfo {
   body > div .popup-userinfo .panel-info label {
     font-weight: bold;
     display: inline; }
+  body > div .popup-userinfo .panel-info .panel-actions {
+    margin-top: 10px; }

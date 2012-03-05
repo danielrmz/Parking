@@ -54,9 +54,6 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="TropoCSharp">
-      <HintPath>..\..\packages\tropo-webapi.1.0.2\lib\net40\TropoCSharp.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EntityContext.Designer.cs">
@@ -91,6 +88,7 @@
     <Compile Include="Models\AccessType.cs" />
     <Compile Include="Models\Application.cs" />
     <Compile Include="Models\Checkin.cs" />
+    <Compile Include="Models\MessageQueue.cs" />
     <Compile Include="Models\SpaceBlocking.cs" />
     <Compile Include="Models\Notification.cs" />
     <Compile Include="Models\Endpoint.cs" />

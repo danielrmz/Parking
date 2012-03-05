@@ -352,6 +352,22 @@ namespace Sieena.Parking.API.Models
             }
         }
         private ObjectSet<SpaceBlocking> _SpaceBlockings;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<MessageQueue> MessageQueues
+        {
+            get
+            {
+                if ((_MessageQueues == null))
+                {
+                    _MessageQueues = base.CreateObjectSet<MessageQueue>("MessageQueues");
+                }
+                return _MessageQueues;
+            }
+        }
+        private ObjectSet<MessageQueue> _MessageQueues;
 
         #endregion
         #region AddTo Methods
@@ -498,6 +514,14 @@ namespace Sieena.Parking.API.Models
         public void AddToSpaceBlockings(SpaceBlocking spaceBlocking)
         {
             base.AddObject("SpaceBlockings", spaceBlocking);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the MessageQueues EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToMessageQueues(MessageQueue messageQueue)
+        {
+            base.AddObject("MessageQueues", messageQueue);
         }
 
         #endregion
@@ -1001,6 +1025,163 @@ namespace Sieena.Parking.API.Models
         private global::System.String _EndpointName;
         partial void OnEndpointNameChanging(global::System.String value);
         partial void OnEndpointNameChanged();
+
+        #endregion
+    
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="Sieena.Parking.API.Models", Name="MessageQueue")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class MessageQueue : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new MessageQueue object.
+        /// </summary>
+        /// <param name="messageId">Initial value of the MessageId property.</param>
+        /// <param name="to">Initial value of the To property.</param>
+        /// <param name="text">Initial value of the Text property.</param>
+        /// <param name="createdAt">Initial value of the CreatedAt property.</param>
+        public static MessageQueue CreateMessageQueue(global::System.Int32 messageId, global::System.String to, global::System.String text, global::System.DateTime createdAt)
+        {
+            MessageQueue messageQueue = new MessageQueue();
+            messageQueue.MessageId = messageId;
+            messageQueue.To = to;
+            messageQueue.Text = text;
+            messageQueue.CreatedAt = createdAt;
+            return messageQueue;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 MessageId
+        {
+            get
+            {
+                return _MessageId;
+            }
+            set
+            {
+                if (_MessageId != value)
+                {
+                    OnMessageIdChanging(value);
+                    ReportPropertyChanging("MessageId");
+                    _MessageId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("MessageId");
+                    OnMessageIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _MessageId;
+        partial void OnMessageIdChanging(global::System.Int32 value);
+        partial void OnMessageIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String To
+        {
+            get
+            {
+                return _To;
+            }
+            set
+            {
+                OnToChanging(value);
+                ReportPropertyChanging("To");
+                _To = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("To");
+                OnToChanged();
+            }
+        }
+        private global::System.String _To;
+        partial void OnToChanging(global::System.String value);
+        partial void OnToChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Text
+        {
+            get
+            {
+                return _Text;
+            }
+            set
+            {
+                OnTextChanging(value);
+                ReportPropertyChanging("Text");
+                _Text = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Text");
+                OnTextChanged();
+            }
+        }
+        private global::System.String _Text;
+        partial void OnTextChanging(global::System.String value);
+        partial void OnTextChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime CreatedAt
+        {
+            get
+            {
+                return _CreatedAt;
+            }
+            set
+            {
+                OnCreatedAtChanging(value);
+                ReportPropertyChanging("CreatedAt");
+                _CreatedAt = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CreatedAt");
+                OnCreatedAtChanged();
+            }
+        }
+        private global::System.DateTime _CreatedAt;
+        partial void OnCreatedAtChanging(global::System.DateTime value);
+        partial void OnCreatedAtChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> Delivered
+        {
+            get
+            {
+                return _Delivered;
+            }
+            set
+            {
+                OnDeliveredChanging(value);
+                ReportPropertyChanging("Delivered");
+                _Delivered = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Delivered");
+                OnDeliveredChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _Delivered;
+        partial void OnDeliveredChanging(Nullable<global::System.Boolean> value);
+        partial void OnDeliveredChanged();
 
         #endregion
     

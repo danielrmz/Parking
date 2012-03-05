@@ -18,6 +18,7 @@
 }
 
  body > div {
+
 	h2{ font-size:14px;  line-height:20px; border-bottom:1px dotted $ColorLightGray; padding-bottom:10px;}
 	
 	input:focus, textarea:focus {
@@ -27,6 +28,7 @@
 		box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 3px rgba(82,168,236,0.6);
 
 	}
+
 	.container-loading {
 		width: 200px;
 		margin: 100px auto 50px;
@@ -209,20 +211,26 @@
 
 	.dialog-select-user
 	{
-		.well{margin:0; border-radius:0}
-		input.search-query{
+		.well {
+			margin: 0; 
+			border-radius: 0;
+			padding: 10px;
+		}
+
+		input.search-query {
 			transition-property: width;
 			transition-property: opacity;
 			transition-duration: 5s;
 			transition-timing-function: ease-in-out;
 			transition-delay: 0s;
-			width:300px;
-			opacity:0.5;
+			width: 505px;
+			opacity: 0.5;
+			border-radius: 5px;
 		}
 
-		input.search-query:focus{
-			width:422px;
-			opacity:1;
+		input.search-query:focus {
+			width:505px;
+			opacity: 1;
 		}
 
 		.help-block {
@@ -239,9 +247,9 @@
 			text-transform: none;
 		}
 
-		.available-user{
+		.available-user {
 			margin: 0;max-height: 293px;overflow-x: hidden;overflow-y: auto;width: auto;padding-bottom:10px;
-			li{float: left; list-style-type: none; margin: 10px 10px 0; padding: 5px 5px 1px; width: 27%; border:1px solid transparent; min-height:31px; position:relative}
+			li{float: left; cursor:pointer; list-style-type: none; margin: 10px 10px 0; padding: 5px 5px 1px; width: 27%; border:1px solid transparent; min-height:31px; position:relative}
 			img{position:absolute; width:28px; height:28px; border:1px solid #ccc; left:3px; top:3px;overflow:hidden}
 			span {display: block;height: 19px;margin-left: 32px;margin-top: 3px;overflow: hidden;text-overflow: ellipsis;}
 			li.selected {background-color: #5BB75B;border-color: #458E45;border-radius: 2px 2px 2px 2px;box-shadow: 0 1px 14px -8px #000000 inset;color: #FFFFFF;text-shadow: 1px 0px 2px #000000;}	
@@ -343,6 +351,10 @@
 			label {
 				font-weight: bold;
 				display: inline;
+			}
+
+			.panel-actions {
+				margin-top: 10px;
 			}
 		}
 	}

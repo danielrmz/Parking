@@ -31,7 +31,16 @@ namespace("Parking.App.Collections");
          *
          * @type {Parking.App.Models.UserInformation}
          */
-        "model": appmodels.UserInformation
+        "model": appmodels.UserInformation,
+
+        searchByName: function(query) {
+            if(query == "") { return this; }
+
+            var pattern = new RegExp(query, "gi");
+            return _(this.filter(function(data) { 
+                return pattern.test(data.FullName());
+            }));
+        }
          
     });
 

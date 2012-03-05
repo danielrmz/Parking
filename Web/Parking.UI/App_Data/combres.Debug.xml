@@ -60,6 +60,8 @@
       <resource path="~/Content/Templates/Shared/DashboardNotifications.html" />
       <resource path="~/Content/Templates/Shared/HeaderUserInfo.html" />
       <resource path="~/Content/Templates/Shared/PopUserInfo.html" />
+      <resource path="~/Content/Templates/Shared/UserSelector.html" />
+      <resource path="~/Content/Templates/Shared/UserSelectorItem.html" />
     </resourceSet>
 
     <resourceSet name="PluginsCss" type="css">
@@ -106,7 +108,7 @@
       <resource path="~/Content/Scripts/App/Views/Main.js"  />
       <resource path="~/Content/Scripts/App/Views/Dashboard.js"  />
       <resource path="~/Content/Scripts/App/Views/DashboardNotifications.js"  />
-      <resource path="~/Content/Scripts/App/Views/UserList.js"  />
+      <resource path="~/Content/Scripts/App/Views/UserSelector.js"  />
 
       <!-- Models -->
       <resource path="~/Content/Scripts/App/Models/UserSession.js"  />

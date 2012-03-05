@@ -219,4 +219,25 @@
   <data name="TEST" xml:space="preserve">
     <value>TEST</value>
   </data>
+  <data name="UserInfo_ArrivalTime" xml:space="preserve">
+    <value>Arrived at</value>
+  </data>
+  <data name="UserInfo_ContactEmail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="UserInfo_PhoneCel" xml:space="preserve">
+    <value>Cellphone</value>
+  </data>
+  <data name="UserInfo_PhoneOffice" xml:space="preserve">
+    <value>Phone No.</value>
+  </data>
+  <data name="UserInfo_PhoneOfficeExtension" xml:space="preserve">
+    <value>Ext</value>
+  </data>
+  <data name="UserSelector_FilterText" xml:space="preserve">
+    <value>Type a name to filter down the list...</value>
+  </data>
+  <data name="UserSelector_Title" xml:space="preserve">
+    <value>Select User</value>
+  </data>
 </root>

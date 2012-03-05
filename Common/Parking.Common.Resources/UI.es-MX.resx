@@ -219,4 +219,25 @@
   <data name="TEST" xml:space="preserve">
     <value>PRUEBA</value>
   </data>
+  <data name="UserInfo_ArrivalTime" xml:space="preserve">
+    <value>Hora de llegada</value>
+  </data>
+  <data name="UserInfo_ContactEmail" xml:space="preserve">
+    <value>Correo</value>
+  </data>
+  <data name="UserInfo_PhoneCel" xml:space="preserve">
+    <value>Celular</value>
+  </data>
+  <data name="UserInfo_PhoneOffice" xml:space="preserve">
+    <value>Telefono</value>
+  </data>
+  <data name="UserInfo_PhoneOfficeExtension" xml:space="preserve">
+    <value>Ext</value>
+  </data>
+  <data name="UserSelector_FilterText" xml:space="preserve">
+    <value>Teclee un nombre para filtrar la lista...</value>
+  </data>
+  <data name="UserSelector_Title" xml:space="preserve">
+    <value>Seleccione usuario</value>
+  </data>
 </root>

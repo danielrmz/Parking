@@ -59,22 +59,33 @@ namespace Sieena.Parking.API.Modules
         public Checkin CheckInPUT(User u, APISession session, DynamicDictionary parms)
         {
             Checkin t = this.Bind(); 
-            if (t.UserId == 0)
-            {
-                t.UserId = u.UserId;
-            }
-            
             t.RegisteredBy = u.UserId;
 
             // Check roles to see if the user can post
-
+            if (!u.IsAdmin() || t.UserId == 0)
+            {
+                t.UserId = u.UserId;
+            }
+             
             return Checkin.CheckIn(t);
         }
 
-        [Api("/{id}", ApiMethod.POST, true, AccessLevel.Admin)]
+        [Api("/{id}", ApiMethod.DELETE, true)]
         public Checkin CheckOut(User u, APISession session, DynamicDictionary parms)
         {
-            return Checkin.CheckOut(parms["id"]);
+            if (u.IsAdmin())
+            {
+                return Checkin.CheckOut(parms["id"]);
+            }
+            else
+            {
+                Checkin cin = Checkin.GetLastForUser(u.UserId);
+                if (cin.EndTime.HasValue)
+                {
+                    return cin;
+                }
+                return Checkin.CheckOut(cin.CheckInId);
+            }
         }
 
 

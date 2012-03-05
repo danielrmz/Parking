@@ -132,11 +132,12 @@ namespace("Parking.App.Models");
          */
         Checkout: function() {
             var self = this;
-            $.post(config.APIEndpointUrl + "checkins/", function(data) { 
+            $.ajax(config.APIEndpointUrl + "checkins/" + this.get("CheckInId"),{ type: 'DELETE', success: function(data) { 
                 if(data["Error"] == false) {
-                    self.set(data["Response"]);
+                        self.set(data["Response"]);
                 }
-            });
+            }});
+             
         }
          
 

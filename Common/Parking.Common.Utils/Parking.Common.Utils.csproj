@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\packages\Newtonsoft.Json.4.0.8\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
@@ -41,15 +44,26 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="TropoCSharp">
+      <HintPath>..\..\packages\tropo-webapi.1.0.2\lib\net40\TropoCSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Typesafe.Mailgun">
+      <HintPath>..\..\packages\mnailgun.0.2.1\lib\4.0\Typesafe.Mailgun.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\packages\Pubnub.3.0\Pubnub.cs">
       <Link>Pubnub.cs</Link>
     </Compile>
+    <Compile Include="Tropo.cs" />
+    <Compile Include="Emailer.cs" />
     <Compile Include="PubnubFactory.cs" />
     <Compile Include="Crypto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Time.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

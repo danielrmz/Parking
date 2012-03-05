@@ -10,6 +10,7 @@
           <EntitySet Name="Applications" EntityType="Sieena.Parking.API.Models.Store.Applications" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Checkins" EntityType="Sieena.Parking.API.Models.Store.Checkins" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Endpoints" EntityType="Sieena.Parking.API.Models.Store.Endpoints" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="MessageQueue" EntityType="Sieena.Parking.API.Models.Store.MessageQueue" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Notifications" EntityType="Sieena.Parking.API.Models.Store.Notifications" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="OAuthProviders" EntityType="Sieena.Parking.API.Models.Store.OAuthProviders" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="OAuthTokens" EntityType="Sieena.Parking.API.Models.Store.OAuthTokens" store:Type="Tables" Schema="dbo" />
@@ -59,6 +60,16 @@
           </Key>
           <Property Name="EndpointTypeId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="EndpointName" Type="nvarchar" Nullable="false" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="MessageQueue">
+          <Key>
+            <PropertyRef Name="MessageId" />
+          </Key>
+          <Property Name="MessageId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="To" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Text" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+          <Property Name="Delivered" Type="bit" />
         </EntityType>
         <EntityType Name="Notifications">
           <Key>
@@ -229,6 +240,7 @@
           <EntitySet Name="UserRoles" EntityType="Sieena.Parking.API.Models.UserRole" />
           <EntitySet Name="Users" EntityType="Sieena.Parking.API.Models.User" />
           <EntitySet Name="SpaceBlockings" EntityType="Sieena.Parking.API.Models.SpaceBlocking" />
+          <EntitySet Name="MessageQueues" EntityType="Sieena.Parking.API.Models.MessageQueue" />
         </EntityContainer>
         <EntityType Name="AccessType">
           <Key>
@@ -411,6 +423,16 @@
           <Property Type="Int32" Name="BaseSpaceId" Nullable="false" />
           <Property Type="Int32" Name="BlockingSpaceId" Nullable="false" />
         </EntityType>
+        <EntityType Name="MessageQueue">
+          <Key>
+            <PropertyRef Name="MessageId" />
+          </Key>
+          <Property Type="Int32" Name="MessageId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="To" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Text" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CreatedAt" Nullable="false" />
+          <Property Type="Boolean" Name="Delivered" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -544,6 +566,17 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="MessageQueues">
+            <EntityTypeMapping TypeName="Sieena.Parking.API.Models.MessageQueue">
+              <MappingFragment StoreEntitySet="MessageQueue">
+                <ScalarProperty Name="Delivered" ColumnName="Delivered" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="To" ColumnName="To" />
+                <ScalarProperty Name="MessageId" ColumnName="MessageId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -583,6 +616,7 @@
         <EntityTypeShape EntityType="Sieena.Parking.API.Models.UserRole" Width="1.5" PointX="0.75" PointY="9.75" Height="1.2636116536458388" IsExpanded="true" />
         <EntityTypeShape EntityType="Sieena.Parking.API.Models.User" Width="1.5" PointX="2.75" PointY="9.75" Height="1.9210009765625031" IsExpanded="true" />
         <EntityTypeShape EntityType="Sieena.Parking.API.Models.SpaceBlocking" Width="1.5" PointX="5.375" PointY="9.75" Height="1.2636116536458388" />
+        <EntityTypeShape EntityType="Sieena.Parking.API.Models.MessageQueue" Width="1.5" PointX="7.375" PointY="10.75" Height="1.7566536458333388" />
       </Diagram>
     </Diagrams>
   </Designer>

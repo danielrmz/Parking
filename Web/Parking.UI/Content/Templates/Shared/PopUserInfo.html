@@ -2,11 +2,18 @@
     <div class="panel-img left">
         <img src="{{user.ProfilePictureUrl}}" alt="" />
     </div>
-    <div class="panel-info right">
-        <label>Telefono:</label> {{user.PhoneOffice}}, <label>ext</label> {{user.PhoneOfficeExtension}} <br />
-        <label>Celular:</label> {{user.PhoneCel}}  <br />
-        <label>Correo:</label> {{user.ContactEmail}} <br />
-        <label>Hora de llegada:</label> {{shortDate checkin.StartTime}}
+    <div class="panel-info left">
+        <label>{{i18n.UserInfo_PhoneOffice}}:</label> {{user.PhoneOffice}}, <label>{{i18n.UserInfo_PhoneOfficeExtension}}</label> {{user.PhoneOfficeExtension}} <br />
+        <label>{{i18n.UserInfo_PhoneCel}}:</label> {{user.PhoneCel}}  <br />
+        <label>{{i18n.UserInfo_ContactEmail}}:</label> {{user.ContactEmail}} <br />
+        <label>{{i18n.UserInfo_ArrivalTime}}:</label> {{shortDate checkin.StartTime}}
+        <br />
+        <div class="panel-actions">
+            {{#if currentUser.IsAdmin}}
+            <a class="btn js-checkout" data-checkinid="{{checkin.CheckInId}}">Checkout</a> 
+            {{/if}}
+            <a class="btn">Enviar mensaje</a>
+        </div>
     </div>
 
     <div class="clearfix"></div>

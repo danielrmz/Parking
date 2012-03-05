@@ -267,6 +267,19 @@ namespace Sieena.Parking.API.Models
             }
         }
 
+        public List<Checkin> GetCheckinsIBlock()
+        {
+            List<Checkin> checkins = new List<Checkin>();
+
+            using (EntityContext ctx = new EntityContext())
+            {
+                List<int> blockins = ctx.SpaceBlockings.Where(sb => sb.BaseSpaceId == this.SpaceId).Select(sb => sb.BlockingSpaceId).ToList();
+                checkins = ctx.Checkins.Where(c => !c.EndTime.HasValue && blockins.Contains(c.SpaceId) && c.CheckInId != this.CheckInId).ToList();
+            }
+
+            return checkins;
+        }
+
         #endregion
 
         #region Notifications
@@ -297,11 +310,35 @@ namespace Sieena.Parking.API.Models
                     // Insert custom actions based on the type here.
 
                     break;
-                case NotificationType.Checkout  :
+                case NotificationType.Checkout:
                     // Insert custom actions based on the type here.
-
+                    NotifyBlockingUsers(checkin, checkin.GetCheckinsIBlock());
                     break;
             }
+        }
+
+        private static void NotifyBlockingUsers(Checkin baseCheckin, List<Checkin> checkins) {
+            List<UserInfo> userInfos = new List<UserInfo>();
+            List<User> users = new List<User>();
+            List<int> userIds = checkins.Select(c => c.UserId).ToList();
+            UserInfo requestingUser;
+            using (EntityContext ctx = new EntityContext())
+            {
+                requestingUser = ctx.UserInfos.Where(ui => ui.UserId == baseCheckin.UserId).FirstOrDefault();
+
+                userInfos = ctx.UserInfos.Where(ui => userIds.Contains(ui.UserId)).ToList();
+                users = ctx.Users.Where(ui => userIds.Contains(ui.UserId)).ToList();
+            }
+
+            users.ForEach(user =>
+            {
+                //EmailerFactory.SendMail(user.Email, "Parking! Blocking detected. ", string.Format("User {0} {1} is looking for you, he/she needs you to move your car. Thanks!", requestingUser.FirstName, requestingUser.LastName));
+            });
+
+            userInfos.ForEach(ui => {
+                MessageQueue.Save(new MessageQueue() { To = ui.ContactEmail, Text = "You need to move your car!" });
+                //TropoFactory.SendMessage(ui.ContactEmail, "You need to move your car!");
+            });
         }
 
 

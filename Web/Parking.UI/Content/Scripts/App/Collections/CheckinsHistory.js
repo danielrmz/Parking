@@ -72,7 +72,7 @@ namespace("Parking.App.Collections");
             // Only show the last X ones. 
 
             var sorted = this.sortBy(function(checkin){ 
-                var start     = checkin.get("StartTime");
+                var start     = checkin.get("LastModified");
                 var checkinId = checkin.get("CheckInId");
 
                 dnFormat = start.match("([0-9]{13})");

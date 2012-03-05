@@ -1,0 +1,22 @@
+﻿<div class="modal dialog-confirmation dialog-select-user fade js-confirmation-dialog js-dialog-select-user " >
+    <div class="modal-header">
+        <a class="close" data-dismiss="modal">×</a>
+        <h3>{{i18n.UserSelector_Title}}</h3>
+    </div>
+    <form class="well form-search" enctype="application/x-www-form-urlencoded" method="get" action="">
+        <input type="text" class="input-medium search-query" placeholder="{{i18n.UserSelector_FilterText}}">
+        <!--<button type="submit" class="btn js-button-search">Search</button> -->
+    </form>
+    <!-- <p class="help-block"><span class="label label-info">Help!</span>Here you can lorem ipsum lorum.</p> -->
+    <div class="modal-body">
+        <div class="js-message">
+            <ul class="available-user">
+            </ul>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <span class="left error js-errors"></span>
+        <a href="#" class="btn btn-success js-btn-success">{{i18n.Buttons_Checkin}}</a> 
+        <a href="#" class="btn btn-close" data-dismiss="modal">{{i18n.Buttons_Cancel}}</a>
+    </div>
+</div>

@@ -10,6 +10,65 @@ namespace("Parking.Common");
 (function($, parking) {
     var common  = parking["Common"]; 
 
+    common.DetectLocation = function(nearSuccessfull) { 
+        if (navigator.geolocation) 
+        {
+	        navigator.geolocation.getCurrentPosition( 
+                function (position) {
+                    function toRad(num) {
+                        return num * Math.PI / 180;
+                    }  
+
+                    var lat1 = position.coords.latitude;
+                    var lon1 = position.coords.longitude;
+                    console.log(lat1);
+                    console.log(lon1);
+                    var baseLat = 25.653876;
+                    var baseLong = -100.38137;
+
+                    var R = 6371; // km
+                    var dLat = toRad(baseLat-lat1);
+                    var dLon = toRad(baseLong-lon1);
+                    var lat1 = toRad(lat1);
+                    var lat2 = toRad(baseLat);
+                     
+                    var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                            Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2); 
+                    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+                    var d = R * c;
+
+                    
+                    //console.log(d);
+                    if((d*1000) > 750) {
+                        console.log("Too far from base point");
+                    } else {
+                        console.log("OK");
+                        nearSuccessfull = nearSuccessfull || function() {};
+                        nearSuccessfull();
+                    }
+                },
+                function(error) { 
+                    switch(error.code) 
+			        {
+				        case error.TIMEOUT:
+					        alert ('Timeout');
+					        break;
+				        case error.POSITION_UNAVAILABLE:
+					        alert ('Position unavailable');
+					        break;
+				        case error.PERMISSION_DENIED:
+					        alert ('Permission denied');
+					        break;
+				        case error.UNKNOWN_ERROR:
+					        alert ('Unknown error');
+					        break;
+			        }
+
+                }
+            );
+        }
+    },
+
     /**
      * Displays a global error modal box
      *

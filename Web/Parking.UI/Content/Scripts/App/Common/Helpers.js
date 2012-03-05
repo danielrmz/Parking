@@ -51,6 +51,9 @@ namespace("Parking.App.Base");
             var locale          = config["locale"] || "en-US";
             var localeResources = resources["i18n"][locale] || {};
             var currentUser     = typeof(appdata.CurrentUser) == 'undefined'? {} : appdata.CurrentUser.toJSON();
+            if(currentUser.Role) {
+                currentUser.IsAdmin = currentUser.Role == "Administrator";
+            }
             var callback =  typeof data == "function" ? data : function() { };
             data = typeof data == "function" ? {} : data;
 
@@ -59,6 +62,7 @@ namespace("Parking.App.Base");
             callback();
         });
 
+        return this;
     };
 
      /**
@@ -78,6 +82,10 @@ namespace("Parking.App.Base");
             var locale          = config["locale"] || "en-US";
             var localeResources = resources["i18n"][locale] || {};
             var currentUser     = typeof(appdata.CurrentUser) == 'undefined'? {} : appdata.CurrentUser.toJSON();
+            if(currentUser.Role) {
+                currentUser.IsAdmin = currentUser.Role == "Administrator";
+            }
+
             data = data || {};
             data["i18n"] = localeResources;
             data["currentUser"] = currentUser; 
@@ -164,7 +172,7 @@ namespace("Parking.App.Base");
         var t = common.FormatTimeAgo(time); 
         return t;
     });
-
+     
     /**
      * Handler to obtain the user's name from cache. 
      */

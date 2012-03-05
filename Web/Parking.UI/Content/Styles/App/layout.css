@@ -51,6 +51,9 @@ footer {
 .right-alignment {
   text-align: right; }
 
+.error {
+  color: red; }
+
 label, input, button, select, textarea {
   font-family: 'Open Sans', sans-serif; }
 
@@ -64,7 +67,7 @@ label, input, button, select, textarea {
   z-index: 1039; }
 
 .modal-backdrop, .modal-backdrop.fade.in {
-  opacity: 0.8; }
+  opacity: 0.5; }
 
 .btn-group .btn {
   color: white;

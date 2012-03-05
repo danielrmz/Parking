@@ -20,9 +20,23 @@ namespace Sieena.Parking.API.Models
     using Interfaces;
     using Exceptions;
     using Sieena.Parking.Common.Utils;
-
+    
     public partial class User : IUser
     {
+        public bool IsAdmin()
+        {
+            using (EntityContext ctx = new EntityContext())
+            {
+                var roles = ctx.UserRoles.Where(u => u.UserId == this.UserId).ToList();
+                var adminRole = ctx.Roles.OrderBy(r => r.RoleLevel).FirstOrDefault();
+                if (roles.Where(r => r.RoleId == adminRole.RoleId).Any())
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public static UserInformation GetUserInformation(User u)
         {
             UserInfo ui = UserInfo.GetByUserId(u.UserId);

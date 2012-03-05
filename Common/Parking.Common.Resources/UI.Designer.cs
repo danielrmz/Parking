@@ -365,5 +365,68 @@ namespace Sieena.Parking.Common.Resources {
                 return ResourceManager.GetString("TEST", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Arrived at.
+        /// </summary>
+        public static string UserInfo_ArrivalTime {
+            get {
+                return ResourceManager.GetString("UserInfo_ArrivalTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email.
+        /// </summary>
+        public static string UserInfo_ContactEmail {
+            get {
+                return ResourceManager.GetString("UserInfo_ContactEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cellphone.
+        /// </summary>
+        public static string UserInfo_PhoneCel {
+            get {
+                return ResourceManager.GetString("UserInfo_PhoneCel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone No..
+        /// </summary>
+        public static string UserInfo_PhoneOffice {
+            get {
+                return ResourceManager.GetString("UserInfo_PhoneOffice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ext.
+        /// </summary>
+        public static string UserInfo_PhoneOfficeExtension {
+            get {
+                return ResourceManager.GetString("UserInfo_PhoneOfficeExtension", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type a name to filter down the list....
+        /// </summary>
+        public static string UserSelector_FilterText {
+            get {
+                return ResourceManager.GetString("UserSelector_FilterText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select User.
+        /// </summary>
+        public static string UserSelector_Title {
+            get {
+                return ResourceManager.GetString("UserSelector_Title", resourceCulture);
+            }
+        }
     }
 }
