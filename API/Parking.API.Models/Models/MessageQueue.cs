@@ -29,6 +29,7 @@ namespace Sieena.Parking.API.Models
         {
             using (EntityContext ctx = new EntityContext())
             {
+                s.CreatedAt = DateTime.Now;
                 ctx.MessageQueues.AddObject(s);
                 
                 ctx.SaveChanges();

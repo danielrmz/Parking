@@ -337,7 +337,7 @@ namespace Sieena.Parking.API.Models
 
             userInfos.ForEach(ui => {
                 MessageQueue.Save(new MessageQueue() { To = ui.ContactEmail, Text = "You need to move your car!" });
-                //TropoFactory.SendMessage(ui.ContactEmail, "You need to move your car!");
+                TropoFactory.SendMessage(ui.ContactEmail, "You need to move your car!");
             });
         }
 
