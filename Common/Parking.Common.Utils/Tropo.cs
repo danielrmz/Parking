@@ -13,13 +13,24 @@ using System.Xml;
 
 namespace Sieena.Parking.Common.Utils
 {
+    /// <summary>
+    /// Wrapper to abstract Tropo's service logic. 
+    /// </summary>
     public static class TropoFactory
     {
         private static Tropo GetInstance() {
             return new Tropo();
         }
 
-        public static string ParseSession(StreamReader reader, Dictionary<string, List<string>> messages)
+        /// <summary>
+        /// Must be used from an endpoint URL. 
+        /// This will parse the active session and send the specified messages. 
+        /// As of now, it only supports sending through the MSN Network IM
+        /// </summary>
+        /// <param name="reader"></param>
+        /// <param name="messages"></param>
+        /// <returns></returns>
+        public static string ExecuteSession(StreamReader reader, Dictionary<string, List<string>> messages)
         {
             string sessionJSON = reader.ReadToEnd();
             Tropo tropo = new Tropo();
@@ -34,7 +45,7 @@ namespace Sieena.Parking.Common.Utils
 
                     foreach (string msg in kvp.Value)
                     {
-                        tropo.Message(new Say(msg), new List<string>() { to }, false, Channel.Text, from, "parkingapp@hotmail.com", Network.Msn, false, 30);
+                        tropo.Message(new Say(msg), new List<string>() { to }, false, Channel.Text, from, from, Network.Msn, false, 30);
                     }
                 }
                 
@@ -45,28 +56,21 @@ namespace Sieena.Parking.Common.Utils
             return tropo.RenderJSON();
         }
 
-        public static void SendMessage(string to, string body)
+        /// <summary>
+        /// Creates a session for the Tropo Service
+        /// </summary> 
+        public static void CreateSession()
         {
-            //inst.CreateSession("");
-            string from = "parkingapp@hotmail.com";
-             
-            IDictionary<string, string> parameters = new Dictionary<string, string>();
-            parameters.Add("to", to);
-            //parameters.Add("fromNumber", from);
-            parameters.Add("channel", Channel.Text);
-            parameters.Add("say", body);
-           // parameters.Add("customerName", "customer Name");
-            parameters.Add("network", Network.Msn);
             Tropo inst = GetInstance();
 
             XmlDocument doc = new XmlDocument();
 
-            string token = "0e098127c8bbff4f94763796f933f4ff252a36ef3cb41b0f011bc911f6ee26e1155bf7946b1fd3d1addc316f";
+            string token = ConfigurationManager.AppSettings["Tropo.APIKey"];
 
-            doc.Load(inst.CreateSession(token, parameters));
+            doc.Load(inst.CreateSession(token));
 
-            string success = doc.SelectSingleNode("session/success").InnerText.ToUpper();
-            string tokenStr   = doc.SelectSingleNode("session/token").InnerText;
+            string success  = doc.SelectSingleNode("session/success").InnerText.ToUpper();
+            string tokenStr = doc.SelectSingleNode("session/token").InnerText;
 
             return;
         }

@@ -332,13 +332,14 @@ namespace Sieena.Parking.API.Models
 
             users.ForEach(user =>
             {
-                //EmailerFactory.SendMail(user.Email, "Parking! Blocking detected. ", string.Format("User {0} {1} is looking for you, he/she needs you to move your car. Thanks!", requestingUser.FirstName, requestingUser.LastName));
+                EmailerFactory.SendMail(user.Email, "Parking! Blocking detected. ", string.Format("User {0} {1} is looking for you, he/she needs you to move your car. Thanks!", requestingUser.FirstName, requestingUser.LastName));
             });
 
             userInfos.ForEach(ui => {
-                MessageQueue.Save(new MessageQueue() { To = ui.ContactEmail, Text = "You need to move your car!" });
-                TropoFactory.SendMessage(ui.ContactEmail, "You need to move your car!");
+                MessageQueue.Save(new MessageQueue() { To = ui.ContactEmail, Text = "You need to move your car!" }); 
             });
+
+            TropoFactory.CreateSession();
         }
 
 

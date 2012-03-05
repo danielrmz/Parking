@@ -34,5 +34,17 @@ namespace Sieena.Parking.Common.Utils
             }
             return null;
         }
+
+        /// <summary>
+        /// Converts a datetime to unixtime.
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
+        public static double ConvertToUnixTime(DateTime date)
+        {
+            DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0);
+            TimeSpan diff = date - origin;
+            return Math.Floor(diff.TotalSeconds);
+        }
     }
 }

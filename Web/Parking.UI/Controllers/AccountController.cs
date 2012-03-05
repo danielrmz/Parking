@@ -11,17 +11,28 @@ using APISession = Sieena.Parking.API.Models.Session;
 using Crypto = Sieena.Parking.Common.Utils.Crypto;
 using i18n = Sieena.Parking.Common.Resources.UI;
 using System.Configuration;
+using Sieena.Parking.Common.Utils;
 
 namespace Sieena.Parking.UI.Controllers
 {
+    /// <summary>
+    /// Account controller
+    /// </summary>
     public class AccountController : Controller
     {
-
+        /// <summary>
+        /// Displays the base page 
+        /// </summary>
+        /// <returns></returns>
         public ActionResult LogOn()
         {
             return View("Blank");
         }
 
+        /// <summary>
+        /// Logs of a user
+        /// </summary>
+        /// <returns></returns>
         public ActionResult LogOff()
         {
             FormsAuthentication.SignOut();
@@ -29,6 +40,12 @@ namespace Sieena.Parking.UI.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        /// <summary>
+        /// Logs a user into the application
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="returnUrl"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult LogOn(LogOnModel model, string returnUrl)
         {
@@ -67,7 +84,7 @@ namespace Sieena.Parking.UI.Controllers
             {
                 Data = new
                     {
-                        Time = ConvertToUnixTime(DateTime.Now),
+                        Time = Time.ConvertToUnixTime(DateTime.Now),
                         Response = data,
                         Type = t,
                         Error = isError
@@ -75,16 +92,6 @@ namespace Sieena.Parking.UI.Controllers
             };
         }
 
-        /// <summary>
-        /// Converts a datetime to unixtime.
-        /// </summary>
-        /// <param name="date"></param>
-        /// <returns></returns>
-        protected double ConvertToUnixTime(DateTime date)
-        {
-            DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0);
-            TimeSpan diff = date - origin;
-            return Math.Floor(diff.TotalSeconds);
-        }
+        
     }
 }
