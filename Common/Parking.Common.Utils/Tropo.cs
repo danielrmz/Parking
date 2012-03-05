@@ -23,7 +23,7 @@ namespace Sieena.Parking.Common.Utils
         {
             string sessionJSON = reader.ReadToEnd();
             Tropo tropo = new Tropo();
-            try
+           // try
             {
                 Session tropoSession = new Session(sessionJSON);
 
@@ -38,7 +38,7 @@ namespace Sieena.Parking.Common.Utils
                     }
                 }
             }
-            catch
+            //catch
             {
             }  
             return tropo.RenderJSON();
