@@ -42,7 +42,7 @@ namespace Sieena.Parking.API.Models
         {
             using (EntityContext ctx = new EntityContext())
             {
-                return ctx.MessageQueues.Where( mq => mq.Delivered == false).ToList();
+                return ctx.MessageQueues.Where( mq => mq.Delivered == false || !mq.Delivered.HasValue).ToList();
             }
         }
 

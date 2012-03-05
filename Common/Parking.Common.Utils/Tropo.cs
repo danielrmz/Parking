@@ -23,7 +23,7 @@ namespace Sieena.Parking.Common.Utils
         {
             string sessionJSON = reader.ReadToEnd();
             Tropo tropo = new Tropo();
-           // try
+            try
             {
                 Session tropoSession = new Session(sessionJSON);
 
@@ -37,8 +37,9 @@ namespace Sieena.Parking.Common.Utils
                         tropo.Message(new Say(msg), new List<string>() { to }, false, Channel.Text, from, "parkingapp@hotmail.com", Network.Msn, false, 30);
                     }
                 }
+                
             }
-            //catch
+            catch
             {
             }  
             return tropo.RenderJSON();
