@@ -77,7 +77,7 @@
       <resource path="~/Content/Styles/App/footer.css"  />
     </resourceSet>
 
-    <resourceSet name="PluginsJs" type="js">
+    <resourceSet name="PluginsJs" type="js" minifierRef="off" >
       <resource path="~/Content/Scripts/Plugins/bootstrap.min.js"  />
       <resource path="~/Content/Scripts/Plugins/jquery.cookie.min.js"  />
       <resource path="~/Content/Scripts/Plugins/namespace.js" />
