@@ -71,6 +71,10 @@
     <Reference Include="Nancy.Serialization.ServiceStack">
       <HintPath>..\..\packages\Nancy.Serialization.ServiceStack.0.9.0\lib\net40\Nancy.Serialization.ServiceStack.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.0.8.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Newtonsoft.Json.4.0.8\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="ServiceStack.Text, Version=3.4.8.9213, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\ServiceStack.Text.3.4.8\lib\ServiceStack.Text.dll</HintPath>
