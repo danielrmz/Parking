@@ -332,7 +332,7 @@ namespace Sieena.Parking.API.Models
 
             users.ForEach(user =>
             {
-                EmailerFactory.SendMail(user.Email, i18n.Notification_EmailMessage, string.Format(i18n.Notification_EmailTitle, requestingUser.FullName));
+                EmailerFactory.SendMail(user.Email, i18n.Notification_EmailTitle, string.Format(i18n.Notification_EmailMessage, requestingUser.FullName));
             });
 
             userInfos.ForEach(ui => {
