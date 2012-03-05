@@ -216,6 +216,15 @@
   <data name="Membership_NotImplemented" xml:space="preserve">
     <value>Feature not implemented</value>
   </data>
+  <data name="Notification_EmailMessage" xml:space="preserve">
+    <value>User {0} is looking for you, he/she needs you to move your car. &lt;br /&gt;Thanks!&lt;br /&gt;MyPlace</value>
+  </data>
+  <data name="Notification_EmailTitle" xml:space="preserve">
+    <value>[MyPlace] Someone needs you to move your car!</value>
+  </data>
+  <data name="Notification_IMMessage" xml:space="preserve">
+    <value>Hi, {0} is looking for you, he/she needs you to move your car. :)</value>
+  </data>
   <data name="TEST" xml:space="preserve">
     <value>TEST</value>
   </data>

@@ -8,7 +8,17 @@ namespace Sieena.Parking.API.Models
 {
     public partial class UserInfo : IUserInfo
     {
-        
+        /// <summary>
+        /// Users full name
+        /// </summary>
+        public string FullName
+        {
+            get
+            {
+                return string.Format("{0} {1}", this.FirstName, this.LastName);
+            }
+        }
+
         /// <summary>
         /// Saves the user extra information
         /// </summary>

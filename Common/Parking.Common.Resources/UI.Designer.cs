@@ -358,6 +358,33 @@ namespace Sieena.Parking.Common.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to User {0} is looking for you, he/she needs you to move your car. &lt;br /&gt;Thanks!&lt;br /&gt;MyPlace.
+        /// </summary>
+        public static string Notification_EmailMessage {
+            get {
+                return ResourceManager.GetString("Notification_EmailMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [MyPlace] Someone needs you to move your car!.
+        /// </summary>
+        public static string Notification_EmailTitle {
+            get {
+                return ResourceManager.GetString("Notification_EmailTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hi, {0} is looking for you, he/she needs you to move your car. :).
+        /// </summary>
+        public static string Notification_IMMessage {
+            get {
+                return ResourceManager.GetString("Notification_IMMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to TEST.
         /// </summary>
         public static string TEST {
