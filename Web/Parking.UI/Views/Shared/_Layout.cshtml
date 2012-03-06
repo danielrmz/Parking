@@ -67,16 +67,16 @@
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script type="text/javascript">window.jQuery || document.write('<script src="/Content/Scripts/Plugins/jquery-1.7.1.min.js"><\/script>')</script>
     @Html.Raw(@WebExtensions.CombresLink("PluginsJs"))
-    @Html.Raw(@WebExtensions.CombresLink("CoreResources", new { async = "true" }))
-    @Html.Raw(@WebExtensions.CombresLink("CoreTemplates", new { async = "true" }))
-    @Html.Raw(@WebExtensions.CombresLink("CoreJs", new { async = "true" }))
+    @Html.Raw(@WebExtensions.CombresLink("CoreResources", new { async = "async" }))
+    @Html.Raw(@WebExtensions.CombresLink("CoreTemplates", new { async = "async" }))
+    @Html.Raw(@WebExtensions.CombresLink("CoreJs", new { async = "async" }))
     
     @RenderSection("Scripts", false)
 
     @Html.Raw("<script>var Parking = Parking || {'Configuration':{}};Parking.Configuration['locale'] = '" + UICulture + "'</script>")
 
     <!-- Analytics -->
-    <script type="text/javascript" async="async">
+    <script type="text/javascript">
         var _gaq = [['_setAccount', 'UA-28738418-1'], ['_trackPageview']];
         (function (d, t) {
                 var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
