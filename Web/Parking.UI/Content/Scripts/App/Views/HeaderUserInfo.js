@@ -47,7 +47,8 @@ namespace("Parking.App.Views");
          * @enum {string}
          */
         "events": {
-           "click .js-logout": "logout"
+           "click .js-logout": "logout",
+           "click .js-profile": "showEditProfileDialog"
         },
 
         /**
@@ -62,6 +63,58 @@ namespace("Parking.App.Views");
             }); 
             
             return false;
+        },
+
+        "showEditProfileDialog": function(e) {
+//            var car = $(e.target);
+            //var spaceId = car.data("spaceid");
+//            var space  = null;
+//            var userId = 0;
+
+//            if(!spaceId || spaceId <= 0 || isNaN(spaceId)) {
+//                common.DisplayGlobalError(i18n.get("Main_ErrorSpaceNotAvailable"));
+//                return;
+//            }
+
+//            space = appdata.Spaces.get(spaceId);
+
+//            if(appdata.CurrentUserCheckIn.isCheckedIn() && !appdata.CurrentUser.isAdmin()) {
+//                // Change to display a warning message
+//                common.DisplayGlobalError(i18n.get("Main_InfoAlreadyCheckedIn"));
+//                return;
+//            }
+
+            // Check that space isn't taken
+//            if(appdata.CheckinsCurrent.isSpaceUsed(spaceId)) {
+//                common.DisplayGlobalError(i18n.get("Main_ErrorSpaceNotAvailable"));
+//                return;
+//            }
+
+            // Proceed to open confirmation box
+//            car.addClass("selected");
+//            
+//            if(appdata.CurrentUser.isAdmin()) {
+//                var dialog = $(this.el).find(".js-confirmation-dialog.js-dialog-select-user");
+//                dialog.modal('show');
+//                dialog.off("hide").on("hide", function(){car.removeClass("selected");});
+//                this.UserSelector.trigger("render");
+//            } else {
+                // Display user selection box.
+                //modal dialog-message dialog-warning js-warning-dialog fade
+                //modal dialog-confirmation js-confirmation-dialog js-dialog-selfuser fade
+                //var dialog = $(this.el).find(".js-confirmation-dialog.js-dialog-selfuser");
+                var dialog = $(this.el).find(".dialog-warning.js-warning-dialog");
+                
+                //var msg = dialog.find(".js-message");
+                //msg.html(i18n.get("Main_ConfirmCheckinMessage").replace("{{Alias}}", space.get("Alias")));
+                //car.data("tmpUserId", appdata.CurrentUser.get("UserId"));
+
+                // Display confirm dialog.
+                
+                dialog.modal('show');
+                //dialog.off("hide").on("hide", function(){car.removeClass("selected");} );
+            //}
+
         }
 
     });
