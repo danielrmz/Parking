@@ -49,9 +49,6 @@
     <Reference Include="EntityFramework">
       <HintPath>..\..\packages\EntityFramework.4.1.10331.0\lib\EntityFramework.dll</HintPath>
     </Reference>
-    <Reference Include="Facebook">
-      <HintPath>..\..\packages\Facebook.5.4.1.0\lib\net40-client\Facebook.dll</HintPath>
-    </Reference>
     <Reference Include="Fasterflect">
       <HintPath>..\..\packages\fasterflect.2.0.1\lib\net40\Fasterflect.dll</HintPath>
     </Reference>
@@ -241,6 +238,7 @@
     <Content Include="Content\Templates\Static\Help.html" />
     <Content Include="Content\Templates\Static\Privacy.html" />
     <Content Include="Content\Templates\Static\Terms.html" />
+    <Content Include="channel.html" />
     <Content Include="crossdomain.xml" />
     <Content Include="Global.asax" />
     <Content Include="humans.txt" />

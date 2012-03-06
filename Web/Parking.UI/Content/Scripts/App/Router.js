@@ -91,6 +91,7 @@ namespace("Parking.App.Data");
                 reconnect : function() { }, 
                 connect : function() { }
         });
+         
     });
 
     appdata.CurrentUser.on("initialized", function() { 

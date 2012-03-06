@@ -56,6 +56,7 @@ namespace("Parking.App.Data");
             apphelpers.RenderViewTemplate.apply(this, arguments); 
         },
 
+
         /**
          * Saves the specified user.
          */
