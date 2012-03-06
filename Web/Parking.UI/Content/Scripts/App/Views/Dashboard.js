@@ -10,7 +10,7 @@ namespace("Parking.App.Data");
 namespace("Parking.Resources");
 namespace("Parking.Resources.i18n");
 
-(function ($, parking) {
+(function ($, parking, undefined) {
     var i18n           = parking["Resources"]["i18n"];
     var common         = parking["Common"];
     var config         = parking["Configuration"];

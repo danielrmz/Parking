@@ -9,11 +9,19 @@
  footer {
 
     & > div {
-		
 		padding-top: 10px;
 	}
+	
+	.separator {
+		padding: 0;
+		color: gray;
+		position: relative;
+		top: -1px;
+		font-size: 7px;
 
-	.right {
+		&::after {
+			content: "\25A0"
+		}
 	}
 
 	.copy {
@@ -37,17 +45,6 @@
 				color: #3A6EA5;
 			}
 			
-		}
-	}
-
-	.separator {
-		padding: 0;
-		color: gray;
-		position: relative;
-		top: -1px;
-		font-size: 7px;
-		&::after {
-			content: "\25A0"
 		}
 	}
 

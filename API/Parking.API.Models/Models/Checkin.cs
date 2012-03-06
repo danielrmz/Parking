@@ -317,6 +317,12 @@ namespace Sieena.Parking.API.Models
             }
         }
 
+        /// <summary>
+        /// Notifies the users that are blocking the specified checkin/space. 
+        /// At the moment it sends IM and Email regardless of the users' preferences
+        /// </summary>
+        /// <param name="baseCheckin"></param>
+        /// <param name="checkins"></param>
         private static void NotifyBlockingUsers(Checkin baseCheckin, List<Checkin> checkins) {
             List<UserInfo> userInfos = new List<UserInfo>();
             List<User> users = new List<User>();
@@ -330,17 +336,26 @@ namespace Sieena.Parking.API.Models
                 users = ctx.Users.Where(ui => userIds.Contains(ui.UserId)).ToList();
             }
 
+            Pubnub pub = PubnubFactory.GetInstance();
+
             users.ForEach(user =>
             {
+                // Notify via email
                 EmailerFactory.SendMail(user.Email, i18n.Notification_EmailTitle, string.Format(i18n.Notification_EmailMessage, requestingUser.FullName));
+
+                // Notify via UI (if the user has it open)
+                pub.Publish(PubnubFactory.Channels.NotifyBlock, new { UserId = user.UserId, RequestingUser = requestingUser.UserId });
+            
             });
 
             userInfos.ForEach(ui => {
                 if (!string.IsNullOrEmpty(ui.ContactEmail))
                 {
+                    // Notify via IM
                     MessageQueue.Save(new MessageQueue() { To = ui.ContactEmail, Text = string.Format(i18n.Notification_IMMessage, requestingUser.FullName) });
                 }
             });
+
 
             TropoFactory.CreateSession();
         }

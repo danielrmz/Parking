@@ -6,7 +6,7 @@
 namespace("Parking.App.Base");
 namespace("Parking.App.Models");
 
-(function ($, parking) {
+(function ($, parking, undefined) {
     var config         = parking["Configuration"];
     var appbase        = parking["App"]["Base"];
     var appmodels      = parking["App"]["Models"]; 
@@ -58,6 +58,11 @@ namespace("Parking.App.Models");
         "initialize": function() {
         },
 
+        /**
+         * Validates the model
+         * @param {Object} attrs
+         * @return {Array.<string>}
+         */
         "validate": function(attrs) { 
             
             var errors = [];
@@ -72,6 +77,10 @@ namespace("Parking.App.Models");
             }
         },
 
+        /**
+         * Returns the start time correctly formatted
+         * @return {Date}
+         */
         StartTime: function() {
             var st = this.get("StartTime");
             var time = null;
@@ -91,6 +100,10 @@ namespace("Parking.App.Models");
             return time;
         },
 
+         /**
+         * Returns the end time correctly formatted
+         * @return {Date}
+         */
         EndTime: function() {
             var st = this.get("EndTime");
             var time = null;

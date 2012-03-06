@@ -83,113 +83,124 @@ namespace Sieena.Parking.API.Modules.Classes
              })
              .ToList()
              .ForEach( mi => {
-                ApiAttribute tag = mi.GetCustomAttributes(typeof(ApiAttribute), true).First() as ApiAttribute;
-                
-                Func<dynamic, Response> method = (parameters) => {
-                    try
-                    {
-                        // Authentication
-                        if (tag.IsSecure())
-                        {
-                            var header_token= Context.Request.Headers["x-parking-token"].FirstOrDefault() ?? string.Empty;
-                            var header_sign = Context.Request.Headers["x-parking-signature"].FirstOrDefault() ?? string.Empty;
+                List<ApiAttribute> tags = mi.GetCustomAttributes(typeof(ApiAttribute), true).Select( s => s as ApiAttribute).ToList();
 
-                            // Validate signature and token.
-                            string tokenRaw  = string.Empty;
-
-                            if (!string.IsNullOrEmpty(header_token))
-                            {
-                                try
-                                {
-                                    tokenRaw = Crypto.DecryptStringAES(header_token, ConfigurationManager.AppSettings["Crypto.Secret"]);
-                                }
-                                catch (Exception e)
-                                {
-                                    throw new InvalidTokenException(e);
-                                }
-                            }
-                            else
-                            {
-                                throw new InvalidTokenException("Unable to access resource: " + tag.GetRoute());
-                            }
-
-                            Guid tokenGuid  = new Guid(tokenRaw);
-
-                            #region Validate session token.
-
-                            APISession sess = APISession.Get(tokenGuid);
-                            if (sess == null)
-                            {
-                                throw new AccessException(Resources.API_ErrorSessionRequired);
-                            }
-
-                            User user = User.GetById(sess.UserId.Value);
-
-                            if (tag.GetRoleLevel() > 0)
-                            {
-                                Role role = Role.GetRolesForUser(user.Email).OrderByDescending( r => r.RoleLevel ).FirstOrDefault();
-                                if (role == null)
-                                {
-                                    throw new APIException(Resources.API_ErrorNoRolesAssigned);
-                                }
-
-                                if (role.RoleLevel < tag.GetRoleLevel())
-                                {
-                                    throw new AccessException(Resources.API_ErrorSessionPrivilegesRequired);
-                                }
-                            }
-
-                            if (mi.GetParameters().Length != 3)
-                            {
-                                throw new APIException(Resources.API_ErrorMethodDefinition);
-                            }
-
-                            #endregion
-
-                            return Envelope(mi.Invoke(this, new object[] { user, sess, parameters }));
-
-                            //Authorization: "AWS" + " " + AWSAccessKeyID + ":" +   Base64(HMAC-SHA1(UTF-8(Date), UTF-8(AWSSecretAccessKey)))
-                        }
-
-                        return Envelope(mi.Invoke(this, new object[] { parameters }));
-                    } catch(ModelValidationException me) {
-                        Response r = Response.AsJson(new
-                        {
-                            Time = ConvertToUnixTime(DateTime.Now),
-                            Response = me.Errors.ToArray(),
-                            Type = "ValidationResult",
-                            Error = true,
-                            IsGlobalError = false
-                        });
-                        return r;
-                    }
-                    catch (Exception e) {
-                        return Envelope(e);
-                    }
-                };
-
-                string route = tag.GetRoute();
-                switch (tag.GetMethod())
+                foreach (ApiAttribute tag in tags)
                 {
-                    case ApiMethod.GET:
-                        Get[route] = method;
-                        break;
-                    case ApiMethod.POST:
-                        Post[route] = method;
-                        break;
-                    case ApiMethod.PUT:
-                        Put[route] = method;
-                        break;
-                    case ApiMethod.DELETE:
-                        Delete[route] = method;
-                        break;
-                    case ApiMethod.GETPOST:
-                        Get[route] = method;
-                        Post[route] = method;
-                        break;
+                    #region Route handler
+                    Func<dynamic, Response> method = (parameters) =>
+                    {
+                        try
+                        {
+                            // Authentication
+                            if (tag.IsSecure())
+                            {
+                                var header_token = Context.Request.Headers["x-parking-token"].FirstOrDefault() ?? string.Empty;
+                                var header_sign = Context.Request.Headers["x-parking-signature"].FirstOrDefault() ?? string.Empty;
+
+                                // Validate signature and token.
+                                string tokenRaw = string.Empty;
+
+                                if (!string.IsNullOrEmpty(header_token))
+                                {
+                                    try
+                                    {
+                                        tokenRaw = Crypto.DecryptStringAES(header_token, ConfigurationManager.AppSettings["Crypto.Secret"]);
+                                    }
+                                    catch (Exception e)
+                                    {
+                                        throw new InvalidTokenException(e);
+                                    }
+                                }
+                                else
+                                {
+                                    throw new InvalidTokenException("Unable to access resource: " + tag.GetRoute());
+                                }
+
+                                Guid tokenGuid = new Guid(tokenRaw);
+
+                                #region Validate session token.
+
+                                APISession sess = APISession.Get(tokenGuid);
+                                if (sess == null)
+                                {
+                                    throw new AccessException(Resources.API_ErrorSessionRequired);
+                                }
+
+                                User user = User.GetById(sess.UserId.Value);
+
+                                if (tag.GetRoleLevel() > 0)
+                                {
+                                    Role role = Role.GetRolesForUser(user.Email).OrderByDescending(r => r.RoleLevel).FirstOrDefault();
+                                    if (role == null)
+                                    {
+                                        throw new APIException(Resources.API_ErrorNoRolesAssigned);
+                                    }
+
+                                    if (role.RoleLevel < tag.GetRoleLevel())
+                                    {
+                                        throw new AccessException(Resources.API_ErrorSessionPrivilegesRequired);
+                                    }
+                                }
+
+                                if (mi.GetParameters().Length != 3)
+                                {
+                                    throw new APIException(Resources.API_ErrorMethodDefinition);
+                                }
+
+                                #endregion
+
+                                return Envelope(mi.Invoke(this, new object[] { user, sess, parameters }));
+
+                                //Authorization: "AWS" + " " + AWSAccessKeyID + ":" +   Base64(HMAC-SHA1(UTF-8(Date), UTF-8(AWSSecretAccessKey)))
+                            }
+
+                            return Envelope(mi.Invoke(this, new object[] { parameters }));
+                        }
+                        catch (ModelValidationException me)
+                        {
+                            Response r = Response.AsJson(new
+                            {
+                                Time = Time.ConvertToUnixTime(DateTime.Now),
+                                Response = me.Errors.ToArray(),
+                                Type = "ValidationResult",
+                                Error = true,
+                                IsGlobalError = false
+                            });
+                            return r;
+                        }
+                        catch (Exception e)
+                        {
+                            return Envelope(e);
+                        }
+                    };
+
+                    #endregion
+
+                    #region Route Assignment
+                    string route = tag.GetRoute();
+                    switch (tag.GetMethod())
+                    {
+                        case ApiMethod.GET:
+                            Get[route] = method;
+                            break;
+                        case ApiMethod.POST:
+                            Post[route] = method;
+                            break;
+                        case ApiMethod.PUT:
+                            Put[route] = method;
+                            break;
+                        case ApiMethod.DELETE:
+                            Delete[route] = method;
+                            break;
+                        case ApiMethod.GETPOST:
+                            Get[route] = method;
+                            Post[route] = method;
+                            break;
+                    }
+                    #endregion
                 }
-             });
-                                        
+             });              
         }
 
 
@@ -254,7 +265,7 @@ namespace Sieena.Parking.API.Modules.Classes
 
                 return Response.AsJson(new
                 {
-                    Time = ConvertToUnixTime(DateTime.Now.ToCommonTime()),
+                    Time = Time.ConvertToUnixTime(DateTime.Now.ToCommonTime()),
                     Response = data == null ? string.Empty : data,
                     Type = type,
                     Error = isError,
@@ -265,7 +276,7 @@ namespace Sieena.Parking.API.Modules.Classes
             {
                 return Response.AsJson(new
                 {
-                    Time = ConvertToUnixTime(DateTime.Now.ToCommonTime()),
+                    Time = Time.ConvertToUnixTime(DateTime.Now.ToCommonTime()),
                     Response = data == null ? string.Empty : data,
                     Type = type,
                     Error = isError,
@@ -274,17 +285,6 @@ namespace Sieena.Parking.API.Modules.Classes
                 });
             }
         }
-
-        /// <summary>
-        /// Converts a datetime to unixtime.
-        /// </summary>
-        /// <param name="date"></param>
-        /// <returns></returns>
-        protected double ConvertToUnixTime(DateTime date)
-        {
-            DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0);
-            TimeSpan diff = date - origin;
-            return Math.Floor(diff.TotalSeconds);
-        }
+         
     }
 }

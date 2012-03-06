@@ -13,8 +13,17 @@ using Nancy;
 
 namespace Sieena.Parking.API.Modules.Classes
 {
+    /// <summary>
+    /// Internal extensions specific to the Endpoint Project
+    /// </summary>
     internal static class Extensions
     {
+        /// <summary>
+        /// Fills the specified instance type with the contents of the dynamic dictionary
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="p"></param>
+        /// <returns></returns>
         public static T Fill<T>(this DynamicDictionary p) where T : class, new()
         {
             Type t = typeof(T);
@@ -29,6 +38,12 @@ namespace Sieena.Parking.API.Modules.Classes
             return instance;
         }
 
+        /// <summary>
+        /// Fills the specified instance type with the contents of the dynamic dictionary
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="p"></param>
+        /// <returns></returns>
         public static T Fill<T>(this DynamicDictionary p, T instance) where T : class
         {
             Type t = typeof(T);

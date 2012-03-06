@@ -6,7 +6,7 @@
 namespace("Parking.App.Base");
 namespace("Parking.App.Collections");
 
-(function ($, parking) {
+(function ($, parking, undefined) {
     var config         = parking["Configuration"];
     var appbase        = parking["App"]["Base"];
     var appmodels      = parking["App"]["Models"];
@@ -17,7 +17,7 @@ namespace("Parking.App.Collections");
      *
      * @extends appbase.Collection
      */
-    appcollections.Users = appbase.Collection.extend({
+    appcollections.Users = appbase.ListenerCollection.extend({
         
         /**
          * Endpoint URL
@@ -33,6 +33,29 @@ namespace("Parking.App.Collections");
          */
         "model": appmodels.UserInformation,
 
+        channel: "parking:users",
+
+        /**
+         * @inheritDoc
+         */
+        onMessageReceived: function(msg) { 
+            var userId = msg["UserId"];
+            var collectionObj = this.get(userId);
+            
+            // Update or add the user
+            if(collectionObj) { 
+                collectionObj.set(msg);
+            } else {
+                this.add(msg);
+            }
+        },
+
+        /**
+         * Searches a user by its full name
+         *
+         * @param {string} query    The query to be performed.
+         * @return {Array.<Object>}
+         */
         searchByName: function(query) {
             if(query == "") { return this; }
 

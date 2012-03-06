@@ -7,7 +7,7 @@
 namespace("Parking.App");
 namespace("Parking.App.Data");
 
-(function ($, parking) {
+(function ($, parking, undefined) {
     var common  = parking["Common"];
     var app     = parking["App"];
     var appdata = parking["App"]["Data"];
@@ -67,6 +67,30 @@ namespace("Parking.App.Data");
         // Set global views. 
         (new appviews.HeaderUserInfo({ "model": appdata.CurrentUser, "el": $('.user-info .user') })).render(); 
         (new appviews.Dashboard({ "model": appdata.CurrentUser, "el": $('#dashboard') })).render(); 
+
+        // Initialize notification listener
+        PUBNUB.subscribe({
+                channel : "parking:notification:block",
+                restore : false, 
+                callback : function(msg) { 
+                    console.log(msg);
+                    if(msg["UserId"] == appdata.CurrentUser.get("UserId")) {
+                        var modl = new Backbone.Model();
+                        var baseUser = appdata.Users.get(msg["UserId"]);
+                        var reqUser  = appdata.Users.get(msg["RequestingUser"]);
+
+                        modl.set("UserName", baseUser.FullName());                        
+                        modl.set("LeavingUserName", reqUser.FullName());
+
+                        var notify = new appviews.BlockNotification({ "el": $(".js-placeholder-generic"), "model": modl});
+                        notify.render();
+                        $(notify.el).find(".modal").modal("show");
+                    }
+                },
+                disconnect : function() { },
+                reconnect : function() { }, 
+                connect : function() { }
+        });
     });
 
     appdata.CurrentUser.on("initialized", function() { 

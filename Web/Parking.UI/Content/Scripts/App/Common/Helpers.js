@@ -8,7 +8,7 @@ namespace("Parking.App.Data");
 namespace("Parking.App.Views");
 namespace("Parking.App.Base");
 
-(function($, parking) {
+(function ($, parking, undefined) {
     var common    = parking["Common"];
     var resources = parking["Resources"];
     var config    = parking["Configuration"];

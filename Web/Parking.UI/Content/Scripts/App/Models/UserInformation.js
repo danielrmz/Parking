@@ -6,7 +6,7 @@
 namespace("Parking.App.Base");
 namespace("Parking.App.Models");
 
-(function ($, parking) {
+(function ($, parking, undefined) {
     var config         = parking["Configuration"];
     var appbase        = parking["App"]["Base"];
     var appmodels      = parking["App"]["Models"];
@@ -51,6 +51,10 @@ namespace("Parking.App.Models");
         "initialize": function() {
         },
 
+        /**
+         * Returns the full name of a user
+         * @return {string}
+         */
         FullName: function() {  
             return this.get("FirstName") + " " + this.get("LastName");
         }

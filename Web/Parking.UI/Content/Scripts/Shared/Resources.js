@@ -7,7 +7,7 @@ namespace("Parking.Resources");
 namespace("Parking.Resources.i18n");
 namespace("Parking.Configuration");
 
-(function($, parking) {
+(function ($, parking, undefined) {
     var config    = parking["Configuration"]; 
     var resources = parking["Resources"];
 

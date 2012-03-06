@@ -32,5 +32,7 @@ public static class PubnubFactory {
     public struct Channels {
         public static string CheckinHistory = "parking:checkins:history";
         public static string CheckinCurrent = "parking:checkins:current";
+        public static string Users          = "parking:users";
+        public static string NotifyBlock    = "parking:notification:block";
     }
 }

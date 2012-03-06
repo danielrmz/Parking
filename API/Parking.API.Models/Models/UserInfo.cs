@@ -37,19 +37,54 @@ namespace Sieena.Parking.API.Models
                 }
                 else
                 {
-                    ctx.UserInfos.Attach(u); 
+                    existing.ContactEmail = u.ContactEmail;
+                    existing.PhoneCel = u.PhoneCel;
+                    existing.PhoneHome = u.PhoneHome;
+                    existing.PhoneOffice = u.PhoneOffice;
+                    existing.PhoneOfficeExtension = u.PhoneOfficeExtension;
+                    existing.FirstName = u.FirstName;
+                    existing.LastName = u.LastName;
+                    existing.Gender = u.Gender;
+                     
                 }
                 ctx.SaveChanges();
+
+                // Notify connected endpoints.
+                PubnubFactory.GetInstance().Publish(PubnubFactory.Channels.Users, u);
+            
+
                 return u;
             }
         }
 
+        /// <summary>
+        /// Returns the user information for the specified user id
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         public static UserInfo GetByUserId(int userId)
         {
             using (EntityContext ctx = new EntityContext())
             {
                 return ctx.UserInfos.Where(u => u.UserId.Equals(userId)).FirstOrDefault();
             }
+        }
+
+        /// <summary>
+        /// Returns all the user infos available
+        /// </summary>
+        /// <returns></returns>
+        public static List<UserInfo> GetAll()
+        {
+            List<User> users = User.GetAll();
+            List<UserInfo> uis = new List<UserInfo>();
+
+            users.ForEach(ux =>
+            {
+                uis.Add(User.GetBasicUserInformation(ux));
+            });
+
+            return uis;
         }
     }
 }

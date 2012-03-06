@@ -144,6 +144,15 @@
   <data name="Buttons_Checkin" xml:space="preserve">
     <value>Checkin</value>
   </data>
+  <data name="Buttons_Checkout" xml:space="preserve">
+    <value>Checkout</value>
+  </data>
+  <data name="Buttons_Confirm" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="Buttons_SendMessage" xml:space="preserve">
+    <value>Send Message</value>
+  </data>
   <data name="Dashboard_ActionBtn_Blocked" xml:space="preserve">
     <value>Notify and Leave!</value>
   </data>
@@ -225,6 +234,27 @@
   <data name="Notification_IMMessage" xml:space="preserve">
     <value>Hi, {0} is looking for you, he/she needs you to move your car. :)</value>
   </data>
+  <data name="Notification_SomeoneLeaving" xml:space="preserve">
+    <value>is leaving, please move your car.</value>
+  </data>
+  <data name="Notification_WindowTitle" xml:space="preserve">
+    <value>Warning</value>
+  </data>
+  <data name="Profile_Cellphone" xml:space="preserve">
+    <value>Cellphone</value>
+  </data>
+  <data name="Profile_Email" xml:space="preserve">
+    <value>MSN Email</value>
+  </data>
+  <data name="Profile_FirstName" xml:space="preserve">
+    <value>First Name</value>
+  </data>
+  <data name="Profile_LastName" xml:space="preserve">
+    <value>Last Name</value>
+  </data>
+  <data name="Profile_Title" xml:space="preserve">
+    <value>My Profile</value>
+  </data>
   <data name="TEST" xml:space="preserve">
     <value>TEST</value>
   </data>
@@ -248,5 +278,11 @@
   </data>
   <data name="UserSelector_Title" xml:space="preserve">
     <value>Select User</value>
+  </data>
+  <data name="Word_Hi" xml:space="preserve">
+    <value>Hi</value>
+  </data>
+  <data name="Word_Thanks" xml:space="preserve">
+    <value>Thank you!</value>
   </data>
 </root>

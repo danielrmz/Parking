@@ -1,413 +1,296 @@
 /**
  * main.scss
- * CSS Required for the main part of the layout.
+ * Defines the styles for specific parts of the application.
  *
  * @author The JSONS
  * @copyright 2012 
  */
-.row-fluid .span2 + .span2 {
-  margin-top: 30px; }
-
-body > div h2 {
-  font-size: 14px;
-  line-height: 20px;
-  border-bottom: 1px dotted #cccccc;
-  padding-bottom: 10px; }
-body > div input:focus, body > div textarea:focus {
-  border-color: rgba(82, 168, 236, 0.8);
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 3px rgba(82, 168, 236, 0.6);
-  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 3px rgba(82, 168, 236, 0.6);
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 3px rgba(82, 168, 236, 0.6); }
-body > div .container-loading {
-  width: 200px;
-  margin: 100px auto 50px;
-  text-align: center;
-  display: block;
-  height: 70px; }
-  body > div .container-loading .image {
-    width: 50px;
-    margin: 0px auto; }
-body > div .form-login {
-  opacity: 0;
-  width: 345px;
-  margin: 120px auto 120px auto;
-  background: white;
-  padding: 10px 20px 5px;
-  box-shadow: #999 0 0 5px 0px;
-  -webkit-box-shadow: #999 0 0 5px 0px;
-  -moz-box-shadow: #999 0 0 5px 0px;
-  border-radius: 3px; }
-  body > div .form-login .fields label {
-    padding-top: 5px;
-    text-align: left;
-    color: #626262; }
-  body > div .form-login .fields input[type=password] {
-    width: 84%; }
-  body > div .form-login h4 {
-    margin-bottom: 10px;
-    padding-bottom: 5px;
-    color: #333;
-    border-bottom: 1px solid #efefef; }
-  body > div .form-login .btn {
-    float: right; }
-  body > div .form-login .remember label {
-    display: inline-block;
-    padding-top: 7px;
-    font-size: 11px;
-    color: silver;
-    width: 100px; }
-body > div .container-parking {
-  padding-right: 10px !important; }
-  body > div .container-parking .parking-map {
-    background: url("/Content/Styles/Images/bg-horizontal.png") no-repeat scroll -2px -2px transparent;
-    height: 379px;
-    width: auto;
-    position: relative; }
-    body > div .container-parking .parking-map .car {
-      position: absolute;
-      left: -5px;
-      top: 12px;
-      width: 53px;
-      height: 97px;
-      background: url("/Content/Styles/Images/car-sprite.png") no-repeat scroll 0 0 transparent;
-      /*Section A*/
-      /*Section B*/
-      /*Section C*/ }
-      body > div .container-parking .parking-map .car.available {
-        opacity: 0.5; }
-        body > div .container-parking .parking-map .car.available:hover {
-          cursor: pointer;
-          opacity: 1; }
-      body > div .container-parking .parking-map .car.used {
-        background-position: -53px 0; }
-      body > div .container-parking .parking-map .car.me {
-        background-position: -106px 0; }
-      body > div .container-parking .parking-map .car.selected {
-        opacity: 1;
-        z-index: 1045;
-        background-position: -106px 0; }
-      body > div .container-parking .parking-map .car.down {
-        -moz-transform: rotate(-180deg);
-        -webkit-transform: rotate(-180deg);
-        -o-transform: rotate(-180deg);
-        -ms-transform: rotate(-180deg); }
-      body > div .container-parking .parking-map .car.left {
-        -moz-transform: rotate(-90deg);
-        -webkit-transform: rotate(-90deg);
-        -o-transform: rotate(-90deg);
-        -ms-transform: rotate(-90deg); }
-      body > div .container-parking .parking-map .car.red {
-        background-position: -159px 0; }
-      body > div .container-parking .parking-map .car.a2 {
-        left: 55px; }
-      body > div .container-parking .parking-map .car.a3 {
-        left: 115px; }
-      body > div .container-parking .parking-map .car.a4 {
-        left: 175px; }
-      body > div .container-parking .parking-map .car.a5 {
-        left: 235px; }
-      body > div .container-parking .parking-map .car.a6 {
-        left: 32px;
-        top: 106px; }
-      body > div .container-parking .parking-map .car.a7 {
-        left: 147px;
-        top: 106px; }
-      body > div .container-parking .parking-map .car.a8 {
-        left: 32px;
-        top: 175px; }
-      body > div .container-parking .parking-map .car.a9 {
-        left: 147px;
-        top: 175px; }
-      body > div .container-parking .parking-map .car.a10 {
-        left: -5px;
-        top: 268px; }
-      body > div .container-parking .parking-map .car.a11 {
-        left: 55px;
-        top: 268px; }
-      body > div .container-parking .parking-map .car.a12 {
-        left: 115px;
-        top: 268px; }
-      body > div .container-parking .parking-map .car.a13 {
-        left: 175px;
-        top: 268px; }
-      body > div .container-parking .parking-map .car.a14 {
-        left: 235px;
-        top: 268px; }
-      body > div .container-parking .parking-map .car.b1 {
-        left: 295px; }
-      body > div .container-parking .parking-map .car.b2 {
-        left: 355px; }
-      body > div .container-parking .parking-map .car.b3 {
-        left: 415px; }
-      body > div .container-parking .parking-map .car.b4 {
-        left: 475px; }
-      body > div .container-parking .parking-map .car.b5 {
-        left: 535px; }
-      body > div .container-parking .parking-map .car.b6 {
-        left: 295px;
-        top: 268px; }
-      body > div .container-parking .parking-map .car.b7 {
-        left: 355px;
-        top: 268px; }
-      body > div .container-parking .parking-map .car.b8 {
-        left: 415px;
-        top: 268px; }
-      body > div .container-parking .parking-map .car.b9 {
-        left: 475px;
-        top: 268px; }
-      body > div .container-parking .parking-map .car.b10 {
-        left: 535px;
-        top: 268px; }
-      body > div .container-parking .parking-map .car.b11 {
-        left: 595px;
-        top: 268px; }
-      body > div .container-parking .parking-map .car.c1 {
-        left: 776px; }
-      body > div .container-parking .parking-map .car.c2 {
-        left: 836px; }
-      body > div .container-parking .parking-map .car.c3 {
-        left: 896px; }
-      body > div .container-parking .parking-map .car.c4 {
-        left: 688px;
-        top: 100px; }
-      body > div .container-parking .parking-map .car.c5 {
-        left: 656px;
-        top: 268px; }
-      body > div .container-parking .parking-map .car.c6 {
-        left: 716px;
-        top: 268px; }
-      body > div .container-parking .parking-map .car.c7 {
-        left: 776px;
-        top: 268px; }
-      body > div .container-parking .parking-map .car.c8 {
-        left: 836px;
-        top: 268px; }
-      body > div .container-parking .parking-map .car.c9 {
-        left: 896px;
-        top: 268px; }
-body > div .modal {
-  font-family: "Open sans"; }
-body > div .dialog-confirmation .modal-body p {
-  color: #666666;
-  font-family: "Open sans";
-  font-size: 22px;
-  font-weight: 400;
-  line-height: 37px;
-  margin: 0 0 9px;
-  padding-right: 50px; }
-  body > div .dialog-confirmation .modal-body p strong {
-    color: #5BB75B;
-    font-size: 40px;
-    display: block; }
-body > div .dialog-select-user .well {
-  margin: 0;
-  border-radius: 0;
-  padding: 10px; }
-body > div .dialog-select-user input.search-query {
-  transition-property: width;
-  transition-property: opacity;
-  transition-duration: 5s;
-  transition-timing-function: ease-in-out;
-  transition-delay: 0s;
-  width: 505px;
-  opacity: 0.5;
-  border-radius: 5px; }
-body > div .dialog-select-user input.search-query:focus {
-  width: 505px;
-  opacity: 1; }
-body > div .dialog-select-user .help-block {
-  border-bottom: 1px solid #EFEFEF;
-  font-size: 11px;
-  padding: 0 10px 3px; }
-body > div .dialog-select-user .label-info {
-  background-color: #3A87AD;
-  font-size: 10px;
-  line-height: 11px;
-  margin-right: 5px;
-  text-transform: none; }
-body > div .dialog-select-user .available-user {
-  margin: 0;
-  max-height: 293px;
-  overflow-x: hidden;
-  overflow-y: auto;
-  width: auto;
-  padding-bottom: 10px; }
-  body > div .dialog-select-user .available-user li {
-    float: left;
-    cursor: pointer;
-    list-style-type: none;
-    margin: 10px 10px 0;
-    padding: 5px 5px 1px;
-    width: 27%;
-    border: 1px solid transparent;
-    min-height: 31px;
-    position: relative; }
-  body > div .dialog-select-user .available-user img {
-    position: absolute;
-    width: 28px;
-    height: 28px;
-    border: 1px solid #ccc;
-    left: 3px;
-    top: 3px;
-    overflow: hidden;
-    background-color: #FFFFFF;
-    background-image: url("/content/styles/images/user-default.png");
-    text-indent: -699px; }
-  body > div .dialog-select-user .available-user span {
-    display: block;
-    height: 19px;
-    margin-left: 32px;
-    margin-top: 3px;
-    overflow: hidden;
-    text-overflow: ellipsis; }
-  body > div .dialog-select-user .available-user li.selected {
-    background-color: #5BB75B;
-    border-color: #458E45;
-    border-radius: 2px 2px 2px 2px;
-    box-shadow: 0 1px 14px -8px black inset;
-    color: #FFFFFF;
-    text-shadow: 1px 0px 2px #000000; }
-  body > div .dialog-select-user .available-user li.selected img {
-    border-color: #fff; }
-body > div .dialog-select-user .modal-body {
-  padding: 0; }
-body > div .dialog-warning .span6 {
-  margin-left: 0;
-  margin-right: 30px;
-  width: 41.72%; }
-body > div .new-car {
-  background: url("../Images/icn-new-car.png") no-repeat center 0 transparent;
-  width: 49px;
-  height: 81px;
-  margin: 20px auto; }
-body > div .user {
-  padding-left: 35px;
-  position: relative;
-  margin-bottom: 10px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #cccccc; }
-  body > div .user h3 {
+/* @group Site fixed vars */
+/* @endgroup */
+body > div {
+  /* @group General */
+  /* @endgroup */
+  /* @group Containers */
+  /* @endgroup */
+  /* @group Modals */
+  /* @endgroup */
+  /* @group Popovers */
+  /* @endgroup */ }
+  body > div h2 {
     font-size: 14px;
-    line-height: 27px;
-    margin: 0 0 5px;
-    line-height: 14px;
-    color: #333333; }
-  body > div .user img {
-    position: absolute;
-    left: 0; }
-  body > div .user p {
-    margin: 0 0;
-    font-size: 11px;
-    line-height: 12px;
-    color: #666; }
-    body > div .user p span {
-      color: #999;
-      font-weight: bold;
-      font-size: 9px; }
-    body > div .user p b {
-      font-size: 13px; }
-body > div .user:last-child {
-  border-bottom: 0 none;
-  margin-bottom: 0px;
-  padding-bottom: 0px; }
-body > div .my-profile h2 {
-  margin-bottom: 15px; }
-body > div .my-profile h3 {
-  margin-bottom: 0px; }
-body > div .my-profile .btn-edit {
-  background: url("../Images/icn-edit.png") no-repeat center center transparent;
-  width: 40px;
-  height: 14px;
-  display: inline-block;
-  margin: 10px 0 0;
-  border: 1px solid #cccccc;
-  border-radius: 2px;
-  padding: 2px; }
-  body > div .my-profile .btn-edit span {
-    display: none; }
-body > div .my-profile p {
-  margin: 0 0;
-  padding: 0;
-  line-height: 11px; }
-body > div .my-profile div.car-description {
-  margin: 5px 0 5px;
-  border: 1px solid #666;
-  background-color: #efefef;
-  padding: 3px 6px; }
-body > div .my-profile .icon-tel {
-  border-top: 1px #ccc dotted;
-  padding-top: 10px; }
-body > div .my-profile .icon-tel, body > div .my-profile .icon-cel, body > div .my-profile .icon-car {
-  height: auto;
-  background: url("../Images/icon-sheet.png") no-repeat scroll left -18px transparent;
-  display: block;
-  font-size: 9px;
-  margin: 13px 0 0;
-  padding-left: 17px;
-  width: auto; }
-body > div .my-profile .icon-cel {
-  background-position: left 0px;
-  margin: 5px 0 15px;
-  min-height: 14px;
-  line-height: 14px; }
-body > div .my-profile .icon-car {
-  background-position: left -50px;
-  margin: 0; }
-body > div .my-profile strong {
-  color: #333333;
-  font-weight: bold; }
-body > div .my-profile img {
-  border: 1px solid #ddd; }
-body > div .my-place .row {
-  margin: 0; }
-  body > div .my-place .row img {
-    border: 1px solid #cccccc; }
-body > div .my-place h4 {
-  background-color: #EFEFEF;
-  border-bottom: 1px solid #cccccc;
-  font-size: 12px;
-  font-weight: bold;
-  line-height: 11px;
-  margin: 0 0 10px;
-  padding: 5px; }
-body > div .my-place .btn {
-  width: 100%; }
-body > div .row-fluid .span6.container-parking {
-  width: 503px;
-  padding: 0;
-  border: 1px solid #fff; }
-body > div .popup-container p {
-  margin-left: 44px; }
-body > div .popup-container .img-user {
-  border: 1px solid #CCCCCC;
-  display: inline-bock;
-  float: left;
-  margin: 0 10px 40px 0; }
-body > div .popup-container .tel span {
-  font-weight: 700; }
-body > div .popup-container .tel span.icon {
-  background: url("../Images/icn-phone.png") no-repeat scroll 0 0 transparent;
-  display: inline-block;
-  height: 16px;
-  position: relative;
-  top: 2px;
-  width: 16px; }
-body > div .popup-container .place {
-  margin-bottom: 5px;
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 5px; }
-  body > div .popup-container .place span {
-    font-weight: 700; }
-body > div .popup-container .mail span {
-  font-weight: 700; }
-body > div .popup-userinfo {
-  min-width: 330px; }
-  body > div .popup-userinfo .panel-img {
-    margin-right: 10px; }
-    body > div .popup-userinfo .panel-img img {
+    line-height: 20px;
+    border-bottom: 1px dotted #cccccc;
+    padding-bottom: 10px; }
+  body > div input:focus, body > div textarea:focus {
+    border-color: rgba(82, 168, 236, 0.8);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 3px rgba(82, 168, 236, 0.6);
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 3px rgba(82, 168, 236, 0.6);
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 3px rgba(82, 168, 236, 0.6); }
+  body > div .modal {
+    font-family: "Open sans"; }
+  body > div .form-login {
+    opacity: 0;
+    width: 345px;
+    margin: 120px auto 120px auto;
+    background: white;
+    padding: 10px 20px 5px;
+    box-shadow: #999 0 0 5px 0px;
+    -webkit-box-shadow: #999 0 0 5px 0px;
+    -moz-box-shadow: #999 0 0 5px 0px;
+    border-radius: 3px; }
+    body > div .form-login .fields label {
+      padding-top: 5px;
+      text-align: left;
+      color: #626262; }
+    body > div .form-login .fields input[type=password] {
+      width: 84%; }
+    body > div .form-login h4 {
+      margin-bottom: 10px;
+      padding-bottom: 5px;
+      color: #333;
+      border-bottom: 1px solid #efefef; }
+    body > div .form-login .btn {
+      float: right; }
+    body > div .form-login .remember label {
+      display: inline-block;
+      padding-top: 7px;
+      font-size: 11px;
+      color: silver;
       width: 100px; }
-  body > div .popup-userinfo .panel-info label {
-    font-weight: bold;
-    display: inline; }
-  body > div .popup-userinfo .panel-info .panel-actions {
-    margin-top: 10px; }
+  body > div .container-loading {
+    width: 200px;
+    margin: 100px auto 50px;
+    text-align: center;
+    display: block;
+    height: 70px; }
+    body > div .container-loading .image {
+      width: 50px;
+      margin: 0px auto; }
+  body > div .container-parking {
+    padding-right: 10px !important; }
+    body > div .container-parking .parking-map {
+      background: url("/Content/Styles/Images/bg-horizontal.png") no-repeat scroll -2px -2px transparent;
+      height: 379px;
+      width: auto;
+      position: relative; }
+      body > div .container-parking .parking-map .car {
+        position: absolute;
+        left: -5px;
+        top: 12px;
+        width: 53px;
+        height: 97px;
+        background: url("/Content/Styles/Images/car-sprite.png") no-repeat scroll 0 0 transparent;
+        /*Section A*/
+        /*Section B*/
+        /*Section C*/ }
+        body > div .container-parking .parking-map .car.available {
+          opacity: 0.5; }
+          body > div .container-parking .parking-map .car.available:hover {
+            cursor: pointer;
+            opacity: 1; }
+        body > div .container-parking .parking-map .car.used {
+          background-position: -53px 0; }
+        body > div .container-parking .parking-map .car.me {
+          background-position: -106px 0; }
+        body > div .container-parking .parking-map .car.selected {
+          opacity: 1;
+          z-index: 1045;
+          background-position: -106px 0; }
+        body > div .container-parking .parking-map .car.down {
+          -moz-transform: rotate(-180deg);
+          -webkit-transform: rotate(-180deg);
+          -o-transform: rotate(-180deg);
+          -ms-transform: rotate(-180deg); }
+        body > div .container-parking .parking-map .car.left {
+          -moz-transform: rotate(-90deg);
+          -webkit-transform: rotate(-90deg);
+          -o-transform: rotate(-90deg);
+          -ms-transform: rotate(-90deg); }
+        body > div .container-parking .parking-map .car.red {
+          background-position: -159px 0; }
+        body > div .container-parking .parking-map .car.a2 {
+          left: 55px; }
+        body > div .container-parking .parking-map .car.a3 {
+          left: 115px; }
+        body > div .container-parking .parking-map .car.a4 {
+          left: 175px; }
+        body > div .container-parking .parking-map .car.a5 {
+          left: 235px; }
+        body > div .container-parking .parking-map .car.a6 {
+          left: 32px;
+          top: 106px; }
+        body > div .container-parking .parking-map .car.a7 {
+          left: 147px;
+          top: 106px; }
+        body > div .container-parking .parking-map .car.a8 {
+          left: 32px;
+          top: 175px; }
+        body > div .container-parking .parking-map .car.a9 {
+          left: 147px;
+          top: 175px; }
+        body > div .container-parking .parking-map .car.a10 {
+          left: -5px;
+          top: 268px; }
+        body > div .container-parking .parking-map .car.a11 {
+          left: 55px;
+          top: 268px; }
+        body > div .container-parking .parking-map .car.a12 {
+          left: 115px;
+          top: 268px; }
+        body > div .container-parking .parking-map .car.a13 {
+          left: 175px;
+          top: 268px; }
+        body > div .container-parking .parking-map .car.a14 {
+          left: 235px;
+          top: 268px; }
+        body > div .container-parking .parking-map .car.b1 {
+          left: 295px; }
+        body > div .container-parking .parking-map .car.b2 {
+          left: 355px; }
+        body > div .container-parking .parking-map .car.b3 {
+          left: 415px; }
+        body > div .container-parking .parking-map .car.b4 {
+          left: 475px; }
+        body > div .container-parking .parking-map .car.b5 {
+          left: 535px; }
+        body > div .container-parking .parking-map .car.b6 {
+          left: 295px;
+          top: 268px; }
+        body > div .container-parking .parking-map .car.b7 {
+          left: 355px;
+          top: 268px; }
+        body > div .container-parking .parking-map .car.b8 {
+          left: 415px;
+          top: 268px; }
+        body > div .container-parking .parking-map .car.b9 {
+          left: 475px;
+          top: 268px; }
+        body > div .container-parking .parking-map .car.b10 {
+          left: 535px;
+          top: 268px; }
+        body > div .container-parking .parking-map .car.b11 {
+          left: 595px;
+          top: 268px; }
+        body > div .container-parking .parking-map .car.c1 {
+          left: 776px; }
+        body > div .container-parking .parking-map .car.c2 {
+          left: 836px; }
+        body > div .container-parking .parking-map .car.c3 {
+          left: 896px; }
+        body > div .container-parking .parking-map .car.c4 {
+          left: 688px;
+          top: 100px; }
+        body > div .container-parking .parking-map .car.c5 {
+          left: 656px;
+          top: 268px; }
+        body > div .container-parking .parking-map .car.c6 {
+          left: 716px;
+          top: 268px; }
+        body > div .container-parking .parking-map .car.c7 {
+          left: 776px;
+          top: 268px; }
+        body > div .container-parking .parking-map .car.c8 {
+          left: 836px;
+          top: 268px; }
+        body > div .container-parking .parking-map .car.c9 {
+          left: 896px;
+          top: 268px; }
+  body > div .dialog-confirmation .modal-body p {
+    color: #666666;
+    font-family: "Open sans";
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 37px;
+    margin: 0 0 9px;
+    padding-right: 50px; }
+    body > div .dialog-confirmation .modal-body p strong {
+      color: #5BB75B;
+      font-size: 40px;
+      display: block; }
+  body > div .dialog-select-user .well {
+    margin: 0;
+    border-radius: 0;
+    padding: 10px; }
+  body > div .dialog-select-user input.search-query {
+    transition-property: width;
+    transition-property: opacity;
+    transition-duration: 5s;
+    transition-timing-function: ease-in-out;
+    transition-delay: 0s;
+    width: 505px;
+    opacity: 0.5;
+    border-radius: 5px; }
+  body > div .dialog-select-user input.search-query:focus {
+    width: 505px;
+    opacity: 1; }
+  body > div .dialog-select-user .help-block {
+    border-bottom: 1px solid #EFEFEF;
+    font-size: 11px;
+    padding: 0 10px 3px; }
+  body > div .dialog-select-user .label-info {
+    background-color: #3A87AD;
+    font-size: 10px;
+    line-height: 11px;
+    margin-right: 5px;
+    text-transform: none; }
+  body > div .dialog-select-user .available-user {
+    margin: 0;
+    max-height: 293px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    width: auto;
+    padding-bottom: 10px; }
+    body > div .dialog-select-user .available-user li {
+      float: left;
+      cursor: pointer;
+      list-style-type: none;
+      margin: 10px 10px 0;
+      padding: 5px 5px 1px;
+      width: 27%;
+      border: 1px solid transparent;
+      min-height: 31px;
+      position: relative; }
+    body > div .dialog-select-user .available-user img {
+      position: absolute;
+      width: 28px;
+      height: 28px;
+      border: 1px solid #ccc;
+      left: 3px;
+      top: 3px;
+      overflow: hidden;
+      background-color: #FFFFFF;
+      background-image: url("/content/styles/images/user-default.png");
+      text-indent: -699px; }
+    body > div .dialog-select-user .available-user span {
+      display: block;
+      height: 19px;
+      margin-left: 32px;
+      margin-top: 3px;
+      overflow: hidden;
+      text-overflow: ellipsis; }
+    body > div .dialog-select-user .available-user li.selected {
+      background-color: #5BB75B;
+      border-color: #458E45;
+      border-radius: 2px 2px 2px 2px;
+      box-shadow: 0 1px 14px -8px black inset;
+      color: #FFFFFF;
+      text-shadow: 1px 0px 2px #000000; }
+      body > div .dialog-select-user .available-user li.selected img {
+        border-color: #fff; }
+  body > div .dialog-select-user .modal-body {
+    padding: 0; }
+  body > div .dialog-warning .span6 {
+    margin-left: 0;
+    margin-right: 30px;
+    width: 41.72%; }
+  body > div .popup-userinfo {
+    min-width: 330px; }
+    body > div .popup-userinfo .panel-img {
+      margin-right: 10px; }
+      body > div .popup-userinfo .panel-img img {
+        width: 100px; }
+    body > div .popup-userinfo .panel-info label {
+      font-weight: bold;
+      display: inline; }
+    body > div .popup-userinfo .panel-info .panel-actions {
+      margin-top: 10px; }

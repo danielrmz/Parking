@@ -7,7 +7,7 @@
 namespace("Parking.App.Views");
 namespace("Parking.App.Data");
 
-(function ($, parking) {
+(function ($, parking, undefined) {
     var i18n           = parking["Resources"]["i18n"];
     var common         = parking["Common"];
     var config         = parking["Configuration"];
@@ -42,18 +42,18 @@ namespace("Parking.App.Data");
          */
         "events": {
             "click .js-button-search": "search",
-            "keyup .search-query": "search", 
-            "click li": "selectUser",
-            "click li span": "selectUser",
-            "click li img": "selectUser",
-            "click .js-btn-success": "doAction"
+            "keyup .search-query"    : "search", 
+            "click li"               : "selectUser",
+            "click li span"          : "selectUser",
+            "click li img"           : "selectUser",
+            "click .js-btn-success"  : "doAction"
         },
 
         /**
          * View's template
          * @type {string}
          */
-        "template": config.ClientTemplatesUrl + "Shared/UserSelector.html",
+        "template": config.ClientTemplatesUrl + "Shared/ModalUserSelector.html",
 
         /**
          * @inheritDoc
@@ -61,6 +61,7 @@ namespace("Parking.App.Data");
         "render": function() { 
             apphelpers.RenderViewTemplate.apply(this, arguments);
             this.renderList(this.collection); 
+            $(this.el).find(".search-query").placeholder();
         },
         
         /**
@@ -88,6 +89,11 @@ namespace("Parking.App.Data");
             this.selectedUser = li.data("userid");
         },
 
+        /**
+         * Gets the selected item and delegates the attached submit action
+         *
+         * @return {boolean}
+         */
         "doAction": function() { 
             // Validate a user has been selected
             var selectedLi = $(this.el).find(".selected");
@@ -146,7 +152,7 @@ namespace("Parking.App.Data");
          * View's template
          * @type {string}
          */
-        "template": config.ClientTemplatesUrl + "Shared/UserSelectorItem.html",
+        "template": config.ClientTemplatesUrl + "Shared/ModalUserSelectorItem.html",
 
         /**
          * @inheritDoc

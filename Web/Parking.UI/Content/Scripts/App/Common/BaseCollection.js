@@ -8,7 +8,7 @@
 
 namespace("Parking.App.Base");
 
-(function ($, parking) {
+(function ($, parking, undefined) {
     var common  = parking["Common"];
     var appbase = parking["App"]["Base"];
 

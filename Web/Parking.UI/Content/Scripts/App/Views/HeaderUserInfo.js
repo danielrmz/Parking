@@ -6,7 +6,7 @@
 
 namespace("Parking.App.Views");
 
-(function ($, parking) {
+(function ($, parking, undefined) {
     var i18n           = parking["Resources"]["i18n"];
     var common         = parking["Common"];
     var config         = parking["Configuration"];
@@ -47,13 +47,15 @@ namespace("Parking.App.Views");
          * @enum {string}
          */
         "events": {
-           "click .js-logout": "logout"
+           "click .js-logout" : "logout",
+           "click .js-profile": "showProfile"
         },
 
         /**
          * Event for the logout link. 
          * Logs out a user.
          *
+         * @param {Object} e Event
          * @return {boolean}
          */
         "logout": function(e) {
@@ -62,6 +64,19 @@ namespace("Parking.App.Views");
             }); 
             
             return false;
+        },
+
+        /**
+         * Event for the profile 
+         *
+         * @param {Object} e Event
+         * @return {boolean}
+         */
+        "showProfile": function(e) { 
+           var profile = new appviews.Profile({el: $(".js-placeholder-profile")});
+           profile.render();
+           $(profile.el).find(".modal").modal("show"); 
+           return false;
         }
 
     });

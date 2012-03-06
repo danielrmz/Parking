@@ -15,7 +15,7 @@ namespace Sieena.Parking.API.Modules.Classes
     /// <summary>
     /// Provides a wrapper to specify the route and HTTP method
     /// </summary>
-    [AttributeUsage(AttributeTargets.Method)]
+    [AttributeUsage(AttributeTargets.Method,AllowMultiple=true)]
     internal class ApiAttribute : System.Attribute
     {
         private string _route;
@@ -23,12 +23,23 @@ namespace Sieena.Parking.API.Modules.Classes
         private bool _isSecure = false;
         private int _roleLevel = 0;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="route"></param>
+        /// <param name="method"></param>
         public ApiAttribute(string route, ApiMethod method)
         {
             this._route = route;
             this._method = method;
         }
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="route"></param>
+        /// <param name="method"></param>
+        /// <param name="isSecure"></param>
         public ApiAttribute(string route, ApiMethod method, bool isSecure)
         {
             this._route = route;
@@ -36,6 +47,13 @@ namespace Sieena.Parking.API.Modules.Classes
             this._isSecure = isSecure;
         }
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="route"></param>
+        /// <param name="method"></param>
+        /// <param name="isSecure"></param>
+        /// <param name="roleLevel"></param>
         public ApiAttribute(string route, ApiMethod method, bool isSecure, AccessLevel roleLevel)
         {
             this._route = route;
@@ -44,21 +62,37 @@ namespace Sieena.Parking.API.Modules.Classes
             this._roleLevel = (int)roleLevel;
         }
 
+        /// <summary>
+        /// Gets the role level
+        /// </summary>
+        /// <returns></returns>
         public int GetRoleLevel()
         {
             return this._roleLevel;
         }
 
+        /// <summary>
+        /// Indicates if the api action is secure or not
+        /// </summary>
+        /// <returns></returns>
         public bool IsSecure()
         {
             return _isSecure;
         }
 
+        /// <summary>
+        /// Returns the route regex
+        /// </summary>
+        /// <returns></returns>
         public string GetRoute()
         {
             return _route;
         }
 
+        /// <summary>
+        /// Returns the method by which this route belongs to
+        /// </summary>
+        /// <returns></returns>
         public ApiMethod GetMethod()
         {
             return _method;
@@ -66,11 +100,4 @@ namespace Sieena.Parking.API.Modules.Classes
 
     }
 
-    public enum ApiMethod {
-        GET,
-        PUT,
-        POST,
-        DELETE, 
-        GETPOST
-    }
 }

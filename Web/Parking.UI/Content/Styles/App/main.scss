@@ -1,10 +1,12 @@
 ﻿/**
  * main.scss
- * CSS Required for the main part of the layout.
+ * Defines the styles for specific parts of the application.
  *
  * @author The JSONS
  * @copyright 2012 
  */
+
+ /* @group Site fixed vars */
 
  $backgroundHeaderColorLight: #efefef;
  $ColorLightGray:#cccccc;
@@ -13,33 +15,33 @@
  $sectionBLeft: 295px; 
  $sectionCLeft: 656px;
 
-.row-fluid .span2 + .span2 { 
-	margin-top:30px;
-}
+ /* @endgroup */
+
 
  body > div {
 
-	h2{ font-size:14px;  line-height:20px; border-bottom:1px dotted $ColorLightGray; padding-bottom:10px;}
+	/* @group General */
+	h2 { 
+		font-size:14px;  
+		line-height:20px; 
+		border-bottom:1px dotted $ColorLightGray; 
+		padding-bottom:10px;
+	}
 	
 	input:focus, textarea:focus {
 		border-color: rgba(82, 168, 236, 0.8);
+		box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 3px rgba(82,168,236,0.6);
 		-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 3px rgba(82,168,236,0.6);
 		-moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 3px rgba(82,168,236,0.6);
-		box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 3px rgba(82,168,236,0.6);
-
 	}
 
-	.container-loading {
-		width: 200px;
-		margin: 100px auto 50px;
-		text-align: center;
-		display: block;
-		height: 70px;
-		.image {
-			width: 50px;
-			margin: 0px auto;
-		}
+	.modal { 
+		font-family: "Open sans";
 	}
+
+	/* @endgroup */
+
+	/* @group Containers */
 
 	.form-login {
 		opacity:0;
@@ -81,6 +83,19 @@
 			font-size: 11px;
 			color: silver;
 			width: 100px;
+		}
+	}
+
+	.container-loading {
+		width: 200px;
+		margin: 100px auto 50px;
+		text-align: center;
+		display: block;
+		height: 70px;
+
+		.image {
+			width: 50px;
+			margin: 0px auto;
 		}
 	}
 
@@ -187,11 +202,12 @@
 
 	}
 
-	.modal{ 
-		font-family: "Open sans";
-	}
+	/* @endgroup */
 
-	.dialog-confirmation .modal-body p {
+	/* @group Modals */
+
+	.dialog-confirmation .modal-body p 
+	{
 		color: #666666;
 		font-family: "Open sans";
 		font-size: 22px;
@@ -205,12 +221,9 @@
 			font-size: 40px;
 			display: block;
 		}
-
-		
 	}
 
-	.dialog-select-user
-	{
+	.dialog-select-user {
 		.well {
 			margin: 0; 
 			border-radius: 0;
@@ -248,20 +261,64 @@
 		}
 
 		.available-user {
-			margin: 0;max-height: 293px;overflow-x: hidden;overflow-y: auto;width: auto;padding-bottom:10px;
-			li{float: left; cursor:pointer; list-style-type: none; margin: 10px 10px 0; padding: 5px 5px 1px; width: 27%; border:1px solid transparent; min-height:31px; position:relative}
-			img{position:absolute; width:28px; height:28px; border:1px solid #ccc; left:3px; top:3px;overflow:hidden;background-color: #FFFFFF;background-image: url("/content/styles/images/user-default.png");text-indent: -699px;}
-			span {display: block;height: 19px;margin-left: 32px;margin-top: 3px;overflow: hidden;text-overflow: ellipsis;}
-			li.selected {background-color: #5BB75B;border-color: #458E45;border-radius: 2px 2px 2px 2px;box-shadow: 0 1px 14px -8px #000000 inset;color: #FFFFFF;text-shadow: 1px 0px 2px #000000;}	
-			li.selected img{border-color:#fff}
-			
+			margin: 0;
+			max-height: 293px;
+			overflow-x: hidden;
+			overflow-y: auto;
+			width: auto;
+			padding-bottom:10px;
+
+			li {
+				float: left; 
+				cursor:pointer; 
+				list-style-type: none; 
+				margin: 10px 10px 0; 
+				padding: 5px 5px 1px; 
+				width: 27%; 
+				border:1px solid transparent; 
+				min-height:31px; 
+				position:relative
+			}
+			img {
+				position:absolute; 
+				width:28px; 
+				height:28px; 
+				border:1px solid #ccc; 
+				left:3px; 
+				top:3px;
+				overflow:hidden;
+				background-color: #FFFFFF;
+				background-image: url("/content/styles/images/user-default.png");
+				text-indent: -699px;
+			}
+			span { 
+				display: block;
+				height: 19px;
+				margin-left: 32px;
+				margin-top: 3px;
+				overflow: hidden;
+				text-overflow: ellipsis;
+			} 
+			li.selected { 
+				background-color: #5BB75B;
+				border-color: #458E45;
+				border-radius: 2px 2px 2px 2px;
+				box-shadow: 0 1px 14px -8px #000000 inset;
+				color: #FFFFFF;
+				text-shadow: 1px 0px 2px #000000; 
+				img {
+					border-color:#fff;
+				}
+			} 
 		}
-		.modal-body{padding: 0;}
+
+		.modal-body {
+			padding: 0;
+		}
 	
 	}
 
-	.dialog-warning{
-	
+	.dialog-warning {
 		.span6 {
 			margin-left: 0;
 			margin-right: 30px;
@@ -269,84 +326,12 @@
 		}
 	}
 
-	 
-	.new-car
-	{
-		background:url("../Images/icn-new-car.png") no-repeat  center 0  transparent;
-		width:49px; 
-		height:81px;
-		margin:20px auto ;
-	}
+	 /* @endgroup */
 
-	.time-line {
-	
-	}
-
-	.user { 
-			padding-left:35px;position:relative; margin-bottom:10px; padding-bottom:10px; border-bottom:1px solid $ColorLightGray;
-			h3 {font-size: 14px;line-height: 27px; margin:0 0 5px; line-height:14px;color:#333333;}
-			img{position:absolute; left:0}
-			p {
-				margin: 0 0;  font-size:11px; line-height:12px; color:#666;
-				span{color:#999; font-weight:bold; font-size:9px;}
-				b{font-size:13px;}
-			}
-	}
-	
-	.user:last-child{border-bottom: 0 none;margin-bottom:0px; padding-bottom:0px;}
-
-	.my-profile {
-		h2{ margin-bottom:15px;}
-		h3{ margin-bottom:0px;}
-		.btn-edit{ 
-			background:url("../Images/icn-edit.png") no-repeat  center center  transparent; width:40px; height:14px; display:inline-block;margin:10px 0 0; border:1px solid $ColorLightGray; border-radius:2px; padding:2px;
-			span{display:none}
-		}
-		p{margin:0 0; padding:0; line-height:11px;}
-		div.car-description{margin:5px 0 5px; border:1px solid #666; background-color:#efefef; padding:3px 6px;}
-		.icon-tel{border-top:1px #ccc dotted; padding-top:10px;}
-		.icon-tel,.icon-cel,.icon-car {height:auto;background: url("../Images/icon-sheet.png") no-repeat scroll left -18px transparent;display: block;font-size: 9px;margin: 13px 0 0 ;padding-left:17px;width: auto;}
-		.icon-cel{background-position:left 0px ;margin: 5px 0 15px; min-height:14px; line-height:14px;}
-		.icon-car{background-position:left -50px ;margin:0;}
-		strong {color: #333333;font-weight: bold;}
-		img{border:1px solid #ddd}
-
-	}
-
-	.my-place{
-		.row {
-		margin:0;
-			img{border:1px solid $ColorLightGray}
-		}
-		h4 {background-color: #EFEFEF;border-bottom: 1px solid $ColorLightGray;font-size: 12px;font-weight: bold;line-height: 11px;margin: 0 0 10px;padding: 5px;}
-		.btn{width:100% }
-	}
-
-	 .row-fluid .span6.container-parking {
-		width: 503px;padding:0; border:1px solid #fff
-	}
-
-	
-	.popup-container{
-		p{margin-left:44px;}
-		.img-user{border: 1px solid #CCCCCC;display: inline-bock;float: left;margin: 0 10px 40px 0;}
-		.tel{
-			span{font-weight:700}
-			span.icon{background: url("../Images/icn-phone.png") no-repeat scroll 0 0 transparent;display: inline-block;height: 16px;position: relative;top: 2px;width: 16px;}
-		}
-		.place{
-			margin-bottom:5px; border-bottom:1px solid #ddd; padding-bottom:5px;
-			span{font-weight:700}
-			.icon{}
-		}
-		.mail{
-			span{font-weight:700}
-			.icon{}
-		}
-	}
-
+	 /* @group Popovers */
 
 	.popup-userinfo {
+
 		min-width: 330px;
 
 		.panel-img {  
@@ -367,4 +352,6 @@
 			}
 		}
 	}
+ 
+	/* @endgroup */
  }

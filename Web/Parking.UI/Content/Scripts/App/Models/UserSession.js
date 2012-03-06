@@ -9,7 +9,7 @@
 namespace("Parking.App.Base");
 namespace("Parking.App.Models");
 
-(function ($, parking) {
+(function ($, parking, undefined) {
     var common         = parking["Common"];
     var config         = parking["Configuration"];
     var appbase        = parking["App"]["Base"];

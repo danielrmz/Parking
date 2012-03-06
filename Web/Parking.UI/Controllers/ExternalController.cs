@@ -9,13 +9,16 @@ using Sieena.Parking.API.Models;
 
 namespace Parking.UI.Controllers
 {
-    public class TropoController : Controller
+    /// <summary>
+    /// Endpoint to process external requests that have to be on the frontend server.
+    /// </summary>
+    public class ExternalController : Controller
     { 
         /// <summary>
         /// Parses the Tropo Session request.
         /// </summary>
         /// <returns></returns>
-        public ActionResult Execute()
+        public ActionResult Tropo()
         {
             using (StreamReader reader = new StreamReader(Request.InputStream))
             {

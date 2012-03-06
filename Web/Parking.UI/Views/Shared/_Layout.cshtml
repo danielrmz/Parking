@@ -52,6 +52,8 @@
                 Oops! <span class="message"></span>
             </div> 
         </div>
+
+        <div class="js-placeholder-generic"></div>
     </div>
     
     <footer>
@@ -62,8 +64,8 @@
 
     <!-- Scripts -->
     <div pub-key="6a5e7020-9e27-4132-9959-7782d22abf32" sub-key="57a3f4f8-a414-11df-951b-b707021b1c1f" ssl="off" origin="pubsub.pubnub.com" id="pubnub"></div>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="/Content/Scripts/Plugins/jquery-1.7.1.min.js"><\/script>')</script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript">window.jQuery || document.write('<script src="/Content/Scripts/Plugins/jquery-1.7.1.min.js"><\/script>')</script>
     @Html.Raw(@WebExtensions.CombresLink("PluginsJs"))
     @Html.Raw(@WebExtensions.CombresLink("CoreResources", new { async = "true" }))
     @Html.Raw(@WebExtensions.CombresLink("CoreTemplates", new { async = "true" }))

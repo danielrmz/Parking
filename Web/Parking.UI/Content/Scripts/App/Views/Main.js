@@ -10,7 +10,7 @@ namespace("Parking.App.Models");
 namespace("Parking.Resources");
 namespace("Parking.Resources.i18n");
 
-(function ($, parking) {
+(function ($, parking, undefined) {
     var i18n           = parking["Resources"]["i18n"];
     var common         = parking["Common"];
     var config         = parking["Configuration"];
@@ -32,6 +32,7 @@ namespace("Parking.Resources.i18n");
          * @constructor
          */
         "initialize": function() {
+            var self = this;
             this.collection = appdata.Spaces;
             this.UserSelector = new appviews.UserSelector(function(list) { 
                return _(list.filter(function(data) { 
@@ -43,12 +44,9 @@ namespace("Parking.Resources.i18n");
             
             appdata.CheckinsCurrent.on("remove", this.onRemove, this);
             appdata.CheckinsCurrent.on("add", this.onAdd, this);
-
-            // Detect if the user is near Sieena in order to enable check in mode
-            /*var self = this;
-            self.checkinEnabled = false;
-            common.DetectLocation(function() { self.checkinEnabled = true; });
-          */
+            
+            $(document).on("click", ".js-checkout", function() { self["doCheckout"].apply(self, arguments); });
+            $(document).on("click", ".js-sendMessage", function() { self["showSendMessage"].apply(self, arguments); });
         },
 
         /**
@@ -80,13 +78,28 @@ namespace("Parking.Resources.i18n");
          * @enum {string}
          */
         "events": { 
-            "click .js-space.used": "showDetailsDialog",
-            "click .js-space.available": "showConfirmDialog",
-            "click .js-confirmation-dialog .btn-close": "closeConfirmDialog",
-            "click .js-confirmation-dialog .btn-success": "doCheckin",
-            "click .js-checkout": "doCheckout"
+            "click .js-space.used"                      : "showDetailsDialog",
+            "click .js-space.available"                 : "showConfirmDialog",
+            "click .js-confirmation-dialog .btn-close"  : "closeConfirmDialog",
+            "click .js-confirmation-dialog .btn-success": "doCheckin"//,
+            //"click .js-checkout"                        : "doCheckout"
         },
 
+        /**
+         * Shows the send message dialog.
+         */
+        "showSendMessage": function() { },
+
+        /**
+         * Sends an IM/Email to a particular user.
+         */
+        "doSendMessage": function() { },
+
+        /**
+         * Does the checkout for a particular checkin.
+         * @param {Object} e
+         * @return {boolean}
+         */
         "doCheckout": function(e) { 
             var id = $(e.target).data("checkinid");
             var checkin = appdata.CheckinsCurrent.get(id);
@@ -185,8 +198,7 @@ namespace("Parking.Resources.i18n");
                                     "content": content 
                                });
                     car.popover("show"); 
-                    car.addClass("js-popover-active"); 
-                    $(".js-checkout").click(function() { self["doCheckout"].apply(self, arguments); });
+                    car.addClass("js-popover-active");  
                 });
             } 
         },

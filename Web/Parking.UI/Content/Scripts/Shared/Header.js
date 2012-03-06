@@ -7,7 +7,7 @@ namespace("Parking.Common");
 namespace("Parking.Configuration");
 namespace("Parking.Resources");
 
-(function($, parking) {
+(function ($, parking, undefined) {
     var config    = parking["Configuration"]; 
     var resources = parking["Resources"];
     var common    = parking["Common"];

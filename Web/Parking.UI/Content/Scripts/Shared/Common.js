@@ -7,9 +7,35 @@
 */
 namespace("Parking.Common");
 
-(function($, parking) {
+(function ($, parking, undefined) {
     var common  = parking["Common"]; 
 
+    /** 
+     * Serializes form fields into key value pairs.
+     * @return {Object}
+     */
+    $.fn.serializeObject = function()
+    {
+        var o = {};
+        var a = this.serializeArray();
+        
+        $.each(a, function() {
+            if (o[this.name] !== undefined) {
+                if (!o[this.name].push) {
+                    o[this.name] = [o[this.name]];
+                }
+                o[this.name].push(this.value || '');
+            } else {
+                o[this.name] = this.value || '';
+            }
+        });
+        return o;
+    };
+
+    /**
+     * Wrapper for the browser's geolocation API
+     * @param {Function} nearSuccessfull Callback to be done when the user is detected to be near the base point
+     */
     common.DetectLocation = function(nearSuccessfull) { 
         if (navigator.geolocation) 
         {
@@ -21,8 +47,7 @@ namespace("Parking.Common");
 
                     var lat1 = position.coords.latitude;
                     var lon1 = position.coords.longitude;
-                    console.log(lat1);
-                    console.log(lon1);
+                    
                     var baseLat = 25.653876;
                     var baseLong = -100.38137;
 
@@ -40,9 +65,7 @@ namespace("Parking.Common");
                     
                     //console.log(d);
                     if((d*1000) > 750) {
-                        console.log("Too far from base point");
                     } else {
-                        console.log("OK");
                         nearSuccessfull = nearSuccessfull || function() {};
                         nearSuccessfull();
                     }

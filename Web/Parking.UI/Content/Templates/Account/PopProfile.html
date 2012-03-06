@@ -1,0 +1,54 @@
+﻿
+<div class="modal dialog-profile js-warning-dialog fade">   
+  <div class="modal-header">
+        <a class="close" data-dismiss="modal">×</a>
+        <h3>{{i18n.Profile_Title}}</h3>
+    </div> 
+    <div class="modal-body">
+        <div>
+            <div class="tabbable">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-target="#general" href="javascript:;" data-bypass="true" data-toggle="tab">General</a></li>
+                    <li><a data-target="#connect" href="javascript:;" data-bypass="true" data-toggle="tab">Connect</a></li>
+                </ul>
+            </div>
+            <div class="tab-content">
+                <div class="tab-pane active" id="general">
+                    <form action="" method="get"> 
+                        <div class="alert alert-success js-success" style="display:none">
+                            <a class="close" data-dismiss="alert">×</a>
+                            Profile updated correctly 
+                        </div>
+                        <div class="row-fluid">
+                            <div class="span5">
+                                <label>{{i18n.Profile_FirstName}}</label>
+                                <input type="text" name="FirstName" class="span12" value="{{model.FirstName}}" > 
+                                <label>{{i18n.Profile_Cellphone}}</label>
+                                <input type="text" name="PhoneCel" class="span12" value="{{model.PhoneCel}}" > 
+                            </div>
+                            <div class="span1">&nbsp;</div>
+                            <div class="span5">
+                                <label>{{i18n.Profile_LastName}}</label>
+                                <input type="text" name="LastName" class="span12" value="{{model.LastName}}" > 
+                                <label>{{i18n.Profile_Email}}</label>
+                                <input type="text" name="ContactEmail" class="span12" value="{{model.ContactEmail}}" > 
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>                                             
+                    </form>
+                    <div class="modal-footer">
+                        <a href="#" class="btn btn-success js-button-success">{{i18n.Buttons_Confirm}}</a> 
+                        <a href="#" class="btn btn-close"  data-dismiss="modal">{{i18n.Buttons_Cancel}}</a>
+                    </div>
+                </div>
+                <div class="tab-pane" id="connect">
+                    <ul>
+                        <li>Facebook</li>
+                        <li>Foursquare</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div> 

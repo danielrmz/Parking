@@ -7,7 +7,7 @@
 namespace("Parking.App.Views");
 namespace("Parking.App.Data");
 
-(function ($, parking) {
+(function ($, parking, undefined) {
     var i18n           = parking["Resources"]["i18n"];
     var common         = parking["Common"];
     var config         = parking["Configuration"];

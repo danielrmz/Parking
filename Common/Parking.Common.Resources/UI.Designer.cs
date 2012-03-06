@@ -142,6 +142,33 @@ namespace Sieena.Parking.Common.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Checkout.
+        /// </summary>
+        public static string Buttons_Checkout {
+            get {
+                return ResourceManager.GetString("Buttons_Checkout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm.
+        /// </summary>
+        public static string Buttons_Confirm {
+            get {
+                return ResourceManager.GetString("Buttons_Confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Send Message.
+        /// </summary>
+        public static string Buttons_SendMessage {
+            get {
+                return ResourceManager.GetString("Buttons_SendMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Notify and Leave!.
         /// </summary>
         public static string Dashboard_ActionBtn_Blocked {
@@ -385,6 +412,69 @@ namespace Sieena.Parking.Common.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to is leaving, please move your car..
+        /// </summary>
+        public static string Notification_SomeoneLeaving {
+            get {
+                return ResourceManager.GetString("Notification_SomeoneLeaving", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Warning.
+        /// </summary>
+        public static string Notification_WindowTitle {
+            get {
+                return ResourceManager.GetString("Notification_WindowTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cellphone.
+        /// </summary>
+        public static string Profile_Cellphone {
+            get {
+                return ResourceManager.GetString("Profile_Cellphone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MSN Email.
+        /// </summary>
+        public static string Profile_Email {
+            get {
+                return ResourceManager.GetString("Profile_Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to First Name.
+        /// </summary>
+        public static string Profile_FirstName {
+            get {
+                return ResourceManager.GetString("Profile_FirstName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last Name.
+        /// </summary>
+        public static string Profile_LastName {
+            get {
+                return ResourceManager.GetString("Profile_LastName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to My Profile.
+        /// </summary>
+        public static string Profile_Title {
+            get {
+                return ResourceManager.GetString("Profile_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to TEST.
         /// </summary>
         public static string TEST {
@@ -453,6 +543,24 @@ namespace Sieena.Parking.Common.Resources {
         public static string UserSelector_Title {
             get {
                 return ResourceManager.GetString("UserSelector_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hi.
+        /// </summary>
+        public static string Word_Hi {
+            get {
+                return ResourceManager.GetString("Word_Hi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thank you!.
+        /// </summary>
+        public static string Word_Thanks {
+            get {
+                return ResourceManager.GetString("Word_Thanks", resourceCulture);
             }
         }
     }

@@ -7,6 +7,9 @@ using System.IO;
 
 namespace Sieena.Parking.Common.Utils
 {
+    /// <summary>
+    /// Crypto utility functions
+    /// </summary>
     public static class Crypto
     {
         private static byte[] _salt = Encoding.ASCII.GetBytes("o6806642kbM7c5");

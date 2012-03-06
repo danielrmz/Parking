@@ -60,8 +60,10 @@
       <resource path="~/Content/Templates/Shared/DashboardNotifications.html" />
       <resource path="~/Content/Templates/Shared/HeaderUserInfo.html" />
       <resource path="~/Content/Templates/Shared/PopUserInfo.html" />
-      <resource path="~/Content/Templates/Shared/UserSelector.html" />
-      <resource path="~/Content/Templates/Shared/UserSelectorItem.html" />
+      <resource path="~/Content/Templates/Shared/ModalUserSelector.html" />
+      <resource path="~/Content/Templates/Shared/ModalUserSelectorItem.html" />
+      <resource path="~/Content/Templates/Account/PopProfile.html" />
+      <resource path="~/Content/Templates/Parking/ModalLeaveNotification.html" />
     </resourceSet>
 
     <resourceSet name="PluginsCss" type="css">
@@ -77,7 +79,7 @@
       <resource path="~/Content/Styles/App/footer.css"  />
     </resourceSet>
 
-    <resourceSet name="PluginsJs" type="js">
+    <resourceSet name="PluginsJs" type="js"  minifierRef="off" >
       <resource path="~/Content/Scripts/Plugins/bootstrap.min.js"  />
       <resource path="~/Content/Scripts/Plugins/jquery.cookie.min.js"  />
       <resource path="~/Content/Scripts/Plugins/namespace.js" />
@@ -86,8 +88,7 @@
       <resource path="~/Content/Scripts/Plugins/backbone-0.9.1.min.js" />
       <resource path="~/Content/Scripts/Plugins/handlebars-1.0.0.min.js" />
       <resource path="~/Content/Scripts/Plugins/pubnub-3.1.min.js" />
-      <!-- <resource path="~/Content/Scripts/Plugins/jquery.gritter.js"  />-->
-      <!-- <resource path="~/Content/Scripts/Plugins/spin.min.js" />-->
+      <resource path="~/Content/Scripts/Plugins/jquery.placeholder.min.js" /> 
     </resourceSet>
     
     <resourceSet name="CoreJs" type="js" >
@@ -109,7 +110,9 @@
       <resource path="~/Content/Scripts/App/Views/Dashboard.js"  />
       <resource path="~/Content/Scripts/App/Views/DashboardNotifications.js"  />
       <resource path="~/Content/Scripts/App/Views/UserSelector.js"  />
-
+      <resource path="~/Content/Scripts/App/Views/Profile.js" />
+      <resource path="~/Content/Scripts/App/Views/BlockNotification.js" />
+      
       <!-- Models -->
       <resource path="~/Content/Scripts/App/Models/UserSession.js"  />
       <resource path="~/Content/Scripts/App/Models/UserInformation.js"  /> 

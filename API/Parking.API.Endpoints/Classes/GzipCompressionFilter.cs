@@ -13,12 +13,19 @@ namespace Sieena.Parking.API.Modules.Classes
     /// </summary>
     public static class NancyCompressionExtenstion
     {
-
+        /// <summary>
+        /// Registers the compresssion check
+        /// </summary>
+        /// <param name="pipelines"></param>
         public static void RegisterCompressionCheck(this IPipelines pipelines)
         {
             pipelines.AfterRequest.AddItemToEndOfPipeline(CheckForCompression);
         }
 
+        /// <summary>
+        /// Checks some compatibility
+        /// </summary>
+        /// <param name="context"></param>
         static void CheckForCompression(NancyContext context)
         {
             if (!RequestIsGzipCompatible(context.Request))
@@ -44,6 +51,10 @@ namespace Sieena.Parking.API.Modules.Classes
             CompressResponse(context.Response);
         }
 
+        /// <summary>
+        /// Compresses the response and output its
+        /// </summary>
+        /// <param name="response"></param>
         static void CompressResponse(Response response)
         {
             response.Headers["Content-Encoding"] = "gzip";
@@ -58,6 +69,11 @@ namespace Sieena.Parking.API.Modules.Classes
                                     };
         }
 
+        /// <summary>
+        /// Determines if the response is small enough to fit in a packet.
+        /// </summary>
+        /// <param name="response"></param>
+        /// <returns></returns>
         static bool ContentLengthIsTooSmall(Response response)
         {
             string contentLength;
@@ -72,6 +88,9 @@ namespace Sieena.Parking.API.Modules.Classes
             return false;
         }
 
+        /// <summary>
+        /// Valid mimes to be compressed
+        /// </summary>
         public static List<string> ValidMimes = new List<string>()
                                                     {
                                                         "text/css",
@@ -83,11 +102,21 @@ namespace Sieena.Parking.API.Modules.Classes
                                                         "application/x-javascript"
                                                     };
 
+        /// <summary>
+        /// Checks if the response corresponds to any mime that could be compressed
+        /// </summary>
+        /// <param name="response"></param>
+        /// <returns></returns>
         static bool ResponseIsCompatibleMimeType(Response response)
         {
             return ValidMimes.Any(x => x == response.ContentType);
         }
 
+        /// <summary>
+        /// Determines if the request supports gzip
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         static bool RequestIsGzipCompatible(Request request)
         {
             return request.Headers.AcceptEncoding.Any(x => x.Contains("gzip"));

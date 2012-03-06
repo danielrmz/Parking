@@ -41,7 +41,7 @@ header {
     font-family: "Open Sans";
     font-weight: 200;
     height: 37px;
-    padding: 8px 15px;
+    padding: 8px 10px;
     float: left;
     min-width: 52px; }
   header .user-info {
@@ -80,6 +80,8 @@ header {
         top: -13px;
         margin-left: -5px;
         display: inline-block; }
+      header .user-info .day div {
+        width: 75px; }
     header .user-info .time {
       font-size: 28px;
       line-height: 33px;
@@ -115,14 +117,6 @@ header {
       float: left; }
     header .topbar .column:last-child {
       float: right; }
-    header .topbar .column.notifications {
-      font-family: 'Open Sans', sans-serif;
-      float: left;
-      padding: 12px;
-      margin-left: 100px; }
-      header .topbar .column.notifications.error {
-        color: red;
-        font-weight: 500; }
     header .topbar .logo-sieena {
       float: left;
       font-family: 'Open Sans', sans-serif;
@@ -132,55 +126,54 @@ header {
       height: 35px;
       width: 120px;
       background: url("../Images/logo-myplace.png"); }
+  header .dialog-profile label {
+    font-weight: bold; }
 
 #dashboard {
   width: 100%;
   background: #73757d url(../Images/bg-dashboard.png) repeat-x; }
-
-.panel-dashboard {
-  height: 50px;
-  padding: 10px; }
-
-.action-button {
-  margin-top: 10px; }
-
-.panel-notifications {
-  float: right;
-  height: 51px;
-  margin-bottom: 30px;
-  overflow-x: hidden;
-  overflow-y: hidden; }
-  .panel-notifications ul {
-    list-style: none; }
-    .panel-notifications ul li {
-      position: relative;
-      width: 180px;
-      text-align: left;
-      float: right;
-      background: #52545C;
-      border: 1px outset #44454D;
-      border-top: 0;
-      border-left: 0;
-      padding: 3px;
-      color: white;
-      font-weight: 300;
-      font-size: 11px;
-      margin-left: 10px; }
-      .panel-notifications ul li .user {
-        padding: 8px;
-        line-height: 13px; }
-        .panel-notifications ul li .user span {
-          display: block; }
-      .panel-notifications ul li img {
-        height: 40px;
-        width: 40px;
-        max-height: 40px;
-        max-width: 40px;
-        float: left;
-        margin-right: 7px; }
-      .panel-notifications ul li.transitioning {
-        position: absolute; }
-      .panel-notifications ul li.in img {
-        border: 2px solid #669E00; }
-      .panel-notifications ul li.out img {
-        border: 2px solid #932F00; }
+  #dashboard .panel-dashboard {
+    height: 50px;
+    padding: 10px; }
+  #dashboard .action-button {
+    margin-top: 10px; }
+  #dashboard .panel-notifications {
+    float: right;
+    height: 51px;
+    margin-bottom: 30px;
+    overflow-x: hidden;
+    overflow-y: hidden; }
+    #dashboard .panel-notifications ul {
+      list-style: none; }
+      #dashboard .panel-notifications ul li {
+        position: relative;
+        width: 180px;
+        text-align: left;
+        float: right;
+        background: #52545C;
+        border: 1px outset #44454D;
+        border-top: 0;
+        border-left: 0;
+        padding: 3px;
+        color: white;
+        font-weight: 300;
+        font-size: 11px;
+        margin-left: 10px; }
+        #dashboard .panel-notifications ul li .user {
+          padding: 8px;
+          line-height: 13px; }
+          #dashboard .panel-notifications ul li .user span {
+            display: block; }
+        #dashboard .panel-notifications ul li img {
+          height: 40px;
+          width: 40px;
+          max-height: 40px;
+          max-width: 40px;
+          float: left;
+          margin-right: 7px; }
+        #dashboard .panel-notifications ul li.transitioning {
+          position: absolute; }
+        #dashboard .panel-notifications ul li.in img {
+          border: 2px solid #669E00; }
+        #dashboard .panel-notifications ul li.out img {
+          border: 2px solid #932F00; }

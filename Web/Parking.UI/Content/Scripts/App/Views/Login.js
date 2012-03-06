@@ -6,7 +6,7 @@
 
 namespace("Parking.App.Views");
 
-(function ($, parking) {
+(function ($, parking, undefined) {
     var i18n           = parking["Resources"]["i18n"];
     var common         = parking["Common"];
     var config         = parking["Configuration"];
@@ -61,7 +61,7 @@ namespace("Parking.App.Views");
          * @enum {string}
          */
         "events": { 
-           "click .js-submit": "submit"
+           "click .js-submit": "doSubmit"
         },
         
         /**
@@ -70,7 +70,7 @@ namespace("Parking.App.Views");
          * @param {Object} e
          * @return {boolean}
          */
-        "submit": function(e) {
+        "doSubmit": function(e) {
             var form   = $(this.el).find("form");
             var params = form.serialize();
             var self   = this;

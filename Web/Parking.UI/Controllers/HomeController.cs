@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using System.IO;
 using Sieena.Parking.Common.Utils;
 using Sieena.Parking.API.Models;
+using System.Web.Security;
+using Newtonsoft.Json;
 
 namespace Parking.UI.Controllers
 {
@@ -19,8 +21,8 @@ namespace Parking.UI.Controllers
         /// </summary>
         /// <returns></returns>
         public ActionResult Blank()
-        {
-            return View();
+        { 
+            return View(); 
         } 
     }
 }

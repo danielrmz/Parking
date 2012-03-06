@@ -11,6 +11,7 @@ using System.Linq;
 using System.Web;
 
 using Nancy;
+using Nancy.ModelBinding;
 using Nancy.ViewEngines.Razor;
 using Nancy.Serializers.Json;
 using Sieena.Parking.API.Models;
@@ -20,6 +21,9 @@ namespace Sieena.Parking.API.Modules
     using Classes;
     using APISession = Sieena.Parking.API.Models.Session;
     using Sieena.Parking.API.Models.Views;
+    using System.Data;
+    using Sieena.Parking.API.Models.Exceptions;
+    using i18n = Sieena.Parking.Common.Resources.UI;
 
     public class UsersModule : AbstractBaseModule
     {
@@ -43,11 +47,17 @@ namespace Sieena.Parking.API.Modules
             return UserInfo.Save(s);
         }
 
+        [Api("/GetAll/{id}", ApiMethod.PUT, true)]
         [Api("/{id}", ApiMethod.PUT, true)]
         public UserInfo UpdateUser(User u, APISession session, DynamicDictionary parameters)
         {
-            UserInfo s = parameters.Fill<UserInfo>();
-            
+            UserInfo s = this.Bind<UserInfo>(new string[]{"EntityKey", "EntityState"});
+
+            if (s.UserId != u.UserId && !u.IsAdmin())
+            {
+                throw new AccessException(i18n.API_ErrorSessionPrivilegesRequired);
+            }
+
             return UserInfo.Save(s); 
         }
 
