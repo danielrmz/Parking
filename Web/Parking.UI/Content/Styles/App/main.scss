@@ -452,4 +452,18 @@
 		width: auto !important;
 		margin-top: 50px !important;
 	}
+
+	.popover {
+		position: fixed;
+		bottom: 0px;
+		left: 5% !important;
+		.arrow {
+			display: none;
+		}
+
+		.popover-inner {
+			position: fixed;
+			bottom: 0px;
+		}
+	}
  }

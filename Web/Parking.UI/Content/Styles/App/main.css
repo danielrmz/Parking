@@ -362,4 +362,14 @@ body > div {
 
   .form-login {
     width: auto !important;
-    margin-top: 50px !important; } }
+    margin-top: 50px !important; }
+
+  .popover {
+    position: fixed;
+    bottom: 0px;
+    left: 5% !important; }
+    .popover .arrow {
+      display: none; }
+    .popover .popover-inner {
+      position: fixed;
+      bottom: 0px; } }
