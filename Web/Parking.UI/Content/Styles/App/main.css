@@ -350,4 +350,11 @@ body > div {
     top: 20%; }
 
   .dialog-select-user input.search-query {
-    width: 90% !important; } }
+    width: 90% !important; }
+
+  .form-login .fields input[type="password"] {
+    width: 82%; }
+
+  .form-login {
+    width: auto !important;
+    margin-top: 50px !important; } }
