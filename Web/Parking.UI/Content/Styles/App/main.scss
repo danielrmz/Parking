@@ -403,10 +403,10 @@
 	}
 
 	.container-whole.span12 {
-		height: 960px;
+		height: 1024px;
 	}
 	
-	.block-silver.time {
+	.block-silver.time, .block-dark.day {
 		display: none;
 	}
 
@@ -414,8 +414,17 @@
 		width: 80% !important;
 	}
 
-	footer .left {
-		display: none;
+	footer {
+		.left {
+			display: none;
+		}
+		.right {
+			float: none;
+			text-align: center;
+		}
+		[data-langkey="Footer_About"], [data-langkey="Footer_Terms"], [data-langkey="Footer_Login"] {
+			display:none;
+		}
 	}
 
 	.parking-map { 

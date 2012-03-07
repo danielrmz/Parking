@@ -328,15 +328,20 @@ body > div {
     width: auto; }
 
   .container-whole.span12 {
-    height: 960px; }
+    height: 1024px; }
 
-  .block-silver.time {
+  .block-silver.time, .block-dark.day {
     display: none; }
 
   .container-available {
     width: 80% !important; }
 
   footer .left {
+    display: none; }
+  footer .right {
+    float: none;
+    text-align: center; }
+  footer [data-langkey="Footer_About"], footer [data-langkey="Footer_Terms"], footer [data-langkey="Footer_Login"] {
     display: none; }
 
   .parking-map {
