@@ -70,23 +70,37 @@ namespace("Parking.Resources.i18n");
         (new appviews.HeaderUserInfo({ "model": appdata.CurrentUser, "el": $('.user-info .user') })).render(); 
         (new appviews.Dashboard({ "model": appdata.CurrentUser, "el": $('#dashboard') })).render(); 
 
-        // Initialize notification listener
+        // Initialize general notification listener
         PUBNUB.subscribe({
-                channel : "parking:notification:block",
+                channel : "parking:notifications",
                 restore : false, 
                 callback : function(msg) { 
+                    var typ = msg["Class"];
+                   
                     if(msg["UserId"] == appdata.CurrentUser.get("UserId")) {
-                        var modl = new Backbone.Model();
-                        var baseUser = appdata.Users.get(msg["UserId"]);
-                        var reqUser  = appdata.Users.get(msg["RequestingUser"]);
+                            
+                        switch(typ) {
+                            case "BlockNotification":
+                                    var modl = new Backbone.Model();
+                                    var baseUser = appdata.Users.get(msg["UserId"]);
+                                    var reqUser  = appdata.Users.get(msg["RequestingUser"]);
 
-                        modl.set("UserName", baseUser.FullName());                        
-                        modl.set("LeavingUserName", reqUser.FullName());
+                                    modl.set("UserName", baseUser.FullName());                        
+                                    modl.set("LeavingUserName", reqUser.FullName());
 
-                        var notify = new appviews.BlockNotification({ "el": $(".js-placeholder-generic"), "model": modl});
-                        notify.render();
-                        $(notify.el).find(".modal").modal("show");
-                    }
+                                    var notify = new appviews.BlockNotification({ "el": $(".js-placeholder-generic"), "model": modl});
+                                    notify.render();
+                                    $(notify.el).find(".modal").modal("show");
+                           
+                            break;
+                        
+                            case "AvailableNotification":
+                                var notify = new appviews.AvailableNotification({ "el": $(".js-placeholder-generic"), "model": modl});
+                                    notify.render();
+                                    $(notify.el).find(".modal").modal("show");
+                            break;
+                        }
+                   }
                 },
                 disconnect : function() { },
                 reconnect : function() { }, 

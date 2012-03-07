@@ -72,14 +72,15 @@ namespace("Parking.App.Data");
          */
         "doNotificationsSave": function() { 
             var form = $(this.el).find("#notifications form");
-            this.saveUser(form);
+            var notificationAvailability = $(this.el).find("[name=NotificationsAvailability]").attr("checked") == "checked";
+            this.saveUser(form, {"NotificationsAvailability": notificationAvailability});
             return false;
         },
 
         /**
          * Saves the user
          */
-        saveUser: function(form) {
+        saveUser: function(form, override) {
             var btn  = form.find(".js-button-success");
             var obj  = form.serializeObject();
             var msg  = form.find(".js-success");
@@ -93,9 +94,10 @@ namespace("Parking.App.Data");
             if(obj["Locale"] && obj["Locale"] != this.model.get("Locale")) {
                 localeChanged = true;
             }
-
+             
             this.model.set(obj);
-            
+            this.model.set(override);
+
             this.model.save({}, {"success": function() { 
                 msg.fadeIn();
                 btn.removeClass("disabled");

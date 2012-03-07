@@ -294,3 +294,10 @@ body > div {
       display: inline; }
     body > div .popup-userinfo .panel-info .panel-actions {
       margin-top: 10px; }
+
+.dialog-available .modal-body {
+  text-align: center;
+  color: gray; }
+  .dialog-available .modal-body p {
+    font-size: 16px;
+    font-family: "Open Sans"; }

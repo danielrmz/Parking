@@ -243,6 +243,9 @@
   <data name="Membership_NotImplemented" xml:space="preserve">
     <value>Feature not implemented</value>
   </data>
+  <data name="Notification_AlertTitle" xml:space="preserve">
+    <value>Alerta</value>
+  </data>
   <data name="Notification_EmailMessage" xml:space="preserve">
     <value>{0} esta buscandote, necesita que muevas tu carro. Gracias! </value>
   </data>
@@ -254,6 +257,9 @@
   </data>
   <data name="Notification_SomeoneLeaving" xml:space="preserve">
     <value>ya se va, por favor mueve tu carro.</value>
+  </data>
+  <data name="Notification_SpaceAvailable" xml:space="preserve">
+    <value>Ya hay un espacio disponible!</value>
   </data>
   <data name="Notification_WindowTitle" xml:space="preserve">
     <value>Alerta</value>

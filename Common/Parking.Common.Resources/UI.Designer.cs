@@ -439,6 +439,15 @@ namespace Sieena.Parking.Common.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Alert.
+        /// </summary>
+        public static string Notification_AlertTitle {
+            get {
+                return ResourceManager.GetString("Notification_AlertTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User {0} is looking for you, he/she needs you to move your car. Thanks! \n MyPlace.
         /// </summary>
         public static string Notification_EmailMessage {
@@ -471,6 +480,15 @@ namespace Sieena.Parking.Common.Resources {
         public static string Notification_SomeoneLeaving {
             get {
                 return ResourceManager.GetString("Notification_SomeoneLeaving", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There&apos;s a space available!.
+        /// </summary>
+        public static string Notification_SpaceAvailable {
+            get {
+                return ResourceManager.GetString("Notification_SpaceAvailable", resourceCulture);
             }
         }
         

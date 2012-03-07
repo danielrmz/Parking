@@ -313,7 +313,31 @@ namespace Sieena.Parking.API.Models
                 case NotificationType.Checkout:
                     // Insert custom actions based on the type here.
                     NotifyBlockingUsers(checkin, checkin.GetCheckinsIBlock());
+                    NotifyWaitingList(checkin);
                     break;
+            }
+        }
+
+        /// <summary>
+        /// Notifies users that have set up their notification alert setting.
+        /// </summary>
+        /// <param name="baseCheckin"></param>
+        private static void NotifyWaitingList(Checkin baseCheckin)
+        {
+            Pubnub pub = PubnubFactory.GetInstance();
+            //pub.Publish(PubnubFactory.Channels.GeneralNotification, new { Class = "AvailableNotification", UserId = user.UserId });
+            using (EntityContext ctx = new EntityContext())
+            {
+                List<int> checkedInUsers = ctx.Checkins.Where(c => !c.EndTime.HasValue).Select(c => c.UserId).ToList();
+                List<int> availableUsers = ctx.UserInfos.Where(u => !checkedInUsers.Contains(u.UserId)
+                                                                        && u.NotificationsAvailability.HasValue
+                                                                        && u.NotificationsAvailability.Value
+                                                                        && u.UserId != baseCheckin.UserId)
+                                                        .Select(u => u.UserId)
+                                                        .ToList();
+                availableUsers.ForEach(user => {
+                    pub.Publish(PubnubFactory.Channels.GeneralNotification, new { Class = "AvailableNotification", UserId = user });
+                });
             }
         }
 
@@ -344,7 +368,7 @@ namespace Sieena.Parking.API.Models
                 EmailerFactory.SendMail(user.Email, i18n.Notification_EmailTitle, string.Format(i18n.Notification_EmailMessage, requestingUser.FullName));
 
                 // Notify via UI (if the user has it open)
-                pub.Publish(PubnubFactory.Channels.NotifyBlock, new { UserId = user.UserId, RequestingUser = requestingUser.UserId });
+                pub.Publish(PubnubFactory.Channels.GeneralNotification, new { Class = "BlockNotification", UserId = user.UserId, RequestingUser = requestingUser.UserId });
             
             });
 

@@ -33,6 +33,6 @@ public static class PubnubFactory {
         public static string CheckinHistory = "parking:checkins:history";
         public static string CheckinCurrent = "parking:checkins:current";
         public static string Users          = "parking:users";
-        public static string NotifyBlock    = "parking:notification:block";
+        public static string GeneralNotification = "parking:notifications";
     }
 }
