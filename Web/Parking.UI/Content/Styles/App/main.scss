@@ -398,6 +398,8 @@
 		display: none;
 	}
 
+	body header .block-light{padding:8px 3px}
+
 	.layout-width, .container-whole.span12 {
 		width: auto;
 	}
@@ -459,14 +461,32 @@
 	.popover {
 		position: fixed;
 		bottom: 0px;
-		left: 5% !important;
+		left: 9% !important;
 		.arrow {
 			display: none;
 		}
 
+		
+
 		.popover-inner {
-			position: fixed;
-			bottom: 0px;
+			 bottom: 0;
+			 position: fixed;
+			 min-width: 248px;
+			 overflow: hidden;
+			 width: 80%;
+
+			 span.ext{display:block;margin-bottom:-18px;}
 		}
 	}
+	.panel-info{font-size:10px}
+
+	.panel-info label {
+		display: inline-block;
+		font-size: 10px;
+		font-weight: bold;
+		line-height: 12px;
+		margin: 0;
+	}
+
+	
  }

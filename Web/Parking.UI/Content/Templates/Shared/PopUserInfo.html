@@ -3,7 +3,8 @@
         <img src="{{user.ProfilePictureUrl}}" alt="" />
     </div>
     <div class="panel-info left">
-        <label>{{i18n.UserInfo_PhoneOffice}}:</label> {{user.PhoneOffice}}, <label>{{i18n.UserInfo_PhoneOfficeExtension}}</label> {{user.PhoneOfficeExtension}} <br />
+        <label>{{i18n.UserInfo_PhoneOffice}}:</label> {{user.PhoneOffice}}, 
+        <span  class="ext"><label>{{i18n.UserInfo_PhoneOfficeExtension}}</label> {{user.PhoneOfficeExtension}}</span> <br />
         <label>{{i18n.UserInfo_PhoneCel}}:</label> {{user.PhoneCel}}  <br />
         <label>{{i18n.UserInfo_ContactEmail}}:</label> {{user.ContactEmail}} <br />
         <label>{{i18n.UserInfo_ArrivalTime}}:</label> {{shortDate checkin.StartTime}}
