@@ -101,9 +101,16 @@ namespace("Parking.Resources.i18n");
          * @return {boolean}
          */
         "doCheckout": function(e) { 
+            var btn = $(e.target);
             var id = $(e.target).data("checkinid");
             var checkin = appdata.CheckinsCurrent.get(id);
+            
+            if(btn.hasClass("disabled")) {
+                return false;
+            }
 
+            btn.addClass("disabled");
+            
             if(checkin) {
                 checkin.Checkout();
             }
