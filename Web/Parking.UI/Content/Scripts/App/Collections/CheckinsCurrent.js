@@ -64,7 +64,7 @@ namespace("Parking.App.Collections");
                     this.remove(collectionObj);
                 }
 
-            } else {
+            } else if(msg["EndTime"] == null) {
                 this.add(msg);
             }
 

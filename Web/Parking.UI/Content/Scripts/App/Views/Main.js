@@ -295,7 +295,8 @@ namespace("Parking.Resources.i18n");
          * @param {Object} checkin Checkin to add
          * @private
          */
-        onAdd: function(checkin) { 
+        onAdd: function(checkin) {  
+
             var userId = checkin.get("UserId");
             var spaceId = checkin.get("SpaceId");
             var car = $(this.el).find("[data-spaceid=" + spaceId + "]");
@@ -320,7 +321,8 @@ namespace("Parking.Resources.i18n");
          * @param {Object} checkin Checkin to remove
          * @private
          */
-        onRemove: function(checkin) { 
+        onRemove: function(checkin) {  
+
             var userId = checkin.get("UserId");
             var spaceId = checkin.get("SpaceId");
             var car = $(this.el).find("[data-spaceid=" + spaceId + "]");

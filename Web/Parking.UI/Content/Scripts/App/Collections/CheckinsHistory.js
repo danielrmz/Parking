@@ -61,7 +61,14 @@ namespace("Parking.App.Collections");
          * @inheritDoc
          */
         onMessageReceived: function(msg) { 
-            this.add(msg); 
+            var notId         = msg["NotificationId"];
+            var collectionObj = this.get(notId);
+
+            if(collectionObj) { 
+                /* Ignore if it is already in the collection */
+            } else {
+                this.add(msg); 
+            }
         },
 
         /**

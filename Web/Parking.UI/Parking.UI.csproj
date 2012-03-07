@@ -243,6 +243,7 @@
     <Content Include="Content\Templates\Static\Terms.html" />
     <Content Include="channel.html" />
     <Content Include="crossdomain.xml" />
+    <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="humans.txt" />
     <Content Include="robots.txt" />
