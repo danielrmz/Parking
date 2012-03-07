@@ -102,6 +102,7 @@ namespace("Parking.App.Data");
                 msg.fadeIn();
                 btn.removeClass("disabled");
                 if(localeChanged) {
+                    $.cookie("ParkingLocaleOverride", null);
                     $.cookie("ParkingLocale", obj["Locale"]);
                     location.reload();
                 }

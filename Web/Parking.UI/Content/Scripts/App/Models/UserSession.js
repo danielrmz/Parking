@@ -70,6 +70,8 @@ namespace("Parking.App.Models");
             $.cookie("ParkingLocale", this.get("Locale"));
             $.cookie('ParkingUserId', this.get('UserName'));
             $.cookie('ParkingSessionId', this.get('SessionId')); 
+
+            common.setLanguageVerbiage();
         },
 
         /**
@@ -199,7 +201,8 @@ namespace("Parking.App.Models");
                 $.get(config.APIEndpointUrl + "session", function(data) { 
                     if(data.Error == false) {
                         $.cookie("ParkingLocale", data["Response"]["Locale"]);
-                        config.locale = $.cookie("ParkingLocale");
+                        config.locale = $.cookie("ParkingLocaleOverride") || $.cookie("ParkingLocale");
+                        common.setLanguageVerbiage();
 
                         self.trigger("pre-loggedin");
                         self.set(data["Response"]);

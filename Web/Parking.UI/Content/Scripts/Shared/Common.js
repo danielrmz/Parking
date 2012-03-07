@@ -56,7 +56,7 @@ namespace("Parking.Resources.i18n");
                     var R = 6371; // km
                     var dLat = toRad(baseLat-lat1);
                     var dLon = toRad(baseLong-lon1);
-                    var lat1 = toRad(lat1);
+                    lat1 = toRad(lat1);
                     var lat2 = toRad(baseLat);
                      
                     var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
@@ -252,6 +252,15 @@ namespace("Parking.Resources.i18n");
         $("[data-langkey]").each(function() { 
             var rsrc = $(this).data("langkey");
             $(this).html(i18n.get(rsrc));
+        });
+    };
+
+    common.setLanguageLinks = function() {
+        $("[data-locale]").each(function() { 
+            $(this).click(function() { 
+                $.cookie("ParkingLocaleOverride", $(this).data("locale"));
+                location.reload();
+            });
         });
     };
 
