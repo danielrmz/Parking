@@ -66,6 +66,10 @@ header {
           color: #D0411B;
           font-size: 13px;
           font-weight: bold; }
+        header .user-info .user-name p span.welcome {
+          color: #999999;
+          font-weight: normal;
+          font-size: 12px; }
         header .user-info .user-name p.bottom {
           color: #999999; }
       header .user-info .user-name a.btn-sign-out {

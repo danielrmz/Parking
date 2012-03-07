@@ -78,10 +78,16 @@ header {
 				text-align:right;
 				vertical-align: middle;
 				height: 30px;
+				
 				span {
 					color:#D0411B; 
 					font-size: 13px;
 					font-weight: bold;
+				}
+				span.welcome {
+					color: #999999;
+					font-weight: normal;
+					font-size: 12px;
 				}
 
 				&.bottom {
