@@ -433,14 +433,20 @@
 	}
 
 	.parking-map { 
-		margin-top: 30px;
+		margin-top: 350px;
 		-moz-transform:rotate(90deg);
 		-webkit-transform:rotate(90deg);
 		-o-transform:rotate(90deg);
 		-ms-transform:rotate(90deg);
-		
+		height: 300px !important;
+		background-position: left !important;
+		width: 960px !important;
+		margin-left:-340px;
+		overflow: hidden;
 	}
-
+	.car {
+		margin-top: -35px;
+	}
 	.modal.fade.in {
 		top: 20%;
 	}
@@ -459,6 +465,8 @@
 	}
 
 	.popover {
+		width: 300px;
+		overflow: hidden;
 		position: fixed;
 		bottom: 0px;
 		left: 9% !important;
