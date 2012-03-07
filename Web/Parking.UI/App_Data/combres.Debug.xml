@@ -65,6 +65,7 @@
       <resource path="~/Content/Templates/Account/PopProfile.html" />
       <resource path="~/Content/Templates/Parking/ModalLeaveNotification.html" />
       <resource path="~/Content/Templates/Parking/ModalAvailableNotification.html" />
+      <resource path="~/Content/Templates/Parking/Status.html" />
     </resourceSet>
 
     <resourceSet name="PluginsCss" type="css">
@@ -114,6 +115,7 @@
       <resource path="~/Content/Scripts/App/Views/Profile.js" />
       <resource path="~/Content/Scripts/App/Views/BlockNotification.js" />
       <resource path="~/Content/Scripts/App/Views/AvailableNotification.js" />
+      <resource path="~/Content/Scripts/App/Views/Status.js" />
       
       <!-- Models -->
       <resource path="~/Content/Scripts/App/Models/UserSession.js"  />

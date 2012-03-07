@@ -27,6 +27,7 @@ namespace Parking.UI
             routes.MapRoute("help", "help", new { controller = "Home", action = "blank" });
             routes.MapRoute("privacy", "privacy", new { controller = "Home", action = "blank" });
             routes.MapRoute("terms", "terms", new { controller = "Home", action = "blank" });
+            routes.MapRoute("status", "status", new { controller = "Home", action = "blank" });
             routes.MapRoute("login", "login", new { controller = "Account", action = "LogOn" });
             
             routes.MapRoute(

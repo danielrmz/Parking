@@ -250,6 +250,15 @@ namespace Sieena.Parking.Common.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Status.
+        /// </summary>
+        public static string Footer_Status {
+            get {
+                return ResourceManager.GetString("Footer_Status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Terms.
         /// </summary>
         public static string Footer_Terms {
@@ -597,6 +606,33 @@ namespace Sieena.Parking.Common.Resources {
         public static string Profile_Title {
             get {
                 return ResourceManager.GetString("Profile_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NO.
+        /// </summary>
+        public static string Status_NO {
+            get {
+                return ResourceManager.GetString("Status_NO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Is there a free space?.
+        /// </summary>
+        public static string Status_Question {
+            get {
+                return ResourceManager.GetString("Status_Question", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to YES.
+        /// </summary>
+        public static string Status_YES {
+            get {
+                return ResourceManager.GetString("Status_YES", resourceCulture);
             }
         }
         

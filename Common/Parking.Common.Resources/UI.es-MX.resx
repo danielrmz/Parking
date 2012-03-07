@@ -180,6 +180,9 @@
   <data name="Footer_Sieena" xml:space="preserve">
     <value>Sieena</value>
   </data>
+  <data name="Footer_Status" xml:space="preserve">
+    <value>Estatus</value>
+  </data>
   <data name="Footer_Terms" xml:space="preserve">
     <value>Terminos de Uso</value>
   </data>
@@ -296,6 +299,15 @@
   </data>
   <data name="Profile_Title" xml:space="preserve">
     <value>Mi Perfil</value>
+  </data>
+  <data name="Status_NO" xml:space="preserve">
+    <value>NO</value>
+  </data>
+  <data name="Status_Question" xml:space="preserve">
+    <value>Hay algun espacio libre?</value>
+  </data>
+  <data name="Status_YES" xml:space="preserve">
+    <value>SI</value>
   </data>
   <data name="TEST" xml:space="preserve">
     <value>PRUEBA</value>

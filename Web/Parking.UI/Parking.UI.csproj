@@ -153,6 +153,7 @@
     <Content Include="Content\Scripts\App\Collections\CheckinsHistory.js" />
     <Content Include="Content\Scripts\App\Views\BlockNotification.js" />
     <Content Include="Content\Scripts\App\Views\AvailableNotification.js" />
+    <Content Include="Content\Scripts\App\Views\Status.js" />
     <Content Include="Content\Scripts\App\Views\Profile.js" />
     <Content Include="Content\Scripts\App\Views\UserSelector.js" />
     <Content Include="Content\Scripts\App\Views\DashboardNotifications.js" />
@@ -227,6 +228,7 @@
     <Content Include="Content\Styles\Plugins\jquery.gritter.css" />
     <Content Include="Content\Templates\Account\PopProfile.html" />
     <Content Include="Content\Templates\Account\Login.html" />
+    <Content Include="Content\Templates\Parking\Status.html" />
     <Content Include="Content\Templates\Parking\ModalAvailableNotification.html" />
     <Content Include="Content\Templates\Parking\ModalLeaveNotification.html" />
     <Content Include="Content\Templates\Parking\Home.html" />

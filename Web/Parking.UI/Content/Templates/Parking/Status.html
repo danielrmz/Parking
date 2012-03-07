@@ -1,0 +1,10 @@
+﻿
+<div class="container-available {{#if model.spaceAvailable}}yes alert alert-success{{else}}alert alert-error no{{/if}}">
+<span class="title">{{i18n.Status_Question}}</span>
+
+{{#if model.spaceAvailable}}
+    {{i18n.Status_YES}}
+{{else}}
+    {{i18n.Status_NO}}
+{{/if}}
+</div>

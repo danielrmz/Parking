@@ -202,6 +202,32 @@
 
 	}
 
+	.container-available {
+		text-align: center;
+		font-size: 22px;
+		padding: 20px;
+		font-family: "Open sans";
+		width: 30%;
+		margin: 20px auto;
+		font-weight: bold;
+		
+		.title {
+			color: #6A6A6A;
+			display: block;
+			margin-bottom: 10px;
+			font-size: 18px;
+			font-weight: normal;
+		}
+
+		&.yes {
+			color: green;
+		} 
+
+		&.no {
+			color: red;
+		}
+	}
+
 	/* @endgroup */
 
 	/* @group Modals */
@@ -364,5 +390,48 @@
 			font-size: 16px;
 			font-family: "Open Sans";
 		}
+	}
+ }
+
+ @media (max-width: 480px) {
+	#dashboard {
+		display: none;
+	}
+
+	.layout-width, .container-whole.span12 {
+		width: auto;
+	}
+
+	.container-whole.span12 {
+		height: 960px;
+	}
+	
+	.block-silver.time {
+		display: none;
+	}
+
+	.container-available {
+		width: 80% !important;
+	}
+
+	footer .left {
+		display: none;
+	}
+
+	.parking-map { 
+		margin-top: 30px;
+		-moz-transform:rotate(90deg);
+		-webkit-transform:rotate(90deg);
+		-o-transform:rotate(90deg);
+		-ms-transform:rotate(90deg);
+		
+	}
+
+	.modal.fade.in {
+		top: 20%;
+	}
+
+	.dialog-select-user input.search-query {
+		width: 90% !important;
 	}
  }

@@ -195,6 +195,24 @@ body > div {
         body > div .container-parking .parking-map .car.c9 {
           left: 896px;
           top: 268px; }
+  body > div .container-available {
+    text-align: center;
+    font-size: 22px;
+    padding: 20px;
+    font-family: "Open sans";
+    width: 30%;
+    margin: 20px auto;
+    font-weight: bold; }
+    body > div .container-available .title {
+      color: #6A6A6A;
+      display: block;
+      margin-bottom: 10px;
+      font-size: 18px;
+      font-weight: normal; }
+    body > div .container-available.yes {
+      color: green; }
+    body > div .container-available.no {
+      color: red; }
   body > div .dialog-confirmation .modal-body p {
     color: #666666;
     font-family: "Open sans";
@@ -301,3 +319,35 @@ body > div {
   .dialog-available .modal-body p {
     font-size: 16px;
     font-family: "Open Sans"; }
+
+@media (max-width: 480px) {
+  #dashboard {
+    display: none; }
+
+  .layout-width, .container-whole.span12 {
+    width: auto; }
+
+  .container-whole.span12 {
+    height: 960px; }
+
+  .block-silver.time {
+    display: none; }
+
+  .container-available {
+    width: 80% !important; }
+
+  footer .left {
+    display: none; }
+
+  .parking-map {
+    margin-top: 30px;
+    -moz-transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg); }
+
+  .modal.fade.in {
+    top: 20%; }
+
+  .dialog-select-user input.search-query {
+    width: 90% !important; } }

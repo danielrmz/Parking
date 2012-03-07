@@ -27,11 +27,13 @@ namespace("Parking.Resources.i18n");
         'about'  : 'static',
         'help'   : 'static',
         'terms'  : 'static',
-        'privacy': 'static'
+        'privacy': 'static',
+        'status' : 'status'
       },
 
       "main":  apphelpers.RenderBackbonePage,
       "login": apphelpers.RenderBackbonePage,
+      "status": apphelpers.RenderBackbonePage,
       "static":apphelpers.RenderStaticPage 
 
     });
