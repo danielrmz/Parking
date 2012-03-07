@@ -174,30 +174,39 @@ namespace("Parking.Resources.i18n");
 
                 
                 apphelpers.RenderTemplate(popOverTemplate, {"user": user.toJSON(), "checkin": checkin.toJSON(), "space": space.toJSON()}, function(content) { 
+                    var title = user.FullName() + "<a class='close' onclick='$(\"[data-spaceid="+space.get("SpaceId")+"]\").popover(\"hide\");'>&times;</a>";
                     var active = $(".js-popover-active");
-                     
+                    
                     if(active.data("spaceid") != space.get("SpaceId")) {
                         active.popover("hide");
                         active.removeClass("js-popover-active");
                     }
 
-                    car.popover({ 
-                                    "trigger": "manual", 
-                                    "placement": function(popover, car) { 
-                                        var carLeft = $(car).offset()["left"];
-                                        var popoverWidth = $(popover).width();
-                                        var parentOffset = $(car).offsetParent().offset()["left"];
-                                        var length = carLeft + (popoverWidth == 0 ? 330 : popoverWidth) + parentOffset + 60;
+                    if(car.data("popover") == null) {
+                        car.popover({ 
+                                        "trigger": "manual", 
+                                        "placement": function(popover, car) { 
+                                            var carLeft = $(car).offset()["left"];
+                                            var popoverWidth = $(popover).width();
+                                            var parentOffset = $(car).offsetParent().offset()["left"];
+                                            var length = carLeft + (popoverWidth == 0 ? 330 : popoverWidth) + parentOffset + 60;
                                          
-                                        if(length > $(window).width()) {
-                                            return "left";
-                                        }
-                                        return "right";
-                                    },
-                                    "title": user.FullName() + "<a class='close' onclick='$(\"[data-spaceid="+space.get("SpaceId")+"]\").popover(\"hide\");'>&times;</a>", 
-                                    "content": content 
-                               });
-                    car.popover("show"); 
+                                            if(length > $(window).width()) {
+                                                return "left";
+                                            }
+                                            return "right";
+                                        },
+                                        "title": title, 
+                                        "content": content 
+                                   });
+                        car.popover("show"); 
+                    } else {
+                        car.popover("show"); 
+                        var pop = $(car.data("popover").$tip);
+                        pop.find(".popover-title").html(title);
+                        pop.find(".popover-content").html(content); 
+                    }
+                    
                     car.addClass("js-popover-active");  
                 });
             } 
@@ -302,7 +311,7 @@ namespace("Parking.Resources.i18n");
             var car = $(this.el).find("[data-spaceid=" + spaceId + "]");
 
             car.data("checkinid", checkin.get("CheckInId")); 
-            car.removeClass("available").addClass("used");
+            car.removeClass("available").removeClass("js-popover-active").addClass("used");
 
             if(appdata.CurrentUser.get("UserId") == checkin.get("UserId")) {
                 car.addClass("me");
@@ -312,7 +321,9 @@ namespace("Parking.Resources.i18n");
             appdata.CurrentUser.trigger("renew:IsBlocked");
             
             if(appdata.CurrentUser.get("UserId") == checkin.get("UserId")) {
-                appdata.CurrentUserCheckIn.set(checkin);       
+                appdata.CurrentUserCheckIn.set(checkin);      
+                appdata.CurrentUser.trigger("renew:IsBlocked");
+             
             }                                      
         },
 
@@ -327,7 +338,7 @@ namespace("Parking.Resources.i18n");
             var spaceId = checkin.get("SpaceId");
             var car = $(this.el).find("[data-spaceid=" + spaceId + "]");
             car.data("checkinid", null); 
-            car.removeClass("used").removeClass("me").addClass("available"); 
+            car.removeClass("used").removeClass("me").removeClass("js-popover-active").addClass("available"); 
             car.popover("hide");
 
             // Recheck if the user is blocked.
