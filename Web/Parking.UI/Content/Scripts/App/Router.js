@@ -6,6 +6,7 @@
 
 namespace("Parking.App");
 namespace("Parking.App.Data");
+namespace("Parking.Resources.i18n");
 
 (function ($, parking, undefined) {
     var common  = parking["Common"];
@@ -15,6 +16,7 @@ namespace("Parking.App.Data");
     var appmodels      = parking["App"]["Models"];
     var appviews       = parking["App"]["Views"];
     var appcollections = parking["App"]["Collections"];
+    var i18n    = parking["Resources"]["i18n"];
 
     app.Router = Backbone.Router.extend({
       routes: {
@@ -45,14 +47,14 @@ namespace("Parking.App.Data");
         loader.show();
 
         // Get global data. 
-        loader.setLoaderText("Loading Spaces...");
+        loader.setLoaderText(i18n.get("Loader_Spaces"));
         appdata.Spaces.fetch({"async": false});
         appdata.SpaceBlockings.fetch({"async": false});
         
-        loader.setLoaderText("Loading current checkins...");
+        loader.setLoaderText(i18n.get("Loader_Checkins"));
         appdata.CheckinsCurrent.fetch({"async": false});
 
-        loader.setLoaderText("Loading Users...");
+        loader.setLoaderText(i18n.get("Loader_Users"));
         appdata.Users.fetch({"async": false}); 
 
     });
@@ -73,7 +75,6 @@ namespace("Parking.App.Data");
                 channel : "parking:notification:block",
                 restore : false, 
                 callback : function(msg) { 
-                    console.log(msg);
                     if(msg["UserId"] == appdata.CurrentUser.get("UserId")) {
                         var modl = new Backbone.Model();
                         var baseUser = appdata.Users.get(msg["UserId"]);

@@ -54,5 +54,15 @@ namespace Sieena.Parking.API.Models.Interfaces
         [DataType(DataType.Text)]
         [Display(Name = "Profile Pic url")]
         string ProfilePictureUrl { get; set; }
+
+        [DataType(DataType.Text)]
+        [Display(Name = "Locale")]
+        string Locale { get; set; }
+
+        [DataType(DataType.Text)]
+        [Display(Name = "Notifications Available")]
+        bool? NotificationsAvailability { get; set; }
+
+
     }
 }

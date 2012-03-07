@@ -197,6 +197,8 @@
           <Property Name="PhoneCel" Type="nvarchar" MaxLength="255" />
           <Property Name="ProfilePictureUrl" Type="nvarchar" MaxLength="255" />
           <Property Name="ContactEmail" Type="nvarchar" MaxLength="255" />
+          <Property Name="Locale" Type="nvarchar" MaxLength="10" />
+          <Property Name="NotificationsAvailability" Type="bit" />
         </EntityType>
         <EntityType Name="UserRoles">
           <Key>
@@ -395,6 +397,8 @@
           <Property Name="ProfilePictureUrl" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
           <Property Type="String" Name="PhoneOffice" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="ContactEmail" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Locale" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="NotificationsAvailability" />
         </EntityType>
         <EntityType Name="UserRole">
           <Key>
@@ -535,7 +539,9 @@
             <ScalarProperty Name="Priority" ColumnName="Priority" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="UserInfos"><EntityTypeMapping TypeName="Sieena.Parking.API.Models.UserInfo"><MappingFragment StoreEntitySet="UserInfos">
-            <ScalarProperty Name="ContactEmail" ColumnName="ContactEmail" />
+            <ScalarProperty Name="NotificationsAvailability" ColumnName="NotificationsAvailability" />
+                <ScalarProperty Name="Locale" ColumnName="Locale" />
+                <ScalarProperty Name="ContactEmail" ColumnName="ContactEmail" />
                 <ScalarProperty Name="PhoneOffice" ColumnName="PhoneOffice" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
             <ScalarProperty Name="FirstName" ColumnName="FirstName" />

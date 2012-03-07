@@ -69,6 +69,10 @@ label, input, button, select, textarea {
 .modal-backdrop, .modal-backdrop.fade.in {
   opacity: 0.5; }
 
+.nav-tabs a {
+  outline: 0;
+  cursor: pointer; }
+
 .btn-group .btn {
   color: white;
   text-shadow: none;

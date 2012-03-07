@@ -45,7 +45,8 @@ namespace Sieena.Parking.API.Models
                     existing.FirstName = u.FirstName;
                     existing.LastName = u.LastName;
                     existing.Gender = u.Gender;
-                     
+                    existing.NotificationsAvailability = u.NotificationsAvailability;
+                    existing.Locale = u.Locale;
                 }
                 ctx.SaveChanges();
 

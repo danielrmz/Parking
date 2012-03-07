@@ -64,6 +64,7 @@ header {
 
 		.user {
 			float: left;
+			margin-right: 10px;
 		}
 
 		.user-name {
@@ -192,9 +193,36 @@ header {
 	/* @endgroup */
 
 	.dialog-profile {
+		
 		label {
 			font-weight: bold;
 		} 
+
+		form {
+			margin-bottom: 0;
+		}
+
+		.panel-notifications {
+			color: #6A6A6A;
+
+			.title {
+			
+				font-size: 14px;
+				margin-bottom: 15px;
+
+				.bold {
+					color: #DB6427;
+				}
+			}
+
+			.available { 
+				color: green;
+			} 
+
+			.table td:first-child {
+				text-align: center;
+			}
+		}
 	}
 }
 

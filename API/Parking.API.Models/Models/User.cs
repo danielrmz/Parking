@@ -53,6 +53,7 @@ namespace Sieena.Parking.API.Models
             user.LastName = ui.LastName;
             user.Role = role == null ? string.Empty : role.RoleName;
             user.RoleId = role == null ? 0 : role.RoleId;
+            user.Locale = ui.Locale;
 
             user.SessionId = (ses != null ) ? Crypto.EncryptStringAES(ses.SessionId.ToString(), ConfigurationManager.AppSettings["Crypto.Secret"])
                 : string.Empty;
@@ -218,7 +219,8 @@ namespace Sieena.Parking.API.Models
                     LastName = uis[u.UserId].LastName,
                     ProfilePictureUrl = uis[u.UserId].ProfilePictureUrl,
                     UserName = u.Email.Split('@').First(),
-                    UserId = u.UserId
+                    UserId = u.UserId,
+                    Locale = uis[u.UserId].Locale
                 }).ToList();
             }
         }

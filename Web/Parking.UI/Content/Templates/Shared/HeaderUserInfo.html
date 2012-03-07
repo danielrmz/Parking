@@ -4,16 +4,17 @@
     <p>
         {{i18n.Header_WelcomeText}}, <span>{{model.FirstName}} {{model.LastName}}</span>
         <br />
-        <a href="/profile" class="btn-sign-out js-profile">My Profile</a> 
+        <a href="/profile" class="btn-sign-out js-profile">{{i18n.Header_Profile}}</a> 
         |        
         <a href="/logout" class="btn-sign-out js-logout">{{i18n.Header_Logout}}</a> 
     </p> 
 </div>
 <div class="js-placeholder-profile"></div>
+
 {{else}}
 
-<a href="/login" class="block-light block-text">
-    Login
+<a href="/login" class="block-light block-text" data-langkey="Header_Login">
+    {{i18n.Header_Login}}
 </a>
 
 {{/if}}

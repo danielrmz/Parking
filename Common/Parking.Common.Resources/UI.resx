@@ -150,6 +150,9 @@
   <data name="Buttons_Confirm" xml:space="preserve">
     <value>Confirm</value>
   </data>
+  <data name="Buttons_Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
   <data name="Buttons_SendMessage" xml:space="preserve">
     <value>Send Message</value>
   </data>
@@ -180,11 +183,26 @@
   <data name="Footer_Terms" xml:space="preserve">
     <value>Terms</value>
   </data>
+  <data name="Header_Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
   <data name="Header_Logout" xml:space="preserve">
     <value>Sign Out</value>
   </data>
+  <data name="Header_Profile" xml:space="preserve">
+    <value>My Profile</value>
+  </data>
   <data name="Header_WelcomeText" xml:space="preserve">
     <value>Welcome </value>
+  </data>
+  <data name="Loader_Checkins" xml:space="preserve">
+    <value>Loading current checkins...</value>
+  </data>
+  <data name="Loader_Spaces" xml:space="preserve">
+    <value>Loading Spaces...</value>
+  </data>
+  <data name="Loader_Users" xml:space="preserve">
+    <value>Loading Users...</value>
   </data>
   <data name="Login_AfterSubmit" xml:space="preserve">
     <value>Logging in...</value>
@@ -226,7 +244,7 @@
     <value>Feature not implemented</value>
   </data>
   <data name="Notification_EmailMessage" xml:space="preserve">
-    <value>User {0} is looking for you, he/she needs you to move your car. &lt;br /&gt;Thanks!&lt;br /&gt;MyPlace</value>
+    <value>User {0} is looking for you, he/she needs you to move your car. Thanks! \n MyPlace</value>
   </data>
   <data name="Notification_EmailTitle" xml:space="preserve">
     <value>[MyPlace] Someone needs you to move your car!</value>
@@ -252,11 +270,53 @@
   <data name="Profile_LastName" xml:space="preserve">
     <value>Last Name</value>
   </data>
+  <data name="Profile_Locale" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="Profile_Notifications_Availability" xml:space="preserve">
+    <value>I want to receive an alert when a place becomes &lt;span class="available"&gt;available&lt;/span&gt;</value>
+  </data>
+  <data name="Profile_Notifications_Success" xml:space="preserve">
+    <value>Notification settings saved successfully</value>
+  </data>
+  <data name="Profile_Notifications_Title" xml:space="preserve">
+    <value>Would you like to suscribe to some of these &lt;span class="bold"&gt;notifications&lt;/span&gt;?</value>
+  </data>
+  <data name="Profile_Success" xml:space="preserve">
+    <value>Profile updated correctly</value>
+  </data>
+  <data name="Profile_TabNotifications" xml:space="preserve">
+    <value>Notifications</value>
+  </data>
   <data name="Profile_Title" xml:space="preserve">
     <value>My Profile</value>
   </data>
   <data name="TEST" xml:space="preserve">
     <value>TEST</value>
+  </data>
+  <data name="TimeAgo_Days" xml:space="preserve">
+    <value>{0} days ago</value>
+  </data>
+  <data name="TimeAgo_Hour" xml:space="preserve">
+    <value>1 hour ago</value>
+  </data>
+  <data name="TimeAgo_Hours" xml:space="preserve">
+    <value>{0} hours ago</value>
+  </data>
+  <data name="TimeAgo_JustNow" xml:space="preserve">
+    <value>just now</value>
+  </data>
+  <data name="TimeAgo_Minute" xml:space="preserve">
+    <value>1 minute ago</value>
+  </data>
+  <data name="TimeAgo_Minutes" xml:space="preserve">
+    <value>{0} minutes ago</value>
+  </data>
+  <data name="TimeAgo_Weeks" xml:space="preserve">
+    <value>{0} weeks ago</value>
+  </data>
+  <data name="TimeAgo_Yesterday" xml:space="preserve">
+    <value>Yesterday</value>
   </data>
   <data name="UserInfo_ArrivalTime" xml:space="preserve">
     <value>Arrived at</value>

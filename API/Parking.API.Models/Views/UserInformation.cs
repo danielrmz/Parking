@@ -37,5 +37,8 @@ namespace Sieena.Parking.API.Models.Views
 
         [Display(Name = "RoleId")]
         public int RoleId { get; set; }
+
+        [Display(Name = "Locale")]
+        public string Locale { get; set; }
     }
 }

@@ -12,9 +12,10 @@ namespace("Parking.Common");
      
     $(function() { 
         common.HeaderDate();
+        common.setLanguageVerbiage(); 
         setInterval(common.HeaderDate, 60 * 1000);
         setInterval(common.HeaderDateTick, 1000);
-        setInterval(function() { $("[data-time]").each(function() { $(this).html(common.FormatTimeAgo($(this).data("time"))); });  }, 60000);  
+        setInterval(function() { $("[data-time]").each(function() { $(this).html(common.FormatTimeAgo($(this).data("time"))); });  }, 60000); 
     });
 
 })(jQuery, Parking);

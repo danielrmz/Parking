@@ -11,14 +11,7 @@
 	    
         <div class="column user-info" >
             <div class="user">
-                <div class="block-light user-name" style="display:none;"> 
-                    <p>
-                        @Html.Raw(string.Format(i18n.Header_WelcomeText, "{{user.displayname}}")) 
-                        <br /><a href="#" class="btn-sign-out">Sign Out</a>
-                    </p> 
-                </div>
-
-                <a href="/login" class="block-light block-text">
+                <a href="/login" class="block-light block-text" data-langkey="Header_Login">
                     Login
                 </a>
             </div>

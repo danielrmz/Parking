@@ -50,5 +50,6 @@ namespace("Parking.Configuration");
         Date: "99/99/?9999"
     };
 
+    config.locale = $.cookie('ParkingLocale');   
 
 })(jQuery, Parking["Configuration"]);

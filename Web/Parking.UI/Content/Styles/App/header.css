@@ -50,7 +50,8 @@ header {
     header .user-info p {
       margin: 0; }
     header .user-info .user {
-      float: left; }
+      float: left;
+      margin-right: 10px; }
     header .user-info .user-name {
       margin: 5px 0 0; }
       header .user-info .user-name p {
@@ -128,6 +129,19 @@ header {
       background: url("../Images/logo-myplace.png"); }
   header .dialog-profile label {
     font-weight: bold; }
+  header .dialog-profile form {
+    margin-bottom: 0; }
+  header .dialog-profile .panel-notifications {
+    color: #6A6A6A; }
+    header .dialog-profile .panel-notifications .title {
+      font-size: 14px;
+      margin-bottom: 15px; }
+      header .dialog-profile .panel-notifications .title .bold {
+        color: #DB6427; }
+    header .dialog-profile .panel-notifications .available {
+      color: green; }
+    header .dialog-profile .panel-notifications .table td:first-child {
+      text-align: center; }
 
 #dashboard {
   width: 100%;

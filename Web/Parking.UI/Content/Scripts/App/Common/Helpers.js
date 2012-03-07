@@ -158,6 +158,13 @@ namespace("Parking.App.Base");
     };
 
     /**
+     * Register helper to return the selected value of a select input 
+     */
+    Handlebars.registerHelper('selectInput', function(selected, base) {
+        return selected == base ? 'selected="selected"':"";
+    });
+
+    /**
      * Register helper to display short timestamps
      */
     Handlebars.registerHelper('shortDate', function(time) {

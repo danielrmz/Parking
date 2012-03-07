@@ -42,13 +42,15 @@ namespace("Parking.App.Models");
             "PhoneOfficeExtension": "",
             "PhoneCel": "",
             "ProfilePictureUrl": "",
-            "ContactEmail":""
+            "ContactEmail":"",
+            "Locale":"",
+            "NotificationsAvailability": false
         },
 
         /**
          * @constructor
          */
-        "initialize": function() {
+        "initialize": function() { 
         },
 
         /**

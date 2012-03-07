@@ -160,6 +160,15 @@ namespace Sieena.Parking.Common.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string Buttons_Save {
+            get {
+                return ResourceManager.GetString("Buttons_Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Send Message.
         /// </summary>
         public static string Buttons_SendMessage {
@@ -250,6 +259,15 @@ namespace Sieena.Parking.Common.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Login.
+        /// </summary>
+        public static string Header_Login {
+            get {
+                return ResourceManager.GetString("Header_Login", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sign Out.
         /// </summary>
         public static string Header_Logout {
@@ -259,11 +277,47 @@ namespace Sieena.Parking.Common.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to My Profile.
+        /// </summary>
+        public static string Header_Profile {
+            get {
+                return ResourceManager.GetString("Header_Profile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Welcome .
         /// </summary>
         public static string Header_WelcomeText {
             get {
                 return ResourceManager.GetString("Header_WelcomeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Loading current checkins....
+        /// </summary>
+        public static string Loader_Checkins {
+            get {
+                return ResourceManager.GetString("Loader_Checkins", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Loading Spaces....
+        /// </summary>
+        public static string Loader_Spaces {
+            get {
+                return ResourceManager.GetString("Loader_Spaces", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Loading Users....
+        /// </summary>
+        public static string Loader_Users {
+            get {
+                return ResourceManager.GetString("Loader_Users", resourceCulture);
             }
         }
         
@@ -385,7 +439,7 @@ namespace Sieena.Parking.Common.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to User {0} is looking for you, he/she needs you to move your car. &lt;br /&gt;Thanks!&lt;br /&gt;MyPlace.
+        ///   Looks up a localized string similar to User {0} is looking for you, he/she needs you to move your car. Thanks! \n MyPlace.
         /// </summary>
         public static string Notification_EmailMessage {
             get {
@@ -466,6 +520,60 @@ namespace Sieena.Parking.Common.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Language.
+        /// </summary>
+        public static string Profile_Locale {
+            get {
+                return ResourceManager.GetString("Profile_Locale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I want to receive an alert when a place becomes &lt;span class=&quot;available&quot;&gt;available&lt;/span&gt;.
+        /// </summary>
+        public static string Profile_Notifications_Availability {
+            get {
+                return ResourceManager.GetString("Profile_Notifications_Availability", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Notification settings saved successfully.
+        /// </summary>
+        public static string Profile_Notifications_Success {
+            get {
+                return ResourceManager.GetString("Profile_Notifications_Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Would you like to suscribe to some of these &lt;span class=&quot;bold&quot;&gt;notifications&lt;/span&gt;?.
+        /// </summary>
+        public static string Profile_Notifications_Title {
+            get {
+                return ResourceManager.GetString("Profile_Notifications_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Profile updated correctly.
+        /// </summary>
+        public static string Profile_Success {
+            get {
+                return ResourceManager.GetString("Profile_Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Notifications.
+        /// </summary>
+        public static string Profile_TabNotifications {
+            get {
+                return ResourceManager.GetString("Profile_TabNotifications", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to My Profile.
         /// </summary>
         public static string Profile_Title {
@@ -480,6 +588,78 @@ namespace Sieena.Parking.Common.Resources {
         public static string TEST {
             get {
                 return ResourceManager.GetString("TEST", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} days ago.
+        /// </summary>
+        public static string TimeAgo_Days {
+            get {
+                return ResourceManager.GetString("TimeAgo_Days", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1 hour ago.
+        /// </summary>
+        public static string TimeAgo_Hour {
+            get {
+                return ResourceManager.GetString("TimeAgo_Hour", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} hours ago.
+        /// </summary>
+        public static string TimeAgo_Hours {
+            get {
+                return ResourceManager.GetString("TimeAgo_Hours", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to just now.
+        /// </summary>
+        public static string TimeAgo_JustNow {
+            get {
+                return ResourceManager.GetString("TimeAgo_JustNow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1 minute ago.
+        /// </summary>
+        public static string TimeAgo_Minute {
+            get {
+                return ResourceManager.GetString("TimeAgo_Minute", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} minutes ago.
+        /// </summary>
+        public static string TimeAgo_Minutes {
+            get {
+                return ResourceManager.GetString("TimeAgo_Minutes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} weeks ago.
+        /// </summary>
+        public static string TimeAgo_Weeks {
+            get {
+                return ResourceManager.GetString("TimeAgo_Weeks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yesterday.
+        /// </summary>
+        public static string TimeAgo_Yesterday {
+            get {
+                return ResourceManager.GetString("TimeAgo_Yesterday", resourceCulture);
             }
         }
         

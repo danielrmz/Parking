@@ -6,9 +6,11 @@
 * @license Copyright 2012. The JSONS
 */
 namespace("Parking.Common");
+namespace("Parking.Resources.i18n");
 
 (function ($, parking, undefined) {
     var common  = parking["Common"]; 
+    var i18n    = parking["Resources"]["i18n"];
 
     /** 
      * Serializes form fields into key value pairs.
@@ -151,9 +153,11 @@ namespace("Parking.Common");
                                 common.DisplayGlobalError(message["Response"], function() { 
                                     $.cookie('ParkingUserId', null);
                                     $.cookie('ParkingSessionId', null);
+                                    $.cookie('ParkingLocale', null);
                                     common.ClearAjaxToken();
                                     location.reload(); 
                                 }); 
+                                return;
                             }
 
                             if(message["IsGlobalError"] == true) {
@@ -208,14 +212,14 @@ namespace("Parking.Common");
 		    return;
 		
 	    return day_diff == 0 && (
-			    diff < 60 && "just now" ||
-			    diff < 120 && "1 minute ago" ||
-			    diff < 3600 && Math.floor( diff / 60 ) + " minutes ago" ||
-			    diff < 7200 && "1 hour ago" ||
-			    diff < 86400 && Math.floor( diff / 3600 ) + " hours ago") ||
-		    day_diff == 1 && "Yesterday" ||
-		    day_diff < 7 && day_diff + " days ago" ||
-		    day_diff < 31 && Math.ceil( day_diff / 7 ) + " weeks ago";
+			    diff < 60 && i18n.get("TimeAgo_JustNow") ||
+			    diff < 120 && i18n.get("TimeAgo_Minute")   ||
+			    diff < 3600 && i18n.get("TimeAgo_Minutes").replace("{0}",Math.floor( diff / 60 )) ||
+			    diff < 7200 && i18n.get("TimeAgo_Hour") ||
+			    diff < 86400 && i18n.get("TimeAgo_Hours").replace("{0}",Math.floor( diff / 3600 )) ||
+		    day_diff == 1 && i18n.get("TimeAgo_Yesterday") ||
+		    day_diff < 7 && i18n.get("TimeAgo_Days").replace("{0}",day_diff) ||
+		    day_diff < 31 && i18n.get("TimeAgo_Weeks").replace("{0}",Math.ceil( day_diff / 7 )));
     };
     
     /**
@@ -239,6 +243,16 @@ namespace("Parking.Common");
      */
     common.SetLoaderText = function(text) {
         $(".js-loading-legend").html(text);
+    };
+
+    /**
+     * Sets fixed language contents.
+     */
+    common.setLanguageVerbiage = function() { 
+        $("[data-langkey]").each(function() { 
+            var rsrc = $(this).data("langkey");
+            $(this).html(i18n.get(rsrc));
+        });
     };
 
 })(jQuery, Parking);

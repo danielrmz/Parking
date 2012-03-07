@@ -37,7 +37,8 @@ namespace("Parking.App.Models");
             "IsAuthenticated": false,
             "Role": "",
             "RoleId": 0,
-            "IsBlocked": false
+            "IsBlocked": false,
+            "Locale": ""
         },
 
         /**
@@ -66,6 +67,7 @@ namespace("Parking.App.Models");
             this.set(data);
             this.trigger("post-loggedin");
 
+            $.cookie("ParkingLocale", this.get("Locale"));
             $.cookie('ParkingUserId', this.get('UserName'));
             $.cookie('ParkingSessionId', this.get('SessionId')); 
         },
@@ -83,6 +85,7 @@ namespace("Parking.App.Models");
             
                     $.cookie('ParkingUserId', null);
                     $.cookie('ParkingSessionId', null);
+                    $.cookie("ParkingLocale", null);
 
                     self.clear();
                 
@@ -195,6 +198,9 @@ namespace("Parking.App.Models");
                
                 $.get(config.APIEndpointUrl + "session", function(data) { 
                     if(data.Error == false) {
+                        $.cookie("ParkingLocale", data["Response"]["Locale"]);
+                        config.locale = $.cookie("ParkingLocale");
+
                         self.trigger("pre-loggedin");
                         self.set(data["Response"]);
                         self.trigger("initialized");

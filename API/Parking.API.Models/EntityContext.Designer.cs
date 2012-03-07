@@ -3342,6 +3342,54 @@ namespace Sieena.Parking.API.Models
         private global::System.String _ContactEmail;
         partial void OnContactEmailChanging(global::System.String value);
         partial void OnContactEmailChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Locale
+        {
+            get
+            {
+                return _Locale;
+            }
+            set
+            {
+                OnLocaleChanging(value);
+                ReportPropertyChanging("Locale");
+                _Locale = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Locale");
+                OnLocaleChanged();
+            }
+        }
+        private global::System.String _Locale;
+        partial void OnLocaleChanging(global::System.String value);
+        partial void OnLocaleChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> NotificationsAvailability
+        {
+            get
+            {
+                return _NotificationsAvailability;
+            }
+            set
+            {
+                OnNotificationsAvailabilityChanging(value);
+                ReportPropertyChanging("NotificationsAvailability");
+                _NotificationsAvailability = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("NotificationsAvailability");
+                OnNotificationsAvailabilityChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _NotificationsAvailability;
+        partial void OnNotificationsAvailabilityChanging(Nullable<global::System.Boolean> value);
+        partial void OnNotificationsAvailabilityChanged();
 
         #endregion
     

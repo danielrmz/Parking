@@ -40,7 +40,8 @@ namespace("Parking.App.Data");
          * @enum {string}
          */
         "events": {
-             "click .js-button-success": "doSave"
+             "click #general .js-button-success": "doSave",
+             "click #notifications .js-button-success": "doNotificationsSave"
         },
 
         /**
@@ -61,27 +62,49 @@ namespace("Parking.App.Data");
          * Saves the specified user.
          */
         "doSave": function() { 
-            var btn  = $(this.el).find(".js-button-success");
-            var form = $(this.el).find("form");
-            var msg  = $(this.el).find(".js-success");
+            var form = $(this.el).find("#general form");
+            this.saveUser(form);
+            return false;
+        },
+        
+        /**
+         * Saves the notifications settings
+         */
+        "doNotificationsSave": function() { 
+            var form = $(this.el).find("#notifications form");
+            this.saveUser(form);
+            return false;
+        },
+
+        /**
+         * Saves the user
+         */
+        saveUser: function(form) {
+            var btn  = form.find(".js-button-success");
             var obj  = form.serializeObject();
-            
+            var msg  = form.find(".js-success");
+
             if(btn.hasClass("disabled")) { 
                 return;
             }
-            
-            btn.addClass("disabled");
-            
-            this.model.set(obj); 
+            btn.addClass("disabled"); 
+
+            var localeChanged = false;
+            if(obj["Locale"] && obj["Locale"] != this.model.get("Locale")) {
+                localeChanged = true;
+            }
+
+            this.model.set(obj);
             
             this.model.save({}, {"success": function() { 
                 msg.fadeIn();
                 btn.removeClass("disabled");
+                if(localeChanged) {
+                    $.cookie("ParkingLocale", obj["Locale"]);
+                    location.reload();
+                }
             }});
-
-            return false;
         }
-            
          
     });
 
